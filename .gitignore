@@ -3,3 +3,6 @@ _book/
 node_modules/
 book.pdf
 *.epub
+.tmp/
+*_citations.md
+.workflow-bibliography.js
