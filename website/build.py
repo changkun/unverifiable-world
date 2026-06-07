@@ -32,7 +32,7 @@ OUT = os.path.join(ROOT, "website", "public")
 FIG_SRC = os.path.join(ROOT, "book", "figures")
 
 TITLE = "在无法验证的世界里"
-SUBTITLE = "In a World Without Verification"
+SUBTITLE = "An Unverifiable World"
 AUTHOR = "欧长坤"
 BLURB = "在没有任何东西能确认你做对了的地方，有限的主体如何行动。"
 
