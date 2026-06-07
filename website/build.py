@@ -34,7 +34,31 @@ FIG_SRC = os.path.join(ROOT, "book", "figures")
 TITLE = "在无法验证的世界里"
 SUBTITLE = "An Unverifiable World"
 AUTHOR = "欧长坤"
-BLURB = "在没有任何东西能确认你做对了的地方，有限的主体如何行动。"
+BLURB = "当对错无从验证，有限的主体如何行动得当？"
+# 部署后的站点根地址，用于社交分享的绝对 URL（og:url / og:image）。换部署路径就改这里。
+BASE = "https://changkun.de/unverifiable-world"
+
+
+def head_meta(title, url_path, desc):
+    full = f"{title} · {TITLE}" if title and title != TITLE else TITLE
+    url = BASE + ("/" + url_path if url_path else "/")
+    e = html.escape
+    return (
+        f'<meta name="description" content="{e(desc)}">'
+        f'<meta property="og:type" content="book">'
+        f'<meta property="og:site_name" content="{e(TITLE)}">'
+        f'<meta property="og:locale" content="zh_CN">'
+        f'<meta property="og:title" content="{e(full)}">'
+        f'<meta property="og:description" content="{e(desc)}">'
+        f'<meta property="og:url" content="{e(url)}">'
+        f'<meta property="og:image" content="{BASE}/og.png">'
+        f'<meta property="og:image:width" content="1200">'
+        f'<meta property="og:image:height" content="630">'
+        f'<meta name="twitter:card" content="summary_large_image">'
+        f'<meta name="twitter:title" content="{e(full)}">'
+        f'<meta name="twitter:description" content="{e(desc)}">'
+        f'<meta name="twitter:image" content="{BASE}/og.png">'
+    )
 
 KATEX = """
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
@@ -89,6 +113,13 @@ a{color:#2b4a8b;text-decoration:none}a:hover{text-decoration:underline}
 .content .katex-display{overflow-x:auto;overflow-y:hidden;max-width:100%;padding:2px 2px 8px}
 .content .katex-display::-webkit-scrollbar{height:6px}
 .content .katex-display::-webkit-scrollbar-thumb{background:#d1d5db;border-radius:3px}
+/* 参考文献比正文小一号 */
+.content .refs{font-size:15px;line-height:1.72;color:#374151}
+.content .refs h2{font-size:21px}
+.content .refs ol{padding-left:1.5em}
+.content .refs li{margin:.5em 0}
+.content .refs blockquote{font-size:13px;background:#f8fafc}
+.content .refs .katex{font-size:1em}
 
 .nav{display:flex;justify-content:space-between;gap:14px;margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-size:15px}
 .nav a{max-width:46%}.nav .spacer{flex:1}
@@ -111,7 +142,7 @@ body.turning .content{animation:turnOut .19s ease both}
  background:linear-gradient(135deg,#2b3a55 0%,#1b2233 100%);color:#f4f4f2;
  box-shadow:0 24px 60px rgba(20,30,50,.35),inset 4px 0 0 rgba(255,255,255,.12),inset 8px 0 14px rgba(0,0,0,.25);
  display:flex;flex-direction:column;justify-content:space-between;padding:42px 34px}
-.book .t{font-size:30px;font-weight:700;line-height:1.35;letter-spacing:1px}
+.book .t{font-size:27px;font-weight:700;line-height:1.4;letter-spacing:1px;text-wrap:balance}
 .book .s{font-size:13px;color:#aab4c8;letter-spacing:2px;text-transform:uppercase;margin-top:14px}
 .book .bk-top{text-align:center}
 .book .bk-art{width:62%;align-self:center;margin:6px auto;opacity:.96;filter:drop-shadow(0 4px 14px rgba(0,0,0,.35))}
@@ -125,6 +156,20 @@ body.turning .content{animation:turnOut .19s ease both}
 .toc-page .part{font-weight:700;color:var(--accent);margin:24px 0 8px;font-size:17px}
 .toc-page ul{list-style:none;padding:0}.toc-page li{margin:7px 0;font-size:16.5px}
 .muted{color:var(--muted)}
+
+/* 分享 */
+.share{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:30px;font-size:14px;color:var(--muted)}
+.share .lbl{margin-right:2px}
+.share button{font:inherit;cursor:pointer;border:1px solid var(--line);background:#fff;color:#374151;
+ border-radius:999px;padding:6px 14px;display:inline-flex;align-items:center;gap:6px;font-size:13.5px}
+.share button:hover{border-color:#2b4a8b;color:#2b4a8b}
+.share .ic{width:15px;height:15px;display:inline-block;vertical-align:-2px}
+.qr-modal{display:none;position:fixed;inset:0;z-index:80;align-items:center;justify-content:center;background:rgba(0,0,0,.5)}
+.qr-modal.show{display:flex}
+.qr-card{background:#fff;border-radius:14px;padding:24px 26px;text-align:center;max-width:300px;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.qr-card h4{margin:0 0 4px;font-size:16px}.qr-card p{margin:6px 0 14px;color:var(--muted);font-size:13px}
+.qr-card #qrbox{display:flex;justify-content:center;min-height:200px;align-items:center}
+.qr-card .close{margin-top:14px;border:none;background:#f1f5f9;border-radius:8px;padding:7px 16px;cursor:pointer;font:inherit;font-size:13.5px}
 
 @media(max-width:820px){
  body{font-size:17px}
@@ -187,22 +232,66 @@ def sidebar_html(entries, parts, active=None):
     return "\n".join(out)
 
 
-JS = """
+SHARE = """
+<div class="share">
+  <span class="lbl">分享：</span>
+  <button data-share="linkedin">LinkedIn</button>
+  <button data-share="x">X / Twitter</button>
+  <button data-share="wechat">微信</button>
+</div>
+"""
+
+QR_MODAL = """
+<div class="qr-modal" id="qrModal">
+  <div class="qr-card">
+    <h4>用微信扫码打开</h4>
+    <p>手机微信「扫一扫」打开本页，再点右上角分享给好友或朋友圈</p>
+    <div id="qrbox"></div>
+    <button class="close" id="qrClose">关闭</button>
+  </div>
+</div>
+"""
+
+import json as _json
+
+
+def js_block():
+    tweet = f"《{TITLE}》 — {BLURB}"
+    tt = _json.dumps(tweet, ensure_ascii=False)
+    return """
 <script>
 (function(){
  var sb=document.querySelector('.sidebar'),ov=document.querySelector('.overlay'),bg=document.querySelector('.burger');
- function close(){if(sb)sb.classList.remove('open');if(ov)ov.classList.remove('show');}
+ function closeDrawer(){if(sb)sb.classList.remove('open');if(ov)ov.classList.remove('show');}
  if(bg)bg.addEventListener('click',function(){sb.classList.toggle('open');ov.classList.toggle('show');});
- if(ov)ov.addEventListener('click',close);
+ if(ov)ov.addEventListener('click',closeDrawer);
  var rm=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
  if(!rm){Array.prototype.forEach.call(document.querySelectorAll('a[data-turn]'),function(a){
    a.addEventListener('click',function(e){var h=a.getAttribute('href');
      if(!h||h.charAt(0)==='#'||a.classList.contains('disabled'))return;
      e.preventDefault();document.body.classList.add('turning');
      setTimeout(function(){location.href=h;},185);});});}
+ // 分享
+ var TT=__TT__;
+ function openShare(k){var u=encodeURIComponent(location.href);
+   if(k==='linkedin')window.open('https://www.linkedin.com/sharing/share-offsite/?url='+u,'_blank','noopener,noreferrer,width=720,height=640');
+   else if(k==='x')window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(TT)+'&url='+u,'_blank','noopener,noreferrer,width=560,height=640');
+   else if(k==='wechat')showQR();}
+ Array.prototype.forEach.call(document.querySelectorAll('[data-share]'),function(b){
+   b.addEventListener('click',function(){openShare(b.getAttribute('data-share'));});});
+ var qm=document.getElementById('qrModal'),qc=document.getElementById('qrClose');
+ function closeQR(){if(qm)qm.classList.remove('show');}
+ if(qc)qc.addEventListener('click',closeQR);
+ if(qm)qm.addEventListener('click',function(e){if(e.target===qm)closeQR();});
+ function renderQR(){var box=document.getElementById('qrbox');if(!box||!window.QRCode)return;
+   box.innerHTML='';new QRCode(box,{text:location.href,width:200,height:200,correctLevel:QRCode.CorrectLevel.M});}
+ function showQR(){if(qm)qm.classList.add('show');
+   if(window.QRCode){renderQR();return;}
+   var s=document.createElement('script');
+   s.src='https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js';s.onload=renderQR;document.head.appendChild(s);}
 })();
 </script>
-"""
+""".replace("__TT__", tt)
 
 
 def topbar(cur_title):
@@ -222,13 +311,14 @@ def mobilebar(prevp, nextp, pos):
     return f'<nav class="mobilebar">{pa}<span class="pos">{pos}</span>{na}</nav>'
 
 
-def page(title, body, sidebar, active=None, cur_title="", prevp=None, nextp=None, pos="", extra_class=""):
+def page(title, body, sidebar, active=None, cur_title="", prevp=None, nextp=None, pos="", extra_class="", url_path=""):
     return f"""<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{html.escape(title)} · {html.escape(TITLE)}</title>
+{head_meta(cur_title or title, url_path or active or "", BLURB)}
 {KATEX}
 <style>{CSS}</style>
 </head>
@@ -240,7 +330,8 @@ def page(title, body, sidebar, active=None, cur_title="", prevp=None, nextp=None
 <main class="content {extra_class}">{body}</main>
 </div>
 {mobilebar(prevp, nextp, pos)}
-{JS}
+{QR_MODAL}
+{js_block()}
 </body>
 </html>
 """
@@ -263,7 +354,8 @@ def cover_body(entries):
     <a class="btn primary" href="{first}">开始阅读</a>
     <a class="btn ghost" href="toc.html">目录</a>
   </div>
-  <p class="muted" style="margin-top:26px;font-size:13.5px">本作品采用 CC BY-NC-ND 4.0 许可</p>
+  {SHARE}
+  <p class="muted" style="margin-top:18px;font-size:13.5px">本作品采用 CC BY-NC-ND 4.0 许可</p>
 </div>
 """
 
@@ -272,8 +364,13 @@ def cover_page(entries):
     return f"""<!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{html.escape(TITLE)}</title><style>{CSS}</style></head>
-<body><div class="wrap" style="display:block">{cover_body(entries)}</div></body></html>
+<title>{html.escape(TITLE)} · {html.escape(SUBTITLE)}</title>
+{head_meta(TITLE, "", BLURB)}
+<style>{CSS}</style></head>
+<body><div class="wrap" style="display:block">{cover_body(entries)}</div>
+{QR_MODAL}
+{js_block()}
+</body></html>
 """
 
 
@@ -287,16 +384,25 @@ def toc_page(entries, parts, sidebar):
             t, f, _ = entries[i]
             out.append(f'<li><a data-turn href="{f}">{html.escape(t)}</a></li>')
         out.append("</ul>")
+    out.append(SHARE)
     nextp = (entries[0][0], entries[0][1]) if entries else None
     return page("目录", "\n".join(out), sidebar, cur_title="目录",
-                nextp=nextp, pos="目录", extra_class="toc-page")
+                nextp=nextp, pos="目录", extra_class="toc-page", url_path="toc.html")
 
 
 MD_EXT = ["extra", "tables", "fenced_code", "sane_lists", "attr_list"]
 
 
 def render_md(mdpath):
-    body = markdown.markdown(open(mdpath, encoding="utf-8").read(), extensions=MD_EXT)
+    text = open(mdpath, encoding="utf-8").read()
+    if "## 参考文献" in text:
+        head, refs = text.split("## 参考文献", 1)
+        body = (markdown.markdown(head, extensions=MD_EXT)
+                + '<section class="refs">'
+                + markdown.markdown("## 参考文献" + refs, extensions=MD_EXT)
+                + '</section>')
+    else:
+        body = markdown.markdown(text, extensions=MD_EXT)
     return body.replace('src="../figures/', 'src="figures/').replace("src='../figures/", "src='figures/")
 
 
@@ -306,6 +412,9 @@ def main():
     os.makedirs(OUT)
     if os.path.isdir(FIG_SRC):
         shutil.copytree(FIG_SRC, os.path.join(OUT, "figures"))
+    ogp = os.path.join(ROOT, "website", "og.png")
+    if os.path.isfile(ogp):
+        shutil.copy(ogp, os.path.join(OUT, "og.png"))
 
     entries, parts = parse_summary()
     n = len(entries)
@@ -322,7 +431,7 @@ def main():
                   else '<a data-turn href="index.html">← 封面</a>')
         next_a = (f'<a data-turn href="{nextp[1]}">{html.escape(nextp[0])} →</a>' if nextp
                   else '<a data-turn href="toc.html">目录 →</a>')
-        body += f'<div class="nav">{prev_a}<span class="spacer"></span>{next_a}</div>'
+        body += f'<div class="nav">{prev_a}<span class="spacer"></span>{next_a}</div>' + SHARE
         open(os.path.join(OUT, fname), "w", encoding="utf-8").write(
             page(title, body, sidebar_html(entries, parts, active=fname),
                  active=fname, cur_title=title, prevp=prevp, nextp=nextp, pos=f"{i + 1} / {n}"))
