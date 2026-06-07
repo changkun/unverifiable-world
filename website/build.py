@@ -121,8 +121,13 @@ a{color:#2b4a8b;text-decoration:none}a:hover{text-decoration:underline}
 .content .refs blockquote{font-size:13px;background:#f8fafc}
 .content .refs .katex{font-size:1em}
 
-.nav{display:flex;justify-content:space-between;gap:14px;margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-size:15px}
+.nav{display:flex;justify-content:space-between;gap:14px;margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:15px}
 .nav a{max-width:46%}.nav .spacer{flex:1}
+/* 章末跳转（正文之后、参考文献之前） */
+.endnav{display:flex;flex-direction:column;align-items:center;gap:10px;margin:52px 0 6px;padding-top:24px;border-top:1px solid var(--line)}
+.endnav .go-next{display:inline-block;background:#2b4a8b;color:#fff;padding:11px 26px;border-radius:10px;font-size:16px;text-align:center}
+.endnav .go-next:hover{text-decoration:none;background:#23407c}
+.endnav .go-prev{color:var(--muted);font-size:14px}
 
 /* 翻页动画 */
 @keyframes turnIn{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:none}}
@@ -137,12 +142,12 @@ body.turning .content{animation:turnOut .19s ease both}
 
 /* 封面 */
 .cover{display:flex;flex-direction:column;align-items:center;justify-content:center;
- min-height:100vh;width:100%;text-align:center;padding:40px}
-.book{width:330px;max-width:80vw;aspect-ratio:5/7;border-radius:6px;
+ min-height:100svh;width:100%;text-align:center;padding:clamp(14px,3vh,40px) 20px}
+.book{height:clamp(290px,50vh,470px);width:auto;aspect-ratio:5/7;max-width:84vw;border-radius:6px;
  background:linear-gradient(135deg,#2b3a55 0%,#1b2233 100%);color:#f4f4f2;
  box-shadow:0 24px 60px rgba(20,30,50,.35),inset 4px 0 0 rgba(255,255,255,.12),inset 8px 0 14px rgba(0,0,0,.25);
- display:flex;flex-direction:column;justify-content:space-between;padding:42px 34px}
-.book .t{font-size:27px;font-weight:700;line-height:1.4;letter-spacing:1px;text-wrap:balance}
+ display:flex;flex-direction:column;justify-content:space-between;padding:clamp(20px,3.6vh,42px) clamp(18px,5vw,34px)}
+.book .t{font-size:clamp(20px,5.6vw,27px);font-weight:700;line-height:1.4;letter-spacing:1px;text-wrap:balance}
 .book .s{font-size:13px;color:#aab4c8;letter-spacing:2px;text-transform:uppercase;margin-top:14px}
 .book .bk-top{text-align:center}
 .book .bk-art{width:62%;align-self:center;margin:6px auto;opacity:.96;filter:drop-shadow(0 4px 14px rgba(0,0,0,.35))}
@@ -158,10 +163,10 @@ body.turning .content{animation:turnOut .19s ease both}
 .muted{color:var(--muted)}
 
 /* 分享 */
-.share{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:30px;font-size:14px;color:var(--muted)}
-.share .lbl{margin-right:2px}
-.share button{font:inherit;cursor:pointer;border:1px solid var(--line);background:#fff;color:#374151;
- border-radius:999px;padding:6px 14px;display:inline-flex;align-items:center;gap:6px;font-size:13.5px}
+.share{display:flex;align-items:center;gap:7px;flex-wrap:wrap;justify-content:center;margin-top:20px;font-size:12.5px;color:var(--muted)}
+.share .lbl{margin-right:0}
+.share button{font:inherit;cursor:pointer;border:1px solid var(--line);background:#fff;color:#4b5563;
+ border-radius:999px;padding:3px 11px;display:inline-flex;align-items:center;gap:5px;font-size:12px;line-height:1.6}
 .share button:hover{border-color:#2b4a8b;color:#2b4a8b}
 .share .ic{width:15px;height:15px;display:inline-block;vertical-align:-2px}
 .qr-modal{display:none;position:fixed;inset:0;z-index:80;align-items:center;justify-content:center;background:rgba(0,0,0,.5)}
@@ -393,17 +398,27 @@ def toc_page(entries, parts, sidebar):
 MD_EXT = ["extra", "tables", "fenced_code", "sane_lists", "attr_list"]
 
 
+def _fixfig(h):
+    return h.replace('src="../figures/', 'src="figures/').replace("src='../figures/", "src='figures/")
+
+
 def render_md(mdpath):
+    """返回 (正文 html, 参考文献 html)。后者可能为空。"""
     text = open(mdpath, encoding="utf-8").read()
     if "## 参考文献" in text:
         head, refs = text.split("## 参考文献", 1)
-        body = (markdown.markdown(head, extensions=MD_EXT)
-                + '<section class="refs">'
-                + markdown.markdown("## 参考文献" + refs, extensions=MD_EXT)
-                + '</section>')
+        prose = markdown.markdown(head, extensions=MD_EXT)
+        refs_html = '<section class="refs">' + markdown.markdown("## 参考文献" + refs, extensions=MD_EXT) + '</section>'
     else:
-        body = markdown.markdown(text, extensions=MD_EXT)
-    return body.replace('src="../figures/', 'src="figures/').replace("src='../figures/", "src='figures/")
+        prose, refs_html = markdown.markdown(text, extensions=MD_EXT), ""
+    return _fixfig(prose), _fixfig(refs_html)
+
+
+def endnav_html(prevp, nextp):
+    nxt = (f'<a class="go-next" data-turn href="{nextp[1]}">下一章：{html.escape(nextp[0])} →</a>'
+           if nextp else '<a class="go-next" data-turn href="toc.html">读完了，返回目录 →</a>')
+    prv = (f'<a class="go-prev" data-turn href="{prevp[1]}">← {html.escape(prevp[0])}</a>' if prevp else "")
+    return f'<div class="endnav">{nxt}{prv}</div>'
 
 
 def main():
@@ -424,14 +439,16 @@ def main():
         toc_page(entries, parts, sidebar_html(entries, parts)))
 
     for i, (title, fname, mdpath) in enumerate(entries):
-        body = render_md(mdpath)
+        prose, refs = render_md(mdpath)
         prevp = (entries[i - 1][0], entries[i - 1][1]) if i > 0 else None
         nextp = (entries[i + 1][0], entries[i + 1][1]) if i < n - 1 else None
         prev_a = (f'<a data-turn href="{prevp[1]}">← {html.escape(prevp[0])}</a>' if prevp
                   else '<a data-turn href="index.html">← 封面</a>')
         next_a = (f'<a data-turn href="{nextp[1]}">{html.escape(nextp[0])} →</a>' if nextp
                   else '<a data-turn href="toc.html">目录 →</a>')
-        body += f'<div class="nav">{prev_a}<span class="spacer"></span>{next_a}</div>' + SHARE
+        # 章末跳转放在正文之后、参考文献之前；底部再保留一组上一页/下一页。
+        body = (prose + endnav_html(prevp, nextp) + refs
+                + f'<div class="nav">{prev_a}<span class="spacer"></span>{next_a}</div>' + SHARE)
         open(os.path.join(OUT, fname), "w", encoding="utf-8").write(
             page(title, body, sidebar_html(entries, parts, active=fname),
                  active=fname, cur_title=title, prevp=prevp, nextp=nextp, pos=f"{i + 1} / {n}"))
