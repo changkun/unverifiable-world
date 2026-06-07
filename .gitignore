@@ -7,3 +7,5 @@ book.pdf
 *_citations.md
 .workflow-bibliography.js
 sources/
+.workflow-annotate-refs.js
+.workflow-glossary.js
