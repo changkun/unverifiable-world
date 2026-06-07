@@ -120,6 +120,12 @@ a{color:#2b4a8b;text-decoration:none}a:hover{text-decoration:underline}
 .content .refs li{margin:.5em 0}
 .content .refs blockquote{font-size:13px;background:#f8fafc}
 .content .refs .katex{font-size:1em}
+.content .refs li{scroll-margin-top:64px}
+.content .refs li:target{background:#fff7e0;border-radius:5px;box-shadow:0 0 0 6px #fff7e0}
+/* 正文参考文献角标 */
+sup.cite{font-size:.68em;line-height:0;white-space:nowrap}
+sup.cite a{color:#2b4a8b;text-decoration:none;font-weight:600;padding:0 1px}
+sup.cite a:hover{text-decoration:underline}
 
 .nav{display:flex;justify-content:space-between;gap:14px;margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:15px}
 .nav a{max-width:46%}.nav .spacer{flex:1}
@@ -402,13 +408,27 @@ def _fixfig(h):
     return h.replace('src="../figures/', 'src="figures/').replace("src='../figures/", "src='figures/")
 
 
+def _add_ref_ids(h):
+    """按文档顺序给每个 <li> 注入 id="ref-N"，与参考文献的连续编号一一对应，
+    供正文角标 <a href="#ref-N"> 跳转。"""
+    c = [0]
+
+    def repl(m):
+        c[0] += 1
+        return f'<li id="ref-{c[0]}"{m.group(1) or ""}>'
+
+    return re.sub(r'<li(\s[^>]*)?>', repl, h)
+
+
 def render_md(mdpath):
     """返回 (正文 html, 参考文献 html)。后者可能为空。"""
     text = open(mdpath, encoding="utf-8").read()
     if "## 参考文献" in text:
         head, refs = text.split("## 参考文献", 1)
         prose = markdown.markdown(head, extensions=MD_EXT)
-        refs_html = '<section class="refs">' + markdown.markdown("## 参考文献" + refs, extensions=MD_EXT) + '</section>'
+        refs_html = ('<section class="refs">'
+                     + _add_ref_ids(markdown.markdown("## 参考文献" + refs, extensions=MD_EXT))
+                     + '</section>')
     else:
         prose, refs_html = markdown.markdown(text, extensions=MD_EXT), ""
     return _fixfig(prose), _fixfig(refs_html)
