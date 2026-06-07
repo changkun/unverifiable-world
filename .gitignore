@@ -12,3 +12,4 @@ sources/
 website/public/
 __pycache__/
 *.pyc
+.workflow-fluency.js
