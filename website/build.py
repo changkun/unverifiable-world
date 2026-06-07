@@ -85,6 +85,10 @@ a{color:#2b4a8b;text-decoration:none}a:hover{text-decoration:underline}
 .content pre{background:#f6f8fa;padding:14px 16px;border-radius:8px;overflow:auto}
 .content pre code{background:none;padding:0}
 .content hr{border:none;border-top:1px solid var(--line);margin:2em 0}
+/* 超宽的独立公式在自身框内横向滚动，避免撑破页面 */
+.content .katex-display{overflow-x:auto;overflow-y:hidden;max-width:100%;padding:2px 2px 8px}
+.content .katex-display::-webkit-scrollbar{height:6px}
+.content .katex-display::-webkit-scrollbar-thumb{background:#d1d5db;border-radius:3px}
 
 .nav{display:flex;justify-content:space-between;gap:14px;margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-size:15px}
 .nav a{max-width:46%}.nav .spacer{flex:1}
@@ -137,6 +141,7 @@ body.turning .content{animation:turnOut .19s ease both}
  .mobilebar a.disabled{color:#cbd5e1;pointer-events:none}
  .mobilebar .pos{color:var(--muted);font-size:13.5px}
  .nav{display:none}
+ .content .katex-display{font-size:.9em}
 }
 """
 
