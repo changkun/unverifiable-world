@@ -100,35 +100,68 @@ $$R_2(u)=1-\left(\frac{\sin \pi u}{\pi u}\right)^{2}.$$
 > 落足点：① 历史上科学家的判断　② 理论上被研究过的东西　③ 科学如何进展　④ 如何在无法验证的世界里生活。本节经网络逐条核实；个别未能确证者标「（细节待核）」。
 
 1. G. Polya (1945).《How to Solve It: A New Aspect of Mathematical Method》. Princeton University Press. [①]
+   波利亚把数学解题拆成理解题意、拟订计划、执行、回顾四个阶段，并系统列出类比、特例、逆推、辅助问题等启发式策略。它写的不是定理证明，而是发现证明之前那段没有仪表的探索过程，正是本章「数学家怎么判断」一节关心的东西。
 2. G. Polya (1954).《Mathematics and Plausible Reasoning》（2 卷）. Princeton University Press. [①④]
+   两卷分别讨论数学中的归纳与类比，以及似真推理的逻辑结构，论证数学家在拿到严格证明之前，靠观察特例、归纳模式、权衡证据来形成对命题的信念。本章正文借它点明「数学对外是演绎的，对内是似真的」，是理解似真推理这一概念的源头读物。
 3. J. Hadamard (1945).《An Essay on the Psychology of Invention in the Mathematical Field》. Princeton University Press. [①]
+   阿达马调查了数学家的创造心理，提炼出准备、酝酿、顿悟、验证的发现节律，强调潜意识工作与无预兆的灵感闪现。它为本章描述庞加莱式的顿悟提供了第一手的心理学考察，说明数学判断很大一部分发生在意识与证明之外。
 4. H. Poincaré (1902).《La Science et l'Hypothèse》. Flammarion. [①]
+   庞加莱在这部科学哲学经典里讨论数学假设、约定与几何的地位，主张许多基础选择并非经验强加，而是出于约定与方便。它呈现了一位顶尖数学家如何反思自己学科的认识论根基，与本章关心的「在无法验证处如何持有信念」相通。
 5. H. Poincaré (1908).《Science et Méthode》. Flammarion. [①]
+   书中那段关于踏上公共马车踏板时灵感涌现的自述，是数学发现心理学最常被引用的第一手记录，庞加莱借此剖析直觉、选择与潜意识在创造中的作用。本章正文直接用到这个瞬间，说明顿悟如何在没有任何征兆时把分散的线索接通。
 6. G. H. Hardy (1940).《A Mathematician's Apology》. Cambridge University Press. [①]
+   哈代为纯数学的价值辩护，提出好的数学在于其严肃性、深刻与不可避免的美，而非实用。作为一位数论大家对自己手艺的内省，它界定了数学家凭什么判断一项工作值不值得做，与本章末尾追问「什么是好的数学」一脉相承。
 7. E. P. Wigner (1960).「The Unreasonable Effectiveness of Mathematics in the Natural Sciences」. Communications on Pure and Applied Mathematics, 13(1). [②③]
+   维格纳惊讶于抽象数学概念竟能如此精准地描述物理世界，称这种契合是一份我们既不理解也不配拥有的奇异礼物。这篇短文提出的难题，至今没有公认答案，对本章而言它示范了一种对深层规律的信念如何在缺乏证明的情况下被严肃对待。
 8. I. Lakatos (1976).《Proofs and Refutations: The Logic of Mathematical Discovery》. Cambridge University Press. [①③]
+   拉卡托斯以欧拉多面体公式为例，用一段虚构的课堂对话重演定义、证明与反例如何彼此修正、共同推进数学。它颠覆了数学是一锤定音演绎的刻板印象，呈现知识在猜想与反驳中曲折成长，正合本章对数学进展真实样貌的关注。
 9. B. Riemann (1859).「Über die Anzahl der Primzahlen unter einer gegebenen Größe」. Monatsberichte der Berliner Akademie. [②③]
+   黎曼这篇仅八页的论文把 ζ 函数延拓到复平面、给出函数方程，并把素数分布与 ζ 的非平凡零点联系起来，其中顺带写下的那句关于零点位置的猜想，就是后世的黎曼假设。它是整章的源头文本，本章开篇引用的「徒劳尝试后暂时搁下」正出自此处。
 10. H. M. Edwards (1974).《Riemann's Zeta Function》. Academic Press. [②]
+   爱德华兹这本专著围绕黎曼 1859 年原文展开，逐步铺陈 ζ 函数理论、素数定理与黎曼假设的来龙去脉，兼顾历史脉络与技术细节。它是进入 ζ 函数与 RH 的经典入门读物，为本章涉及的零点、临界线等概念提供了可靠的背景。
 11. E. C. Titchmarsh, rev. D. R. Heath-Brown (1986).《The Theory of the Riemann Zeta-function》（第 2 版）. Oxford University Press. [②]
+   这是 ζ 函数解析理论的标准高阶专著，系统处理零点分布、零点密度估计、临界线上的均值定理等结果，希思布朗的修订补入了更晚近的进展。它代表了围绕 RH 已被严格建立的技术成果的总和，是本章谈「证书与界」时的专业背景文献。
 12. E. Bombieri (2000).「Problems of the Millennium: The Riemann Hypothesis」. Clay Mathematics Institute. [②④]
+   这是克雷数学研究所为千禧年大奖问题撰写的 RH 官方问题陈述，邦别里精炼地交代了猜想的来历、精确表述及其在数论中的份量。它是了解 RH 为何被列为世纪难题的权威切入点，本章对 RH 地位的判断可在此找到背书。
 13. J. B. Conrey (2003).「The Riemann Hypothesis」. Notices of the American Mathematical Society, 50(3). [②③]
+   康里这篇综述面向广泛读者，梳理了支持 RH 的各类证据，包括零点的数值验证、随机矩阵理论的吻合，以及函数域上类比的已被证明。它把本章三种姿势所依赖的证据汇于一处，是了解数学界为何相信 RH 的便捷读物。
 14. X.-J. Li (1997).「The Positivity of a Sequence of Numbers and the Riemann Hypothesis」. Journal of Number Theory, 65(2). [②④]
+   李建军证明 RH 等价于一列由零点定义的实数 $\lambda_n$ 对所有 $n$ 非负，把零点位置这一几何陈述翻译成一个序列的正性判据。本章正文以它为代理替换的头号例子，说明等价改写如何忠实却未必更易。
 15. E. Bombieri & J. C. Lagarias (1999).「Complements to Li's Criterion for the Riemann Hypothesis」. Journal of Number Theory, 77(2). [②④]
+   两位作者指出李判据其实是任意复数多重集一组一般不等式的特例，并不特属于 ζ 函数，又借古伊南-韦伊显式公式给出 $\lambda_n$ 的算术表达式，把它与韦伊的 RH 判据接上。它深化了对李判据的理解，呈现同一个等价命题如何在不同语言间被反复重写，正是本章代理替换主题的延展。
 16. L. Báez-Duarte (2003).「A Strengthening of the Nyman-Beurling Criterion for the Riemann Hypothesis」. Atti della Accademia Nazionale dei Lincei, Rendiconti Lincei Mat. Appl., 14(1). [②④]
+   巴埃斯-杜阿尔特把奈曼-博伊林的逼近判据收紧为只用整数伸缩的序列版本，使 RH 等价于一列逼近距离 $d_n$ 趋于零。它是本章列举的又一个等价改写，把零点问题搬进 $L^2$ 逼近的框架，同样印证了忠实代理常常并不更易求解。
 17. X. Gourdon (2004).「The 10^13 First Zeros of the Riemann Zeta Function, and Zeros Computation at Very Large Height」. 在线技术报告（numbers.computation.free.fr）. [②④]
+   古尔东借助 Odlyzko-Schönhage 算法用高精度浮点计算，核验了头 $10^{13}$ 个零点都落在临界线上。本章特意拿它与普拉特对照：它给出极强的数值信心，但未严格框住舍入误差，因而是数值结果而非可机械复核的证书。
 18. D. J. Platt (2017).「Isolating Some Non-trivial Zeros of Zeta」. Mathematics of Computation, 86(307). [②④]
+   普拉特用区间算术把零点严格隔离在临界线上，使误差有可证的上界，从而把数值核验升格为可机械复核的证书。本章用它示范「证书与界」这一姿势：不证整体，只为一个有限切片证一个有保证的界。
 19. M. O. Rabin (1980).「Probabilistic Algorithm for Testing Primality」. Journal of Number Theory, 12(1). [②④]
+   拉宾给出米勒-拉宾素性检验：若 $n$ 为合数，随机选取的底至多以 $1/4$ 的概率瞒过它，独立做 $k$ 轮误判概率降到 $(1/4)^k$。本章用它作为概率方法最干净的例子，说明那个误差界本身是被严格证明的定理，放弃的是确定性的种类而非严格性。
 20. R. Solovay & V. Strassen (1977).「A Fast Monte-Carlo Test for Primality」. SIAM Journal on Computing, 6(1). [②④]
+   索洛维与施特拉森更早提出一个基于雅可比符号的概率素性检验，单轮误判概率至多 $1/2$，是随机化算法的奠基工作之一。本章把它与拉宾的版本并置，说明用概率方法换取在预算内可交付的判定，在计算数论里早有先例。
 21. W. P. Thurston (1994).「On Proof and Progress in Mathematics」. Bulletin of the American Mathematical Society, 30(2). [①③]
+   瑟斯顿主张数学真正推进的是人类对数学的理解，而不只是形式证明的库存，证明只是社群传递与确认理解的一种社会化手段。本章末尾援引它来挑战「数学只等于已证定理」的窄化看法，是反思证明地位的必读文献。
 22. A. Jaffe & F. Quinn (1993).「"Theoretical Mathematics": Toward a Cultural Synthesis of Mathematics and Theoretical Physics」. Bulletin of the American Mathematical Society, 29(1). [①③]
+   贾菲与奎因提出区分「理论数学」与严格数学，建议把猜想驱动、未经严格证明的工作明确标注出来，以免侵蚀数学的可靠性，由此引发数学界一场广受关注的争论。本章借这场争论提问：证据先行的工作在多大程度上算数学，正切中全书对验证与信念的关切。
 23. J. von Neumann (1947).「The Mathematician」. 收于 R. B. Heywood（编）,《The Works of the Mind》. University of Chicago Press. [①③]
+   冯·诺依曼在这篇随笔里反思数学的本性，谈数学如何在抽象与经验源头之间往返，又如何凭审美标准选择方向以及为何远离经验源头会有退化的风险。它从一位横跨多领域的大家视角，说明数学判断中审美与品味的分量，呼应本章对数学家如何决定往哪使劲的讨论。
 24. K. Appel & W. Haken (1977).「Every Planar Map Is Four Colorable, Part I: Discharging」. Illinois Journal of Mathematics, 21(3). [②③]
+   阿佩尔与哈肯借助大量计算机检查的不可避免构形集，证明了四色定理，这是首个本质依赖计算机的著名数学证明。它引出了一个延续至今的争论：人类无法逐行通读的证明是否仍算证明，与本章对证书与可机械复核保证的讨论直接相关。
 25. T. Hales et al. (2017).「A Formal Proof of the Kepler Conjecture」. Forum of Mathematics, Pi, 5. [②③④]
+   黑尔斯团队的 Flyspeck 项目用 HOL Light 与 Isabelle 证明助手，完成了开普勒猜想的完全形式化、可机械核对的证明，了结了原证明因人工裁判难以彻底检验而悬而未决的状态。本章用它说明形式化验证如何把有争议的论证压成逐行可验的证书。
 26. N. Alon & J. H. Spencer (1992).《The Probabilistic Method》. Wiley. [②④]
+   这本经典系统呈现了埃尔德什开创的概率方法：要证某个组合对象存在，便证它随机出现的概率为正，从而断定它必然存在，却往往无法把它具体构造出来。本章借它点出概率方法在纯数学中证明存在性时存在被证明、构造却缺席的特征。
 27. P. J. Davis & R. Hersh (1981).《The Mathematical Experience》. Birkhäuser. [①③]
+   戴维斯与赫什从数学家的实际经验出发，讨论数学对象的存在地位、证明的角色与数学的哲学处境，呈现了一种不同于形式主义教条的从业者视角。它为本章理解数学家如何在实践中持有信念、看待真理提供了贴近现场的反思。
 28. W. T. Gowers (2000).「The Two Cultures of Mathematics」. 收于《Mathematics: Frontiers and Perspectives》. American Mathematical Society. [①③]
+   高尔斯区分数学中的两种文化：理论构建者与问题解决者，前者以理解为目的去解题，后者以解题为目的去理解，并以代数几何、朗兰兹纲领与组合数论为对照。它说明数学家对何谓深刻、何谓好工作可有不同尺度，呼应本章对数学判断标准的讨论。
 29. T. Tao (2007).「What Is Good Mathematics?」. Bulletin of the American Mathematical Society, 44(4). [①③]
+   陶哲轩列举了好数学的众多互不相同的维度，从严格、深刻、漂亮到富于应用、能开辟方向等，论证不存在单一标准，且这些品质长期看往往彼此牵引。本章借它说明判断一项工作值不值得投入本身就是一种能力，其中没有一条标准是已被证明。
 30. H. L. Montgomery (1973).「The Pair Correlation of Zeros of the Zeta Function」. 收于《Analytic Number Theory》, Proc. Sympos. Pure Math., XXIV. American Mathematical Society. [②③]
+   蒙哥马利研究 ζ 零点归一化后的配对关联，得出并猜想其形式，戴森随即认出这正是随机矩阵高斯酉系综本征值的配对关联。这一对接开启了数论与随机矩阵理论的深刻联系，是本章谈 RH 信念何以建立的关键证据之一。
 31. P. Sarnak (2004).「Problems of the Millennium: The Riemann Hypothesis」. Clay Mathematics Institute. [②③④]
+   萨纳克为克雷研究所撰写的这份说明侧重 RH 的推广形式及其在解析数论中的中心作用，并解释为何众多其他结果以它为前提。它从一位活跃于零点统计与随机矩阵联系的专家视角，补足了本章对 RH 重要性与证据网络的理解。
 32. J. C. Lagarias (2002).「An Elementary Problem Equivalent to the Riemann Hypothesis」. The American Mathematical Monthly, 109(6). [②④]
+   拉加里亚斯给出一个仅用调和数与因子和函数的初等不等式，证明它对所有 $n$ 成立当且仅当 RH 成立，把深奥的零点问题翻译成几乎能写在明信片上的算术陈述。本章用它示范代理替换可以表面初等，难度却分毫未减。
 33. A. M. Odlyzko (1987).「On the Distribution of Spacings Between Zeros of the Zeta Function」. Mathematics of Computation, 48(177). [②④]
+   奥德利兹科用海量高精度计算考察 ζ 零点的间距分布，发现它与随机矩阵高斯酉系综的预言惊人吻合，为蒙哥马利-戴森的猜想提供了强有力的数值支持。本章用它说明这种统计契合虽非证明，却是让数学家相信 RH 的极强证据。

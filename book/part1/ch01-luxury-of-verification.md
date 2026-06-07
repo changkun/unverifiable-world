@@ -52,58 +52,86 @@
 
 > 落足点：① 历史上科学家的判断　② 理论上被研究过的东西　③ 科学如何进展　④ 如何在无法验证的世界里生活。本节经网络逐条核实；个别未能确证者标「（细节待核）」。
 
-1. A. M. Turing (1936). 「On Computable Numbers, with an Application to the Entscheidungsproblem」. Proceedings of the London Mathematical Society, s2-42, 230-265. [②]（所在 series 2 第 42 卷横跨 1936 至 1937 年，部分书目标作 1937，正文采用通行的 1936。证明 Entscheidungsproblem 与停机问题不可判定，是「理论上被研究过的验证极限」的奠基。）
+1. A. M. Turing (1936). 「On Computable Numbers, with an Application to the Entscheidungsproblem」. Proceedings of the London Mathematical Society, s2-42, 230-265. [②]
+   图灵以一台抽象计算机器为模型，证明不存在能判定任意命题是否可证的算法，并由此导出停机问题不可判定。这是把验证的极限从工程经验提升为数学定理的奠基之作，本章「连最硬的两个领域也低头」一节正以此说明判定问题无解。文章所在的 series 2 第 42 卷横跨 1936 至 1937 年，部分书目标作 1937，正文采用通行的 1936。
 
-2. A. Church (1936). 「An Unsolvable Problem of Elementary Number Theory」. American Journal of Mathematics, 58(2), 345-363. [②]（以 lambda 演算独立给出判定问题不可解的证明，比 Turing 早数月发表，与 Turing 共同奠定可计算性的理论边界。）
+2. A. Church (1936). 「An Unsolvable Problem of Elementary Number Theory」. American Journal of Mathematics, 58(2), 345-363. [②]
+   丘奇以自己创立的 lambda 演算为工具，独立证明初等数论中存在不可解的判定问题，发表比图灵早数月。它与图灵的工作殊途同归，共同框定了「什么是可计算的」这条理论边界，提示读者验证之不可得在 1936 年已由两条独立路径同时确立。
 
-3. K. Gödel (1931). 「Über formal unentscheidbare Sätze der Principia Mathematica und verwandter Systeme I」. Monatshefte für Mathematik und Physik, 38, 173-198. [②]（不完备性定理：一致的形式系统无法在系统内被完全验证。）
+3. K. Gödel (1931). 「Über formal unentscheidbare Sätze der Principia Mathematica und verwandter Systeme I」. Monatshefte für Mathematik und Physik, 38, 173-198. [②]
+   哥德尔证明，任何足够丰富而一致的形式系统都含有它自身无法证明也无法否证的真命题。这意味着「在系统内部把一切真理逐一验明」从原理上就办不到，是本章论证验证存在硬边界时最深的一块基石，下一章还会专门拆解。
 
-4. H. G. Rice (1953). 「Classes of Recursively Enumerable Sets and Their Decision Problems」. Transactions of the American Mathematical Society, 74, 358-366. [②]（Rice 定理：程序的一切非平凡语义性质均不可判定，把停机问题的不可验证性推广为普遍结论。）
+4. H. G. Rice (1953). 「Classes of Recursively Enumerable Sets and Their Decision Problems」. Transactions of the American Mathematical Society, 74, 358-366. [②]
+   赖斯定理把停机问题的不可判定性推到极致：程序的任何非平凡语义性质都不存在通用的判定算法。它告诉读者，关于「这段程序到底会做什么」的问题，几乎一概不可机械验证，是本章「最硬的领域也低头」一段的关键支撑。
 
-5. S. A. Cook (1971). 「The Complexity of Theorem-Proving Procedures」. Proceedings of the 3rd Annual ACM Symposium on Theory of Computing (STOC), 151-158. [②]（确立 NP 完全性概念。即便验证在原则上可判定，其计算代价仍可能使事前完整验证在实践中不可行。）
+5. S. A. Cook (1971). 「The Complexity of Theorem-Proving Procedures」. Proceedings of the 3rd Annual ACM Symposium on Theory of Computing (STOC), 151-158. [②]
+   库克在此确立了 NP 完全性概念，证明可满足性问题对一大类问题具有普遍的计算难度。它揭示了验证的另一重限度：哪怕一个问题原则上可判定，求解或检验的代价也可能爆炸到实践中根本跑不完，对应本章谈「规模」失效的那一面。
 
-6. C. A. R. Hoare (1969). 「An Axiomatic Basis for Computer Programming」. Communications of the ACM, 12(10), 576-580. [②①]（形式化程序正确性证明的公理基础，既是验证理论的代表作，也含对验证可行边界的工程判断。）
+6. C. A. R. Hoare (1969). 「An Axiomatic Basis for Computer Programming」. Communications of the ACM, 12(10), 576-580. [②①]
+   霍尔提出以前置条件、后置条件与推理规则严格证明程序正确性的公理体系，即后世所称的霍尔逻辑。它代表了「把验证做到底」这条最严路线的雄心，读者由此能看清形式化验证能走多远，以及它在工程现实中为何始终难以覆盖全部。
 
-7. J. C. King (1976). 「Symbolic Execution and Program Testing」. Communications of the ACM, 19(7), 385-394. [②]（符号执行：以符号代替具体输入系统化探查路径，亦揭示路径爆炸等使穷尽验证受限的根本困难。）
+7. J. C. King (1976). 「Symbolic Execution and Program Testing」. Communications of the ACM, 19(7), 385-394. [②]
+   金提出符号执行：用符号变量代替具体输入，沿程序的分支系统地推演各条路径所需满足的条件。这一技术既扩大了自动测试的覆盖面，也直观暴露出路径数随分支指数增长的「路径爆炸」，正是本章用来说明穷尽验证为何受限的根本困难。
 
-8. E. M. Clarke 与 E. A. Emerson (1981). 「Design and Synthesis of Synchronization Skeletons Using Branching Time Temporal Logic」. Logics of Programs (Lecture Notes in Computer Science 131), Springer, 52-71. [②]（模型检验的奠基论文，系工作坊论文（非期刊），收入 LNCS 第 131 卷。自动验证仅适用于有限状态系统，界定了机器验证的可达范围。）
+8. E. M. Clarke 与 E. A. Emerson (1981). 「Design and Synthesis of Synchronization Skeletons Using Branching Time Temporal Logic」. Logics of Programs (Lecture Notes in Computer Science 131), Springer, 52-71. [②]
+   这篇工作坊论文提出用分支时序逻辑自动检验系统是否满足给定性质，开创了模型检验。它代表机器验证真正落地的一支，但其威力以系统状态有限为前提，因而恰好划出了自动验证能够触及与无能为力的边界。文章收入 LNCS 第 131 卷，属会议论文集而非期刊。
 
-9. R. A. DeMillo, R. J. Lipton 与 A. J. Perlis (1979). 「Social Processes and Proofs of Theorems and Programs」. Communications of the ACM, 22(5), 271-280. [①②]（论证形式化程序验证不可能扮演数学证明那样的角色，验证的可信赖性来自社会过程而非机械证明。）
+9. R. A. DeMillo, R. J. Lipton 与 A. J. Perlis (1979). 「Social Processes and Proofs of Theorems and Programs」. Communications of the ACM, 22(5), 271-280. [①②]
+   三位作者论证，数学证明之所以可信，靠的是数学共同体反复阅读、复用与检验的社会过程，而冗长机械的程序验证缺乏这种过程，因而无法扮演数学证明那样的角色。这是对「形式化验证能给软件以确定性」的著名质疑，本章引它来说明验证的可信最终来自社会而非纯机械推导。
 
-10. J. H. Fetzer (1988). 「Program Verification: The Very Idea」. Communications of the ACM, 31(9), 1048-1063. [①②]（DeMillo 论争的续篇：区分作为逻辑结构的算法与作为因果模型的程序，主张程序验证作为完全可靠的方法连理论可能性都不成立。引发 1989 年大规模技术通信论战。）
+10. J. H. Fetzer (1988). 「Program Verification: The Very Idea」. Communications of the ACM, 31(9), 1048-1063. [①②]
+   费泽尔把质疑推得更深：算法是逻辑结构，可被严格证明，而在真实机器上运行的程序是因果模型，其行为受硬件与世界制约，二者之间有一道无法弥合的鸿沟。他据此主张「完全可靠的程序验证」连理论上都不成立。此文引发 1989 年技术通信的大规模论战，是本章界定验证逻辑边界的重要一环。
 
-11. F. P. Brooks (1987). 「No Silver Bullet: Essence and Accidents of Software Engineering」. IEEE Computer, 20(4), 10-19. [①]（原为 1986 年 IFIP 第 10 届世界计算机大会邀请论文（Information Processing 86, 1069-1076）。资深工程师对软件本质复杂性、对「无银弹」即无法一举验证消除缺陷的判断。）
+11. F. P. Brooks (1987). 「No Silver Bullet: Essence and Accidents of Software Engineering」. IEEE Computer, 20(4), 10-19. [①]
+   布鲁克斯区分软件的本质复杂性与附属复杂性，断言没有任何单一技术能在十年内让软件生产率有数量级提升，本质复杂性无法被一招消除。它支撑了本章的判断：缺陷不可能被某种银弹一举验证清除。此文原为 1986 年 IFIP 第 10 届世界计算机大会的邀请论文，初刊于 Information Processing 86, 1069-1076。
 
-12. D. L. Parnas (1985). 「Software Aspects of Strategic Defense Systems」. Communications of the ACM, 28(12), 1326-1335. [①]（Parnas 辞去星球大战计划顾问后撰文，论证此类系统软件无法被充分验证而值得信赖；同年另以系列短文见于 American Scientist。工程师对验证极限的公开判断。）
+12. D. L. Parnas (1985). 「Software Aspects of Strategic Defense Systems」. Communications of the ACM, 28(12), 1326-1335. [①]
+   帕纳斯在辞去星球大战计划顾问后撰文，逐条论证此类系统的软件无法经测试或证明而被验证到值得托付的程度。这是一位顶尖工程师以辞职为代价对验证极限作出的公开判断，本章引为「连最硬的领域也低头」的现实注脚。同年他另以系列短文见于 American Scientist。
 
-13. E. W. Dijkstra (1972). 「The Humble Programmer」（1972 ACM 图灵奖演讲）. Communications of the ACM, 15(10), 859-866. [①]（图灵奖得主主张程序应被正确地构造而非调试出正确，反映对事后验证局限的判断。）
+13. E. W. Dijkstra (1972). 「The Humble Programmer」（1972 ACM 图灵奖演讲）. Communications of the ACM, 15(10), 859-866. [①]
+   这是迪杰斯特拉的图灵奖演讲，主张程序员应保持谦卑，正视人脑容量有限，并把程序当作应当被正确地构造出来的对象，而非靠事后调试修补成正确。它反映了一位奠基者对事后验证之局限的清醒判断，与本章主张相互呼应。
 
-14. E. W. Dijkstra (1972).《Notes on Structured Programming》（载于 O.-J. Dahl, E. W. Dijkstra, C. A. R. Hoare 编《Structured Programming》）. Academic Press. [①]（「测试只能证明缺陷的存在，不能证明其不存在」即出于此文；该论断最早见于手稿 EWD249（1970），1972 年收入《Structured Programming》正式出版。）
+14. E. W. Dijkstra (1972).《Notes on Structured Programming》（载于 O.-J. Dahl, E. W. Dijkstra, C. A. R. Hoare 编《Structured Programming》）. Academic Press. [①]
+   本章那句被引滥却仍正确的话「测试只能证明缺陷的存在，不能证明其不存在」即出于此文。迪杰斯特拉在此系统阐述结构化程序设计，主张通过有纪律的构造而非穷举测试来获得正确性。该论断最早见于手稿 EWD249（1970），1972 年收入《Structured Programming》正式出版。
 
-15. N. G. Leveson 与 C. S. Turner (1993). 「An Investigation of the Therac-25 Accidents」. IEEE Computer, 26(7), 18-41. [①④]（Therac-25 放疗机软件致死事故的权威调查。工程现实中安全攸关系统未经充分验证即投用的后果，兼示在无法完全验证的世界里行动的代价。）
+15. N. G. Leveson 与 C. S. Turner (1993). 「An Investigation of the Therac-25 Accidents」. IEEE Computer, 26(7), 18-41. [①④]
+   两位作者对 Therac-25 放疗机因软件缺陷导致患者受过量辐射乃至死亡的系列事故作了权威调查，剖析了竞态条件、过度信任软件与缺乏独立安全机制等连锁原因。它以人命为代价说明，安全攸关系统未经充分验证即投用会有什么后果，是本章关于验证代价的沉重注脚。
 
-16. P. Naur 与 B. Randell（编）(1969).《Software Engineering: Report on a Conference Sponsored by the NATO Science Committee》. Scientific Affairs Division, NATO. [①]（会议于 1968 年 10 月在德国 Garmisch 召开，1969 年出版。「软件危机」提法的源头，集中记录从业者对软件无法被可靠验证与交付的集体判断。）
+16. P. Naur 与 B. Randell（编）(1969).《Software Engineering: Report on a Conference Sponsored by the NATO Science Committee》. Scientific Affairs Division, NATO. [①]
+   这份会议报告记录了从业者对当时软件普遍超期、超支、难以可靠交付的集体焦虑，「软件危机」一词与「软件工程」这门学科的提法即由此而来。它是本章那句「软件危机」的源头，集中呈现了一代工程师对软件无法被可靠验证的判断。会议于 1968 年 10 月在德国 Garmisch 召开，报告 1969 年出版。
 
-17. D. Hume (1748).《An Enquiry Concerning Human Understanding》. (London). [④③]（1748 年初版原题《Philosophical Essays Concerning Human Understanding》，1758 年改为今题。归纳问题：未来无法由过去经验事前完全验证，人只能依赖习惯行动。）
+17. D. Hume (1748).《An Enquiry Concerning Human Understanding》. (London). [④③]
+   休谟在此挑明了归纳问题：由过去屡屡如此推断将来仍会如此，并无逻辑上的保证，太阳明日是否升起无法事前证明，人之所以照常行动靠的是习惯而非证明。这是本章「未来」一处裂口的思想源头，也是全书反复回到的起点。本书 1748 年初版原题《Philosophical Essays Concerning Human Understanding》，1758 年改为今题。
 
-18. K. Popper (1959).《The Logic of Scientific Discovery》. Hutchinson. [③]（英文版系作者在德文原著《Logik der Forschung》（1934 年付印，版权页标 1935）基础上扩写而成。证伪主义：科学理论无法被证实，只能被否证，科学藉此进展。）
+18. K. Popper (1959).《The Logic of Scientific Discovery》. Hutchinson. [③]
+   波普尔系统提出证伪主义：科学理论无法被经验证实，只能被否证，可证伪性因而成为科学与非科学的分界，科学也正是经由不断尝试推翻理论而进展。它直接关系到本章「科学如何进展」这一落足点，揭示连科学也不靠正面验证累积。英文版系作者在德文原著《Logik der Forschung》（1934 年付印，版权页标 1935）基础上扩写而成。
 
-19. W. V. O. Quine (1951). 「Two Dogmas of Empiricism」. The Philosophical Review, 60(1), 20-43. [③]（经验论两个教条的批判与整体论：任何陈述都无法被孤立地验证或反驳，证据对理论的检验是欠决定的。）
+19. W. V. O. Quine (1951). 「Two Dogmas of Empiricism」. The Philosophical Review, 60(1), 20-43. [③]
+   蒯因批判分析与综合的截然二分以及还原论这两个经验论教条，提出整体论：理论是一张面对经验整体受检的信念之网，任何单个陈述都无法被孤立地验证或反驳。它说明证据对理论的检验是欠决定的，深化了本章关于科学如何进展、验证为何不可逐句完成的讨论。
 
-20. T. S. Kuhn (1962).《The Structure of Scientific Revolutions》. University of Chicago Press. [③]（范式与科学革命：科学并非靠对真理的逐步验证累积前进，而是经由范式转换而跃迁。）
+20. T. S. Kuhn (1962).《The Structure of Scientific Revolutions》. University of Chicago Press. [③]
+   库恩提出范式概念，描述科学如何在常规科学的积累与反常累积所引发的危机之间交替，最终经由范式转换而发生革命。其要点是科学并非靠对真理的逐步验证线性累积，而是经由不可通约的范式跃迁。它为本章「科学如何进展」提供了与波普尔互补又对照的图景。
 
-21. I. Lakatos (1976).《Proofs and Refutations: The Logic of Mathematical Discovery》（J. Worrall 与 E. Zahar 编）. Cambridge University Press. [③②]（证明与反驳：连数学证明也非一劳永逸的验证，而是经由反例与不断修正的创造性过程而成长。）
+21. I. Lakatos (1976).《Proofs and Refutations: The Logic of Mathematical Discovery》（J. Worrall 与 E. Zahar 编）. Cambridge University Press. [③②]
+   拉卡托斯以多面体欧拉公式的演变为课堂对话，展示数学概念与定理如何在反例、再证明与定义修订的往复中成长。它颠覆了「数学证明是一劳永逸的验证」这一印象，提示连最确定的领域也经由批判而推进，呼应本章对验证之有限的总论。
 
-22. F. H. Knight (1921).《Risk, Uncertainty and Profit》. Houghton Mifflin. [④]（区分可度量的「风险」与不可度量的「不确定性」，奠定在无法事前验证的局面下决策与利润的理论。）
+22. F. H. Knight (1921).《Risk, Uncertainty and Profit》. Houghton Mifflin. [④]
+   奈特把可用概率度量的「风险」与无从度量的真正「不确定性」区分开来，并论证企业家的利润正源于承担后者。这一区分是本章承认验证是奢侈品后转向行动理论的关键，它说明在无法事前验明结果的局面下，决策与回报如何获得意义。
 
-23. H. A. Simon (1955). 「A Behavioral Model of Rational Choice」. The Quarterly Journal of Economics, 69(1), 99-118. [④]（有限理性：计算能力有限的主体无法穷尽验证所有选项，只能满意即止（satisficing）。）
+23. H. A. Simon (1955). 「A Behavioral Model of Rational Choice」. The Quarterly Journal of Economics, 69(1), 99-118. [④]
+   西蒙提出有限理性的行为模型：信息与计算能力都受限的主体无法穷尽比较所有选项，只能设定一个够用的水准，找到满足它的方案便停下，即「满意即止」。这正是本章主张的「在不确定里如何行动得当」的一个具体答案，把验证不可得转化为可操作的决策准则。
 
-24. J. von Neumann 与 O. Morgenstern (1944).《Theory of Games and Economic Behavior》. Princeton University Press. [④]（博弈论与期望效用公理化：为在无法事前验证对手与结果的情形下作理性决策提供形式框架。）
+24. J. von Neumann 与 O. Morgenstern (1944).《Theory of Games and Economic Behavior》. Princeton University Press. [④]
+   两位作者奠定了博弈论，并以一组公理推出期望效用，论证理性主体应据期望效用作选择。它为「在无法事前验明对手意图与结果的情形下如何理性地下注」搭起了形式框架，是本章所说那门建立在验证不可得之上的决策学问的支柱之一。
 
-25. L. J. Savage (1954).《The Foundations of Statistics》. John Wiley & Sons. [④]（主观概率与个人主义决策论的公理化：在无法客观验证概率的世界里，以主观信念作一致决策。）
+25. L. J. Savage (1954).《The Foundations of Statistics》. John Wiley & Sons. [④]
+   萨维奇为主观概率与个人主义决策论建立公理基础，证明只要偏好满足若干一致性条件，主体的行为就如同依据某个主观概率与效用在最大化期望效用。它给出了在无法客观验证概率的世界里仍能一致下注的理性标准，与冯·诺依曼的框架共同支撑本章对不确定下决策的讨论。
 
-26. J. M. Keynes (1937). 「The General Theory of Employment」. The Quarterly Journal of Economics, 51(2), 209-223. [④]（对真正不确定性的经典陈述（「关于此我们根本无从知晓」），强调投资决策在无法验证的未来面前依赖惯例与动物精神。）
+26. J. M. Keynes (1937). 「The General Theory of Employment」. The Quarterly Journal of Economics, 51(2), 209-223. [④]
+   凯恩斯在回应对《通论》的批评时，强调真正的不确定性不可用概率度量，对有些事情「关于此我们根本无从知晓」。他指出投资决策在无法验证的未来面前只能依赖惯例与动物精神。本章那句对真正不确定的经典陈述即出于此，它佐证了决策学问以验证不可得为前提。
 
-27. A. Tversky 与 D. Kahneman (1974). 「Judgment under Uncertainty: Heuristics and Biases」. Science, 185(4157), 1124-1131. [④]（启发式与偏差：人在无法完整验证概率时依赖代表性、可得性等捷径，系统性地偏离规范。）
+27. A. Tversky 与 D. Kahneman (1974). 「Judgment under Uncertainty: Heuristics and Biases」. Science, 185(4157), 1124-1131. [④]
+   特沃斯基与卡尼曼通过实验表明，人在判断概率时常依赖代表性、可得性与锚定等启发式捷径，因而系统性地偏离概率规范。它从描述的层面补全了本章的图景：在无法完整验证概率的世界里，人实际怎样判断，又会一致地错在哪里。
 
-28. N. N. Taleb (2007).《The Black Swan: The Impact of the Highly Improbable》. Random House. [④]（黑天鹅：罕见而高影响事件无法被事前验证或预测，却主导历史，应据此调整在不确定世界中的生活方式。）
+28. N. N. Taleb (2007).《The Black Swan: The Impact of the Highly Improbable》. Random House. [④]
+   塔勒布称那些罕见、极端冲击且事后才被强行解释的事件为黑天鹅，主张它们无法被事前验证或预测，却往往主导历史走向。他据此提议人应放弃精确预测的幻想，转而构建能在意外面前不被摧毁甚至受益的安排。这呼应本章的结尾：问题不在取消不确定，而在不确定里如何活得稳妥。

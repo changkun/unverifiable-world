@@ -47,31 +47,60 @@
 > 落足点：① 历史上科学家的判断　② 理论上被研究过的东西　③ 科学如何进展　④ 如何在无法验证的世界里生活。本节经网络逐条核实；个别未能确证者标「（细节待核）」。
 
 1. F. H. Knight (1921).《Risk, Uncertainty and Profit》. Houghton Mifflin. [②④]
+   奈特在此划出经典区分：可量化、可投保的「风险」，与无法赋以概率的「不确定性」，真正的利润正源于后者。本章谈「彻底的不确定性」时，这一区分是源头，它提醒读者，许多有后果的决策根本没有概率分布可依。
 2. J. M. Keynes (1921).《A Treatise on Probability》. Macmillan. [②③]
+   凯恩斯在这部早期著作里发展了一种逻辑概率观，并引入「证据权重」的概念：我们对某一概率判断本身的把握，会随证据多寡而变。它为本章「标定信念」一脉提供了哲学根基，说明概率数字之外还有一层关于自身知识状态的诚实。
 3. J. M. Keynes (1937). 「The General Theory of Employment」. Quarterly Journal of Economics, 51(2), 209-223. [②④]
+   这篇为《通论》辩护的文章里，凯恩斯坦言对许多未来之事「我们就是不知道」，没有任何科学依据可形成可算的概率。它把根本不确定性摆到经济行为的中心，是本章主张「在测不出的真相前照样行动」的重要先声。
 4. F. A. Hayek (1945). 「The Use of Knowledge in Society」. American Economic Review, 35(4), 519-530. [②③④]
+   哈耶克指出，社会运转所需的知识从不集中于任何一处，而是分散在无数个体手中、且多为局部而隐默的。这篇文章关乎有限主体如何在不掌握全局的情形下仍能协调行动，与本章「没人能验明全貌却仍要决策」的处境直接呼应。
 5. P. E. Meehl (1954).《Clinical versus Statistical Prediction: A Theoretical Analysis and a Review of the Evidence》. University of Minnesota Press. [②④]
+   米尔系统比较了专家的临床判断与简单统计模型的预测表现，结论是后者往往不逊于甚至胜过前者。这一发现是本章讨论专家直觉的起点，它逼人正视：直觉的可信度需要经验检验，而非想当然。
 6. H. A. Simon (1955). 「A Behavioral Model of Rational Choice」. Quarterly Journal of Economics, 69(1), 99-118. [②④]
+   西蒙在此提出「有限理性」：现实中的决策者算力、信息和时间都有限，于是「满意即止」地选取够好的方案，而非穷举最优。这正是本书全部论证的人类学前提，本章关于「适合有限存在者的认识论」由此立足。
 7. H. A. Simon (1956). 「Rational Choice and the Structure of the Environment」. Psychological Review, 63(2), 129-138. [②④]
+   这篇姊妹篇强调，理性的形态取决于决策者所处环境的结构，简单的决策规则之所以管用，是因为它们契合了环境。本章谈吉仁泽的「生态理性」时，其思想根脉可上溯至此。
 8. M. Polanyi (1958).《Personal Knowledge: Towards a Post-Critical Philosophy》. Routledge & Kegan Paul. [①③④]
+   波兰尼论证一切「知道」都含有难以言传的默会成分，知者必然投入一份超出可证范围的个人托付，纯粹客观、无主体的知识只是幻象。本章引此说明：即便最严肃的求知，也无法摆脱不可完全验证的个人成分。
 9. W. James (1897).《The Will to Believe and Other Essays in Popular Philosophy》. Longmans, Green. [③④]
+   詹姆斯主张，面对那些证据不足却又必须表态、且关乎切身的抉择，选择相信并据以行动是正当的，而非思想上的轻率。本章借此说明：在神谕不回话之前下注，可以是负责任的，而不是认识论上的失格。
 10. J. Dewey (1929).《The Quest for Certainty: A Study of the Relation of Knowledge and Action》. Minton, Balch & Company. [③④]
+   杜威把人类对确定性的执着诊断为一种逃避：知识的真正功能是引导行动、改造处境，而非提供一劳永逸的保险。这本书几乎是本章的题眼，书名本身即点破了全书要破除的那个幻想。
 11. A. Tversky & D. Kahneman (1974). 「Judgment under Uncertainty: Heuristics and Biases」. Science, 185(4157), 1124-1131. [②④]
+   这篇奠基之作揭示，人在不确定下的判断依赖少数启发式（代表性、可得性、锚定），它们多数时候够用，却也会系统性地偏离概率法则。本章谈直觉的可靠与不可靠时，它提供了「直觉会犯有规律的错」这一关键背景。
 12. R. M. Dawes (1979). 「The Robust Beauty of Improper Linear Models in Decision Making」. American Psychologist, 34(7), 571-582. [②④]
+   道斯证明，即便权重随意设定的简单线性模型，预测也常胜过专家判断，因为它一致地利用了有效线索、不受人类临场波动干扰。它延续了米尔的发现，是本章「简单规则为何稳健」一节的直接支撑。
 13. D. A. Schön (1983).《The Reflective Practitioner: How Professionals Think in Action》. Basic Books. [③④]
+   舍恩提出「在行动中反思」：熟练的专业者并不靠套用既定理论，而是在实践当下与情境对话、即时调整。本章引此刻画专长的另一面，说明在反馈充分的实践里，可靠的判断如何生成。
 14. H. L. Dreyfus & S. E. Dreyfus (1986).《Mind over Machine: The Power of Human Intuition and Expertise in the Era of the Computer》. Free Press. [④]
+   德雷福斯兄弟提出从新手到专家的技能习得阶段论，认为高阶专长的标志是越过显式规则、转为整体性的情境直觉。本章借此说明专长的成熟形态不是更会算，而是更会看，这也为「直觉是被打磨出来的能力」张本。
 15. K. A. Ericsson, R. Th. Krampe & C. Tesch-Römer (1993). 「The Role of Deliberate Practice in the Acquisition of Expert Performance」. Psychological Review, 100(3), 363-406. [②④]
+   这篇研究主张，造就卓越表现的关键不是单纯的经验累积，而是「刻意练习」，即有明确目标、即时反馈、不断逼近能力边缘的费力训练。本章用它支撑一个要点：可靠的直觉来自反馈的反复打磨，而非时间的自然沉淀。
 16. G. Gigerenzer & D. G. Goldstein (1996). 「Reasoning the Fast and Frugal Way: Models of Bounded Rationality」. Psychological Review, 103(4), 650-669. [②④]
+   两位作者展示，像「认出哪个就选哪个」这类快而省的简单启发式，在合适环境里能匹敌甚至超过复杂的统计推断。本章谈「简单规则为何管用」时，这是直接证据，说明少即是多取决于规则与环境的契合。
 17. G. Klein (1998).《Sources of Power: How People Make Decisions》. MIT Press. [②④]
+   克莱因通过对消防员、护士等实战者的田野研究，提出「自然主义决策」：专家常不比较选项，而是凭模式识别迅速认出当下属于哪类情境、该怎么办。本章引此呈现专家直觉可信的一面，与统计模型派形成互补。
 18. R. M. Hogarth (2001).《Educating Intuition》. University of Chicago Press. [②④]
+   霍格思追问直觉从何而来，区分了「友善」与「险恶」的学习环境：反馈准确及时的环境会培养出好直觉，反馈误导或缺失的环境则养出坏直觉。这与本章「直觉是否可信取决于环境」的核心判断高度一致。
 19. G. Gigerenzer & R. Selten (Eds.) (2001).《Bounded Rationality: The Adaptive Toolbox》. MIT Press. [②④]
+   这部文集把有限理性重述为一套「适应性工具箱」：心智备有多种简单启发式，因情境取用，而非追求全局最优。本章谈生态理性时，它提供了系统化的框架，把零散的启发式研究收束为一种理性观。
 20. G. Klein (2004).《The Power of Intuition: How to Use Your Gut Feelings to Make Better Decisions at Work》. Currency. [④]
+   这本面向实践者的书把克莱因的研究化为可操作的训练：如何积累经验、复盘决策、磨砺并审视自己的直觉。对本章而言，它说明标定良好的直觉不仅可被研究，也可被有意识地培养。
 21. P. E. Tetlock (2005).《Expert Political Judgment: How Good Is It? How Can We Know?》. Princeton University Press. [①②④]
+   特洛克历经多年追踪大量专家的政治与经济预测，发现其总体准确度堪忧，且越自信、越爱讲大叙事的「刺猬型」专家往往越不准。本章引此既敲打专家的过度自信，也为「预测能力可以被检验、被训练」埋下伏笔。
 22. G. Gigerenzer (2007).《Gut Feelings: The Intelligence of the Unconscious》. Viking. [④]
+   这是吉仁泽面向大众阐释其研究的一本书：直觉并非非理性的冲动，而是无意识地运用了适应环境的简单经验法则，常常又快又准。本章用它支撑「直觉是一种生态理性」的看法。
 23. N. N. Taleb (2007).《The Black Swan: The Impact of the Highly Improbable》. Random House. [④]
+   塔勒布论述那些罕见、难以预测却影响巨大的「黑天鹅」事件，警告人们事后总爱为其编造解释、事前却系统性地低估其可能。本章借此说明：与其追求精确预测，不如为不可预测之事布局，这呼应了后文的稳健与反脆弱主张。
 24. D. Kahneman & G. Klein (2009). 「Conditions for Intuitive Expertise: A Failure to Disagree」. American Psychologist, 64(6), 515-526. [②④]
+   分属「直觉多有偏误」与「专家直觉可靠」两派的两位学者，在这篇罕见的对话里达成共识：直觉是否可信取决于环境，规律稳定、反馈充分的环境里它可学可信，低效度、充满噪声的环境里它就是自欺。本章把这视为最诚实的综合，是整节认识论的支点。
 25. D. Kahneman (2011).《Thinking, Fast and Slow》. Farrar, Straus and Giroux. [②④]
+   卡尼曼以「系统一」的快直觉与「系统二」的慢推理为框架，总结了数十年关于判断偏误的研究。本章借它把专家直觉放回认知机制的全景中，提醒读者直觉既是能力之源，也是偏误之源。
 26. N. N. Taleb (2012).《Antifragile: Things That Gain from Disorder》. Random House. [④]
+   塔勒布提出「反脆弱」：超越仅仅抗压的稳健，有些系统能从波动、压力与意外中获益。本章引此给出在根本不确定下行动的正面策略，即布置好让自己从不可预测中受益而非受损的结构。
 27. P. E. Tetlock & D. Gardner (2015).《Superforecasting: The Art and Science of Prediction》. Crown. [①④]
+   本书报告「优秀判断力计划」的发现：少数「超级预测者」的准确度持续高于常人，靠的不是天赋，而是一套可学的习惯，多角度取证、小步更新、严苛复盘。本章引此说明标定本身可以被训练，预测是一门可改进的手艺。
 28. R. Hertwig & C. Engel (2016). 「Homo Ignorans: Deliberately Choosing Not to Know」. Perspectives on Psychological Science, 11(3), 359-372. [②④]
+   两位作者梳理人们何以及如何主动选择不去知道某些信息，论证「刻意的无知」常常是理性的应对，而非认知缺陷。本章用它支持一个反直觉的要点：有时不查、不知，恰恰是好的决策姿态。
 29. J. Kay & M. King (2020).《Radical Uncertainty: Decision-Making Beyond the Numbers》. W. W. Norton. [②④]
+   凯与金接续奈特和凯恩斯，批评把一切不确定都强行塞进概率模型的做法，主张面对「彻底的不确定性」时应转而追问「这里到底发生了什么」，靠叙事与稳健的判断行动。本书是本章「彻底的不确定性」一语的直接出处，也是其总论调的当代回响。
