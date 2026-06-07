@@ -13,3 +13,4 @@ website/public/
 __pycache__/
 *.pyc
 .workflow-fluency.js
+.workflow-cite.js
