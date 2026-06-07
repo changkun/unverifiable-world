@@ -42,13 +42,13 @@
 
 7. W. N. Espeland & M. Sauder (2007).「Rankings and Reactivity: How Public Measures Recreate Social Worlds」.《American Journal of Sociology》, 113(1), 1–40. [②④]　（「反身性」框架，量化指标如何反过来重塑被测对象。）
 
-8. D. Manheim & S. Garrabrant (2018).《Categorizing Variants of Goodhart's Law》. arXiv:1803.04585. [②]　（首发 2018 年 3 月，后有 v3 修订。对古德哈特定律给出至少四类机制划分。预印本，非期刊。）
+8. D. Manheim & S. Garrabrant (2018).「Categorizing Variants of Goodhart's Law」. arXiv:1803.04585. [②]　（首发 2018 年 3 月，后有 v3 修订。对古德哈特定律给出至少四类机制划分。预印本，非期刊。）
 
 9. J. Z. Muller (2018).《The Tyranny of Metrics》. Princeton University Press. [④]　（度量崇拜负面后果的通俗综述。）
 
 ### 代理失真在机器学习中的复现：奖励钻空与过优化
 
-10. D. Amodei, C. Olah, J. Steinhardt, P. Christiano, J. Schulman & D. Mané (2016).《Concrete Problems in AI Safety》. arXiv:1606.06565. [②]　（提出 reward hacking、scalable supervision 等问题，将代理目标失真译入机器学习语境。预印本。）
+10. D. Amodei, C. Olah, J. Steinhardt, P. Christiano, J. Schulman & D. Mané (2016).「Concrete Problems in AI Safety」. arXiv:1606.06565. [②]　（提出 reward hacking、scalable supervision 等问题，将代理目标失真译入机器学习语境。预印本。）
 
 11. P. F. Christiano, J. Leike, T. B. Brown, M. Martic, S. Legg & D. Amodei (2017).「Deep Reinforcement Learning from Human Preferences」.《Advances in Neural Information Processing Systems》, 30 (NeurIPS 2017). [②④]　（用人类偏好学习代理奖励函数，RLHF 的奠基；arXiv:1706.03741。）
 
