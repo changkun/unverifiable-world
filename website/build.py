@@ -5,11 +5,14 @@
 - 读取仓库根目录的 SUMMARY.md 作为目录结构；
 - 每章 Markdown 渲染为 HTML（数学交给 KaTeX 客户端渲染，SVG 图原生显示，
   原始 HTML/JS 原样透传以支持动画）；
-- 生成：封面 index.html、目录 toc.html、各章页（带侧栏目录与上一页/下一页）。
+- 生成：封面 index.html、目录 toc.html、各章页；
+- 每页含常驻顶栏（书名 + 当前章名 + 目录入口，手机端含抽屉菜单）、
+  侧栏目录、底部上一页/下一页，手机端另有常驻底部翻页条（含进度）；
+- 翻页时有轻量的滑入/滑出动画（尊重「减少动态效果」偏好）。
 
 全部输出使用相对路径，因此可直接部署到任何子路径下（如 changkun.de/xxx/）。
 
-依赖：python3 与 `markdown`（pip install markdown）。
+依赖：python3 与 `markdown`（pip install markdown，或用 uv 自动带上）。
 用法：python3 website/build.py   →   输出到 website/public/
 """
 import html
@@ -41,23 +44,34 @@ KATEX = """
 """
 
 CSS = """
-:root{--ink:#1a1a1a;--muted:#6b7280;--line:#e5e7eb;--accent:#3b4252;--bg:#fbfbf9;--paper:#ffffff}
+:root{--ink:#1a1a1a;--muted:#6b7280;--line:#e5e7eb;--accent:#3b4252;--bg:#fbfbf9;--paper:#ffffff;--hh:52px}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);
  font-family:"Noto Serif SC","Songti SC",Georgia,"Times New Roman",serif;line-height:1.85;font-size:18px}
 a{color:#2b4a8b;text-decoration:none}a:hover{text-decoration:underline}
-.wrap{display:flex;max-width:1180px;margin:0 auto;min-height:100vh}
-.sidebar{width:280px;flex:none;border-right:1px solid var(--line);padding:28px 20px;
- position:sticky;top:0;height:100vh;overflow-y:auto;background:var(--paper)}
-.sidebar .home{font-weight:700;font-size:17px;display:block;margin-bottom:4px;color:var(--ink)}
-.sidebar .sub{color:var(--muted);font-size:12.5px;margin-bottom:18px}
-.sidebar .part{font-weight:700;margin:16px 0 6px;font-size:14px;color:var(--accent)}
+
+/* 顶栏 */
+.topbar{position:sticky;top:0;z-index:50;height:var(--hh);display:flex;align-items:center;gap:12px;
+ padding:0 16px;background:rgba(255,255,255,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.topbar .burger{display:none;font-size:22px;line-height:1;background:none;border:none;cursor:pointer;color:var(--ink);padding:4px 6px}
+.topbar .bk{font-weight:700;color:var(--ink);white-space:nowrap}
+.topbar .cur{color:var(--muted);font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1}
+.topbar .cur::before{content:"·　"}
+.topbar .toc-link{margin-left:auto;white-space:nowrap;font-size:14.5px}
+
+.wrap{display:flex;max-width:1180px;margin:0 auto}
+.sidebar{width:280px;flex:none;border-right:1px solid var(--line);padding:24px 20px;
+ position:sticky;top:var(--hh);height:calc(100vh - var(--hh));overflow-y:auto;background:var(--paper)}
+.sidebar .home{font-weight:700;font-size:16px;display:block;margin-bottom:2px;color:var(--ink)}
+.sidebar .sub{color:var(--muted);font-size:12.5px;margin-bottom:16px}
+.sidebar .part{font-weight:700;margin:15px 0 6px;font-size:13.5px;color:var(--accent)}
 .sidebar ul{list-style:none;padding:0;margin:0}
 .sidebar li{margin:3px 0}
 .sidebar a{font-size:14.5px;color:#374151;display:block;padding:2px 0}
 .sidebar a.active{color:#2b4a8b;font-weight:700}
-.content{flex:1;min-width:0;padding:46px 56px 90px;max-width:820px;margin:0 auto}
+
+.content{flex:1;min-width:0;padding:44px 56px 90px;max-width:820px;margin:0 auto;animation:turnIn .26s ease both}
 .content h1{font-size:30px;line-height:1.3;margin:.2em 0 .6em}
 .content h2{font-size:23px;margin:1.8em 0 .6em;padding-bottom:.2em;border-bottom:1px solid var(--line)}
 .content h3{font-size:19px;margin:1.4em 0 .5em}
@@ -71,28 +85,59 @@ a{color:#2b4a8b;text-decoration:none}a:hover{text-decoration:underline}
 .content pre{background:#f6f8fa;padding:14px 16px;border-radius:8px;overflow:auto}
 .content pre code{background:none;padding:0}
 .content hr{border:none;border-top:1px solid var(--line);margin:2em 0}
-.nav{display:flex;justify-content:space-between;margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-size:15px}
-.nav a{max-width:46%}
+
+.nav{display:flex;justify-content:space-between;gap:14px;margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-size:15px}
+.nav a{max-width:46%}.nav .spacer{flex:1}
+
+/* 翻页动画 */
+@keyframes turnIn{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:none}}
+@keyframes turnOut{from{opacity:1;transform:none}to{opacity:0;transform:translateX(-16px)}}
+body.turning .content{animation:turnOut .19s ease both}
+@media(prefers-reduced-motion:reduce){.content{animation:none}body.turning .content{animation:none}}
+
+/* 抽屉遮罩与手机底栏 */
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:55}
+.overlay.show{display:block}
+.mobilebar{display:none}
+
 /* 封面 */
 .cover{display:flex;flex-direction:column;align-items:center;justify-content:center;
  min-height:100vh;width:100%;text-align:center;padding:40px}
 .book{width:330px;max-width:80vw;aspect-ratio:5/7;border-radius:6px;
  background:linear-gradient(135deg,#2b3a55 0%,#1b2233 100%);color:#f4f4f2;
  box-shadow:0 24px 60px rgba(20,30,50,.35),inset 4px 0 0 rgba(255,255,255,.12),inset 8px 0 14px rgba(0,0,0,.25);
- display:flex;flex-direction:column;justify-content:space-between;padding:42px 34px;position:relative}
+ display:flex;flex-direction:column;justify-content:space-between;padding:42px 34px}
 .book .t{font-size:30px;font-weight:700;line-height:1.35;letter-spacing:1px}
 .book .s{font-size:13px;color:#aab4c8;letter-spacing:2px;text-transform:uppercase;margin-top:14px}
-.book .a{font-size:15px;color:#dfe5ef;margin-top:auto}
-.book .rule{width:42px;height:3px;background:#8aa0c8;margin:18px auto 0}
+.book .bk-top{text-align:center}
+.book .bk-art{width:62%;align-self:center;margin:6px auto;opacity:.96;filter:drop-shadow(0 4px 14px rgba(0,0,0,.35))}
+.book .a{font-size:15px;color:#dfe5ef;text-align:center}
 .cover .blurb{color:var(--muted);max-width:520px;margin:30px auto 8px;font-size:16px}
 .cover .actions{margin-top:22px;display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
 .btn{display:inline-block;padding:10px 22px;border-radius:8px;font-size:15.5px;border:1px solid #2b4a8b}
 .btn.primary{background:#2b4a8b;color:#fff}.btn.primary:hover{text-decoration:none;background:#23407c}
 .btn.ghost{color:#2b4a8b;background:#fff}.btn.ghost:hover{text-decoration:none;background:#f0f4fb}
+
 .toc-page .part{font-weight:700;color:var(--accent);margin:24px 0 8px;font-size:17px}
 .toc-page ul{list-style:none;padding:0}.toc-page li{margin:7px 0;font-size:16.5px}
 .muted{color:var(--muted)}
-@media(max-width:820px){.sidebar{display:none}.content{padding:28px 20px 70px}body{font-size:17px}}
+
+@media(max-width:820px){
+ body{font-size:17px}
+ .topbar .burger{display:block}
+ .topbar .toc-link{display:none}
+ .sidebar{position:fixed;left:0;top:0;height:100vh;z-index:60;width:82vw;max-width:320px;
+  transform:translateX(-100%);transition:transform .25s ease;box-shadow:6px 0 30px rgba(0,0,0,.18)}
+ .sidebar.open{transform:none}
+ .content{padding:26px 20px 96px}
+ .mobilebar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:45;height:52px;align-items:center;
+  justify-content:space-between;padding:0 8px;background:rgba(255,255,255,.95);backdrop-filter:blur(6px);
+  border-top:1px solid var(--line)}
+ .mobilebar a{padding:8px 16px;font-size:20px;color:#2b4a8b}
+ .mobilebar a.disabled{color:#cbd5e1;pointer-events:none}
+ .mobilebar .pos{color:var(--muted);font-size:13.5px}
+ .nav{display:none}
+}
 """
 
 
@@ -102,7 +147,6 @@ def slug(path):
 
 
 def parse_summary():
-    """返回 (entries, parts)。entries: [(title, htmlfile, mdpath)]；parts: [(part_title, [idx...])]"""
     entries, parts = [], []
     cur = None
     for ln in open(SUMMARY, encoding="utf-8"):
@@ -115,12 +159,11 @@ def parse_summary():
         m = re.match(r"^\s*-\s*\[(.+?)\]\((.+?)\)\s*$", ln)
         if m:
             title, path = m.group(1).strip(), m.group(2).strip()
-            idx = len(entries)
             entries.append((title, slug(path), os.path.join(ROOT, path)))
             if cur is None:
                 cur = ("", [])
                 parts.append(cur)
-            cur[1].append(idx)
+            cur[1].append(len(entries) - 1)
     return entries, parts
 
 
@@ -139,7 +182,42 @@ def sidebar_html(entries, parts, active=None):
     return "\n".join(out)
 
 
-def page(title, body, sidebar, extra_class=""):
+JS = """
+<script>
+(function(){
+ var sb=document.querySelector('.sidebar'),ov=document.querySelector('.overlay'),bg=document.querySelector('.burger');
+ function close(){if(sb)sb.classList.remove('open');if(ov)ov.classList.remove('show');}
+ if(bg)bg.addEventListener('click',function(){sb.classList.toggle('open');ov.classList.toggle('show');});
+ if(ov)ov.addEventListener('click',close);
+ var rm=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ if(!rm){Array.prototype.forEach.call(document.querySelectorAll('a[data-turn]'),function(a){
+   a.addEventListener('click',function(e){var h=a.getAttribute('href');
+     if(!h||h.charAt(0)==='#'||a.classList.contains('disabled'))return;
+     e.preventDefault();document.body.classList.add('turning');
+     setTimeout(function(){location.href=h;},185);});});}
+})();
+</script>
+"""
+
+
+def topbar(cur_title):
+    return (
+        '<header class="topbar">'
+        '<button class="burger" aria-label="目录">☰</button>'
+        f'<a class="bk" href="index.html">{html.escape(TITLE)}</a>'
+        f'<span class="cur">{html.escape(cur_title)}</span>'
+        '<a class="toc-link" href="toc.html">目录</a>'
+        '</header>'
+    )
+
+
+def mobilebar(prevp, nextp, pos):
+    pa = (f'<a data-turn href="{prevp[1]}">←</a>' if prevp else '<a class="disabled">←</a>')
+    na = (f'<a data-turn href="{nextp[1]}">→</a>' if nextp else '<a class="disabled">→</a>')
+    return f'<nav class="mobilebar">{pa}<span class="pos">{pos}</span>{na}</nav>'
+
+
+def page(title, body, sidebar, active=None, cur_title="", prevp=None, nextp=None, pos="", extra_class=""):
     return f"""<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -150,22 +228,16 @@ def page(title, body, sidebar, extra_class=""):
 <style>{CSS}</style>
 </head>
 <body>
+{topbar(cur_title or title)}
+<div class="overlay"></div>
 <div class="wrap">
 <nav class="sidebar">{sidebar}</nav>
 <main class="content {extra_class}">{body}</main>
 </div>
+{mobilebar(prevp, nextp, pos)}
+{JS}
 </body>
 </html>
-"""
-
-
-def cover_page(entries):
-    # 封面整页呈现，不显示侧栏
-    return f"""<!DOCTYPE html>
-<html lang="zh-CN"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{html.escape(TITLE)}</title><style>{CSS}</style></head>
-<body><div class="wrap" style="display:block">{cover_body(entries)}</div></body></html>
 """
 
 
@@ -174,11 +246,11 @@ def cover_body(entries):
     return f"""
 <div class="cover">
   <div class="book">
-    <div>
+    <div class="bk-top">
       <div class="t">{html.escape(TITLE)}</div>
       <div class="s">{html.escape(SUBTITLE)}</div>
-      <div class="rule"></div>
     </div>
+    <img class="bk-art" src="figures/cover-art.svg" alt="">
     <div class="a">{html.escape(AUTHOR)}　著</div>
   </div>
   <p class="blurb">{html.escape(BLURB)}</p>
@@ -191,6 +263,15 @@ def cover_body(entries):
 """
 
 
+def cover_page(entries):
+    return f"""<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{html.escape(TITLE)}</title><style>{CSS}</style></head>
+<body><div class="wrap" style="display:block">{cover_body(entries)}</div></body></html>
+"""
+
+
 def toc_page(entries, parts, sidebar):
     out = ['<h1>目录</h1>']
     for ptitle, idxs in parts:
@@ -199,51 +280,50 @@ def toc_page(entries, parts, sidebar):
         out.append("<ul>")
         for i in idxs:
             t, f, _ = entries[i]
-            out.append(f'<li><a href="{f}">{html.escape(t)}</a></li>')
+            out.append(f'<li><a data-turn href="{f}">{html.escape(t)}</a></li>')
         out.append("</ul>")
-    return page("目录", "\n".join(out), sidebar, extra_class="toc-page")
+    nextp = (entries[0][0], entries[0][1]) if entries else None
+    return page("目录", "\n".join(out), sidebar, cur_title="目录",
+                nextp=nextp, pos="目录", extra_class="toc-page")
 
 
 MD_EXT = ["extra", "tables", "fenced_code", "sane_lists", "attr_list"]
 
 
 def render_md(mdpath):
-    text = open(mdpath, encoding="utf-8").read()
-    body = markdown.markdown(text, extensions=MD_EXT)
-    # 图片路径：../figures/x.svg -> figures/x.svg（输出为扁平结构）
-    body = body.replace('src="../figures/', 'src="figures/').replace("src='../figures/", "src='figures/")
-    return body
+    body = markdown.markdown(open(mdpath, encoding="utf-8").read(), extensions=MD_EXT)
+    return body.replace('src="../figures/', 'src="figures/').replace("src='../figures/", "src='figures/")
 
 
 def main():
     if os.path.isdir(OUT):
         shutil.rmtree(OUT)
     os.makedirs(OUT)
-    # 拷贝插图
     if os.path.isdir(FIG_SRC):
         shutil.copytree(FIG_SRC, os.path.join(OUT, "figures"))
 
     entries, parts = parse_summary()
+    n = len(entries)
 
-    # 封面
     open(os.path.join(OUT, "index.html"), "w", encoding="utf-8").write(cover_page(entries))
-    # 目录
     open(os.path.join(OUT, "toc.html"), "w", encoding="utf-8").write(
         toc_page(entries, parts, sidebar_html(entries, parts)))
 
-    # 各章
     for i, (title, fname, mdpath) in enumerate(entries):
         body = render_md(mdpath)
-        prev_a = (f'<a href="{entries[i-1][1]}">← {html.escape(entries[i-1][0])}</a>' if i > 0
-                  else '<a href="index.html">← 封面</a>')
-        next_a = (f'<a href="{entries[i+1][1]}">{html.escape(entries[i+1][0])} →</a>' if i < len(entries) - 1
-                  else '<a href="toc.html">目录 →</a>')
-        body += f'<div class="nav">{prev_a}{next_a}</div>'
+        prevp = (entries[i - 1][0], entries[i - 1][1]) if i > 0 else None
+        nextp = (entries[i + 1][0], entries[i + 1][1]) if i < n - 1 else None
+        prev_a = (f'<a data-turn href="{prevp[1]}">← {html.escape(prevp[0])}</a>' if prevp
+                  else '<a data-turn href="index.html">← 封面</a>')
+        next_a = (f'<a data-turn href="{nextp[1]}">{html.escape(nextp[0])} →</a>' if nextp
+                  else '<a data-turn href="toc.html">目录 →</a>')
+        body += f'<div class="nav">{prev_a}<span class="spacer"></span>{next_a}</div>'
         open(os.path.join(OUT, fname), "w", encoding="utf-8").write(
-            page(title, body, sidebar_html(entries, parts, active=fname)))
+            page(title, body, sidebar_html(entries, parts, active=fname),
+                 active=fname, cur_title=title, prevp=prevp, nextp=nextp, pos=f"{i + 1} / {n}"))
 
-    print(f"已生成 {len(entries)} 章 + 封面 + 目录 到 {os.path.relpath(OUT, ROOT)}/")
-    print("本地预览： (cd website/public && python3 -m http.server 8000)  然后访问 http://localhost:8000")
+    print(f"已生成 {n} 章 + 封面 + 目录 到 {os.path.relpath(OUT, ROOT)}/")
+    print("本地预览： make serve  →  http://localhost:8000")
 
 
 if __name__ == "__main__":
