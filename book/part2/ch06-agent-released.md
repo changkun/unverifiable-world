@@ -30,7 +30,7 @@
 
 **第一招，衰减与围栏：缩小爆炸半径。** 这是计算机安全最老的智慧。萨尔策与施罗德 1975 年的最小权限原则（principle of least privilege）、兰普森 1973 年的围堵问题（confinement problem），讲的都是：只给一个组件完成本职所必需的最小能力，把它能触及的范围圈死。沙箱、能力限制、职责分离，都是它的化身。在智能体语境里，这一招还多了一个面向，可纠正性（corrigibility）：把系统设计成不抗拒被停下。索亚雷斯等人 2015 年的 corrigibility、奥尔索与阿姆斯特朗 2016 年的「可安全中断的智能体」、哈德菲尔德-梅内尔等人 2017 年的「关停博弈」（the off-switch game），研究的正是如何让一个有目标的系统，不把「人来按下停止键」当成需要抵抗的威胁。
 
-**第二招，标定与分级信任：别用二值。** 不要把系统的输出当成「可信／不可信」的开关，而是维持一个标定（calibration）的信心，按信心的高低分级行动。这要求系统的「自信」是可信的，而现代神经网络恰恰常常过度自信（郭等人 2017 指出了这一点），于是需要重新校准，或用共形预测（conformal prediction，沃夫克等人、安杰洛普洛斯与贝茨）给出有覆盖保证的不确定性。落到操作上，就是一条以信心 $p$、潜在危害 $c$ 为输入的分级自治规则（允许、询问、阻止），其中 $\tau_{\text{hi}}$、$\tau_{\text{lo}}$ 是信心阈值，$c_{\max}$ 是可承受的危害上限：
+**第二招，标定与分级信任：别用二值。** 不要把系统的输出当成「可信／不可信」的开关，而是维持一个标定（calibration）的信心，按信心的高低分级行动。这要求系统的「自信」是可信的，而现代神经网络恰恰常常过度自信（郭等人 2017 指出了这一点），于是需要重新校准，或用保形预测（conformal prediction，沃夫克等人、安杰洛普洛斯与贝茨）给出有覆盖保证的不确定性。落到操作上，就是一条以信心 $p$、潜在危害 $c$ 为输入的分级自治规则（允许、询问、阻止），其中 $\tau_{\text{hi}}$、$\tau_{\text{lo}}$ 是信心阈值，$c_{\max}$ 是可承受的危害上限：
 
 $$a(p,c)=\begin{cases} \textsf{allow}, & p \ge \tau_{\text{hi}}\ \wedge\ c \le c_{\max},\\ \textsf{ask}, & \tau_{\text{lo}} \le p < \tau_{\text{hi}},\\ \textsf{block}, & p < \tau_{\text{lo}}\ \vee\ c > c_{\max}. \end{cases}$$
 
@@ -116,9 +116,9 @@ $$a(p,c)=\begin{cases} \textsf{allow}, & p \ge \tau_{\text{hi}}\ \wedge\ c \le c
 21. C. Guo, G. Pleiss, Y. Sun & K. Q. Weinberger (2017).「On Calibration of Modern Neural Networks」. 收于《Proceedings of the 34th International Conference on Machine Learning (ICML 2017)》, PMLR 70, 1321-1330. [②]
    作者发现现代深度网络虽然准确率高，却普遍过度自信，其输出的置信度并不能如实反映正确概率，并提出温度缩放等简单方法来重新校准。这正是本章第二招的前提与障碍，说明为何「按信心分级行动」必须先让系统的自信变得可信。
 22. A. N. Angelopoulos & S. Bates (2021).「A Gentle Introduction to Conformal Prediction and Distribution-Free Uncertainty Quantification」. arXiv:2107.07511. [②]
-   这是一篇面向实践者的共形预测入门，讲清楚如何在几乎不依赖分布假设的前提下，为任意预测模型构造带有覆盖率保证的预测集合。它给本章第二招提供了可落地的不确定性量化工具，适合想把「标定的信心」真正用起来的读者。
+   这是一篇面向实践者的保形预测入门，讲清楚如何在几乎不依赖分布假设的前提下，为任意预测模型构造带有覆盖率保证的预测集合。它给本章第二招提供了可落地的不确定性量化工具，适合想把「标定的信心」真正用起来的读者。
 23. V. Vovk, A. Gammerman & G. Shafer (2005).《Algorithmic Learning in a Random World》. Springer. [②]
-   这本书是共形预测的奠基性专著，在仅假设数据可交换的条件下，给出对预测误差有严格有限样本保证的框架。它是上一篇入门背后的理论根基，供希望深究本章不确定性量化数学基础的读者参考。
+   这本书是保形预测的奠基性专著，在仅假设数据可交换的条件下，给出对预测误差有严格有限样本保证的框架。它是上一篇入门背后的理论根基，供希望深究本章不确定性量化数学基础的读者参考。
 
 ### 留痕：可审计、可问责
 
