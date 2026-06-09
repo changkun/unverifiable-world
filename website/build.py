@@ -191,7 +191,7 @@ KATEX = """
 """
 
 CSS = """
-:root{--ink:#1a1a1a;--muted:#6b7280;--line:#e5e7eb;--accent:#3b4252;--bg:#fbfbf9;--paper:#ffffff;--hh:52px}
+:root{--ink:#1a1a1a;--muted:#6b7280;--line:#e5e7eb;--accent:#3b4252;--bg:#fbfbf9;--paper:#ffffff;--hh:52px;color-scheme:light dark}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);
@@ -327,6 +327,37 @@ body.turning .content{animation:turnOut .19s ease both}
  .nav{display:none}
  .content .katex-display{font-size:.9em}
 }
+
+/* 跟随系统的深色主题 */
+@media (prefers-color-scheme: dark){
+ :root{--ink:#e6e7ea;--muted:#9aa3ad;--line:#2b313b;--accent:#c2c9d4;--bg:#15171c;--paper:#1b1e24}
+ a{color:#8fb0ee}
+ .topbar{background:rgba(21,23,28,.92)}
+ .topbar .lang-link{color:#c2c8d0}
+ .sidebar a{color:#c2c8d0}
+ .sidebar a.active{color:#8fb0ee}
+ .content blockquote{border-left-color:#3a4150;color:#c7ccd4;background:#1f242c}
+ .content th{background:#232831}
+ .content code{background:#22262e}
+ .content pre{background:#1d2129}
+ .content .refs{color:#c7ccd4}
+ .content .refs blockquote{background:#1f242c}
+ .content .refs li:target{background:#3a3320;box-shadow:0 0 0 6px #3a3320}
+ /* 配图多为浅底 SVG，深色下垫白底以保证可读 */
+ .content img{background:#fff;border-radius:6px;padding:10px}
+ sup.cite a{color:#8fb0ee}
+ .endnav .go-next{background:#3a5db0}.endnav .go-next:hover{background:#34539e}
+ .btn{border-color:#3a5db0}
+ .btn.primary{background:#3a5db0}.btn.primary:hover{background:#34539e}
+ .btn.ghost{color:#8fb0ee;background:#1b1e24}.btn.ghost:hover{background:#222733}
+ .share button{background:#1b1e24;border-color:#2b313b;color:#9aa3ad}
+ .share button:hover{border-color:#8fb0ee;color:#8fb0ee}
+ .qr-card{background:#1b1e24}
+ .qr-card .close{background:#222733;color:#e6e7ea}
+ .mobilebar{background:rgba(21,23,28,.95)}
+ .mobilebar a{color:#8fb0ee}
+ .mobilebar a.disabled{color:#3a4150}
+}
 """
 
 
@@ -430,6 +461,9 @@ def js_block(lang):
    if(window.QRCode){renderQR();return;}
    var s=document.createElement('script');
    s.src='https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js';s.onload=renderQR;document.head.appendChild(s);}
+ // 记住用户显式选择的语言，避免之后被自动跳转覆盖
+ Array.prototype.forEach.call(document.querySelectorAll('[data-setlang]'),function(el){
+   el.addEventListener('click',function(){try{localStorage.setItem('uw_lang',el.getAttribute('data-setlang'));}catch(e){}});});
 })();
 </script>
 """.replace("__TT__", tt)
@@ -443,7 +477,7 @@ def topbar(lang, cur_title, filename):
         f'<a class="bk" href="index.html">{html.escape(lang.title)}</a>'
         f'<span class="cur">{html.escape(cur_title)}</span>'
         f'<a class="toc-link" href="toc.html">{html.escape(lang.labels["toc"])}</a>'
-        f'<a class="lang-link" hreflang="{html.escape(alt.html_lang)}" href="{html.escape(rel_lang_link(lang, alt, filename))}">{html.escape(lang.labels["lang_short"])}</a>'
+        f'<a class="lang-link" data-setlang="{html.escape(alt.code)}" hreflang="{html.escape(alt.html_lang)}" href="{html.escape(rel_lang_link(lang, alt, filename))}">{html.escape(lang.labels["lang_short"])}</a>'
         '</header>'
     )
 
@@ -499,7 +533,7 @@ def cover_body(lang, entries):
   <div class="actions">
     <a class="btn primary" href="{first}">{html.escape(lang.labels["start"])}</a>
     <a class="btn ghost" href="toc.html">{html.escape(lang.labels["toc"])}</a>
-    <a class="btn ghost" hreflang="{html.escape(other_lang(lang).html_lang)}" href="{html.escape(rel_lang_link(lang, other_lang(lang), "index.html"))}">{html.escape(lang.labels["language"])}</a>
+    <a class="btn ghost" data-setlang="{html.escape(other_lang(lang).code)}" hreflang="{html.escape(other_lang(lang).html_lang)}" href="{html.escape(rel_lang_link(lang, other_lang(lang), "index.html"))}">{html.escape(lang.labels["language"])}</a>
   </div>
   {share_html(lang)}
   <p class="muted" style="margin-top:18px;font-size:13.5px">{html.escape(lang.labels["license"])}</p>
@@ -507,9 +541,27 @@ def cover_body(lang, entries):
 """
 
 
+def lang_redirect_script(lang):
+    """仅用于默认语言的封面：尊重用户显式选择（localStorage），否则按浏览器语言
+    把非该语言的访客跳到另一语种。location.replace 不污染历史。"""
+    if lang.code != DEFAULT_LANG.code:
+        return ""
+    alt = other_lang(lang)
+    alt_href = _json.dumps(rel_lang_link(lang, alt, "index.html"))
+    code = _json.dumps(lang.code)
+    return (
+        "<script>(function(){try{"
+        "var s=localStorage.getItem('uw_lang');"
+        f"if(s){{if(s!=={code})location.replace({alt_href});return;}}"
+        "var n=(navigator.language||navigator.userLanguage||'').slice(0,2).toLowerCase();"
+        f"if(n&&n!=={code})location.replace({alt_href});"
+        "}catch(e){}})();</script>"
+    )
+
+
 def cover_page(lang, entries):
     return f"""<!DOCTYPE html>
-<html lang="{html.escape(lang.html_lang)}"><head><meta charset="utf-8">
+<html lang="{html.escape(lang.html_lang)}"><head><meta charset="utf-8">{lang_redirect_script(lang)}
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{html.escape(lang.title)} · {html.escape(lang.subtitle)}</title>
 {head_meta(lang, lang.title, "index.html", lang.blurb)}
