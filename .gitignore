@@ -14,3 +14,4 @@ __pycache__/
 *.pyc
 .workflow-fluency.js
 .workflow-cite.js
+dist/

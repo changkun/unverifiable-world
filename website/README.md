@@ -20,6 +20,19 @@ make clean
 
 不用 `uv` 的话：`pip install markdown` 后 `make build RUN=python3`，或直接 `python3 build.py`。
 
+## 可下载的 PDF / EPUB
+
+整本书可编译成 PDF 与 EPUB（中英各一份），供读者从封面直接下载。
+
+```bash
+make book       # 编译到仓库根 dist/：unverifiable-world-{zh,en}.{pdf,epub}
+make release    # 先 make book 再 make build：把 dist/ 收进 public/downloads/ 并在封面显示下载入口
+```
+
+`make book` 调用 [`scripts/build_book.py`](../scripts/build_book.py)，依赖 **pandoc**、**xelatex**（含 CJK 字体，默认 Songti SC）、**rsvg-convert**。它按 SUMMARY 顺序拼接各章，把正文角标转成上标、把每章末编号参考文献保留为编号列表，并把 `book/figures/`（英文版用 `book/figures/en/`）下的 SVG 栅格化为高清 PNG 供 PDF 嵌入。`dist/` 不纳入版本管理；`build.py` 仅在对应文件存在时才在封面渲染下载链接，因此未编译时站点照常工作。
+
+只产其中一种：`python3 scripts/build_book.py zh pdf`（语种 `zh`/`en` 与格式 `pdf`/`epub` 可任意组合）。
+
 ## 部署
 
 `make build` 后，`website/public/` 是一份纯静态站点（HTML + figures/ + en/），把它整目录放到你的网站对应子路径下即可，部署方式与 `modern-cpp-tutorial`、`under-the-hood` 一致。本站不需要任何密钥或后端：KaTeX 从公共 CDN 加载，其余皆为静态文件。若希望完全离线、不依赖 CDN，可把 KaTeX 的 css/js 下载到 `public/` 并改 `build.py` 里的 `KATEX` 常量为本地路径。

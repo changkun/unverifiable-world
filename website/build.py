@@ -78,6 +78,7 @@ ZH = Lang(
         "language": "English",
         "lang_short": "EN",
         "refs_heading": "参考文献",
+        "download": "下载全书",
     },
 )
 
@@ -112,6 +113,7 @@ EN = Lang(
         "missing_title": "Translation pending",
         "missing_body": "This English chapter has not been translated yet. The Chinese original remains available.",
         "read_original": "Read the Chinese original",
+        "download": "Download the book",
     },
 )
 
@@ -307,6 +309,8 @@ body.turning .content{animation:turnOut .19s ease both}
 .btn.primary{background:#2b4a8b;color:#fff}.btn.primary:hover{text-decoration:none;background:#23407c}
 .btn.ghost{color:#2b4a8b;background:#fff}.btn.ghost:hover{text-decoration:none;background:#f0f4fb}
 
+.cover .downloads{margin-top:20px;font-size:13.5px;color:var(--muted)}
+.cover .downloads a{font-weight:700;padding:0 2px}
 .toc-page .part{font-weight:700;color:var(--accent);margin:24px 0 8px;font-size:17px}
 .toc-page ul{list-style:none;padding:0}.toc-page li{margin:7px 0;font-size:16.5px}
 .muted{color:var(--muted)}
@@ -533,6 +537,21 @@ def page(lang, title, body, sidebar, filename, active=None, cur_title="", prevp=
 """
 
 
+def download_html(lang):
+    """封面上的下载区。仅当对应语种的编译文件存在于 public/downloads/ 时显示。"""
+    base = f"unverifiable-world-{lang.code}"
+    dl_dir = os.path.join(OUT, "downloads")
+    prefix = "../" if lang.out_subdir else ""
+    links = []
+    for ext, label in (("pdf", "PDF"), ("epub", "EPUB")):
+        if os.path.isfile(os.path.join(dl_dir, f"{base}.{ext}")):
+            links.append(f'<a href="{prefix}downloads/{base}.{ext}">{label}</a>')
+    if not links:
+        return ""
+    return (f'<p class="downloads">{html.escape(lang.labels["download"])}　'
+            + " · ".join(links) + "</p>")
+
+
 def cover_body(lang, entries):
     first = entries[0][1] if entries else "toc.html"
     author_line = lang.labels["author_line"].format(author=lang.author)
@@ -552,6 +571,7 @@ def cover_body(lang, entries):
     <a class="btn ghost" href="toc.html">{html.escape(lang.labels["toc"])}</a>
     <a class="btn ghost" data-setlang="{html.escape(other_lang(lang).code)}" hreflang="{html.escape(other_lang(lang).html_lang)}" href="{html.escape(rel_lang_link(lang, other_lang(lang), "index.html"))}">{html.escape(lang.labels["language"])}</a>
   </div>
+  {download_html(lang)}
   {share_html(lang)}
   <p class="muted" style="margin-top:18px;font-size:13.5px">{html.escape(lang.labels["license"])}</p>
 </div>
@@ -749,6 +769,16 @@ def main():
     ogp = os.path.join(ROOT, "website", "og.png")
     if os.path.isfile(ogp):
         shutil.copy(ogp, os.path.join(OUT, "og.png"))
+
+    # 把已编译的 PDF/EPUB（由 scripts/build_book.py 产到 dist/）放进 downloads/，
+    # 封面据其存在与否决定是否显示下载链接。
+    dist_dir = os.path.join(ROOT, "dist")
+    if os.path.isdir(dist_dir):
+        dl_dst = os.path.join(OUT, "downloads")
+        os.makedirs(dl_dst, exist_ok=True)
+        for f in sorted(os.listdir(dist_dir)):
+            if f.endswith((".pdf", ".epub")):
+                shutil.copy(os.path.join(dist_dir, f), os.path.join(dl_dst, f))
 
     for lang in LANGS:
         if not os.path.isfile(lang.summary):
