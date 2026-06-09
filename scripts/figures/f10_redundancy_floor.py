@@ -12,12 +12,24 @@ from svg import SVG, INK, MUTED, STROKES, FONT
 OUT = os.path.join(os.path.dirname(__file__), "..", "..", "book", "figures", "f10-redundancy-floor.svg")
 
 
-def build():
+def build(lang="zh"):
+    en = (lang == "en")
+
+    def t(zh, eng):
+        return eng if en else zh
+
     W, H = 740, 470
+    if en:
+        W, H = 820, 470
     s = SVG(W, H)
-    s.text(W / 2, 32, "冗余的相关性地板：相关一旦存在，堆人也没用", size=19, weight="bold")
+    s.text(W / 2, 32,
+           t("冗余的相关性地板：相关一旦存在，堆人也没用",
+             "The correlation floor of redundancy: once correlation is present, piling on more judges cannot get past it"),
+           size=t(19, 14.5), weight="bold")
 
     px, py, pw, ph = 84, 64, 580, 320
+    if en:
+        px, py, pw, ph = 92, 70, 600, 314
     Nmax = 40
 
     def X(n):
@@ -33,9 +45,9 @@ def build():
         s.line(px - 5, Y(v), px, Y(v), stroke=INK, sw=1)
         s.text(px - 12, Y(v), f"{v:.1f}", size=11, fill=MUTED, anchor="end")
 
-    rhos = [(0.0, STROKES[1], "ρ = 0（真独立）"),
+    rhos = [(0.0, STROKES[1], t("ρ = 0（真独立）", "ρ = 0 (truly independent)")),
             (0.1, STROKES[2], "ρ = 0.1"),
-            (0.3, STROKES[3], "ρ = 0.3（暗中相关）")]
+            (0.3, STROKES[3], t("ρ = 0.3（暗中相关）", "ρ = 0.3 (secretly correlated)"))]
     for rho, col, _ in rhos:
         pts = [(X(n), Y(rho + (1 - rho) / n)) for n in range(1, Nmax + 1)]
         s.polyline(pts, stroke=col, sw=2.6)
@@ -43,20 +55,29 @@ def build():
             s.line(X(1), Y(rho), X(Nmax), Y(rho), stroke=col, sw=1, dash="4,4")
 
     # 标签
-    s.text(X(Nmax) - 4, Y(0.0) - 14, "ρ=0：→ 0", size=12.5, fill=STROKES[1], anchor="end")
-    s.text(X(Nmax) - 4, Y(0.1) - 10, "地板 0.1", size=12, fill=STROKES[2], anchor="end")
-    s.text(X(Nmax) - 4, Y(0.3) - 10, "地板 0.3", size=12, fill=STROKES[3], anchor="end")
+    s.text(X(Nmax) - 4, Y(0.0) - 14, t("ρ=0：→ 0", "ρ=0: → 0"), size=12.5, fill=STROKES[1], anchor="end")
+    s.text(X(Nmax) - 4, Y(0.1) - 10, t("地板 0.1", "floor 0.1"), size=12, fill=STROKES[2], anchor="end")
+    s.text(X(Nmax) - 4, Y(0.3) - 10, t("地板 0.3", "floor 0.3"), size=12, fill=STROKES[3], anchor="end")
 
-    s.text(px + pw / 2, py + ph + 34, "判断者数目 N  →", size=14, fill=INK, weight="bold")
+    s.text(px + pw / 2, py + ph + 34, t("判断者数目 N  →", "number of judges N  →"), size=14, fill=INK, weight="bold")
     s.parts.append(
         f'<text x="{px-40}" y="{py+ph/2}" font-family="{FONT}" font-size="13.5" '
         f'font-weight="bold" fill="{INK}" text-anchor="middle" '
-        f'transform="rotate(-90 {px-40} {py+ph/2})">归一化方差 Var/σ²  →</text>')
+        f'transform="rotate(-90 {px-40} {py+ph/2})">'
+        f'{t("归一化方差 Var/σ²  →", "normalized variance Var/σ²  →")}</text>')
 
-    s.text(W / 2, H - 14, "Var/σ² = ρ + (1−ρ)/N，N→∞ 时趋于 ρ，而非 0", size=13, fill=MUTED, italic=True)
-    s.save(os.path.abspath(OUT))
-    return os.path.abspath(OUT)
+    s.text(W / 2, H - 14,
+           t("Var/σ² = ρ + (1−ρ)/N，N→∞ 时趋于 ρ，而非 0",
+             "Var/σ² = ρ + (1−ρ)/N → ρ as N→∞, not 0"),
+           size=13, fill=MUTED, italic=True)
+
+    out_path = os.path.abspath(OUT)
+    if en:
+        out_path = os.path.join(os.path.dirname(out_path), "en", os.path.basename(out_path))
+    s.save(out_path)
+    return out_path
 
 
 if __name__ == "__main__":
-    print("wrote", build())
+    build("zh")
+    print("en ->", build("en"))

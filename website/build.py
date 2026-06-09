@@ -31,6 +31,7 @@ except ImportError:
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "website", "public")
 FIG_SRC = os.path.join(ROOT, "book", "figures")
+FIG_EN_SRC = os.path.join(FIG_SRC, "en")
 # 部署后的站点根地址，用于社交分享的绝对 URL（og:url / og:image）。换部署路径就改这里。
 BASE = "https://changkun.de/unverifiable-world"
 
@@ -144,11 +145,27 @@ def rel_lang_link(from_lang, to_lang, filename):
 
 
 def asset_prefix(lang):
-    return "../" if lang.out_subdir else ""
+    # 每个语种在自己的输出目录下都有一份 figures/，故相对前缀恒为空。
+    return ""
 
 
 def lang_out_dir(lang):
     return os.path.join(OUT, lang.out_subdir) if lang.out_subdir else OUT
+
+
+def copy_figures(lang):
+    """每个语种在自己的输出目录放一份 figures/。英文版先铺中文图作兜底，
+    再用 book/figures/en/ 下的英文图覆盖，确保任何一张图都不会缺失。"""
+    if not os.path.isdir(FIG_SRC):
+        return
+    dst = os.path.join(lang_out_dir(lang), "figures")
+    if os.path.isdir(dst):
+        shutil.rmtree(dst)
+    shutil.copytree(FIG_SRC, dst, ignore=shutil.ignore_patterns("en"))
+    if lang.code == EN.code and os.path.isdir(FIG_EN_SRC):
+        for f in os.listdir(FIG_EN_SRC):
+            if f.endswith(".svg"):
+                shutil.copy(os.path.join(FIG_EN_SRC, f), os.path.join(dst, f))
 
 
 def head_meta(lang, title, filename, desc):
@@ -729,8 +746,6 @@ def main():
     if os.path.isdir(OUT):
         shutil.rmtree(OUT)
     os.makedirs(OUT)
-    if os.path.isdir(FIG_SRC):
-        shutil.copytree(FIG_SRC, os.path.join(OUT, "figures"))
     ogp = os.path.join(ROOT, "website", "og.png")
     if os.path.isfile(ogp):
         shutil.copy(ogp, os.path.join(OUT, "og.png"))
@@ -740,6 +755,7 @@ def main():
             print(f"跳过 {lang.code}: 找不到 {os.path.relpath(lang.summary, ROOT)}")
             continue
         n, missing = build_lang(lang)
+        copy_figures(lang)
         note = f"，其中 {missing} 章为英文翻译占位" if missing else ""
         print(f"已生成 {lang.code}: {n} 章 + 封面 + 目录{note}")
 

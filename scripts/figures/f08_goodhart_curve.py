@@ -13,15 +13,24 @@ from svg import SVG, INK, MUTED, STROKES, FONT
 OUT = os.path.join(os.path.dirname(__file__), "..", "..", "book", "figures", "f08-goodhart-curve.svg")
 
 
-def build():
+def build(lang="zh"):
+    en = (lang == "en")
+
+    def t(zh, eng):
+        return eng if en else zh
+
     W, H = 740, 470
+    if en:
+        W = 820
     s = SVG(W, H)
-    s.text(W / 2, 32, "Goodhart 崩塌：优化代理，真目标却脱钩", size=20, weight="bold")
+    s.text(W / 2, 32, t("Goodhart 崩塌：优化代理，真目标却脱钩",
+                        "The Goodhart collapse: optimize the proxy, the true target uncouples"),
+           size=t(20, 18), weight="bold")
 
     px, py, pw, ph = 90, 64, 560, 320
 
-    def X(t):
-        return px + t * pw
+    def X(t_):
+        return px + t_ * pw
 
     def Y(v):
         return py + ph - v * ph
@@ -39,23 +48,34 @@ def build():
     # 脱钩点（真目标峰值 t=0.5）
     tpk = 0.5
     s.line(X(tpk), py, X(tpk), py + ph, stroke=MUTED, sw=1.2, dash="5,4")
-    s.text(X(tpk), py - 6, "脱钩点", size=12.5, fill=MUTED)
+    s.text(X(tpk), py - 6, t("脱钩点", "Decoupling point"), size=12.5, fill=MUTED)
 
     # 曲线标签
-    s.text(X(0.86), Y((0.86) ** 0.6) - 16, "代理指标", size=14, weight="bold", fill=STROKES[3])
-    s.text(X(0.84), Y(4.0 * 0.84 * (1 - 0.84)) + 20, "真目标", size=14, weight="bold", fill=STROKES[1])
+    s.text(X(0.86), Y((0.86) ** 0.6) - 16, t("代理指标", "Proxy metric"),
+           size=14, weight="bold", fill=STROKES[3])
+    s.text(X(0.84), Y(4.0 * 0.84 * (1 - 0.84)) + 20, t("真目标", "True target"),
+           size=14, weight="bold", fill=STROKES[1])
 
     # 轴标题
-    s.text(px + pw / 2, py + ph + 34, "对代理指标的优化力度  →", size=14, fill=INK, weight="bold")
+    s.text(px + pw / 2, py + ph + 34, t("对代理指标的优化力度  →",
+                                        "Optimization pressure on the proxy metric  →"),
+           size=14, fill=INK, weight="bold")
     s.parts.append(
         f'<text x="{px-24}" y="{py+ph/2}" font-family="{FONT}" font-size="14" '
         f'font-weight="bold" fill="{INK}" text-anchor="middle" '
-        f'transform="rotate(-90 {px-24} {py+ph/2})">表现（归一化）  →</text>')
+        f'transform="rotate(-90 {px-24} {py+ph/2})">{t("表现（归一化）  →", "Performance (normalized)  →")}</text>')
 
-    s.text(W / 2, H - 14, "指标与真目标的相关只在脱钩点之前成立", size=13, fill=MUTED, italic=True)
-    s.save(os.path.abspath(OUT))
-    return os.path.abspath(OUT)
+    s.text(W / 2, H - 14, t("指标与真目标的相关只在脱钩点之前成立",
+                            "The metric correlates with the true target only before the decoupling point"),
+           size=13, fill=MUTED, italic=True)
+
+    out_path = os.path.abspath(OUT)
+    if en:
+        out_path = os.path.join(os.path.dirname(out_path), "en", os.path.basename(out_path))
+    s.save(out_path)
+    return out_path
 
 
 if __name__ == "__main__":
-    print("wrote", build())
+    build("zh")
+    print("en ->", build("en"))
