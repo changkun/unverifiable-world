@@ -90,10 +90,12 @@ book/            正文：每章一个 Markdown 文件，章末自带「参考�
   00-preface.md  序
   part1/ … part4/  四部
   99-afterword.md  跋
+  en/            英文译稿（按同名章节逐步补齐）
 scripts/         工具脚本
   check_citations.py   核查参考文献并下载开放获取 PDF
   figures/             配图的生成脚本（自制图可重新编译）
 SUMMARY.md       目录（mdBook / Honkit）
+SUMMARY.en.md    英文目录（网站英文版）
 GLOSSARY.md      术语表（中英对照）
 IMAGES.md        配图索引（来源、许可、下载、生成脚本）
 LICENSE          CC BY-NC-ND 4.0
