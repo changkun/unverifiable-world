@@ -87,9 +87,9 @@ EN = Lang(
     summary=os.path.join(ROOT, "SUMMARY.en.md"),
     out_subdir="en",
     title="An Unverifiable World",
-    subtitle="How finite agents act when no oracle can say they are right",
+    subtitle="How bounded actors act when no oracle can say they are right",
     author="Changkun Ou",
-    blurb="How should finite agents act when right and wrong cannot be verified?",
+    blurb="How should bounded actors act when right and wrong cannot be verified?",
     labels={
         "toc": "Contents",
         "menu": "Contents",
