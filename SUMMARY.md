@@ -5,7 +5,7 @@
 ## 第一部　不可验证
 
 - [1. 验证的奢侈](book/part1/ch01-luxury-of-verification.md)
-- [2. 不可验证的五副面孔](book/part1/ch02-five-faces.md)
+- [2. 不可验证的五种处境](book/part1/ch02-five-faces.md)
 - [3. 可证伪，不可证实](book/part1/ch03-falsifiable-not-verifiable.md)
 - [4. 摊平的诱惑](book/part1/ch04-temptation-to-flatten.md)
 

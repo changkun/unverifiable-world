@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""F2（第 2 章）：不可验证的五副面孔，判据 × 解药。
+"""F2（第 2 章）：不可验证的五种处境，判据 × 解药。
 
 生成 book/figures/f02-five-faces.svg
 """
@@ -41,17 +41,17 @@ def build(lang="zh"):
     H = pad * 2 + header + len(rows) * rh + 40
     s = SVG(W, H)
     s.text(W / 2, 30,
-           t("不可验证的五副面孔：判据与解药各不相同",
+           t("不可验证的五种处境：判据与解药各不相同",
              "The five faces of unverifiability: their criteria and their remedies differ"),
            size=20 if en else 21, weight="bold")
 
     x0 = pad
     if en:
-        cols = [(t("面孔", "Face"), 200),
+        cols = [(t("处境", "Face"), 200),
                 (t("判据", "Criterion"), 416),
                 (t("解药（可得的补救）", "Remedy (the cure available)"), 416)]
     else:
-        cols = [(t("面孔", "Face"), 150),
+        cols = [(t("处境", "Face"), 150),
                 (t("判据", "Criterion"), 360),
                 (t("解药（可得的补救）", "Remedy (the cure available)"), 336)]
     y = 56
@@ -68,7 +68,7 @@ def build(lang="zh"):
         fill = FILLS[i % len(FILLS)]
         stroke = STROKES[i % len(STROKES)]
         s.rect(x0, y, sum(w for _, w in cols), rh, fill=fill, stroke=stroke, sw=1.6)
-        # 面孔
+        # 处境
         s.text(cx + cols[0][1] / 2, y + rh / 2, face,
                size=15 if en else 16, weight="bold", fill=INK)
         cx += cols[0][1]
@@ -78,7 +78,7 @@ def build(lang="zh"):
         y += rh
 
     s.text(W / 2, y + 24,
-           t("把任一副错认成另一副，就会掏出错误的工具",
+           t("把任一种错认成另一种，就会掏出错误的工具",
              "Mistake one face for another, and you reach for the wrong tool"),
            size=13.5, fill=MUTED, italic=True)
 

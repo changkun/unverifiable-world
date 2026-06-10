@@ -17,8 +17,8 @@ python3 scripts/figures/f07_proxy_2x2.py      # 或单独生成某一张
 
 | 编号 | 章节 | 标题 | 生成脚本 | 输出文件 |
 | --- | --- | --- | --- | --- |
-| F1 | 第 1 章 | 验证：廉价的窄门，与门外的四处裂口 | `scripts/figures/f01_narrow_door.py` | `book/figures/f01-narrow-door.svg` |
-| F2 | 第 2 章 | 不可验证的五副面孔：判据 × 解药 | `scripts/figures/f02_five_faces.py` | `book/figures/f02-five-faces.svg` |
+| F1 | 第 1 章 | 验证：廉价的那一小块，与外头的四处裂口 | `scripts/figures/f01_narrow_door.py` | `book/figures/f01-narrow-door.svg` |
+| F2 | 第 2 章 | 不可验证的五种处境：判据 × 解药 | `scripts/figures/f02_five_faces.py` | `book/figures/f02-five-faces.svg` |
 | F3 | 第 3 章 | 证实与证伪的不对称 | `scripts/figures/f03_falsification.py` | `book/figures/f03-falsification.svg` |
 | F4 | 第 5 章 | 行动—观察—更新回路与期望信息增益 | `scripts/figures/f05_elicitation_loop.py` | `book/figures/f05-elicitation-loop.svg` |
 | F5 | 第 6 章 | 允许 / 询问 / 阻止的分级自治 | `scripts/figures/f06_allow_ask_block.py` | `book/figures/f06-allow-ask-block.svg` |

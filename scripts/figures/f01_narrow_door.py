@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""F1（第 1 章）：验证廉价的窄门，与门外的四处裂口。
+"""F1（第 1 章）：验证廉价的那一小块，与外头的四处裂口。
 
 生成 book/figures/f01-narrow-door.svg
 """
@@ -21,18 +21,18 @@ def build(lang="zh"):
     if en:
         W, H = 920, 600
     s = SVG(W, H)
-    s.text(W / 2, 34, t("验证：廉价的窄门，与门外的四处裂口",
+    s.text(W / 2, 34, t("验证：廉价的那一小块，与外头的四处裂口",
                         "Verification: the cheap narrow door, and the four breaches outside"),
            size=22 if not en else 20, weight="bold")
 
-    # 窄门（绿色）
+    # 那一小块（绿色）
     dw, dh = 350, 120
     if en:
         dw = 460
     dx, dy = 215, 66
     dx = (W - dw) / 2
     s.rect(dx, dy, dw, dh, fill=FILLS[1], stroke=STROKES[1], sw=2)
-    s.text(dx + dw / 2, dy + 30, t("验证廉价的窄门", "The cheap narrow door of verification"),
+    s.text(dx + dw / 2, dy + 30, t("验证廉价的那一小块", "The cheap narrow door of verification"),
            size=18, weight="bold")
     s.text(dx + dw / 2, dy + 60, t("封闭 · 有限 · 可判定 · 即时",
                                    "Closed · Finite · Decidable · Immediate"),
@@ -43,7 +43,7 @@ def build(lang="zh"):
 
     # 过渡
     s.arrow(W / 2, dy + dh, W / 2, dy + dh + 34, stroke=INK, sw=1.8)
-    s.text(W / 2, dy + dh + 52, t("走出窄门，完整验证成为奢侈品",
+    s.text(W / 2, dy + dh + 52, t("走出这一小块，完整验证成为奢侈品",
                                   "Outside the door, complete verification becomes a luxury"),
            size=14, fill=INK, weight="bold")
 
