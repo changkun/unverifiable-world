@@ -40,7 +40,7 @@ $$\Pr\big(Y\in C(X)\big)\ge 1-\alpha.$$
 
 $$p=\arg\max_{q}\ \mathbb{E}_{Y\sim p}\big[S(q,Y)\big].$$
 
-诚实由此不再靠自觉，而被评分规则的数学结构所强制（萨维奇 1971<sup class="cite"><a href="#ref-16">16</a></sup>、格奈廷与拉夫特里 2007<sup class="cite"><a href="#ref-23">23</a></sup>）。达维德 1982 年<sup class="cite"><a href="#ref-19">19</a></sup>证明贝叶斯主体能渐近自我标定，福斯特与沃赫拉 1998 年<sup class="cite"><a href="#ref-22">22</a></sup>证明对任意序列都存在渐近标定的策略；但奥克斯 1985 年<sup class="cite"><a href="#ref-20">20</a></sup>「自我标定的先验不存在」则划出了这一招的极限。现代神经网络恰恰常常失标（miscalibration，郭等人 2017<sup class="cite"><a href="#ref-25">25</a></sup>），于是需要重新校准。第 6 章那个允许、询问、阻止的分级信任，正是标定落到行动上的样子。
+讲真话由此不再靠自觉，而被评分规则的数学结构所强制（萨维奇 1971<sup class="cite"><a href="#ref-16">16</a></sup>、格奈廷与拉夫特里 2007<sup class="cite"><a href="#ref-23">23</a></sup>）。达维德 1982 年<sup class="cite"><a href="#ref-19">19</a></sup>证明贝叶斯主体能渐近自我标定，福斯特与沃赫拉 1998 年<sup class="cite"><a href="#ref-22">22</a></sup>证明对任意序列都存在渐近标定的策略；但奥克斯 1985 年<sup class="cite"><a href="#ref-20">20</a></sup>「自我标定的先验不存在」则划出了这一招的极限。现代神经网络恰恰常常失标（miscalibration，郭等人 2017<sup class="cite"><a href="#ref-25">25</a></sup>），于是需要重新校准。第 6 章那个允许、询问、阻止的分级信任，正是标定落到行动上的样子。
 
 标定有两种败法。浅一层是失标：你声称的把握与现实对不上，报 90% 却只有六成成真，于是基于它的一切决策都偏。深一层更微妙、也更要紧：标定告诉你赔率，却不告诉你该不该接受这个赌局。一个完美标定的「70%」，对「70% 够不够你下注」这个问题保持沉默，因为那取决于赌注的大小与你的价值排序，那是价值问题，不是验证问题。把这两者混为一谈，是用标定行动时最常见的陷阱：你以为概率替你做了决定，其实它只摆好了赔率，按不按下去仍要你自己掏出一套价值来。
 
@@ -108,7 +108,7 @@ $$p=\arg\max_{q}\ \mathbb{E}_{Y\sim p}\big[S(q,Y)\big].$$
    布莱尔提出了一个用于评价概率预报的评分（即后来的 Brier 评分），把「报了多大把握、最终是否发生」纳入可计算的考核。它是标定与严格适当评分体系的起点，本章关于「概率可检验」的论证由此发端。
 
 16. L. J. Savage (1971).「Elicitation of Personal Probabilities and Expectations」.《Journal of the American Statistical Association》, 66(336), 783–801. [②]
-   萨维奇研究如何设计评分与激励，使人愿意如实报出自己的主观概率与期望。它为「适当评分规则诱出真实概率」奠定了理论基础，对应本章那句关键设计：诚实不再靠自觉，而被评分规则的数学结构所强制。
+   萨维奇研究如何设计评分与激励，使人愿意如实报出自己的主观概率与期望。它为「适当评分规则诱出真实概率」奠定了理论基础，对应本章那句关键设计：讲真话不再靠自觉，而被评分规则的数学结构所强制。
 
 17. A. H. Murphy (1973).「A New Vector Partition of the Probability Score」.《Journal of Applied Meteorology》, 12(4), 595–600. [②]
    墨菲把 Brier 评分分解为可靠性、分辨率与不确定性三个分量，让人能分别看清预报哪里失标、哪里有区分力。这一分解是标定概念的量化骨架，本章谈「标定」与「锐度」的区分，正建立在这种拆解之上。
@@ -129,7 +129,7 @@ $$p=\arg\max_{q}\ \mathbb{E}_{Y\sim p}\big[S(q,Y)\big].$$
    福斯特与沃赫拉证明，即便面对任意（甚至对抗性）的结果序列，也存在一种预测策略能渐近达到标定。这是标定可达性的关键定理，本章据此说明标定是一个比真假判决更弱、却切实可达的认识目标。
 
 23. T. Gneiting & A. E. Raftery (2007).「Strictly Proper Scoring Rules, Prediction, and Estimation」.《Journal of the American Statistical Association》, 102(477), 359–378. [②]
-   这是严格适当评分规则的权威综述：系统整理了哪些评分函数能使如实报告恰好成为期望得分最优之策，并把它们与预测、估计联系起来。它是本章标定论证的理论支柱，读者要理解「诚实被数学结构强制」可读此篇。
+   这是严格适当评分规则的权威综述：系统整理了哪些评分函数能使如实报告恰好成为期望得分最优之策，并把它们与预测、估计联系起来。它是本章标定论证的理论支柱，读者要理解「讲真话被数学结构强制」可读此篇。
 
 24. T. Gneiting, F. Balabdaoui & A. E. Raftery (2007).「Probabilistic Forecasts, Calibration and Sharpness」.《Journal of the Royal Statistical Society: Series B (Statistical Methodology)》, 69(2), 243–268. [②]
    作者提出概率预测的现代框架，把目标概括为「受制于标定，越锐越好」：先要求预测标定，再在标定的前提下尽量提高锐度。本章关于如何评判一个概率预测好坏的标准，直接采用这一框架。

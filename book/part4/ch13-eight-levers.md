@@ -27,7 +27,7 @@ $$\text{Risk}\ \approx\ \Pr(\text{fail})\ \times\ \text{Cost}(\text{fail}),$$
 | 神谕入回路 | 引进你单独不具备的验证能力 | 借外力降 $\Pr(\text{fail})$ |
 | 冗余共识 | 让多个判断的失败去相关 | 降联合失败概率 $\Pr(\text{all\ fail})$ |
 | 最优筛查 | 把信息预算花在边际收益最高处 | 分配 $B$，最大化对不确定的削减 |
-| 标定（calibration） | 给残余风险定一个诚实的价 | 让 $\Pr(\text{fail})$ 变成已知、可据以下注 |
+| 标定（calibration） | 给残余风险定一个实在的价 | 让 $\Pr(\text{fail})$ 变成已知、可据以下注 |
 | 衰减围栏 | 缩小爆炸半径 | 降 $\text{Cost}(\text{fail})$ |
 | 留痕审计 | 把检查从事前挪到事后 | 改检查的时间位置，把不可恢复的失败变可恢复 |
 
@@ -41,7 +41,7 @@ $$\text{Risk}\ \approx\ \Pr(\text{fail})\ \times\ \text{Cost}(\text{fail}),$$
 
 马尔<sup class="cite"><a href="#ref-17">17</a></sup>在研究视觉时区分过三个层次：计算层（computational level，要解决什么问题、受什么约束）、算法层（algorithmic level，用什么表示和过程）、实现层（implementational level，落在什么硬件上）。八招活在计算层，是「给定不可验证这个约束，逻辑上还能动哪几处」的答案，而这个答案不依赖你是碳基的数学家、硅基的程序，还是由人组成的官僚机构。基质（substrate）千差万别，计算层的约束却是同一个，于是应对收敛。西蒙<sup class="cite"><a href="#ref-12">12</a></sup>的有限理性（bounded rationality）、他的「人工科学」<sup class="cite"><a href="#ref-13">13</a></sup>（the sciences of the artificial），讲的正是这种由环境约束而非由主体内部塑造的行为。
 
-这里还得请出无免费午餐定理（no free lunch theorem，沃尔珀特与麦克里迪<sup class="cite"><a href="#ref-25">25</a></sup>）。它说：在所有可能问题上平均，没有哪个方法优于另一个。这把刀两面都割。一面，它支持本书的克制，没有万能解，你必须借问题的具体结构来选杠杆，这正是为什么五副面孔要分开对待。另一面，它也警告：任何宣称「找到了统一钥匙」的人，包括我，都该收敛一点傲气。当你连失败概率都钉不住时，杠杆还会长出稳健版本，吉尔博亚与施迈德勒<sup class="cite"><a href="#ref-20">20</a></sup>的极大极小期望效用（maxmin expected utility）、汉森与萨金特<sup class="cite"><a href="#ref-30">30</a></sup>的稳健控制（robust control）、奈特式不确定性（Knightian uncertainty）下的决策，都是在 $\Pr$ 本身都模糊（ambiguity）时仍要按最坏情形布防的招法。
+这里还得请出无免费午餐定理（no free lunch theorem，沃尔珀特与麦克里迪<sup class="cite"><a href="#ref-25">25</a></sup>）。它说：在所有可能问题上平均，没有哪个方法优于另一个。这把刀两面都割。一面，它支持本书的克制，没有万能解，你必须借问题的具体结构来选杠杆，这正是为什么这五种处境要分开对待。另一面，它也警告：任何宣称「找到了统一钥匙」的人，包括我，都该收敛一点傲气。当你连失败概率都钉不住时，杠杆还会长出稳健版本，吉尔博亚与施迈德勒<sup class="cite"><a href="#ref-20">20</a></sup>的极大极小期望效用（maxmin expected utility）、汉森与萨金特<sup class="cite"><a href="#ref-30">30</a></sup>的稳健控制（robust control）、奈特式不确定性（Knightian uncertainty）下的决策，都是在 $\Pr$ 本身都模糊（ambiguity）时仍要按最坏情形布防的招法。
 
 ## 一句必须放大的强声明
 
@@ -51,7 +51,7 @@ $$\text{Risk}\ \approx\ \Pr(\text{fail})\ \times\ \text{Cost}(\text{fail}),$$
 
 我把它放在这里是因为它有组织力、有解释上的吸引力，而不是因为它被证明了。它够得上一个好猜想的标准：清晰、可反驳、能统起大量现象。但它还没够上定理。
 
-那么，最后那个问题就躲不掉了：这种跨领域的收敛，到底是某种东西逼出来的一条定律，还是仅仅一个很强、却终究是经验的模式？下一章，正面、诚实地清算它。
+那么，最后那个问题就躲不掉了：这种跨领域的收敛，到底是某种东西逼出来的一条定律，还是仅仅一个很强、却终究是经验的模式？下一章，正面清算它。
 
 ---
 
@@ -72,9 +72,9 @@ $$\text{Risk}\ \approx\ \Pr(\text{fail})\ \times\ \text{Cost}(\text{fail}),$$
 6. J. M. Keynes (1921).《A Treatise on Probability》. Macmillan. [②]
    凯恩斯发展了一种逻辑解释下的概率观，把概率看作命题间的理性信念度，并强调许多概率既非数值化、也未必可比较。它为后来的非可加、不精确概率埋下伏笔，提醒读者概率本身的认知地位远比公式复杂。
 7. F. P. Ramsey (1931). 「Truth and Probability」.《The Foundations of Mathematics and other Logical Essays》(R. B. Braithwaite 编). Kegan Paul, Trench, Trubner & Co., 156-198. [②]
-   拉姆齐最早论证：一个人的信念度可由其下注行为操作性地测得，而避免被稳赚组合套利（荷兰赌）要求这些信念度服从概率公理。这是主观概率的开山之作，为本章「给残余风险定一个诚实的价」提供了哲学与操作上的依据。
+   拉姆齐最早论证：一个人的信念度可由其下注行为操作性地测得，而避免被稳赚组合套利（荷兰赌）要求这些信念度服从概率公理。这是主观概率的开山之作，为本章「给残余风险定一个实在的价」提供了哲学与操作上的依据。
 8. B. de Finetti (1937). 「La prévision: ses lois logiques, ses sources subjectives」.《Annales de l'Institut Henri Poincaré》, 7(1), 1-68. [②]
-   德·菲内蒂提出主观概率，并以荷兰赌论证与可交换性的表示定理给它撑腰，论证概率「只是」一致的个人信念度。它与拉姆齐共同构成贝叶斯主义的基石，是理解标定与诚实定价的必读源头。
+   德·菲内蒂提出主观概率，并以荷兰赌论证与可交换性的表示定理给它撑腰，论证概率「只是」一致的个人信念度。它与拉姆齐共同构成贝叶斯主义的基石，是理解标定与如实定价的必读源头。
 9. F. J. Anscombe & R. J. Aumann (1963). 「A Definition of Subjective Probability」.《The Annals of Mathematical Statistics》, 34(1), 199-205. [②]
    两位作者借引入客观随机化装置（如轮盘彩票），给出一套比萨维奇更简洁的主观概率与效用公理化。这一框架后来成为模糊决策理论的标准舞台，本章引用的多篇模糊厌恶文献都在它上面搭建。
 10. D. Ellsberg (1961). 「Risk, Ambiguity, and the Savage Axioms」.《The Quarterly Journal of Economics》, 75(4), 643-669. [②]
@@ -88,7 +88,7 @@ $$\text{Risk}\ \approx\ \Pr(\text{fail})\ \times\ \text{Cost}(\text{fail}),$$
 14. K. R. Popper (1959).《The Logic of Scientific Discovery》. Hutchinson. [②③]
    波普尔系统提出证伪主义：科学理论无法被经验证实，只能被否证，可证伪性因而成为科学与非科学的分界。本章在结尾自陈那套分解「够得上好猜想、还够不上定理」，用的正是这把可反驳性的尺子。
 15. A. Tversky & D. Kahneman (1974). 「Judgment under Uncertainty: Heuristics and Biases」.《Science》, 185(4157), 1124-1131. [②]
-   特沃斯基与卡尼曼记录了人在判断概率时所用的启发式（代表性、可得性、锚定）及其带来的系统性偏差。它说明真实主体如何偏离贝叶斯理想，与标定、最优筛查等需要诚实估计概率的招法形成对照。
+   特沃斯基与卡尼曼记录了人在判断概率时所用的启发式（代表性、可得性、锚定）及其带来的系统性偏差。它说明真实主体如何偏离贝叶斯理想，与标定、最优筛查等需要如实估计概率的招法形成对照。
 16. D. Kahneman & A. Tversky (1979). 「Prospect Theory: An Analysis of Decision under Risk」.《Econometrica》, 47(2), 263-291. [②]
    前景理论提出，人按相对于参照点的得失、而非最终财富来评价结果，对损失更敏感，并以非线性方式扭曲概率权重。它是对期望效用的描述性修正，提醒读者代价与概率在真实决策中并非中性地相乘。
 17. D. Marr (1982).《Vision: A Computational Investigation into the Human Representation and Processing of Visual Information》. W. H. Freeman. [②③]
