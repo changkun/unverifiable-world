@@ -27,7 +27,7 @@ Match each move to the lever it pulls:
 | oracle in the loop | brings in a verifying power you do not have on your own | lowers $\Pr(\text{fail})$ with outside help |
 | redundancy / consensus | makes the failures of several judgments decorrelate | lowers the joint failure probability $\Pr(\text{all\ fail})$ |
 | optimal screening | spends the information budget where the marginal return is highest | allocates $B$ to maximize the cut in uncertainty |
-| calibration | puts an honest price on residual risk | makes $\Pr(\text{fail})$ known, so you can bet on it |
+| calibration | puts a truthful price on residual risk | makes $\Pr(\text{fail})$ known, so you can bet on it |
 | decay / fencing / containment | shrinks the blast radius | lowers $\text{Cost}(\text{fail})$ |
 | audit trail | moves checking from before the fact to after it | shifts the timing of checking, turning an irrecoverable failure into a recoverable one |
 
@@ -51,7 +51,7 @@ The scheme above is a candidate organizing structure, not a theorem. That decomp
 
 I place it here because it has organizing force and explanatory appeal, not because it has been proved. It meets the standard of a good conjecture: clear, refutable, able to unify a large mass of phenomena. But it has not yet risen to a theorem.
 
-So the final question becomes unavoidable: is this cross-domain convergence a law forced out by something, or merely a strong but, in the end, empirical pattern? The next chapter settles the account with it, head-on and honestly.
+So the final question becomes unavoidable: is this cross-domain convergence a law forced out by something, or merely a strong but, in the end, empirical pattern? The next chapter settles the account with it, head-on and squarely.
 
 ---
 

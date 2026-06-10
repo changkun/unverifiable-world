@@ -24,7 +24,7 @@ Popper, in 1934<sup class="cite"><a href="#ref-1">1</a></sup> (in the original G
 
 So science became a machine optimized specifically for living alongside the unverifiable. It never claims to have proved anything; it says only that this theory has not yet been falsified, so we shall use it for now. This is a posture, a posture of trading the unmeasurable "true" for the measurable "not yet overturned." Look familiar? This is exactly what the mathematician's proxy substitution in Chapter 7 looks like at the scale of epistemology.
 
-## One Honest Qualification
+## A Candid Qualification
 
 It must be said plainly, right here: Popperian falsificationism is far from settled in the philosophy of science, and this book treats it as a clear point of entry, not as a final word.
 
@@ -34,7 +34,7 @@ $$P(H\mid e)=\frac{P(e\mid H)\,P(H)}{P(e)},$$
 
 which in turn foreshadows the later move of calibration. Mayo's "severe testing"<sup class="cite"><a href="#ref-14">14</a></sup> is a refined heir of falsificationism, while Stanford<sup class="cite"><a href="#ref-19">19</a></sup> reminds us that a great many "unconceived alternatives" still lie beyond our view.
 
-To lay these disputes out is not to dismantle Popper, but because this book itself ought to behave this way: state a powerful framework while honestly marking its boundaries. This posture is exactly the move the whole book sets out to rehearse.
+Laying these disputes out does not dismantle Popper; it enacts what this book itself ought to do: state a powerful framework while marking its boundaries without flinching. This posture is exactly the move the whole book sets out to rehearse.
 
 ## Science Discovered Those Moves Long Ago
 
@@ -75,7 +75,7 @@ But a trap lurks here too. Precisely because all five faces appear with the same
    Hume here raises the problem of induction, that source-level difficulty: from a past regularity one cannot infer a future regularity, because the inference itself presupposes the "uniformity of nature," which is precisely what is to be proved; our belief in causation and regularity comes, in the end, from habit rather than proof. Books I and II were published by John Noon in 1739, and Book III, *Of Morals*, by Thomas Longman in 1740, with the first edition conventionally dated 1739. The section "Hume's Impassable Threshold" is founded on this, the philosophical footing for understanding why science cannot take "verification" as its goal.
 
 5. T. Kuhn (1962). *The Structure of Scientific Revolutions*. University of Chicago Press. [1][3]
-   Kuhn, drawing on a great many cases from the history of science, argues that science does not approach truth at a steady pace, but solves puzzles within a shared paradigm during periods of "normal science," and only after anomalies accumulate into crisis does a paradigm-shifting scientific revolution occur, with old and new paradigms being incommensurable. It is an important correction to Popper's picture, showing that scientists are often in no hurry to falsify an anomaly. This chapter's "One Honest Qualification" cites it to mark the boundary of falsificationism.
+   Kuhn, drawing on a great many cases from the history of science, argues that science does not approach truth at a steady pace, but solves puzzles within a shared paradigm during periods of "normal science," and only after anomalies accumulate into crisis does a paradigm-shifting scientific revolution occur, with old and new paradigms being incommensurable. It is an important correction to Popper's picture, showing that scientists are often in no hurry to falsify an anomaly. This chapter's "A Candid Qualification" cites it to mark the boundary of falsificationism.
 
 6. I. Lakatos (1970). "Falsification and the Methodology of Scientific Research Programmes." In I. Lakatos and A. Musgrave (eds.), *Criticism and the Growth of Knowledge*, pp. 91-196. Cambridge University Press. [1][3]
    Lakatos uses the "research programme" to reconcile Popper and Kuhn: each programme has a protected hard core and a surrounding belt of adjustable auxiliary assumptions, and the standard of judgment is not a single counterexample but whether the programme as a whole is, over time, "progressing" (continuing to make and fulfill new predictions) or "degenerating" (busy only with patching after the fact). It replaces black-and-white falsification with a historical judgment about a programme's advance or retreat, a key reference when this chapter delimits the boundary of falsificationism.
