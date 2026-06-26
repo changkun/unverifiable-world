@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""把《在无法验证的世界里》/《An Unverifiable World》编译成可下载的 PDF 与 EPUB。
+"""把《这个无法验证的世界》/《An Unverifiable World》编译成可下载的 PDF 与 EPUB。
 
 两个语种各产两份文件，写到仓库根的 dist/：
     unverifiable-world-zh.pdf / .epub
@@ -42,7 +42,7 @@ class Lang:
         self.cjk = cjk  # 是否需要 CJK 主字体（正文以中文为主）
 
 
-ZH = Lang("zh", "SUMMARY.md", "在无法验证的世界里", "An Unverifiable World",
+ZH = Lang("zh", "SUMMARY.md", "这个无法验证的世界", "An Unverifiable World",
           "欧长坤", "zh-CN", cjk=True)
 EN = Lang("en", "SUMMARY.en.md", "An Unverifiable World",
           "How bounded actors act when no oracle can say they are right",

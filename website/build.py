@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""把《在无法验证的世界里》构建成一个多语言静态阅读网站。
+"""把《这个无法验证的世界》构建成一个多语言静态阅读网站。
 
 - 中文版读取仓库根目录的 SUMMARY.md，生成在 public/ 根目录；
 - 英文版读取 SUMMARY.en.md，生成在 public/en/；
@@ -56,7 +56,7 @@ ZH = Lang(
     og_locale="zh_CN",
     summary=os.path.join(ROOT, "SUMMARY.md"),
     out_subdir="",
-    title="在无法验证的世界里",
+    title="这个无法验证的世界",
     subtitle="An Unverifiable World",
     author="欧长坤",
     blurb="当对错无从验证，有限的主体如何行动得当？",

@@ -80,7 +80,7 @@
 <polygon points="636.8,282.5 607.6,361.7 592.4,354.3" fill="#d9c4a0"/>
 <polygon points="571.1,417.3 607.6,361.7 592.4,354.3" fill="none" stroke="#9fb2d4" stroke-width="1.3" opacity="0.8"/>
 <circle cx="600" cy="358" r="5.5" fill="#bfa775"/>
-<text x="600.0" y="132.0" font-family="-apple-system, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', 'Source Han Sans SC', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="66" font-weight="bold" font-style="normal" fill="#f4f4f2" text-anchor="middle" dominant-baseline="middle">在无法验证的世界里</text>
+<text x="600.0" y="132.0" font-family="-apple-system, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', 'Source Han Sans SC', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="66" font-weight="bold" font-style="normal" fill="#f4f4f2" text-anchor="middle" dominant-baseline="middle">这个无法验证的世界</text>
 <text x="600.0" y="192.0" font-family="-apple-system, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', 'Source Han Sans SC', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="22" font-weight="normal" font-style="normal" fill="#aab4c8" text-anchor="middle" dominant-baseline="middle">AN UNVERIFIABLE WORLD</text>
 <line x1="570.0" y1="216" x2="630.0" y2="216" stroke="#d9c4a0" stroke-width="2.5" opacity="0.8"/>
 <text x="600.0" y="542.0" font-family="-apple-system, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', 'Source Han Sans SC', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="27" font-weight="normal" font-style="normal" fill="#cdd5e3" text-anchor="middle" dominant-baseline="middle">在没有任何东西能确认你做对了的地方，有限的主体如何行动。</text>
