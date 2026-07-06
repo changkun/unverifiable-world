@@ -51,7 +51,7 @@
 | 严格适当评分规则 | strictly proper scoring rule | 使如实报告概率成为最优策略 |
 | 保形预测 | conformal prediction | 给出带覆盖保证的预测集 |
 | 拜占庭容错 | Byzantine fault tolerance | 部分节点作恶下仍达成共识 |
-| 最小权限 | least privilege | 只授予完成本职所必需的最小能力 |
+| 最小权限 | principle of least privilege | 只授予完成本职所必需的最小能力 |
 | 有限理性 | bounded rationality | 西蒙；受限主体的满意化决策 |
 | 无免费午餐定理 | no free lunch theorem | 所有问题上平均，无算法占优 |
 
@@ -99,8 +99,7 @@
 | 陪审团定理 | Condorcet's jury theorem | 独立判断者各略优于瞎猜时多数票正确率随人数趋于必然。 |
 | 围堵 | confinement | 兰普森提出的问题：确保被调用程序无法泄露或滥用它接触到的信息。 |
 | 围堵问题 | confinement problem | 如何把程序关进笼子使其无法向未授权方泄露信息。 |
-| 保形预测 | conformal prediction | 沃夫克等：不给点判断，而给带覆盖保证的预测集。 |
-| 共形预测 | conformal prediction | 几乎不依赖分布假设、给出带覆盖率保证的预测集合的方法。 |
+| 保形预测 | conformal prediction | 沃夫克等：几乎不依赖分布假设，给出带覆盖率保证的预测集，而非单点判断。 |
 | 共识 | consensus | 多个可能不可靠的节点就同一判决达成一致。 |
 | 归纳的协同 | consilience of inductions | 惠威尔提出，一理论若能意外解释另一类无关事实，则是其为真的有力标志。 |
 | 可纠正性 | corrigibility | 让有目标的系统配合而非抵抗人类的修正与关停。 |
@@ -113,6 +112,7 @@
 | 刻意的无知 | deliberate ignorance | 主动选择不去知道某些信息，常是理性的应对而非缺陷。 |
 | 刻意练习 | deliberate practice | 有明确目标、即时反馈、不断逼近能力边缘的费力训练。 |
 | 实验设计 | design of experiments | 用最少试验榨出最多信息的统计方法，最优筛查在科学中的源头。 |
+| 复式记账 | double-entry bookkeeping | 每笔交易同时记入借贷两方，任何单边篡改都会破坏账目平衡，是可审计留痕的早期形态。 |
 | 生态理性 | ecological rationality | 理性的形态取决于规则与所处环境结构的契合。 |
 | 集成 | ensemble | 组合多个弱模型投票以胜过单个强模型的方法。 |
 | 判定问题 | Entscheidungsproblem | 希尔伯特与阿克曼之问：能否有机械程序对任意数学命题判定真伪。 |
@@ -206,7 +206,6 @@
 | 委托代理 | principal-agent | 委托方雇人代为行动、却无法完全观察其努力的关系结构。 |
 | 委托代理问题 | principal-agent problem | 委托他人代为行动却无法完全监督时产生的利益偏离结构。 |
 | 最小权限 | principle of least privilege | 只给组件完成本职所必需的最小能力，其余一概不给，以缩小被攻破时的破坏。 |
-| 最小权限原则 | principle of least privilege | 只赋予组件完成本职所必需的最小能力。 |
 | 概率方法 | probabilistic method | 接受有界出错风险、以概率而非二值判决去行动或证明存在性 |
 | 概率素性 | probabilistic primality | 以1-ε的概率判定一个数为素数，而非给出确定判决。 |
 | PAC 框架 | probably approximately correct (PAC) | 瓦利安特提出的可学习性框架，正文已为拉丁写法，故只入表不再标。 |
@@ -222,7 +221,7 @@
 | 递归可枚举 | recursively enumerable | 其成员可被算法一条条列举，但未必能判定非成员 |
 | 冗余 | redundancy | 兰道正名的重复与重叠，独立核查比单一权威更难被同时骗过。 |
 | 反思性实践者 | reflective practitioner | 舍恩概念，熟练者在行动当下与情境对话并即时调整。 |
-| 反身性 | reflexivity | 公开的度量不只描述世界，还会反过来重塑被度量者的行为。 |
+| 反应性 | reactivity | 埃斯佩兰与索德：公开的度量不只描述世界，还会反过来重塑被度量者的行为。 |
 | 遗憾 | regret | 策略累积收益与最优策略之差，老虎机最优解使其仅随时间对数增长。 |
 | 基于人类反馈的强化学习 | reinforcement learning from human feedback (RLHF) | 用人的成对比较学一个奖励模型作为偏好代理，再据此优化系统的对齐方法。 |
 | 重整化群 | renormalization group | 物理学中逐级粗粒化处理跨尺度系统的方法，解释了普适性的来源。 |
@@ -236,12 +235,10 @@
 | 稳健控制 | robust control | 不信任手中模型，针对一族邻近模型中最不利者优化，对设定误差稳健。 |
 | 鲁棒优化 | robust optimization | 以极小极大形式统一对抗攻防：内层找最坏扰动，外层训练抵御它。 |
 | 稳健性 | robustness | 一个结论能从多条相互独立的路径反复导出时更可信的性质。 |
-| 稳健性分析 | robustness analysis | 考察结论在多个不同假设模型下是否一致以判断其可靠性的方法，源自莱文斯。 |
-| 稳健性论证 | robustness analysis | 若一结论能由多条彼此独立的路径反复抵达，则更可能为真，而非某手段的人为产物。 |
+| 稳健性分析 | robustness analysis | 考察结论在多个不同假设模型、或多条彼此独立的路径下是否一致，以判断其可靠而非某手段的人为产物，源自莱文斯。 |
 | 沙箱 | sandbox | 为不可信程序构造受限运行环境，把其能造成的破坏圈死在边界内。 |
 | 可满足性问题 | satisfiability | 判断布尔公式是否有可使其为真的赋值，第一个被证明 NP 完全的问题。 |
 | 满意化 | satisficing | 西蒙：能力与信息有限时不求最优，搜到一个足够好的方案即停。 |
-| 满意即止 | satisficing | 西蒙提出的决策准则，找到满足够用水准的方案即停，不求穷尽最优。 |
 | 规模 | scale | 外头情形数不过来，使穷尽验证从一开始就失效的第一类裂口。 |
 | 标度律 | scaling law | 把过优化等现象的恶化刻画成可测量的定量曲线规律。 |
 | 科学营林 | scientific forestry | 为可读可算把天然林改造成单一树种人工林，终致森林崩溃。 |
