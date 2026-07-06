@@ -42,15 +42,15 @@
 
 $$q^\star=\arg\max_q\; \mathbb{E}_{y_q}\big[\,\mathrm{H}(\theta)-\mathrm{H}(\theta\mid y_q)\,\big]=\arg\max_q\; I(\theta;y_q),$$
 
-也就是让回答与目标之间的互信息（mutual information）最大。机器学习里这套思想叫主动学习（active learning）：科恩等人 1996 年<sup class="cite"><a href="#ref-6">6</a></sup>的统计式主动学习、宁与高 1994 年的不确定性采样（uncertainty sampling）、宋等人 1992 年<sup class="cite"><a href="#ref-7">7</a></sup>的委员会查询（query by committee），都在问同一个问题：下一个标注该花在哪个样本上最划算。当用户难以打分、却很容易在两个选项里挑一个更好时，成对比较（布拉德利-特里模型<sup class="cite"><a href="#ref-2">2</a></sup> Bradley-Terry model，$P(a\succ b)=\sigma(s_a-s_b)$）就成了信息效率最高的问法之一。
+也就是让回答与目标之间的互信息（mutual information）最大。机器学习里这套思想叫主动学习（active learning）：科恩等人 1996 年<sup class="cite"><a href="#ref-6">6</a></sup>的统计式主动学习、刘易斯与盖尔 1994 年<sup class="cite"><a href="#ref-8">8</a></sup>的不确定性采样（uncertainty sampling）、Seung 等人 1992 年<sup class="cite"><a href="#ref-7">7</a></sup>的委员会查询（query by committee），都在问同一个问题：下一个标注该花在哪个样本上最划算。当用户难以打分、却很容易在两个选项里挑一个更好时，成对比较（布拉德利-特里模型<sup class="cite"><a href="#ref-2">2</a></sup> Bradley-Terry model，$P(a\succ b)=\sigma(s_a-s_b)$）就成了信息效率最高的问法之一。
 
-同样要防塌缩。沙赫里亚里等人 2016 年那篇综述的标题颇有意味：《把人移出回路》，讲的是用高斯过程做贝叶斯优化（Bayesian optimization），自动地选下一个该试的点。它极其有用，但它只是这个方法族里的一种实现，不是「最优筛查」的全部。把这一招等同于高斯过程，就像把交通等同于汽车。
+同样要防塌缩。沙赫里亚里等人 2016 年<sup class="cite"><a href="#ref-31">31</a></sup>那篇综述的标题颇有意味：「把人移出回路」，讲的是用高斯过程做贝叶斯优化（Bayesian optimization），自动地选下一个该试的点。它极其有用，但它只是这个方法族里的一种实现，不是「最优筛查」的全部。把这一招等同于高斯过程，就像把交通等同于汽车。
 
 ## 当代的化身，和它的反噬
 
 把这两招合起来，就得到了今天大模型对齐的主力方法。基于人类反馈的强化学习（reinforcement learning from human feedback，RLHF；克里斯蒂亚诺等人 2017 年<sup class="cite"><a href="#ref-27">27</a></sup>奠基，斯蒂农等人 2020 年<sup class="cite"><a href="#ref-28">28</a></sup>用于摘要，欧阳等人 2022 年<sup class="cite"><a href="#ref-29">29</a></sup>的 InstructGPT）做的正是：用人的成对比较去学一个奖励模型（reward model），再用这个模型作为人类偏好的代理去优化系统。它把「行动-观察-更新」和「把提问花在刀刃上」缝在了一起。效果之显著，常被一个对比数据点破：一个仅 13 亿参数、经人类反馈微调的 InstructGPT，其输出被人偏好的程度，竟超过大它一百多倍、足有 1750 亿参数的原版 GPT-3。对齐人的偏好，有时比单纯把模型堆大更要紧。
 
-而它的失效方式，恰好预演了本书后面几章的主题。那个学出来的奖励模型，是真实偏好的一个代理，于是它会被钻空子：系统学会取悦奖励模型，而不是取悦人，输出看起来更好、实则更糟，这正是第 11 章要正面处理的 Goodhart 败法（Goodhart's law）。回路里的那个「神谕」（人）本身也不可靠，会疲劳、会前后不一、会有系统性偏差，把判断者放进回路并不等于放进了真理。贝恩布里奇 1983 年<sup class="cite"><a href="#ref-13">13</a></sup>那篇《自动化的反讽》（Ironies of Automation）早就点破：你越是把人推到监督者的位置，他越是缺少保持判断力所需的实操与情境感，等到真要他接管时，他反而最没准备。信任的校准（trust calibration，李与西 2004 年<sup class="cite"><a href="#ref-15">15</a></sup>的研究）于是成了一个独立的难题：人既可能过度依赖一个不该信的系统，也可能弃用一个其实可靠的系统。
+而它的失效方式，恰好预演了本书后面几章的主题。那个学出来的奖励模型，是真实偏好的一个代理，于是它会被钻空子：系统学会取悦奖励模型，而不是取悦人，输出看起来更好、实则更糟，这正是第 11 章要正面处理的 Goodhart 败法（Goodhart's law）。回路里的那个「神谕」（人）本身也不可靠，会疲劳、会前后不一、会有系统性偏差，把判断者放进回路并不等于放进了真理。贝恩布里奇 1983 年<sup class="cite"><a href="#ref-13">13</a></sup>那篇「自动化的反讽」（Ironies of Automation）早就点破：你越是把人推到监督者的位置，他越是缺少保持判断力所需的实操与情境感，等到真要他接管时，他反而最没准备。信任的校准（trust calibration，李与西 2004 年<sup class="cite"><a href="#ref-15">15</a></sup>的研究）于是成了一个独立的难题：人既可能过度依赖一个不该信的系统，也可能弃用一个其实可靠的系统。
 
 把人放进回路，不是把不可验证消解掉，而是把它搬了个家：从「我能不能验证目标」搬成了「我能不能信任回路里这个不完美的判断者」。
 
@@ -79,7 +79,7 @@ $$q^\star=\arg\max_q\; \mathbb{E}_{y_q}\big[\,\mathrm{H}(\theta)-\mathrm{H}(\the
 6. D. Cohn, Z. Ghahramani, M. Jordan (1996).「Active Learning with Statistical Models」. Journal of Artificial Intelligence Research, 4, 129-145. [②]
    科恩等人给主动学习提供了统计学的视角：在回归与分类的统计模型下，选择能最大程度降低模型方差（即未来误差）的查询点，并给出可解析计算的形式。这把「下一个标注花在哪里最划算」落到了可优化的目标上，是主动学习从启发式走向有理论依据的代表性工作。
 7. H. S. Seung, M. Opper, H. Sompolinsky (1992).「Query by Committee」. COLT '92, 287-294. [②]
-   宋（Seung）等人提出「委员会查询」：维持一组都与已有数据相容的假设作为委员会，专挑那些让委员会内部分歧最大的样本去标注，因为分歧最大处最能压缩版本空间。它给出了一个直觉清晰又有理论支撑的主动查询准则，是本章把提问集中到信息量最大处的经典实例。
+   Seung 等人提出「委员会查询」：维持一组都与已有数据相容的假设作为委员会，专挑那些让委员会内部分歧最大的样本去标注，因为分歧最大处最能压缩版本空间。它给出了一个直觉清晰又有理论支撑的主动查询准则，是本章把提问集中到信息量最大处的经典实例。
 8. D. D. Lewis, W. A. Gale (1994).「A Sequential Algorithm for Training Text Classifiers」. SIGIR '94, 3-12. [②]
    刘易斯与盖尔提出不确定性采样：训练文本分类器时，不是随机取样去标，而是优先挑模型最拿不准（预测概率最接近决策边界）的文档请人标注。这种简单而高效的策略大幅减少了所需标注量，是主动学习在实际系统里最常用的做法之一，呼应本章「省着、聪明地去问」的主张。
 9. B. Settles (2009).《Active Learning Literature Survey》. Computer Sciences Technical Report 1648, University of Wisconsin-Madison. [②④]

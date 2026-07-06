@@ -8,7 +8,7 @@
 
 第一招的纯形式：在你缺乏验证能力的那个决策点上，插入一个外部的判断者，由它来给出你给不出的判决。
 
-最朴素的版本，是第 5 章那个人在回路（human-in-the-loop），是专家会诊，是疑难上交。但这一招最深刻的形态，藏在两个看似无关的地方。
+最朴素的版本，是第 5 章那个人在回路（human in the loop），是专家会诊，是疑难上交。但这一招最深刻的形态，藏在两个看似无关的地方。
 
 一处是交互式定理证明（interactive theorem proving）。德布鲁因 1970 年的 AUTOMATH<sup class="cite"><a href="#ref-1">1</a></sup>、爱丁堡 LCF（戈登、米尔纳、沃兹沃思 1979<sup class="cite"><a href="#ref-2">2</a></sup>）、到今天的 Coq（贝尔托与卡斯特朗 2004<sup class="cite"><a href="#ref-3">3</a></sup>），都是同一种分工：人提供那闪光的、机器给不出的证明思路（神谕），机器则一丝不苟地核对每一步（证书检查，certificate checking）。神谕负责「找」，机器负责「验」，正好咬合第 2 章那道不对称。
 
@@ -42,7 +42,7 @@ $$\mathrm{Var}(\bar X)=\rho\,\sigma^2+\frac{(1-\rho)\,\sigma^2}{N}\ \xrightarrow
 
 把两招并看：一个引进单一而昂贵的神谕，一个合成众多而廉价的独立判断，借的都是你单独不具备的判断力。它们共用的杠杆，是为自己补上缺失的验证能力；它们的败法也两两相对，单一神谕可能错，众多判断可能暗中相关。
 
-数学里有一段插曲，恰好把这一对招、连同上一章的证书全串了起来。阿佩尔与哈肯 1977 年<sup class="cite"><a href="#ref-26">26</a></sup>的四色定理（four color theorem）证明，因为依赖计算机的穷举而饱受争议，那等于要数学界去信任一个神谕。后来贡蒂耶 2008 年<sup class="cite"><a href="#ref-27">27</a></sup>用机器可核对的形式证明（formal proof）重做了它，黑尔斯团队<sup class="cite"><a href="#ref-28">28</a></sup>对开普勒猜想也如法炮制：把「信任神谕」转化成了「核对证书」。麦肯齐<sup class="cite"><a href="#ref-29">29</a></sup>在《机械化证明》里追踪的，正是这种信任如何在人、机器与社会过程之间转移；德米洛等人<sup class="cite"><a href="#ref-14">14</a></sup>那句「证明是一种社会过程」，说到底就是把数学的可信安放在人类判断的冗余之上。
+数学里有一段插曲，恰好把这一对招、连同上一章的证书全串了起来。阿佩尔与哈肯 1977 年<sup class="cite"><a href="#ref-26">26</a></sup>的四色定理（four color theorem）证明，因为依赖计算机的穷举而饱受争议，那等于要数学界去信任一个神谕。后来贡蒂耶 2008 年<sup class="cite"><a href="#ref-27">27</a></sup>用机器可核对的形式证明（formal proof）重做了它，黑尔斯团队<sup class="cite"><a href="#ref-28">28</a></sup>对开普勒猜想也如法炮制：把「信任神谕」转化成了「核对证书」。麦肯齐<sup class="cite"><a href="#ref-29">29</a></sup>在《机械化证明》里追踪的，正是这种信任如何在人、机器与社会过程之间转移；德米洛等人<sup class="cite"><a href="#ref-14">14</a></sup>关于证明本质上是一种社会过程的主张，说到底就是把数学的可信安放在人类判断的冗余之上。
 
 不过要看清一件事：到这里为止，前两对招，压缩未知与借来判断，都还在追求同一样东西，对象的真。它们仍想知道这事到底对不对。下一对招做了一件更彻底的事：它不再索求那个真。
 
@@ -79,21 +79,21 @@ $$\mathrm{Var}(\bar X)=\rho\,\sigma^2+\frac{(1-\rho)\,\sigma^2}{N}\ \xrightarrow
 13. J. C. Knight, N. G. Leveson (1986). 「An Experimental Evaluation of the Assumption of Independence in Multiversion Programming」. IEEE Transactions on Software Engineering, SE-12(1), pp. 96-109. [②]
    这是那个著名的实验：让许多程序员独立地照同一规格编写程序，本指望错误互不相干，结果发现他们在相同的难点上一起栽倒，独立假设被经验否定。它为上一条的理论预言提供了实证，是本章「以为独立、其实相关」这一败法最有说服力的例证。
 14. R. A. De Millo, R. J. Lipton, A. J. Perlis (1979). 「Social Processes and Proofs of Theorems and Programs」. Communications of the ACM, 22(5), pp. 271-280. [③④]
-   这篇有名又有争议的论文主张，数学证明之所以可信，靠的不是形式推导的机械正确，而是数学共同体反复检验、传播、采信的社会过程，并据此质疑程序形式验证的前景。它支撑本章的观点：可信归根结底安放在人类判断的冗余之上，读者应读它对「证明是社会过程」的论证。
+   这篇有名又有争议的论文主张，数学证明之所以可信，靠的不是形式推导的机械正确，而是数学共同体反复检验、传播、采信的社会过程，并据此质疑程序形式验证的前景。它支撑本章的观点：可信归根结底安放在人类判断的冗余之上，读者应读它关于证明本质上是社会过程的论证。
 15. A. Shamir (1992). 「IP = PSPACE」. Journal of the ACM, 39(4), pp. 869-877. [②]
    沙米尔证明了交互式证明的威力之惊人：单靠盘问一个不可信证明者，弱验证者能可靠裁决整个 PSPACE 这一极庞大的问题类，即 $\mathrm{IP}=\mathrm{PSPACE}$。它是本章「借来的判断」最有力的数学注脚，读者应读它如何界定「会聪明盘问神谕」所能达到的上限。
 16. C. Lund, L. Fortnow, H. Karloff, N. Nisan (1992). 「Algebraic Methods for Interactive Proof Systems」. Journal of the ACM, 39(4), pp. 859-868. [②]
-   这篇论文引入了把布尔公式算术化、再用多项式做检查的代数方法，正是它的技术铺垫直接通向了上一条 $\mathrm{IP}=\mathrm{PSPACE}$ 的证明。它对本章的意义在于揭示「聪明盘问」的具体机理：把验证问题转译成可随机抽查的代数恒等式，读者可读这套手法。
+   这篇论文引入了把布尔公式算术化、再用多项式做检查的代数方法，正是它的技术铺垫直接通向了上一条 $\mathrm{IP}=\mathrm{PSPACE}$ 的证明。它揭示了「聪明盘问」的具体机理：把验证问题转译成可随机抽查的代数恒等式，可作本章相关脉络的延伸阅读，读者可循此深入这套手法。
 17. M. Blum, S. Kannan (1995). 「Designing Programs That Check Their Work」. Journal of the ACM, 42(1), pp. 269-291. [②]
    这篇论文提出了「程序检查器」的思想：让程序在给出结果时附带一个独立、廉价的核对程序，验证本次输出是否正确，而无需信任程序本身。它把交互式证明的精神带到日常计算，对本章而言，是「不信任产出者、只核对其产出」这一思路的范本，读者应读其检查器的构造。
 18. S. Arora, C. Lund, R. Motwani, M. Sudan, M. Szegedy (1998). 「Proof Verification and the Hardness of Approximation Problems」. Journal of the ACM, 45(3), pp. 501-555. [②]
-   这是著名的 PCP 定理的核心论文之一：任何证明都能改写成一种特殊格式，使验证者只需随机抽查其中常数个比特，就能以高置信度判断其真伪。它把「抽查就够」推到极致，对本章是「弱验证者如何高效核对庞大证明」的理论顶点，读者应读其概率可检证明的惊人结论。
+   这是著名的 PCP 定理的核心论文之一：任何证明都能改写成一种特殊格式，使验证者只需随机抽查其中常数个比特，就能以高置信度判断其真伪。它把「抽查就够」推到极致，是「弱验证者如何高效核对庞大证明」这一脉的理论顶点，可作本章的延伸阅读，读者应读其概率可检证明的惊人结论。
 19. S. Goldwasser, Y. T. Kalai, G. N. Rothblum (2015). 「Delegating Computation: Interactive Proofs for Muggles」. Journal of the ACM, 62(4), Article 27. [②④]
    这篇论文让交互式证明真正服务于「凡人」：一个算力有限的用户把计算外包给强大但不可信的服务器，再用远小于自己重算的代价核对结果是否正确。它是本章思想走向云计算时代的落点，读者应读它如何把「为弱者代理计算并可验证」做成现实可行的协议。
 20. L. K. Hansen, P. Salamon (1990). 「Neural Network Ensembles」. IEEE Transactions on Pattern Analysis and Machine Intelligence, 12(10), pp. 993-1001. [②]
    这篇论文较早地表明，把多个独立训练的神经网络组合起来投票，其整体准确率可显著高于任何单个网络。它是本章冗余一招在机器学习里的开端，读者应读它如何把「多数表决降低错误」从逻辑电路搬到学习模型，并再次落到对成员误差去相关的依赖。
 21. A. Krogh, J. Vedelsby (1995). 「Neural Network Ensembles, Cross Validation, and Active Learning」. 收入《Advances in Neural Information Processing Systems 7》. MIT Press, pp. 231-238. [②]
-   这篇论文给出了集成误差的经典分解：集成的整体误差等于成员的平均误差减去成员之间的分歧度。它为本章「相关性地板」提供了机器学习版的精确公式，读者应读它如何用数学说明，成员越是多样、越是各错各的，集成才越值钱。
+   这篇论文给出了集成误差的经典分解：集成的整体误差等于成员的平均误差减去成员之间的分歧度。它给出了机器学习版的「相关性地板」精确公式，可与本章相互印证，读者应读它如何用数学说明，成员越是多样、越是各错各的，集成才越值钱。
 22. T. G. Dietterich (2000). 「Ensemble Methods in Machine Learning」. 收入《Multiple Classifier Systems (MCS 2000)》. Springer (Lecture Notes in Computer Science 1857), pp. 1-15. [②]
    这是一篇影响广泛的综述，梳理了集成方法为何有效，并从统计、计算与表示三个角度给出解释。它是读者纵览本章冗余一招在机器学习里全貌的便捷入口，把分散的投票、装袋、提升等手法收拢在一个框架下理解。
 23. L. Breiman (2001). 「Random Forests」. Machine Learning, 45(1), pp. 5-32. [②]

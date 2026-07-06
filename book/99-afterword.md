@@ -22,7 +22,7 @@
    爱比克泰德这部斯多葛派手册由弟子 Arrian 据其《对话录》辑录而成，核心是「分清什么在我们控制之内、什么不在」，并把心力收回到可控的判断与选择上。它与本章呼应之处在于：面对无法验证、无法掌控的世界，先认清能动的边界，是清醒行动而不瘫痪的起点。
 3. Marcus Aurelius (约公元 175 年).《Meditations》. [④]
    马可·奥勒留以希腊文写成的私人札记，原题约相当于《致自己》，并非为出版而作，记录了一位斯多葛派统治者如何在权力与无常中自省、克制、尽责。它对本章的意义在于示范了一种姿态：在看不清结局时，仍把当下该做的事做好，与不确定共处而非求一个确定的庇护。
-4. C. S. Peirce (1877).「The Fixation of Belief」. Popular Science Monthly, 12, pp. 1–15. [③④]
+4. C. S. Peirce (1877).「The Fixation of Belief」.《Popular Science Monthly》, 12, 1-15. [③④]
    皮尔士在这篇文章里比较了人们「固定信念」的四种方法：固执、权威、先验合理性，以及科学方法，并论证只有诉诸外部实在、可被公开检验与修正的科学方法，才能让信念经得起怀疑的冲击。它对本章重要，因为它把「在小块上证个准、剩下的老实存疑」的态度追溯到了源头：信念的价值在于它如何应对怀疑，而非它有多笃定。
 5. W. James (1897).《The Will to Believe and Other Essays in Popular Philosophy》. Longmans, Green. [④]
    詹姆斯主张，面对那些证据不足以决断、却又必须选择、且事关重大的问题，人有「相信的权利」，因为悬置判断本身也是一种带后果的选择。这正是本章的核心处境：当停在原地与转动舵轮同样是豪赌时，不下注并不等于中立。
@@ -36,11 +36,11 @@
    杜威批评西方哲学长期追逐一种「确定性」的幻觉，把不变的知识抬高于易变的行动；他主张知识本就是探究与实验的过程，意义在于改善我们与世界打交道的方式。它为本章提供了思想背景：放弃对确定的执念，转而把判断当作可检验、可修正的实践。
 10. R. Niebuhr (约 1943).《The Serenity Prayer》. [④]
    这篇广为流传的祷文祈求平静接受不可改变之事、勇气改变可改变之事、智慧分辨二者，作者归属与确切年份均有争议，较可靠的考证可见 E. Sifton (2003).《The Serenity Prayer: Faith and Politics in Times of Peace and War》（W. W. Norton）。它以最凝练的方式说出了本章反复强调的分际：先认清能动与不能动的边界，再把力气用在能改变的地方。
-11. F. A. Hayek (1945).「The Use of Knowledge in Society」. The American Economic Review, 35(4), pp. 519–530. [③④]
+11. F. A. Hayek (1945).「The Use of Knowledge in Society」.《The American Economic Review》, 35(4), 519-530. [③④]
    哈耶克论证社会所需的知识本质上是分散的、局部的、难以集中汇报的，没有哪个中央计划者能掌握全貌，而价格机制恰好是协调这些分散知识、让人各自就地决策的手段。它对本章重要，因为它说明了为何「全局可验证」往往是奢望，以及为何要靠多个局部视角去三角定位看不清的整体。
 12. I. Berlin (1953).《The Hedgehog and the Fox: An Essay on Tolstoy's View of History》. Weidenfeld & Nicolson. [④]
    伯林借古希腊残句「狐狸知道很多事，刺猬只知道一件大事」，把思想者分为以单一宏大原则统摄一切的「刺猬」与追逐多元、不强求统一的「狐狸」两类。它对本章有用，因为它提醒：在复杂而难验证的世界里，多元视角的「狐狸」式判断常比一元体系更稳健。
-13. H. A. Simon (1955).「A Behavioral Model of Rational Choice」. The Quarterly Journal of Economics, 69(1), pp. 99–118. [②④]
+13. H. A. Simon (1955).「A Behavioral Model of Rational Choice」.《The Quarterly Journal of Economics》, 69(1), 99-118. [②④]
    西蒙在此提出「有限理性」与「满意化」（satisficing）：真实的决策者受限于信息与算力，不去搜寻最优解，而是寻找一个「够好」、达到可接受门槛即停的方案。它正是本章方法论的理论根基：心力有限，就把它投在最关键处，求够用而非求完美。
 14. V. E. Frankl (1959).《Man's Search for Meaning》. Beacon Press. [④]
    弗兰克尔以集中营幸存者的亲历为底，提出「意义疗法」：人最深的驱动力是寻找意义，而即使在最无法掌控、最无法验证前景的处境里，人仍保有选择如何面对苦难的自由。德文原著出版于 1946 年。它对本章重要，因为它把「在无从把握时仍能立身」落到了最极端的人类经验上。
@@ -52,7 +52,7 @@
    西蒙在此奠定「人工科学」与设计科学的纲领：凡是人造物（包括组织、软件、决策过程）都是为适应目标与环境而设计的，设计就是在受限条件下搜索可行方案的活动。它支撑本章把「下注下得让自己输得起、错得了也查得出还改得回」视为一种可设计的实践：好系统是为应对不确定而造的。
 18. C. Argyris & D. A. Schön (1974).《Theory in Practice: Increasing Professional Effectiveness》. Jossey-Bass. [④]
    阿吉里斯与舍恩区分了人们「声称信奉的理论」与「实际行动中的理论」，并提出「双环学习」：不只在既定目标下纠错，更回头质疑目标与假设本身。它对本章有用，因为它指向一种自我校准的习惯：行动者要能察觉自己嘴上说的与实际做的之间的落差，并据此修正。
-19. A. Tversky & D. Kahneman (1974).「Judgment under Uncertainty: Heuristics and Biases」. Science, 185(4157), pp. 1124–1131. [②④]
+19. A. Tversky & D. Kahneman (1974).「Judgment under Uncertainty: Heuristics and Biases」.《Science》, 185(4157), 1124-1131. [②④]
    特沃斯基与卡尼曼这篇奠基性论文揭示，人在不确定下的判断依赖代表性、可得性、锚定等少数启发式，这些捷径虽常奏效，却会系统性地导致可预测的偏误。它对本章重要，因为它说明我们对不可验证之事的直觉判断本身就不可全信，故需借外部视角与机制来纠偏。
 20. D. A. Schön (1983).《The Reflective Practitioner: How Professionals Think in Action》. Basic Books. [④]
    舍恩提出「行动中的反思」：熟练的专业者并非先想清规则再套用，而是在与情境的即时互动中边做边思、随机应变，许多专业知识是难以言传的「默会」知识。它呼应本章对实践判断的看重：在看不全、来不及完全验证时，靠的是一种能在行动中自我修正的现场智慧。

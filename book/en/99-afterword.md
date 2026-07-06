@@ -14,7 +14,7 @@ Learning to act without certainty is, in the end, learning to turn the rudder li
 
 ## References
 
-> Waypoints: 1. historical scientific judgment; 2. theoretically studied material; 3. how science progresses; 4. how to live in an unverifiable world. This section was checked source by source.
+> Waypoints: 1. historical scientific judgment; 2. theoretically studied material; 3. how science progresses; 4. how to live in an unverifiable world. This section was verified online, entry by entry.
 
 1. Aristotle (c. 4th century BCE). *Nicomachean Ethics*. [4]
    Aristotle here advances the concept of practical wisdom (phronesis): ethical judgment cannot be reduced to universal rules but depends on the capacity to weigh things rightly in concrete situations, and virtue is the stable character formed through repeated practice. A common English translation is that of R. C. Bartlett and S. D. Collins (University of Chicago Press, 2011). It matters to this chapter because "acting well without certainty" is itself a form of practical wisdom: where rules give no answer, what carries you is trained judgment.

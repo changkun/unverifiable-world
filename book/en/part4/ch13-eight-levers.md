@@ -28,7 +28,7 @@ Match each move to the lever it pulls:
 | redundancy / consensus | makes the failures of several judgments decorrelate | lowers the joint failure probability $\Pr(\text{all\ fail})$ |
 | optimal screening | spends the information budget where the marginal return is highest | allocates $B$ to maximize the cut in uncertainty |
 | calibration | puts a truthful price on residual risk | makes $\Pr(\text{fail})$ known, so you can bet on it |
-| decay / fencing / containment | shrinks the blast radius | lowers $\text{Cost}(\text{fail})$ |
+| decay / fencing | shrinks the blast radius | lowers $\text{Cost}(\text{fail})$ |
 | audit trail | moves checking from before the fact to after it | shifts the timing of checking, turning an irrecoverable failure into a recoverable one |
 
 ![The eight moves mapped onto different parts of the decomposition of risk (a candidate organizing scheme, not a theorem)](../figures/f13-eight-levers.svg)
@@ -51,7 +51,7 @@ The scheme above is a candidate organizing structure, not a theorem. That decomp
 
 I place it here because it has organizing force and explanatory appeal, not because it has been proved. It meets the standard of a good conjecture: clear, refutable, able to unify a large mass of phenomena. But it has not yet risen to a theorem.
 
-So the final question becomes unavoidable: is this cross-domain convergence a law forced out by something, or merely a strong but, in the end, empirical pattern? The next chapter settles the account with it, head-on and squarely.
+So the final question becomes unavoidable: is this cross-domain convergence a law forced out by something, or merely a strong but, in the end, empirical pattern? The next chapter settles the account with it, head-on.
 
 ---
 
@@ -72,7 +72,7 @@ So the final question becomes unavoidable: is this cross-domain convergence a la
 6. J. M. Keynes (1921). *A Treatise on Probability*. Macmillan. [2]
    Keynes developed a logical interpretation of probability, treating it as a rational degree of belief between propositions, and stressed that many probabilities are neither numerical nor necessarily comparable. It laid the groundwork for later non-additive, imprecise probabilities, reminding the reader that the epistemic status of probability itself is far more complex than any formula.
 7. F. P. Ramsey (1931). "Truth and Probability." *The Foundations of Mathematics and other Logical Essays* (R. B. Braithwaite, ed.). Kegan Paul, Trench, Trubner & Co., 156-198. [2]
-   Ramsey was the first to argue that a person's degree of belief can be measured operationally through their betting behavior, and that avoiding a sure-loss combination (a Dutch book) requires those degrees of belief to obey the axioms of probability. This is the founding work of subjective probability, and it provides the philosophical and operational basis for this chapter's "putting an honest price on residual risk."
+   Ramsey was the first to argue that a person's degree of belief can be measured operationally through their betting behavior, and that avoiding a sure-loss combination (a Dutch book) requires those degrees of belief to obey the axioms of probability. This is the founding work of subjective probability, and it provides the philosophical and operational basis for this chapter's "putting a truthful price on residual risk."
 8. B. de Finetti (1937). "La prévision: ses lois logiques, ses sources subjectives." *Annales de l'Institut Henri Poincaré*, 7(1), 1-68. [2]
    De Finetti proposed subjective probability and backed it with the Dutch-book argument and the representation theorem for exchangeability, arguing that probability is "only" a coherent personal degree of belief. Together with Ramsey it forms the cornerstone of Bayesianism, an essential source for understanding calibration and honest pricing.
 9. F. J. Anscombe and R. J. Aumann (1963). "A Definition of Subjective Probability." *The Annals of Mathematical Statistics*, 34(1), 199-205. [2]

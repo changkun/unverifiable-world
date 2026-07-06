@@ -32,7 +32,7 @@
 
 也许你会想，规模、人心、未来这些软的领域认输也就罢了，数学和软件总该是完整验证的堡垒吧？恰恰是这两个最硬的地方，最清醒地承认了验证的限度。
 
-软件这边，迪杰斯特拉<sup class="cite"><a href="#ref-13">13</a></sup>留下一句被引滥却仍然正确的话：测试只能证明缺陷存在，不能证明缺陷不存在。他主张程序应当被正确地构造出来，而不是被调试出正确。可即便是形式化证明这条最严的路，德米洛、利普顿与佩利斯 1979 年那篇争议名文<sup class="cite"><a href="#ref-9">9</a></sup>也指出，程序验证（program verification）无法扮演数学证明那样的角色，它的可信最终来自社会过程，而非机械推导；费泽尔 1988 年把话说得更重<sup class="cite"><a href="#ref-10">10</a></sup>，程序作为一个因果模型，与作为逻辑结构的算法之间有一道鸿沟，「完全可靠的程序验证」连理论上都不成立。布鲁克斯的《没有银弹》<sup class="cite"><a href="#ref-11">11</a></sup>断言软件的本质复杂性（essential complexity）无法被一招消除；帕纳斯辞去星球大战计划的顾问，公开论证那类系统的软件无法被验证到值得托付<sup class="cite"><a href="#ref-12">12</a></sup>；而 Therac-25 放疗机在 1985 至 1987 年间因一个并发竞态（race condition）缺陷六度失控，把高出正常上百倍的辐射打进病人体内，至少三人因此死亡<sup class="cite"><a href="#ref-15">15</a></sup>，是这一切判断用人命付的注脚。1968 年北约那场会议干脆造了个词，软件危机（software crisis）<sup class="cite"><a href="#ref-16">16</a></sup>。
+软件这边，迪杰斯特拉留下一句被引滥却仍然正确的话：测试只能证明缺陷存在，不能证明缺陷不存在<sup class="cite"><a href="#ref-14">14</a></sup>。他主张程序应当被正确地构造出来，而不是被调试出正确<sup class="cite"><a href="#ref-13">13</a></sup>。可即便是形式化证明这条最严的路，德米洛、利普顿与佩利斯 1979 年那篇争议名文<sup class="cite"><a href="#ref-9">9</a></sup>也指出，程序验证（program verification）无法扮演数学证明那样的角色，它的可信最终来自社会过程，而非机械推导；费泽尔 1988 年把话说得更重<sup class="cite"><a href="#ref-10">10</a></sup>，程序作为一个因果模型，与作为逻辑结构的算法之间有一道鸿沟，「完全可靠的程序验证」连理论上都不成立。布鲁克斯的《没有银弹》<sup class="cite"><a href="#ref-11">11</a></sup>断言软件的本质复杂性（essential complexity）无法被一招消除；帕纳斯辞去星球大战计划的顾问，公开论证那类系统的软件无法被验证到值得托付<sup class="cite"><a href="#ref-12">12</a></sup>；而 Therac-25 放疗机在 1985 至 1987 年间因一个并发竞态（race condition）缺陷六度失控，把高出正常上百倍的辐射打进病人体内，至少三人因此死亡<sup class="cite"><a href="#ref-15">15</a></sup>，是这一切判断用人命付的注脚。1968 年北约那场会议干脆造了个词，软件危机（software crisis）<sup class="cite"><a href="#ref-16">16</a></sup>。
 
 数学这边更釜底抽薪。哥德尔 1931 年证明<sup class="cite"><a href="#ref-3">3</a></sup>，任何足够丰富而一致的形式系统（formal system），都存在它自己无法在内部判定的真命题；丘奇与图灵 1936 年各自证明<sup class="cite"><a href="#ref-2">2</a></sup><sup class="cite"><a href="#ref-1">1</a></sup>，没有算法能判定任意命题是否可证（判定问题无解）；赖斯定理（Rice's theorem）<sup class="cite"><a href="#ref-4">4</a></sup>把它推到极致，程序的任何非平凡语义性质都不可判定（undecidable）。哪怕某个问题原则上可判定，库克 1971 年确立的 NP 完全性（NP-completeness）<sup class="cite"><a href="#ref-5">5</a></sup>也表明，验证的代价可能爆炸到实践中根本跑不动。这些不是工程的暂时短板，是逻辑给验证划下的硬边界。这一层，下一章会专门去拆。
 
@@ -40,7 +40,7 @@
 
 把以上合起来：大多数有后果的行动，都踩在未经验证的地面上。
 
-这不是一个让人瘫痪的结论，它是一个起点。承认验证是奢侈品，恰恰是认真对待行动的第一步。奈特 1921 年早就把可度量的「风险」与不可度量的「不确定性」分开<sup class="cite"><a href="#ref-22">22</a></sup>，并指出利润正来自后者；凯恩斯谈到真正的不确定时只留下一句「关于此我们根本无从知晓」<sup class="cite"><a href="#ref-26">26</a></sup>；西蒙看清有限的主体无法穷尽验证所有选项，于是提出「满意即止」（satisficing）<sup class="cite"><a href="#ref-23">23</a></sup>；冯·诺依曼与摩根斯特恩、萨维奇则各自为「在无法事前验证结果时如何理性地下注」搭起了形式框架<sup class="cite"><a href="#ref-24">24</a></sup><sup class="cite"><a href="#ref-25">25</a></sup>。一整门关于决策的学问，本就是建立在「验证不可得」这个前提之上的。问题从来不是怎样取消不确定，而是在不确定里怎样行动得当。
+这不是一个让人瘫痪的结论，它是一个起点。承认验证是奢侈品，恰恰是认真对待行动的第一步。奈特 1921 年早就把可度量的「风险」与不可度量的「不确定性」分开<sup class="cite"><a href="#ref-22">22</a></sup>，并指出利润正来自后者；凯恩斯谈到真正的不确定时只留下一句「关于此我们根本无从知晓」<sup class="cite"><a href="#ref-26">26</a></sup>；西蒙看清有限的主体无法穷尽验证所有选项，于是提出「满意化」（satisficing）<sup class="cite"><a href="#ref-23">23</a></sup>；冯·诺依曼与摩根斯特恩、萨维奇则各自为「在无法事前验证结果时如何理性地下注」搭起了形式框架<sup class="cite"><a href="#ref-24">24</a></sup><sup class="cite"><a href="#ref-25">25</a></sup>。一整门关于决策的学问，本就是建立在「验证不可得」这个前提之上的。问题从来不是怎样取消不确定，而是在不确定里怎样行动得当。
 
 ## 这一章通向哪里
 
@@ -99,7 +99,7 @@
 15. N. G. Leveson 与 C. S. Turner (1993). 「An Investigation of the Therac-25 Accidents」. IEEE Computer, 26(7), 18-41. [①④]
    两位作者对 Therac-25 放疗机因软件缺陷导致患者受过量辐射乃至死亡的系列事故作了权威调查，剖析了竞态条件、过度信任软件与缺乏独立安全机制等连锁原因。它以人命为代价说明，安全攸关系统未经充分验证即投用会有什么后果，是本章关于验证代价的沉重注脚。
 
-16. P. Naur 与 B. Randell（编）(1969).《Software Engineering: Report on a Conference Sponsored by the NATO Science Committee》. Scientific Affairs Division, NATO. [①]
+16. P. Naur 与 B. Randell（编）(1969).「Software Engineering: Report on a Conference Sponsored by the NATO Science Committee」. Scientific Affairs Division, NATO. [①]
    这份会议报告记录了从业者对当时软件普遍超期、超支、难以可靠交付的集体焦虑，「软件危机」一词与「软件工程」这门学科的提法即由此而来。它是本章那句「软件危机」的源头，集中呈现了一代工程师对软件无法被可靠验证的判断。会议于 1968 年 10 月在德国 Garmisch 召开，报告 1969 年出版。
 
 17. D. Hume (1748).《An Enquiry Concerning Human Understanding》. (London). [④③]
@@ -121,7 +121,7 @@
    奈特把可用概率度量的「风险」与无从度量的真正「不确定性」区分开来，并论证企业家的利润正源于承担后者。这一区分是本章承认验证是奢侈品后转向行动理论的关键，它说明在无法事前验明结果的局面下，决策与回报如何获得意义。
 
 23. H. A. Simon (1955). 「A Behavioral Model of Rational Choice」. The Quarterly Journal of Economics, 69(1), 99-118. [④]
-   西蒙提出有限理性的行为模型：信息与计算能力都受限的主体无法穷尽比较所有选项，只能设定一个够用的水准，找到满足它的方案便停下，即「满意即止」。这正是本章主张的「在不确定里如何行动得当」的一个具体答案，把验证不可得转化为可操作的决策准则。
+   西蒙提出有限理性的行为模型：信息与计算能力都受限的主体无法穷尽比较所有选项，只能设定一个够用的水准，找到满足它的方案便停下，即「满意化」。这正是本章主张的「在不确定里如何行动得当」的一个具体答案，把验证不可得转化为可操作的决策准则。
 
 24. J. von Neumann 与 O. Morgenstern (1944).《Theory of Games and Economic Behavior》. Princeton University Press. [④]
    两位作者奠定了博弈论，并以一组公理推出期望效用，论证理性主体应据期望效用作选择。它为「在无法事前验明对手意图与结果的情形下如何理性地下注」搭起了形式框架，是本章所说那门建立在验证不可得之上的决策学问的支柱之一。

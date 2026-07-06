@@ -44,7 +44,7 @@ $$a(p,c)=\begin{cases} \textsf{allow}, & p \ge \tau_{\text{hi}}\ \wedge\ c \le c
 
 三招都不是把不可验证消解掉，而是把它搬家，搬家是要付费的。
 
-围栏会被翻越：沙箱有逃逸，权限会蔓延。分级自治依赖那个被请来确认的人，而贝恩布里奇 1983 年的论著早就指出<sup class="cite"><a href="#ref-29">29</a></sup>，越是把人架到监督者的位置，他越是丧失了真要接管时所需的技能与情境感；帕拉苏拉曼与赖利 1997 年把人对自动化的失当一口气列全<sup class="cite"><a href="#ref-30">30</a></sup>：误用、弃用、滥用。里森 1990 年的著作则揭示这些失当如何系统性地发生<sup class="cite"><a href="#ref-31">31</a></sup>。留痕则永远栽在同一处：没人去读的日志，等于没有日志。
+围栏会被翻越：沙箱有逃逸，权限会蔓延。分级自治依赖那个被请来确认的人，而贝恩布里奇 1983 年的论著早就指出<sup class="cite"><a href="#ref-29">29</a></sup>，越是把人架到监督者的位置，他越是丧失了真要接管时所需的技能与情境感；帕拉苏拉曼与赖利 1997 年把人对自动化的失当完整列出<sup class="cite"><a href="#ref-30">30</a></sup>：误用、弃用、滥用。里森 1990 年的著作则揭示这些失当如何系统性地发生<sup class="cite"><a href="#ref-31">31</a></sup>。留痕则永远栽在同一处：没人去读的日志，等于没有日志。
 
 更深一层是系统论的视角。佩罗 1984 年的著作论证<sup class="cite"><a href="#ref-28">28</a></sup>：当一个系统既高度复杂、又紧密耦合时，事故不是偶发的意外，而是其结构的常态产物，再多的局部防护也只是把失效推向更隐蔽的组合。莱韦森 2011 年由此主张<sup class="cite"><a href="#ref-27">27</a></sup>，安全不是「让每个零件都可靠」，而是一个控制问题，要从整个系统的约束与反馈去设计。围堵能压低单点失效的代价，却压不掉复杂耦合本身带来的风险。
 
@@ -105,7 +105,7 @@ $$a(p,c)=\begin{cases} \textsf{allow}, & p \ge \tau_{\text{hi}}\ \wedge\ c \le c
 17. R. Shah, V. Varma, R. Kumar, M. Phuong, V. Krakovna, J. Uesato & Z. Kenton (2022).「Goal Misgeneralization: Why Correct Specifications Aren't Enough For Correct Goals」. arXiv:2210.01790. [②]
    作者用具体例子说明「目标误泛化」：即便训练时的规格完全正确，模型在新环境里也可能保持能力却追求了一个错误的目标。它表明把目标写对还不够，是本章「规格正确目标却泛化错了」一句的出处，值得读者对照规格博弈一起看。
 18. V. Krakovna, J. Uesato, V. Mikulik, M. Rahtz, T. Everitt, R. Kumar, Z. Kenton, J. Leike & S. Legg (2020).「Specification Gaming: The Flip Side of AI Ingenuity」. DeepMind Blog. [②]
-   这篇文章及其配套清单收集了大量「规格博弈」实例：系统精确地满足了你写下的目标，却彻底违背了你的本意。它用鲜活案例展示规格与意图之间的裂缝，是本章这一概念最便于上手的入口，读者可顺着其例子清单感受问题之普遍。
+   这篇文章及其配套清单收集了大量「规格博弈」实例：系统精确地满足了你写下的目标，却违背了你的本意。它用鲜活案例展示规格与意图之间的裂缝，是本章这一概念最便于上手的入口，读者可顺着其例子清单感受问题之普遍。
 19. C. Szegedy, W. Zaremba, I. Sutskever, J. Bruna, D. Erhan, I. Goodfellow & R. Fergus (2014).「Intriguing Properties of Neural Networks」. 收于《International Conference on Learning Representations (ICLR 2014)》. [②]
    这篇文章首次系统揭示了对抗样本现象：对输入施加人眼几乎察觉不到的微小扰动，就能让一个表现优异的神经网络给出离谱的错误判断。它表明高准确率与稳健性是两回事，是本章「哪怕在最窄的层面也存在不可验证」这一论点的开创性证据。
 20. I. Goodfellow, J. Shlens & C. Szegedy (2015).「Explaining and Harnessing Adversarial Examples」. 收于《International Conference on Learning Representations (ICLR 2015)》. [②]
@@ -138,7 +138,7 @@ $$a(p,c)=\begin{cases} \textsf{allow}, & p \ge \tau_{\text{hi}}\ \wedge\ c \le c
 29. L. Bainbridge (1983).「Ironies of Automation」. Automatica, 19(6), 775-779. [②④]
    贝恩布里奇指出自动化的反讽：越是把人架到监督者的位置，他越缺乏练习，反而在真要接管时丧失了所需的技能与情境感。这直接支撑本章「分级自治依赖那个被请来确认的人」的警示，是理解人机协作软肋的经典短文。
 30. R. Parasuraman & V. Riley (1997).「Humans and Automation: Use, Misuse, Disuse, Abuse」. Human Factors, 39(2), 230-253. [②④]
-   作者把人对自动化的失当一口气列全并加以区分：过度信任导致的误用、不信任导致的弃用，以及设计上的滥用。它为本章关于自动化失当的讨论提供了清晰的分类框架，帮助读者辨别人机配合中各类典型偏差。
+   作者系统地列出并区分了人对自动化的失当：过度信任导致的误用、不信任导致的弃用，以及设计上的滥用。它为本章关于自动化失当的讨论提供了清晰的分类框架，帮助读者辨别人机配合中各类典型偏差。
 31. J. Reason (1990).《Human Error》. Cambridge University Press. [②④]
    里森在此建立了人因失误的认知分类，区分失误、过失与违规，并提出后来广为流传的「瑞士奶酪」式事故模型，揭示潜伏的系统性条件如何与一线疏失叠加成灾。它解释了本章所列各种人机失当为何会系统性地发生，是人因安全领域的奠基之作。
 

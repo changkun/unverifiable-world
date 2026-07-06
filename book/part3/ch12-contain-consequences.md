@@ -24,7 +24,7 @@ $$p^{k},$$
 
 第二招的纯形式：防不住的，就让它一旦发生必被发现。把检查从事前改为事后。
 
-它最硬核的技术，来自密码学。默克尔 1980 年的哈希树（Merkle tree）<sup class="cite"><a href="#ref-18">18</a></sup>、哈伯与斯托尔奈塔 1991 年的链式时间戳<sup class="cite"><a href="#ref-19">19</a></sup>，让一份记录一旦写下就无法被悄悄篡改，任何改动都会在校验时暴露；克罗斯比与瓦拉赫 2009 年的防篡改日志（tamper-evident log）<sup class="cite"><a href="#ref-23">23</a></sup>、施奈尔与凯尔西 1998 年在不可信机器上保护日志<sup class="cite"><a href="#ref-20">20</a></sup>、贝拉雷与迈纳 1999 年的前向安全签名（forward-secure signature）<sup class="cite"><a href="#ref-22">22</a></sup>，把这套做得更牢；证书透明度（Certificate Transparency，RFC 6962）<sup class="cite"><a href="#ref-24">24</a></sup>和中本聪 2008 年的比特币<sup class="cite"><a href="#ref-27">27</a></sup>，本质都是一本全球范围、只能追加、人人可验的审计账。核对一条记录是否在这样一棵树里，代价只有 $O(\log n)$，又是第 2 章那道「验比造廉」的红利。
+它最扎实的技术，来自密码学。默克尔 1980 年的哈希树（Merkle tree）<sup class="cite"><a href="#ref-18">18</a></sup>、哈伯与斯托尔奈塔 1991 年的链式时间戳<sup class="cite"><a href="#ref-19">19</a></sup>，让一份记录一旦写下就无法被悄悄篡改，任何改动都会在校验时暴露；克罗斯比与瓦拉赫 2009 年的防篡改日志（tamper-evident log）<sup class="cite"><a href="#ref-23">23</a></sup>、施奈尔与凯尔西 1998 年在不可信机器上保护日志<sup class="cite"><a href="#ref-20">20</a></sup>、贝拉雷与迈纳 1999 年的前向安全签名（forward-secure signature）<sup class="cite"><a href="#ref-22">22</a></sup>，把这套做得更牢；证书透明度（Certificate Transparency，RFC 6962）<sup class="cite"><a href="#ref-24">24</a></sup>和中本聪 2008 年的比特币<sup class="cite"><a href="#ref-27">27</a></sup>，本质都是一本全球范围、只能追加、人人可验的审计账。核对一条记录是否在这样一棵树里，代价只有 $O(\log n)$，又是第 2 章那道「验比造廉」的红利。
 
 而这一招其实古老得多。复式记账（double-entry bookkeeping）就是人类最早的防篡改账本之一，索尔在《清算》<sup class="cite"><a href="#ref-29">29</a></sup>里论证，算得清自己账目的能力，与国家的兴衰直接相关。现代财务审计、独立稽核，都是同一姿势。科学里，它是预注册（preregistration，诺塞克 2018）<sup class="cite"><a href="#ref-33">33</a></sup>与可复现（呼应第 3 章的复制危机）：把假说和方法在看到数据前就登记下来，事后无法移动靶子。
 
@@ -90,7 +90,7 @@ $$p^{k},$$
 19. S. Haber & W. S. Stornetta (1991).「How to Time-Stamp a Digital Document」. Journal of Cryptology. [②]
    两位作者提出用哈希把文档时间戳串成链，使任何事后篡改都会破坏链的连续性而暴露。这是链式防篡改记录的开创性工作，直接启发了后来的区块链结构，是理解留痕为何「改不掉」的关键。
 20. B. Schneier & J. Kelsey (1998).「Cryptographic Support for Secure Logs on Untrusted Machines」. 7th USENIX Security Symposium. [②]
-   本文设计了在可能被攻陷的机器上保护日志的方案：即便攻击者事后取得控制权，也无法不被察觉地删改此前的记录。它把防篡改日志推进到不可信环境，是本章留痕一招的硬核技术之一。
+   本文设计了在可能被攻陷的机器上保护日志的方案：即便攻击者事后取得控制权，也无法不被察觉地删改此前的记录。它把防篡改日志推进到不可信环境，是本章留痕一招的核心技术之一。
 21. B. Schneier & J. Kelsey (1999).「Secure Audit Logs to Support Computer Forensics」. ACM Transactions on Information and System Security. [②]
    这是上一篇工作的期刊版扩展，更完整地论述了支持取证的安全审计日志构造。它说明留痕不仅要忠实记录，还要在事后能经得起对抗性的核验，对应本章「让错误事后现形」的目标。
 22. M. Bellare & S. Miner (1999).「A Forward-Secure Digital Signature Scheme」. CRYPTO '99. [②]

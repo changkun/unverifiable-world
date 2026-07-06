@@ -1,6 +1,6 @@
 # 第 11 章　换一个能处理的问题
 
-> **论点**：别再坚持验证真正的对象。要么把它换成你能查的可解代理（代理替换，proxy substitution），要么不再索求二值判决、转而按标定（calibration）的概率行动（标定）。
+> **论点**：别再坚持验证真正的对象。要么把它换成你能查的可解代理（代理替换，proxy substitution），要么不再索求二值判决、转而按标定的概率行动（标定，calibration）。
 
 前两对招还在追对象的真：压缩它、或借判断去逼近它。这一对放弃了那个执念。它不再追问「真正那件事对不对」，而是换一个问题来回答，要么换掉验证的对象（代理替换），要么换掉判决的形式（标定）。
 
@@ -8,7 +8,7 @@
 
 第一招的纯形式：别再死磕那个测不出的真目标，把它换成一个你查得动、且足够用的代理，去验证、去优化那个代理。
 
-它的跨域形态，本书前面几乎每一章都撞见过。数学家用等价陈述代定理（第 7 章），软件工程师用测试代正确性、用基准代能力，组织用 KPI 代健康、用 GDP 代福祉（第 8 章），机器学习用奖励模型代人的真实偏好（第 5 章的 RLHF）。心理学里它也有个孪生：卡尼曼与弗雷德里克 2002 年<sup class="cite"><a href="#ref-32">32</a></sup>的「属性替换」（attribute substitution），人在直觉判断时，会不自觉地用一个好评估的属性顶替那个难评估的目标属性。波利亚那句「先解一个相关而更易的问题」、西蒖的满意化（satisficing），是这一招的方法论原型。
+它的跨域形态，本书前面几乎每一章都撞见过。数学家用等价陈述代定理（第 7 章），软件工程师用测试代正确性、用基准代能力，组织用 KPI 代健康、用 GDP 代福祉（第 8 章），机器学习用奖励模型代人的真实偏好（第 5 章的 RLHF）。心理学里它也有个孪生：卡尼曼与弗雷德里克 2002 年<sup class="cite"><a href="#ref-32">32</a></sup>的「属性替换」（attribute substitution），人在直觉判断时，会不自觉地用一个好评估的属性顶替那个难评估的目标属性。波利亚提出先转向一个相关而更易的问题<sup class="cite"><a href="#ref-30">30</a></sup>、西蒙的满意化（satisficing）<sup class="cite"><a href="#ref-31">31</a></sup>，是这一招的方法论原型。
 
 而这一招的全部精髓，在于它有两种相反的失效方式。这正是第 7 章与第 8 章的交点，也贯穿全书。把「忠实」（代理是否真指向原目标）和「更易」（代理是否真比原问题好处理）摆成两维：
 
@@ -16,7 +16,7 @@
 
 数学家栽在右上：等价改写忠实得无可挑剔，却一点没更好解，你只是给同一个困难换了身衣服。组织栽在左下：指标好测得很，可它和真目标的对应，一旦被当成目标去优化，就会断裂。
 
-为什么一优化就断？因为代理与真目标的相关只在现状这个分布上成立，优化压力会把你推离那个分布、推向二者发生背离的极端。古德哈特 1975 年<sup class="cite"><a href="#ref-1">1</a></sup>（指标一旦成为目标即失效）、坎贝尔 1979 年<sup class="cite"><a href="#ref-3">3</a></sup>、卢卡斯 1976 年<sup class="cite"><a href="#ref-6">6</a></sup>那条经济学孪生命题（被当作政策目标后，原有的结构关系即崩解），讲的是同一个机制。埃斯佩兰与索德尔的反身性（reactivity）更进一步：指标不只是失真，它还反过来重塑被测者。
+为什么一优化就断？因为代理与真目标的相关只在现状这个分布上成立，优化压力会把你推离那个分布、推向二者发生背离的极端。古德哈特 1975 年<sup class="cite"><a href="#ref-1">1</a></sup>（指标一旦成为目标即失效）、坎贝尔 1979 年<sup class="cite"><a href="#ref-3">3</a></sup>、卢卡斯 1976 年<sup class="cite"><a href="#ref-6">6</a></sup>那条经济学孪生命题（被当作政策目标后，原有的结构关系即崩解），讲的是同一个机制。埃斯佩兰与索德尔的反应性（reactivity）<sup class="cite"><a href="#ref-7">7</a></sup>更进一步：指标不只是失真，它还反过来重塑被测者。
 
 这个机制在机器学习里以惊人的清晰度重演。阿莫迪等人 2016 年<sup class="cite"><a href="#ref-10">10</a></sup>的奖励钻空（reward hacking）、潘等人 2022 年<sup class="cite"><a href="#ref-12">12</a></sup>的实证研究发现能力更强的代理更善于钻代理奖励的空子，真实回报甚至出现骤降的相变；斯卡尔塞等人 2022 年<sup class="cite"><a href="#ref-13">13</a></sup>证明非平凡的奖励几乎不可能「不可钻空」；高等人 2023 年<sup class="cite"><a href="#ref-14">14</a></sup>给这种过优化（overoptimization）测出了定量的标度律（scaling law）。一个好代理必须同时躲开这两端，既忠实又更易，而这罕见到，那点罕见本身就是全部的手艺。
 
@@ -61,23 +61,23 @@ $$p=\arg\max_{q}\ \mathbb{E}_{Y\sim p}\big[S(q,Y)\big].$$
 1. C. A. E. Goodhart (1975).「Problems of Monetary Management: The U.K. Experience」.《Papers in Monetary Economics》, Vol. I. Reserve Bank of Australia. [②]
    这是古德哈特定律的原始出处，源于 1975 年悉尼的一次货币经济学会议。古德哈特在讨论英国货币管理经验时指出，一个统计规律一旦被用作调控目标，原先观察到的稳定关系往往就会失效。本章用它作为代理失真的标杆：指标与真目标的相关只在现状分布上成立，一被当成目标去优化便会断裂。
 
-2. R. K. Merton (1936).「The Unanticipated Consequences of Purposive Social Action」.《American Sociological Review》, 1(6), 894–904. [②]
+2. R. K. Merton (1936).「The Unanticipated Consequences of Purposive Social Action」.《American Sociological Review》, 1(6), 894-904. [②]
    默顿系统讨论了有目的的社会行动为何会产生行动者未曾预料的后果，并梳理了知识不足、利益迫切、价值约束等若干来源。它是代理替换之副作用在社会学里的早期源头，提醒读者：优化一个代理时，真正吃紧的常是那些没有进入度量视野的后果。
 
-3. D. T. Campbell (1979).「Assessing the Impact of Planned Social Change」.《Evaluation and Program Planning》, 2(1), 67–90. [②④]
+3. D. T. Campbell (1979).「Assessing the Impact of Planned Social Change」.《Evaluation and Program Planning》, 2(1), 67-90. [②④]
    坎贝尔定律的来源：一个量化的社会指标越是被用于社会决策，它就越容易遭到扭曲，也越容易反过来扭曲它本要监测的社会过程。它与古德哈特定律并列，是代理失真的另一块经典基石，读者可借此看清指标被赋以高利害后的腐化路径。
 
-4. S. Kerr (1975).「On the Folly of Rewarding A, While Hoping for B」.《Academy of Management Journal》, 18(4), 769–783. [②④]
+4. S. Kerr (1975).「On the Folly of Rewarding A, While Hoping for B」.《Academy of Management Journal》, 18(4), 769-783. [②④]
    科尔考察了组织里普遍存在的激励错配：管理者奖励的行为 A，往往并非他们真正期望的行为 B，于是激励系统稳定地产出了与初衷相悖的结果。它是激励与代理错配的管理学经典，正对应本章「优化代理、真目标却烂掉」那一格的现实样貌。
 
-5. M. Strathern (1997).「'Improving ratings': audit in the British University system」.《European Review》, 5(3), 305–321. [②④]
+5. M. Strathern (1997).「'Improving ratings': audit in the British University system」.《European Review》, 5(3), 305-321. [②④]
    斯特拉森借英国大学审计制度的观察，给出了那句广为流传的表述：当一个度量成为目标，它便不再是好的度量。本章关于代理一旦被当作目标即失真的论证，常以此为简洁的口径，读者可读到这一表述的原始语境。
 
-6. R. E. Lucas (1976).「Econometric Policy Evaluation: A Critique」.《Carnegie-Rochester Conference Series on Public Policy》, 1, 19–46. [②③]
+6. R. E. Lucas (1976).「Econometric Policy Evaluation: A Critique」.《Carnegie-Rochester Conference Series on Public Policy》, 1, 19-46. [②③]
    卢卡斯批判指出，计量模型中估计出的参数关系依赖于既有政策环境，一旦据此改变政策，主体的预期与行为会随之调整，原有的结构关系便不再成立。它是古德哈特定律的经济学孪生命题，本章用它说明优化压力为何会把系统推离代理与真目标相符的那个分布。
 
-7. W. N. Espeland & M. Sauder (2007).「Rankings and Reactivity: How Public Measures Recreate Social Worlds」.《American Journal of Sociology》, 113(1), 1–40. [②④]
-   埃斯佩兰与索德尔提出「反身性」框架：公开的排名与量化指标不只是测量，它们还会改变被测者的行为乃至自我认知，从而重塑它本要描述的社会现实。本章借它把代理失真推进一层，指标不仅会失真，还会反过来重造被测对象。
+7. W. N. Espeland & M. Sauder (2007).「Rankings and Reactivity: How Public Measures Recreate Social Worlds」.《American Journal of Sociology》, 113(1), 1-40. [②④]
+   埃斯佩兰与索德尔提出「反应性」框架：公开的排名与量化指标不只是测量，它们还会改变被测者的行为乃至自我认知，从而重塑它本要描述的社会现实。本章借它把代理失真推进一层，指标不仅会失真，还会反过来重造被测对象。
 
 8. D. Manheim & S. Garrabrant (2018).「Categorizing Variants of Goodhart's Law」. arXiv:1803.04585. [②]
    两位作者尝试把笼统的「古德哈特定律」拆成几类不同机制（如回归型、极值型、因果型、对抗型），各自的失效方式与对策并不相同。它为本章「代理替换的失效不止一种」提供了细化的分类，便于读者分辨自己面对的是哪一种失真。
@@ -99,42 +99,42 @@ $$p=\arg\max_{q}\ \mathbb{E}_{Y\sim p}\big[S(q,Y)\big].$$
 13. J. Skalse, N. H. R. Howe, D. Krasheninnikov & D. Krueger (2022).「Defining and Characterizing Reward Hacking」.《Advances in Neural Information Processing Systems》, 35 (NeurIPS 2022). [②]
    这篇论文给出奖励钻空的一个形式化定义，并证明在非平凡的情形下，几乎不存在「不可钻空」的代理奖励。它为本章「好代理罕见」提供了理论支撑：忠实又稳健的代理之所以稀少，是有结构性原因的，而非工程上偶然没做好。
 
-14. L. Gao, J. Schulman & J. Hilton (2023).「Scaling Laws for Reward Model Overoptimization」.《Proceedings of the 40th International Conference on Machine Learning》(PMLR 202), 10835–10866. [②]
+14. L. Gao, J. Schulman & J. Hilton (2023).「Scaling Laws for Reward Model Overoptimization」.《Proceedings of the 40th International Conference on Machine Learning》(PMLR 202), 10835-10866. [②]
    作者对奖励模型的过优化做了定量刻画，给出真实表现随对代理奖励优化程度变化的标度律式规律：优化超过某点后，代理得分仍升而真实表现转跌。它把古德哈特式失真从定性观察推进到可测量的曲线，是本章过优化论证最实证的一块。
 
 ### 标定：把二值判决换成概率，并以严格适当评分约束之
 
-15. G. W. Brier (1950).「Verification of Forecasts Expressed in Terms of Probability」.《Monthly Weather Review》, 78(1), 1–3. [②]
+15. G. W. Brier (1950).「Verification of Forecasts Expressed in Terms of Probability」.《Monthly Weather Review》, 78(1), 1-3. [②]
    布莱尔提出了一个用于评价概率预报的评分（即后来的 Brier 评分），把「报了多大把握、最终是否发生」纳入可计算的考核。它是标定与严格适当评分体系的起点，本章关于「概率可检验」的论证由此发端。
 
-16. L. J. Savage (1971).「Elicitation of Personal Probabilities and Expectations」.《Journal of the American Statistical Association》, 66(336), 783–801. [②]
+16. L. J. Savage (1971).「Elicitation of Personal Probabilities and Expectations」.《Journal of the American Statistical Association》, 66(336), 783-801. [②]
    萨维奇研究如何设计评分与激励，使人愿意如实报出自己的主观概率与期望。它为「适当评分规则诱出真实概率」奠定了理论基础，对应本章那句关键设计：讲真话不再靠自觉，而被评分规则的数学结构所强制。
 
-17. A. H. Murphy (1973).「A New Vector Partition of the Probability Score」.《Journal of Applied Meteorology》, 12(4), 595–600. [②]
+17. A. H. Murphy (1973).「A New Vector Partition of the Probability Score」.《Journal of Applied Meteorology》, 12(4), 595-600. [②]
    墨菲把 Brier 评分分解为可靠性、分辨率与不确定性三个分量，让人能分别看清预报哪里失标、哪里有区分力。这一分解是标定概念的量化骨架，本章谈「标定」与「锐度」的区分，正建立在这种拆解之上。
 
-18. M. H. DeGroot & S. E. Fienberg (1983).「The Comparison and Evaluation of Forecasters」.《Journal of the Royal Statistical Society: Series D (The Statistician)》, 32(1–2), 12–22. [②]
+18. M. H. DeGroot & S. E. Fienberg (1983).「The Comparison and Evaluation of Forecasters」.《Journal of the Royal Statistical Society: Series D (The Statistician)》, 32(1-2), 12-22. [②]
    德格鲁特与芬伯格对预测者的比较与评价做了系统处理，明确区分了标定（calibration）与精炼/锐度（refinement），并给出据此排序预测者的框架。它是本章标定论证的核心理论来源，读者可在此看到标定作为可检验认识对象的严格表述。
 
-19. A. P. Dawid (1982).「The Well-Calibrated Bayesian」.《Journal of the American Statistical Association》, 77(379), 605–610. [②]
+19. A. P. Dawid (1982).「The Well-Calibrated Bayesian」.《Journal of the American Statistical Association》, 77(379), 605-610. [②]
    达维德证明，一个连贯的贝叶斯主体在自己的主观信念下会渐近地自我标定，即长期看其概率断言与实际频率相符。本章用它说明标定并非外加的苛求，而可以是理性更新的内在产物。
 
-20. D. Oakes (1985).「Self-Calibrating Priors Do Not Exist」.《Journal of the American Statistical Association》, 80(390), 339–342. [②]
+20. D. Oakes (1985).「Self-Calibrating Priors Do Not Exist」.《Journal of the American Statistical Association》, 80(390), 339-342. [②]
    奥克斯指出，不存在一个先验能保证对所有数据序列都自我标定，从而给达维德式的乐观结果划出了边界。它与 Dawid (1982) 及 Foster-Vohra 的可达性结果形成反向制衡，是本章「标定有其极限」一笔的依据。
 
-21. M. J. Schervish (1989).「A General Method for Comparing Probability Assessors」.《The Annals of Statistics》, 17(4), 1856–1879. [②]
+21. M. J. Schervish (1989).「A General Method for Comparing Probability Assessors」.《The Annals of Statistics》, 17(4), 1856-1879. [②]
    舍尔维什给出比较概率评估者的一般方法，把各种适当评分规则纳入统一的比较框架，作为其中的特例。它对标定理论起到集成与整理的作用，便于读者把零散的评分规则放进同一张图里看。
 
-22. D. P. Foster & R. V. Vohra (1998).「Asymptotic Calibration」.《Biometrika》, 85(2), 379–390. [②]
+22. D. P. Foster & R. V. Vohra (1998).「Asymptotic Calibration」.《Biometrika》, 85(2), 379-390. [②]
    福斯特与沃赫拉证明，即便面对任意（甚至对抗性）的结果序列，也存在一种预测策略能渐近达到标定。这是标定可达性的关键定理，本章据此说明标定是一个比真假判决更弱、却切实可达的认识目标。
 
-23. T. Gneiting & A. E. Raftery (2007).「Strictly Proper Scoring Rules, Prediction, and Estimation」.《Journal of the American Statistical Association》, 102(477), 359–378. [②]
+23. T. Gneiting & A. E. Raftery (2007).「Strictly Proper Scoring Rules, Prediction, and Estimation」.《Journal of the American Statistical Association》, 102(477), 359-378. [②]
    这是严格适当评分规则的权威综述：系统整理了哪些评分函数能使如实报告恰好成为期望得分最优之策，并把它们与预测、估计联系起来。它是本章标定论证的理论支柱，读者要理解「讲真话被数学结构强制」可读此篇。
 
-24. T. Gneiting, F. Balabdaoui & A. E. Raftery (2007).「Probabilistic Forecasts, Calibration and Sharpness」.《Journal of the Royal Statistical Society: Series B (Statistical Methodology)》, 69(2), 243–268. [②]
+24. T. Gneiting, F. Balabdaoui & A. E. Raftery (2007).「Probabilistic Forecasts, Calibration and Sharpness」.《Journal of the Royal Statistical Society: Series B (Statistical Methodology)》, 69(2), 243-268. [②]
    作者提出概率预测的现代框架，把目标概括为「受制于标定，越锐越好」：先要求预测标定，再在标定的前提下尽量提高锐度。本章关于如何评判一个概率预测好坏的标准，直接采用这一框架。
 
-25. C. Guo, G. Pleiss, Y. Sun & K. Q. Weinberger (2017).「On Calibration of Modern Neural Networks」.《Proceedings of the 34th International Conference on Machine Learning》(PMLR 70), 1321–1330. [②]
+25. C. Guo, G. Pleiss, Y. Sun & K. Q. Weinberger (2017).「On Calibration of Modern Neural Networks」.《Proceedings of the 34th International Conference on Machine Learning》(PMLR 70), 1321-1330. [②]
    作者发现现代深度神经网络虽然往往更准，却常常失标，置信度系统性地偏离真实正确率，并提出温度缩放等简单的重新校准方法。它是标定问题在机器学习侧的代表作，正对应本章「现代神经网络恰恰常常失标，于是需要重新校准」。
 
 26. V. Vovk, A. Gammerman & G. Shafer (2005).《Algorithmic Learning in a Random World》. Springer. [②]
@@ -148,14 +148,14 @@ $$p=\arg\max_{q}\ \mathbb{E}_{Y\sim p}\big[S(q,Y)\big].$$
 28. P. E. Tetlock & D. Gardner (2015).《Superforecasting: The Art and Science of Prediction》. Crown. [①④]
    本书把 IARPA 预测锦标赛的研究成果通俗化，刻画了表现突出的「超级预测者」如何拆解问题、给出概率、并随证据不断微调。它偏向实践，讲的正是如何在无法验证的世界里做出可被标定检验的判断，适合读者据以训练自己的预测习惯。
 
-29. G. E. P. Box (1976).「Science and Statistics」.《Journal of the American Statistical Association》, 71(356), 791–799. [②③]
+29. G. E. P. Box (1976).「Science and Statistics」.《Journal of the American Statistical Association》, 71(356), 791-799. [②③]
    这是「所有模型都是错的，但有些有用」一语的出处。博克斯主张统计建模是科学探究的迭代过程，不应追求绝对正确而应追求有用与可改进。它正服务于本章的一组败法对照：忠实却不易处理，还是可处理但只是近似。
 
 30. G. Pólya (1945).《How to Solve It: A New Aspect of Mathematical Method》. Princeton University Press. [②④]
-   波利亚总结了一套解题启发法，其中一条便是「先解一个相关而更易的问题」，再借它逼近原题。这正是本章标题这一替换动作的方法论原型，读者可把代理替换看作把这条古老的解题术推广到无法直接验证的场景。
+   波利亚总结了一套解题启发法，其中一条便是先转向一个相关而更易的问题，再借它逼近原题。这正是本章标题这一替换动作的方法论原型，读者可把代理替换看作把这条古老的解题术推广到无法直接验证的场景。
 
-31. H. A. Simon (1956).「Rational Choice and the Structure of the Environment」.《Psychological Review》, 63(2), 129–138. [②④]
+31. H. A. Simon (1956).「Rational Choice and the Structure of the Environment」.《Psychological Review》, 63(2), 129-138. [②④]
    西蒙提出有限理性与满意化：在能力与信息有限时，主体并不求最优，而是搜到一个「足够好」的方案即停。它为「用足够好的代理取代难以企及的最优」提供了理论根据，是本章替换动作在决策科学里的根。
 
-32. D. Kahneman & S. Frederick (2002).「Representativeness Revisited: Attribute Substitution in Intuitive Judgment」. 收入 T. Gilovich, D. Griffin & D. Kahneman (编)《Heuristics and Biases: The Psychology of Intuitive Judgment》, 49–81. Cambridge University Press. [②]
+32. D. Kahneman & S. Frederick (2002).「Representativeness Revisited: Attribute Substitution in Intuitive Judgment」. 收入 T. Gilovich, D. Griffin & D. Kahneman (编)《Heuristics and Biases: The Psychology of Intuitive Judgment》, 49-81. Cambridge University Press. [②]
    卡尼曼与弗雷德里克提出「属性替换」：当目标属性难以评估时，人会不自觉地用一个更易评估的属性顶替它来作答。这正是本章代理替换机制的心理学孪生，说明换问题这一招不只是工程策略，也是人类直觉的默认运作方式。

@@ -32,7 +32,7 @@ This is precisely the human-shaped version of this book's epistemology. Intuitio
 
 Synthesizing these observations, what emerges is a stance that is neither the paralysis of the skeptic (since nothing can be made certain, nothing counts and nothing should be done) nor the pretense of the dogmatist (enshrining a measurable number and pretending it is the unmeasurable truth). It is a third path: knowing clear-eyed what you do not know, marking that not-knowing with a scale, and acting well all the same.
 
-There is a quiet dignity in this. To admit that verification is a luxury is not to concede defeat; it is to take the preconditions of action seriously. A good judge does not prop himself up on certainty; he relies on not inflating his own confidence, on naming clearly the ways he might be wrong, and on the set of methods that turns that clear-eyed accounting into action.
+There is a quiet dignity in this. To admit that verification is a luxury is not to concede defeat; it is to take the preconditions of action seriously. A good judge does not prop himself up on certainty; he relies on not inflating his own confidence, and on the set of methods that turns that clear-eyed accounting into action.
 
 ## Closing the Arc Opened in the Preface
 

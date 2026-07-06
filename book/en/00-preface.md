@@ -1,6 +1,6 @@
 # Preface: A World Without Oracles
 
-Before sailing, marrying, or founding a city, the ancient Greeks would go to Delphi and ask the oracle. The oracle mattered not because it was always accurate, but because it promised one thing: before you acted, there was somewhere that could tell you the answer. Two thousand years later, computer scientists borrowed the word. For them, an oracle is a black box: you hand it a problem you cannot solve, and it immediately returns the correct answer. The two oracles share the same fantasy: before moving, verify right and wrong.
+Before going to war, marrying, or founding a city, the ancient Greeks would go to Delphi and ask the oracle. The oracle mattered not because it was always accurate, but because it promised one thing: before you acted, there was somewhere that could tell you the answer. Two thousand years later, computer scientists borrowed the word. For them, an oracle is a black box: you hand it a problem you cannot solve, and it immediately returns the correct answer. The two oracles share the same fantasy: before moving, verify right and wrong.
 
 This book is about the world after that fantasy breaks.
 
@@ -8,7 +8,7 @@ We almost never verify. We act, and then, sooner or later, we find out; or we ne
 
 The usual responses to this condition are lament or pretense. Those who lament say that if nothing can be made certain, then every judgment is mere guesswork. Those who pretend build themselves a false oracle: they enthrone a measurable number and act as if it were the unmeasurable truth. This book does neither. It asks a more interesting question: when the oracle is absent, what do capable people actually do: scientists, engineers, mathematicians, and governors?
 
-If you pursue that question across enough fields, you run into a surprising observation. Although the sources of unverifiability differ wildly, capable responses keep converging on the same small set.
+If you pursue that question across enough fields, you run into a surprising observation, the one this whole book grew from: although the sources of unverifiability differ wildly, capable responses keep converging on the same small set.
 
 That observation gives the book its two-layer structure. Hold it in mind, because everything later hangs from it.
 
@@ -18,7 +18,7 @@ The second layer: responses converge. Whatever face the problem wears, capable a
 
 One candid reservation has to stand at the front. Is this convergence a law, in the sense that something forces every bounded actor toward these moves? Or is it only a strong empirical pattern: something we keep seeing, but cannot prove must be so? At the moment I do not have evidence that it is a law. What this book delivers is a bounded conjecture, stated plainly, together with a shared vocabulary that can connect many fields. It is not a theorem. Chapter 14 confronts this directly.
 
-That creates an unavoidable and fitting recursion. A book about how to act under unverifiability cannot verify its own central claim. So it can only do what it describes throughout: state a calibrated belief, draw the boundaries of the claim, invite refutation, and proceed anyway. This book will practice the methods it studies. If it is right, that self-demonstration is not a defect. It is the only honest way to write it.
+That creates an unavoidable recursion, and one that should not be dodged. A book about how to act under unverifiability cannot verify its own central claim. So it can only do what it describes throughout: state a calibrated belief, draw the boundaries of the claim, invite refutation, and proceed anyway. This book will practice the methods it studies. If it is right, that self-demonstration is not a defect. It is the only defensible way to write it.
 
 One image to end on; the afterword will return to it. A ship changes course in heavy fog. The captain has charts, a compass, and estimates of the current. She does not have eyes that can see through the fog. She cannot verify, before turning the rudder, whether a reef lies ahead. The fog will not lift. The oracle will not come. But sailing cannot stop for that reason. This book wants to understand not how to wait for the fog to clear, but how a good captain actually steers inside it.
 
@@ -31,7 +31,7 @@ One image to end on; the afterword will return to it. A ship changes course in h
 1. H. A. Simon (1969). *The Sciences of the Artificial*. MIT Press. [2][4]
    Simon distinguishes natural science from "the sciences of the artificial" and argues that design is a discipline for coping with complex environments under bounded rationality. His ideas of near-decomposability, hierarchy, and satisficing provide a background for this book's central stance: actors do not verify everything; under limits of computation and information, they design responses that are good enough.
 2. F. H. Knight (1921). *Risk, Uncertainty and Profit*. Houghton Mifflin. [2]
-   Knight draws the influential line between risk, where probabilities are known and measurable, and true uncertainty, where even the probability distribution is unavailable. He then attributes entrepreneurial profit to bearing the latter. The distinction is one conceptual source for this book's use of "unverifiability."
+   Knight draws the influential line between risk, where probabilities are known and measurable, and true uncertainty, where even the probability distribution is unavailable. He then attributes entrepreneurial profit to bearing the latter. The distinction is one conceptual source for this book's use of "unverifiability," reminding the reader to separate situations where a probability can be measured from those where even the probability cannot.
 3. N. N. Taleb (2007). *The Black Swan: The Impact of the Highly Improbable*. Random House. [2][4]
    Taleb argues that rare, hard-to-foresee, high-impact events dominate history and markets, while conventional bell-curve statistics systematically underestimate them. His diagnosis of prediction's limits matters here: when tail events cannot be verified in advance, changing one's exposure to surprise is often more useful than pursuing precise forecasts.
 4. W. C. Wimsatt (2007). *Re-Engineering Philosophy for Limited Beings: Piecewise Approximations to Reality*. Harvard University Press. [2][3][4]
@@ -39,7 +39,7 @@ One image to end on; the afterword will return to it. A ship changes course in h
 5. J. M. Keynes (1921). *A Treatise on Probability*. Macmillan. [2]
    Keynes understands probability as a logical relation between propositions: the rational degree of belief given evidence. He notes that many probabilities cannot be precisely numbered and may not even be comparable. His notion of the "weight" of evidence reminds us that when evidence is thin, quantified confidence may itself be unwarranted.
 6. L. J. Savage (1954). *The Foundations of Statistics*. Wiley. [2]
-   Savage gives subjective expected utility a set of axiomatic foundations: if a person's preferences satisfy certain consistency requirements, their choices can be represented as maximizing expected utility under a subjective probability. It is the baseline for later disputes about rational choice under unverifiable outcomes.
+   Savage gives subjective expected utility a set of axiomatic foundations: if a person's preferences satisfy certain consistency requirements, their choices can be represented as maximizing expected utility under a subjective probability. It is the baseline for later disputes: only by seeing its consistency requirements can one see how Ellsberg and others locate real judgment's departures from it.
 7. D. Ellsberg (1961). "Risk, Ambiguity, and the Savage Axioms." *Quarterly Journal of Economics*, 75(4), 643-669. [2]
    Ellsberg's urn experiments show that people systematically prefer known probabilities to unknown ones. This ambiguity aversion violates Savage's axioms and cannot be reconciled by a single subjective probability. It gives experimental force to the Knightian distinction.
 8. H. A. Simon (1955). "A Behavioral Model of Rational Choice." *Quarterly Journal of Economics*, 69(1), 99-118. [2][4]
@@ -62,8 +62,8 @@ One image to end on; the afterword will return to it. A ship changes course in h
     Polanyi argues that all knowing contains tacit knowledge and personal commitment. Fully objective, fully formalized knowledge is an illusion. His account explains why scientific judgment cannot be replaced entirely by rules.
 17. P. E. Meehl (1954). *Clinical versus Statistical Prediction: A Theoretical Analysis and a Review of the Evidence*. University of Minnesota Press. [1][4]
     Meehl reviews evidence showing that simple statistical or actuarial predictions often match or exceed clinical expert judgment. It is classic evidence for outsourcing judgment to checkable rules, while warning that expert confidence and expert accuracy may diverge.
-18. D. A. Schon (1983). *The Reflective Practitioner: How Professionals Think in Action*. Basic Books. [1][4]
-    Schon describes reflection-in-action: professionals in ambiguous and unique situations do not simply apply theory. They converse with the situation, act, and reframe the problem. This captures a professional ability that cannot be verified in advance.
+18. D. A. Schön (1983). *The Reflective Practitioner: How Professionals Think in Action*. Basic Books. [1][4]
+    Schön describes reflection-in-action: professionals in ambiguous and unique situations do not simply apply theory. They converse with the situation, act, and reframe the problem. This captures a professional ability that cannot be verified in advance.
 19. G. A. Klein (1998). *Sources of Power: How People Make Decisions*. MIT Press. [1][4]
     Klein's field studies of firefighters, nurses, and other experts lead to the recognition-primed decision model. Experienced people under time pressure often generate a workable action by recognizing a pattern, then mentally simulating it. This helps explain when expert intuition can be reliable.
 20. P. E. Tetlock (2005). *Expert Political Judgment: How Good Is It? How Can We Know?* Princeton University Press. [1][4]

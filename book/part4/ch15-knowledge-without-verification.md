@@ -26,7 +26,7 @@
 
 关于专家判断，心理学积累了大量并不总让人舒服的证据。米尔 1954 年<sup class="cite"><a href="#ref-5">5</a></sup>、道斯 1979 年<sup class="cite"><a href="#ref-12">12</a></sup>发现，在许多领域，简单的统计模型胜过专家的临床直觉。但另一脉研究给出了互补的图景。克莱因的自然主义决策（naturalistic decision making）<sup class="cite"><a href="#ref-17">17</a></sup>、舍恩的「反思性实践者」（reflective practitioner）<sup class="cite"><a href="#ref-13">13</a></sup>、德雷福斯兄弟<sup class="cite"><a href="#ref-14">14</a></sup>与埃里克松对刻意练习（deliberate practice）<sup class="cite"><a href="#ref-15">15</a></sup>的研究表明，在反馈充分、规律稳定的环境里，专家能发展出可靠的直觉，那本质是被反馈打磨出来的、标定良好的模式识别（pattern recognition）。吉仁泽的「快而省」启发式（fast-and-frugal heuristics）<sup class="cite"><a href="#ref-16">16</a></sup>进一步指出，简单规则之所以管用，是因为它们吃透了环境的结构（生态理性，ecological rationality）。最持平的综合，来自卡尼曼与克莱因 2009 年那场「未能达成分歧」的对话<sup class="cite"><a href="#ref-24">24</a></sup>：直觉值不值得信，取决于环境，高效度、可学习的环境里它可信，低效度、充满噪声的环境里它就是自欺。
 
-这正是本书认识论的人形版本。直觉既非魔法，也非废物，它是一种标定的能力，而标定本身是可以训练的。特洛克主持的「良好判断计划」（Good Judgment Project）<sup class="cite"><a href="#ref-27">27</a></sup>在一场情报界举办的预测锦标赛里，挑出一批被称为「超级预测者」（superforecasters）的普通人，他们既无机密权限，也非领域专家，却靠多角度取证、小步更新、严苛复盘这些可学的习惯，据报道把预测准确度做到了超过能接触机密情报的专业分析师约三成。承认这一点，也就承认了刻意的无知（deliberate ignorance）有时是理性的<sup class="cite"><a href="#ref-28">28</a></sup>、承认了在凯恩斯<sup class="cite"><a href="#ref-3">3</a></sup>与奈特<sup class="cite"><a href="#ref-1">1</a></sup>那种根本不确定（凯与金<sup class="cite"><a href="#ref-29">29</a></sup>所谓「彻底的不确定性」，radical uncertainty）面前，按照塔勒布<sup class="cite"><a href="#ref-26">26</a></sup>的思路为稳健与反脆弱（antifragile）进行布局，往往比追求精确预测更加明智。
+这正是本书认识论的人形版本。直觉既非魔法，也非废物，它是一种标定的能力，而标定本身是可以训练的。特洛克主持的「良好判断计划」（Good Judgment Project）<sup class="cite"><a href="#ref-27">27</a></sup>在一场情报界举办的预测锦标赛里，挑出一批被称为「超级预测者」（superforecasters）的普通人，他们既无机密权限，也非领域专家，却靠多角度取证、小步更新、严苛复盘这些可学的习惯，据报道把预测准确度做到了超过能接触机密情报的专业分析师约三成。承认这一点，也就承认了刻意的无知（deliberate ignorance）有时是理性的<sup class="cite"><a href="#ref-28">28</a></sup>、承认了在凯恩斯<sup class="cite"><a href="#ref-3">3</a></sup>与奈特<sup class="cite"><a href="#ref-1">1</a></sup>那种根本不确定（凯与金<sup class="cite"><a href="#ref-29">29</a></sup>所谓「彻底的不确定性」，radical uncertainty）面前，按照塔勒布<sup class="cite"><a href="#ref-26">26</a></sup>的思路为稳健与反脆弱（antifragility）进行布局，往往比追求精确预测更加明智。
 
 ## 在不确定中行动的尊严
 
@@ -97,7 +97,7 @@
 26. N. N. Taleb (2012).《Antifragile: Things That Gain from Disorder》. Random House. [④]
    塔勒布提出「反脆弱」：超越仅仅抗压的稳健，有些系统能从波动、压力与意外中获益。本章引此给出在根本不确定下行动的正面策略，即布置好让自己从不可预测中受益而非受损的结构。
 27. P. E. Tetlock & D. Gardner (2015).《Superforecasting: The Art and Science of Prediction》. Crown. [①④]
-   本书报告「优秀判断力计划」的发现：少数「超级预测者」的准确度持续高于常人，靠的不是天赋，而是一套可学的习惯，多角度取证、小步更新、严苛复盘。本章引此说明标定本身可以被训练，预测是一门可改进的手艺。
+   本书报告「良好判断计划」（Good Judgment Project）的发现：少数「超级预测者」的准确度持续高于常人，靠的不是天赋，而是一套可学的习惯，多角度取证、小步更新、严苛复盘。本章引此说明标定本身可以被训练，预测是一门可改进的手艺。
 28. R. Hertwig & C. Engel (2016). 「Homo Ignorans: Deliberately Choosing Not to Know」. Perspectives on Psychological Science, 11(3), 359-372. [②④]
    两位作者梳理人们何以及如何主动选择不去知道某些信息，论证「刻意的无知」常常是理性的应对，而非认知缺陷。本章用它支持一个反直觉的要点：有时不查、不知，恰恰是好的决策姿态。
 29. J. Kay & M. King (2020).《Radical Uncertainty: Decision-Making Beyond the Numbers》. W. W. Norton. [②④]
