@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""F4（第 5 章）：行动—观察—更新回路，以及把提问花在信息增益最大处。
+"""F4（第 5 章）：行动、观察、更新回路，以及把提问花在信息增益最大处。
 
 生成 book/figures/f05-elicitation-loop.svg
 """
@@ -21,7 +21,7 @@ def build(lang="zh"):
     if en:
         W = 820
     s = SVG(W, H)
-    s.text(W / 2, 34, t("把判断者放进回路：行动 — 观察 — 更新",
+    s.text(W / 2, 34, t("把判断者放进回路：行动、观察、更新",
                         "Putting the judge in the loop: act, observe, update"),
            size=21 if not en else 19, weight="bold")
 
