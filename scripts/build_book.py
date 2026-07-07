@@ -112,6 +112,14 @@ def convert_citations(text):
     return text
 
 
+def strip_web_widgets(text):
+    """删除只在网页阅读器里生效的交互可视化块（<figure class="uvw-viz">…</style>…
+    </script>）。它们的静态 SVG 兜底图（紧邻其前的 ![](figures/…svg)）会保留，
+    因此 PDF/EPUB 仍有配图；否则 pandoc 会把控件文字抽进正文，污染书稿。"""
+    return re.sub(r'\n?<figure class="uvw-viz".*?</script>\n?', "\n",
+                  text, flags=re.S)
+
+
 def rewrite_figures(text, lang, media_dir, used):
     """把 ![cap](../figures/NAME.svg) 改写为本地高清 PNG 的绝对路径。"""
     def repl(m):
@@ -165,6 +173,7 @@ def assemble(lang):
             print(f"  ! 缺章节，跳过：{os.path.relpath(path, ROOT)}")
             continue
         text = open(path, encoding="utf-8").read()
+        text = strip_web_widgets(text)
         text = convert_citations(text)
         text = demote_headings(text)
         text = mark_first_heading_unnumbered(text)
@@ -172,8 +181,11 @@ def assemble(lang):
         chunks.append("\n" + text.strip() + "\n")
 
     md_path = os.path.join(work, "book.md")
+    assembled = "\n".join(chunks)
+    # 兜底：网页交互控件绝不能漏进书稿，否则 pandoc 会把控件文字抽进正文。
+    assert "uvw-viz" not in assembled, "web-only interactive widget leaked into the book build"
     with open(md_path, "w", encoding="utf-8") as f:
-        f.write("\n".join(chunks))
+        f.write(assembled)
     return md_path
 
 
