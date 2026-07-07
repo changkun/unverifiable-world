@@ -32,6 +32,112 @@ $$\Pr\big(Y=1 \mid \hat p=p\big)=p,$$
 
 ![标定的可靠性图：说有几成把握，就该真有几成成真](../figures/f11-calibration.svg)
 
+<figure class="uvw-viz" data-static="f11-calibration" role="group" aria-label="标定可靠性交互图">
+<div class="uvw-live" hidden>
+<div class="uvw-plot">
+<svg viewBox="0 0 480 360" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+<g class="uvw-axes" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.35">
+<line x1="90" y1="300" x2="350" y2="300"></line>
+<line x1="90" y1="300" x2="90" y2="40"></line>
+</g>
+<path class="uvw-gap-fill" stroke="none" opacity="0.14"></path>
+<line class="uvw-diag" x1="90" y1="300" x2="350" y2="40" stroke="currentColor" stroke-width="1.3" stroke-dasharray="5 5" opacity="0.5"></line>
+<path class="uvw-curve" fill="none" stroke-width="2.8"></path>
+<line class="uvw-mark-v" stroke="currentColor" stroke-width="1" stroke-dasharray="3 3" opacity="0.45"></line>
+<line class="uvw-mark-h" stroke="currentColor" stroke-width="1" stroke-dasharray="3 3" opacity="0.45"></line>
+<circle class="uvw-dot" r="5"></circle>
+<text class="uvw-tick" x="90" y="316" text-anchor="middle">0</text>
+<text class="uvw-tick" x="350" y="316" text-anchor="middle">100%</text>
+<text class="uvw-tick" x="84" y="44" text-anchor="end">100%</text>
+<text class="uvw-diag-lab" x="356" y="44">完美标定</text>
+<text class="uvw-xlab" x="220" y="344" text-anchor="middle">声称的把握 →</text>
+<text class="uvw-ylab" x="34" y="170" text-anchor="middle" transform="rotate(-90 34 170)">实际发生频率 →</text>
+</svg>
+</div>
+<div class="uvw-controls">
+<label>过度自信
+<input class="uvw-s-over" type="range" min="-100" max="100" value="60" step="1">
+</label>
+<label>温度校准
+<input class="uvw-s-temp" type="range" min="0" max="100" value="0" step="1">
+</label>
+<div class="uvw-readout">
+<span class="uvw-chip">声称 <b class="uvw-v-stated">70</b>%</span>
+<span class="uvw-chip uvw-chip-obs">实际 <b class="uvw-v-obs">–</b>%</span>
+<span class="uvw-chip uvw-chip-ece">校准误差 <b class="uvw-v-ece">–</b></span>
+<span class="uvw-chip">Brier <b class="uvw-v-brier">–</b></span>
+</div>
+<p class="uvw-note"></p>
+</div>
+</div>
+</figure>
+<style>
+.uvw-viz{margin:1.6em 0;padding:0}
+.uvw-viz .uvw-live{border:1px solid var(--line,#e5e7eb);border-radius:10px;padding:14px 16px 18px;background:var(--paper,#fff)}
+.uvw-viz svg{width:100%;height:auto;color:var(--ink,#1a1a1a);display:block}
+.uvw-viz .uvw-tick,.uvw-viz .uvw-xlab,.uvw-viz .uvw-ylab,.uvw-viz .uvw-diag-lab{fill:var(--muted,#6b7280);font-size:12px}
+.uvw-viz .uvw-xlab,.uvw-viz .uvw-ylab{font-size:13px}
+.uvw-viz .uvw-controls{margin-top:10px}
+.uvw-viz .uvw-controls label{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--muted,#6b7280);margin-top:6px}
+.uvw-viz .uvw-s-over,.uvw-viz .uvw-s-temp{flex:1;accent-color:#6366f1}
+.uvw-viz .uvw-readout{display:flex;flex-wrap:wrap;gap:8px 14px;margin-top:12px;font-size:14px}
+.uvw-viz .uvw-chip b{font-variant-numeric:tabular-nums}
+.uvw-viz .uvw-chip-obs b{color:#6366f1}
+.uvw-viz .uvw-chip-ece b{color:#d97706}
+.uvw-viz .uvw-note{margin:12px 0 0;font-size:13.5px;color:var(--muted,#6b7280);min-height:3.6em;line-height:1.6}
+@media (prefers-reduced-motion: no-preference){
+.uvw-viz .uvw-curve,.uvw-viz .uvw-gap-fill,.uvw-viz .uvw-dot{transition:d .18s ease,cx .18s ease,cy .18s ease}
+}
+</style>
+<script>
+(function(){
+ var root=document.currentScript.previousElementSibling;
+ while(root&&!(root.classList&&root.classList.contains('uvw-viz')))root=root.previousElementSibling;
+ if(!root)return;
+ var live=root.querySelector('.uvw-live');if(!live)return;
+ var key=root.getAttribute('data-static');
+ if(key){var imgs=document.querySelectorAll('img[src*="'+key+'"]');for(var i=0;i<imgs.length;i++){var p=imgs[i].closest('p')||imgs[i];p.style.display='none';}}
+ live.hidden=false;
+ var sOver=root.querySelector('.uvw-s-over'),sTemp=root.querySelector('.uvw-s-temp');
+ var curve=root.querySelector('.uvw-curve'),fill=root.querySelector('.uvw-gap-fill');
+ var mv=root.querySelector('.uvw-mark-v'),mh=root.querySelector('.uvw-mark-h'),dot=root.querySelector('.uvw-dot');
+ var vObs=root.querySelector('.uvw-v-obs'),vEce=root.querySelector('.uvw-v-ece'),vBrier=root.querySelector('.uvw-v-brier');
+ var note=root.querySelector('.uvw-note');
+ var X0=90,X1=350,Y0=300,Y1=40;
+ var AMBER='#d97706',GREEN='#10b981',PURPLE='#a855f7';
+ function sx(x){return X0+(X1-X0)*x;}
+ function sy(y){return Y0+(Y1-Y0)*y;}
+ function gammaEff(){
+  var raw=Math.pow(4,(+sOver.value)/100);
+  var t=(+sTemp.value)/100;
+  return Math.pow(raw,1-t);
+ }
+ function curveD(g){var d='M'+sx(0).toFixed(1)+','+sy(0).toFixed(1);for(var i=1;i<=100;i++){var x=i/100;d+='L'+sx(x).toFixed(1)+','+sy(Math.pow(x,g)).toFixed(1);}return d;}
+ function fillD(g){var d='M'+sx(0).toFixed(1)+','+sy(0).toFixed(1);for(var i=1;i<=100;i++){var x=i/100;d+='L'+sx(x).toFixed(1)+','+sy(Math.pow(x,g)).toFixed(1);}for(var j=100;j>=0;j--){var xx=j/100;d+='L'+sx(xx).toFixed(1)+','+sy(xx).toFixed(1);}return d+'Z';}
+ function metrics(g){var ece=0,brier=0,n=50;for(var i=0;i<n;i++){var x=(i+0.5)/n;var y=Math.pow(x,g);ece+=Math.abs(x-y);brier+=(x-y)*(x-y);}return{ece:ece/n,brier:brier/n};}
+ function upd(){
+  var g=gammaEff();
+  var col=Math.abs(g-1)<0.06?GREEN:(g>1?AMBER:PURPLE);
+  curve.setAttribute('d',curveD(g));curve.style.stroke=col;
+  fill.setAttribute('d',fillD(g));fill.style.fill=col;
+  var xs=0.70,ys=Math.pow(xs,g);
+  dot.setAttribute('cx',sx(xs));dot.setAttribute('cy',sy(ys));dot.style.fill=col;
+  mv.setAttribute('x1',sx(xs));mv.setAttribute('x2',sx(xs));mv.setAttribute('y1',Y0);mv.setAttribute('y2',sy(ys));
+  mh.setAttribute('x1',X0);mh.setAttribute('x2',sx(xs));mh.setAttribute('y1',sy(ys));mh.setAttribute('y2',sy(ys));
+  var m=metrics(g),obs=Math.round(ys*100);
+  vObs.textContent=obs;vEce.textContent=(m.ece*100).toFixed(1)+'%';vBrier.textContent=m.brier.toFixed(3);
+  if(Math.abs(g-1)<0.06){
+   note.textContent='曲线贴上对角线：说七成把握，长期就真有约七成成真。赔率定准了，但要不要下这一注仍未决。标定给风险定价，不替你决定该不该行动。';
+  }else if(g>1){
+   note.textContent='曲线沉在对角线下方，你太自信了：嘴上说七成，实际只有 '+obs+'% 成真。拉动温度校准，把它压回对角线。';
+  }else{
+   note.textContent='曲线鼓在对角线上方，你太谦虚了：嘴上说七成，实际有 '+obs+'% 成真。拉动温度校准，把它拉回对角线。';
+  }
+ }
+ sOver.addEventListener('input',upd);sTemp.addEventListener('input',upd);upd();
+})();
+</script>
+
 它的跨域形态同样齐整。数论里是概率素性（第 7 章那个「以 $1-\varepsilon$ 概率为素数」）。机器学习里是保形预测（conformal prediction，沃夫克、伽默曼与谢弗 2005<sup class="cite"><a href="#ref-26">26</a></sup>），它不给你一个点判断，而给一个带覆盖保证的预测集，
 
 $$\Pr\big(Y\in C(X)\big)\ge 1-\alpha.$$

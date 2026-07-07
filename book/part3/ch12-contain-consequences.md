@@ -18,6 +18,148 @@ $$p^{k},$$
 
 ![纵深防御与瑞士奶酪模型：漏洞对齐，失败贯穿](../figures/f12-defense-depth.svg)
 
+<figure class="uvw-viz" data-static="f12-defense-depth" role="group" aria-label="纵深防御与瑞士奶酪模型交互图">
+<div class="uvw-live" hidden>
+  <div class="uvw-plot">
+    <svg viewBox="0 0 640 380" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+      <text class="uvw-verdict" x="320" y="28" text-anchor="middle"></text>
+      <g class="uvw-layers"></g>
+      <line class="uvw-ray" stroke-width="3"></line>
+      <circle class="uvw-ray-head" r="5"></circle>
+      <text class="uvw-attacker">攻击</text>
+    </svg>
+  </div>
+  <div class="uvw-controls">
+    <label>攻击高度
+      <input class="uvw-attack" type="range" min="0" max="100" value="50" step="1">
+    </label>
+    <label>层数
+      <input class="uvw-layers-n" type="range" min="2" max="6" value="4" step="1">
+      <b class="uvw-n">4</b>
+    </label>
+    <label class="uvw-check-l"><input class="uvw-correlate" type="checkbox"> 让漏洞对齐（共因失效）</label>
+    <button class="uvw-rand" type="button">随机漏洞位置</button>
+    <div class="uvw-readout">
+      <span>结论：<b class="uvw-v-verdict">–</b></span>
+    </div>
+    <p class="uvw-note"></p>
+  </div>
+</div>
+</figure>
+<style>
+.uvw-viz{margin:1.6em 0;padding:0}
+.uvw-viz .uvw-live{border:1px solid var(--line,#e5e7eb);border-radius:10px;padding:14px 16px 18px;background:var(--paper,#fff)}
+.uvw-viz svg{width:100%;height:auto;color:var(--ink,#1a1a1a);display:block;touch-action:none}
+.uvw-viz .uvw-slab{fill:#6366f1;fill-opacity:0.16;stroke:#6366f1;stroke-opacity:0.5;stroke-width:1.2}
+.uvw-viz .uvw-slab-block{stroke:#10b981;stroke-opacity:0.95;stroke-width:2.4}
+.uvw-viz .uvw-hole{fill:var(--paper,#fff);stroke:var(--muted,#6b7280);stroke-opacity:0.6;stroke-width:1.2;cursor:ns-resize}
+.uvw-viz .uvw-ray{stroke:#d97706;stroke-linecap:round}
+.uvw-viz .uvw-ray-head{fill:#d97706}
+.uvw-viz .uvw-ray-breach{stroke:#dc2626;fill:#dc2626}
+.uvw-viz .uvw-verdict{font-size:17px;font-weight:700;fill:var(--muted,#6b7280)}
+.uvw-viz .uvw-attacker{fill:var(--muted,#6b7280);font-size:12px}
+.uvw-viz .uvw-breach{fill:#dc2626;color:#dc2626}
+.uvw-viz .uvw-safe{fill:#10b981;color:#10b981}
+.uvw-viz .uvw-controls{margin-top:10px}
+.uvw-viz .uvw-controls label{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--muted,#6b7280);margin-bottom:8px}
+.uvw-viz .uvw-attack{flex:1;accent-color:#d97706}
+.uvw-viz .uvw-layers-n{flex:1;accent-color:#6366f1}
+.uvw-viz .uvw-check-l{cursor:pointer}
+.uvw-viz .uvw-rand{font:inherit;font-size:13px;padding:5px 12px;border:1px solid var(--line,#e5e7eb);border-radius:7px;background:var(--paper,#fff);color:var(--ink,#1a1a1a);cursor:pointer}
+.uvw-viz .uvw-readout{display:flex;gap:14px;margin-top:6px;font-size:15px;color:var(--muted,#6b7280)}
+.uvw-viz .uvw-v-verdict{font-weight:700}
+.uvw-viz .uvw-note{margin:12px 0 0;font-size:13.5px;color:var(--muted,#6b7280);min-height:3.2em;line-height:1.6}
+</style>
+<script>
+(function(){
+  var root=document.currentScript.previousElementSibling;
+  while(root&&!(root.classList&&root.classList.contains('uvw-viz')))root=root.previousElementSibling;
+  if(!root)return;
+  var live=root.querySelector('.uvw-live');if(!live)return;
+  var key=root.getAttribute('data-static');
+  if(key){var imgs=document.querySelectorAll('img[src*="'+key+'"]');for(var i=0;i<imgs.length;i++){var p=imgs[i].closest('p')||imgs[i];p.style.display='none';}}
+  live.hidden=false;
+  var NS='http://www.w3.org/2000/svg';
+  var svg=root.querySelector('svg');
+  var gLayers=root.querySelector('.uvw-layers');
+  var ray=root.querySelector('.uvw-ray'),head=root.querySelector('.uvw-ray-head');
+  var verdict=root.querySelector('.uvw-verdict'),attacker=root.querySelector('.uvw-attacker');
+  var vVerdict=root.querySelector('.uvw-v-verdict'),note=root.querySelector('.uvw-note');
+  var attack=root.querySelector('.uvw-attack'),nSlider=root.querySelector('.uvw-layers-n'),nOut=root.querySelector('.uvw-n');
+  var correlate=root.querySelector('.uvw-correlate'),rand=root.querySelector('.uvw-rand');
+  var TOP=52,BOT=332,LEFTX=26,RIGHTX=614,X0=150,X1=520,SW=34,R=26,VBH=380;
+  var T={breach:'贯穿',contained:'被挡住',
+    nCorr:'漏洞全部对齐到同一高度，多层防御瞬间坍缩成一层，攻击径直贯穿。这就是共因失效。',
+    nBreach:'这一击恰好穿过了每一层的漏洞。独立的漏洞很少这样对齐，换一个高度往往就被挡住。',
+    nContained:'攻击在某一层撞上实体，被挡了下来。独立的漏洞很少对齐，这正是纵深防御奏效之处。'};
+  var fracs=[];
+  function ensure(n){while(fracs.length<n)fracs.push(0.12+0.76*Math.random());fracs.length=n;}
+  function centerY(f){return TOP+R+(BOT-TOP-2*R)*f;}
+  function rayY(){return BOT-(BOT-TOP)*((+attack.value)/100);}
+  function cx(i,n){return n<=1?(X0+X1)/2:X0+(X1-X0)*(i/(n-1));}
+  var drag=-1;
+  function render(){
+    var n=+nSlider.value;nOut.textContent=n;ensure(n);
+    var ry=rayY();
+    var corr=correlate.checked;
+    while(gLayers.firstChild)gLayers.removeChild(gLayers.firstChild);
+    var holes=[];
+    for(var i=0;i<n;i++){holes.push({x:cx(i,n),y:corr?ry:centerY(fracs[i])});}
+    var block=-1;
+    for(var j=0;j<n;j++){if(Math.abs(ry-holes[j].y)>R){block=j;break;}}
+    var breach=block<0;
+    var endX=breach?RIGHTX:(holes[block].x-SW/2);
+    for(var k=0;k<n;k++){
+      var rect=document.createElementNS(NS,'rect');
+      rect.setAttribute('x',(holes[k].x-SW/2).toFixed(1));rect.setAttribute('y',TOP);
+      rect.setAttribute('width',SW);rect.setAttribute('height',BOT-TOP);rect.setAttribute('rx','4');
+      rect.setAttribute('class','uvw-slab'+(k===block?' uvw-slab-block':''));
+      gLayers.appendChild(rect);
+      var hole=document.createElementNS(NS,'circle');
+      hole.setAttribute('cx',holes[k].x);hole.setAttribute('cy',holes[k].y.toFixed(1));
+      hole.setAttribute('r',R);hole.setAttribute('data-i',k);
+      hole.setAttribute('class','uvw-hole');
+      gLayers.appendChild(hole);
+    }
+    ray.setAttribute('x1',LEFTX);ray.setAttribute('y1',ry.toFixed(1));
+    ray.setAttribute('x2',endX.toFixed(1));ray.setAttribute('y2',ry.toFixed(1));
+    ray.setAttribute('class','uvw-ray'+(breach?' uvw-ray-breach':''));
+    head.setAttribute('cx',endX.toFixed(1));head.setAttribute('cy',ry.toFixed(1));
+    head.setAttribute('class','uvw-ray-head'+(breach?' uvw-ray-breach':''));
+    attacker.setAttribute('x',LEFTX);attacker.setAttribute('y',(ry-10).toFixed(1));
+    verdict.textContent=breach?T.breach:T.contained;
+    verdict.setAttribute('class','uvw-verdict '+(breach?'uvw-breach':'uvw-safe'));
+    vVerdict.textContent=breach?T.breach:T.contained;
+    vVerdict.className='uvw-v-verdict '+(breach?'uvw-breach':'uvw-safe');
+    note.textContent=corr?T.nCorr:(breach?T.nBreach:T.nContained);
+  }
+  attack.addEventListener('input',render);
+  nSlider.addEventListener('input',render);
+  correlate.addEventListener('change',render);
+  rand.addEventListener('click',function(){for(var i=0;i<fracs.length;i++)fracs[i]=0.1+0.8*Math.random();if(correlate.checked)correlate.checked=false;render();});
+  function ptrY(e){var r=svg.getBoundingClientRect();return (e.clientY-r.top)/r.height*VBH;}
+  svg.addEventListener('pointerdown',function(e){
+    if(correlate.checked)return;
+    var t=e.target;
+    if(t&&t.classList&&t.classList.contains('uvw-hole')){
+      drag=+t.getAttribute('data-i');
+      if(svg.setPointerCapture)svg.setPointerCapture(e.pointerId);
+      e.preventDefault();
+    }
+  });
+  svg.addEventListener('pointermove',function(e){
+    if(drag<0)return;
+    var f=(ptrY(e)-(TOP+R))/(BOT-TOP-2*R);
+    fracs[drag]=Math.max(0,Math.min(1,f));
+    render();
+  });
+  function endDrag(){drag=-1;}
+  svg.addEventListener('pointerup',endDrag);
+  svg.addEventListener('pointercancel',endDrag);
+  render();
+})();
+</script>
+
 它的标准败法正是这里：被绕过的衰减。沙箱有逃逸，权限会悄悄蔓延，看似层层设防，实则各层共用一道暗门。另一种较少被提的败法是防护过度，把正常功能也堵死，结果人们反而绕过它来干活，安全反而形同虚设。
 
 ## 留痕：让错误事后现形

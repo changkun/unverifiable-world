@@ -36,6 +36,122 @@ $$a(p,c)=\begin{cases} \textsf{allow}, & p \ge \tau_{\text{hi}}\ \wedge\ c \le c
 
 ![允许 / 询问 / 阻止：按信心与危害分级自治](../figures/f06-allow-ask-block.svg)
 
+<figure class="uvw-viz" data-static="f06-allow-ask-block" role="group" aria-label="允许 / 询问 / 阻止：分级自治交互图">
+<div class="uvw-live" hidden>
+ <div class="uvw-plot">
+ <svg viewBox="0 0 640 380" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+ <rect class="uvw-r-allow" x="70" y="45" width="540" height="285"></rect>
+ <rect class="uvw-r-ask" x="70" y="45" width="540" height="285"></rect>
+ <rect class="uvw-r-block" x="70" y="45" width="540" height="285"></rect>
+ <line class="uvw-line-tau" y1="45" y2="330" stroke="#6366f1" stroke-width="1.6" stroke-dasharray="5 4" opacity="0.7"></line>
+ <line class="uvw-line-cmax" x1="70" x2="610" stroke="#ef4444" stroke-width="1.6" stroke-dasharray="5 4" opacity="0.7"></line>
+ <text class="uvw-lab-allow uvw-rlab" text-anchor="middle">允许</text>
+ <text class="uvw-lab-ask uvw-rlab" text-anchor="middle">询问</text>
+ <text class="uvw-lab-block uvw-rlab" text-anchor="middle">阻止</text>
+ <g class="uvw-axes" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.4">
+ <line x1="70" y1="330" x2="610" y2="330"></line>
+ <line x1="70" y1="45" x2="70" y2="330"></line>
+ </g>
+ <circle class="uvw-dot" r="8"></circle>
+ <text class="uvw-xlab" x="340" y="366" text-anchor="middle">置信度 p（越往右越有把握）→</text>
+ <text class="uvw-ylab" x="20" y="187" text-anchor="middle" transform="rotate(-90 20 187)">潜在危害 c →</text>
+ <rect class="uvw-hit" x="70" y="45" width="540" height="285" fill="transparent" style="cursor:crosshair;touch-action:none"></rect>
+ </svg>
+ </div>
+ <div class="uvw-controls">
+ <label>自动允许所需置信度 τ_hi
+ <input class="uvw-tau" type="range" min="0" max="100" value="60" step="1">
+ </label>
+ <label>危害上限 c_max
+ <input class="uvw-cmax" type="range" min="0" max="100" value="60" step="1">
+ </label>
+ <div class="uvw-readout">
+ <span class="uvw-chip">当前动作 <b>p=<span class="uvw-vp">–</span></b> · <b>c=<span class="uvw-vc">–</span></b></span>
+ <span class="uvw-verdict">判定 <b class="uvw-vv">–</b></span>
+ </div>
+ <p class="uvw-note"></p>
+ <p class="uvw-hint">拖动圆点放置一个动作。调高 τ_hi，询问区变宽：更安全，但打扰更多。调低 c_max，阻止区吞掉整个平面：绝对安全，却什么也做不成。</p>
+ </div>
+</div>
+</figure>
+<style>
+.uvw-viz{margin:1.6em 0;padding:0}
+.uvw-viz .uvw-live{border:1px solid var(--line,#e5e7eb);border-radius:10px;padding:14px 16px 18px;background:var(--paper,#fff)}
+.uvw-viz svg{width:100%;height:auto;color:var(--ink,#1a1a1a);display:block}
+.uvw-viz .uvw-r-allow{fill:#10b981;opacity:0.16}
+.uvw-viz .uvw-r-ask{fill:#d97706;opacity:0.16}
+.uvw-viz .uvw-r-block{fill:#ef4444;opacity:0.16}
+.uvw-viz .uvw-rlab{font-size:14px;font-weight:600;pointer-events:none}
+.uvw-viz .uvw-lab-allow{fill:#10b981}
+.uvw-viz .uvw-lab-ask{fill:#d97706}
+.uvw-viz .uvw-lab-block{fill:#ef4444}
+.uvw-viz .uvw-dot{stroke:var(--paper,#fff);stroke-width:2.5;pointer-events:none}
+.uvw-viz .uvw-xlab,.uvw-viz .uvw-ylab{fill:var(--muted,#6b7280);font-size:13px}
+.uvw-viz .uvw-controls{margin-top:10px}
+.uvw-viz .uvw-controls label{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--muted,#6b7280);margin-top:8px}
+.uvw-viz .uvw-tau{flex:1;accent-color:#6366f1}
+.uvw-viz .uvw-cmax{flex:1;accent-color:#ef4444}
+.uvw-viz .uvw-readout{display:flex;flex-wrap:wrap;gap:8px 14px;margin-top:12px;font-size:14px;color:var(--muted,#6b7280)}
+.uvw-viz .uvw-chip b,.uvw-viz .uvw-verdict b{font-variant-numeric:tabular-nums}
+.uvw-viz .uvw-note{margin:12px 0 0;font-size:13.5px;color:var(--ink,#1a1a1a);min-height:1.6em;line-height:1.6}
+.uvw-viz .uvw-hint{margin:8px 0 0;font-size:13px;color:var(--muted,#6b7280);line-height:1.6}
+</style>
+<script>
+(function(){
+ var root=document.currentScript.previousElementSibling;
+ while(root&&!(root.classList&&root.classList.contains('uvw-viz')))root=root.previousElementSibling;
+ if(!root)return;
+ var live=root.querySelector('.uvw-live');if(!live)return;
+ var key=root.getAttribute('data-static');
+ if(key){var imgs=document.querySelectorAll('img[src*="'+key+'"]');for(var i=0;i<imgs.length;i++){var p=imgs[i].closest('p')||imgs[i];p.style.display='none';}}
+ live.hidden=false;
+ var X0=70,X1=610,Y0=330,Y1=45;
+ var tau=root.querySelector('.uvw-tau'),cmax=root.querySelector('.uvw-cmax');
+ var rAllow=root.querySelector('.uvw-r-allow'),rAsk=root.querySelector('.uvw-r-ask'),rBlock=root.querySelector('.uvw-r-block');
+ var lTau=root.querySelector('.uvw-line-tau'),lCmax=root.querySelector('.uvw-line-cmax');
+ var labA=root.querySelector('.uvw-lab-allow'),labK=root.querySelector('.uvw-lab-ask'),labB=root.querySelector('.uvw-lab-block');
+ var dot=root.querySelector('.uvw-dot'),hit=root.querySelector('.uvw-hit');
+ var vp=root.querySelector('.uvw-vp'),vc=root.querySelector('.uvw-vc'),vv=root.querySelector('.uvw-vv'),note=root.querySelector('.uvw-note');
+ var pt={x:0.5,c:0.5};
+ var COL={allow:'#10b981',ask:'#d97706',block:'#ef4444'};
+ var NAME={allow:'允许',ask:'询问',block:'阻止'};
+ function sx(t){return X0+(X1-X0)*t;}
+ function sy(v){return Y0+(Y1-Y0)*v;}
+ function verdict(p,c,th,cm){if(c>cm)return 'block';if(p<th)return 'ask';return 'allow';}
+ function upd(){
+  var th=(+tau.value)/100,cm=(+cmax.value)/100;
+  var yc=sy(cm),xt=sx(th);
+  rBlock.setAttribute('y',Y1);rBlock.setAttribute('height',Math.max(0,yc-Y1));
+  rAsk.setAttribute('x',X0);rAsk.setAttribute('y',yc);rAsk.setAttribute('width',Math.max(0,xt-X0));rAsk.setAttribute('height',Math.max(0,Y0-yc));
+  rAllow.setAttribute('x',xt);rAllow.setAttribute('y',yc);rAllow.setAttribute('width',Math.max(0,X1-xt));rAllow.setAttribute('height',Math.max(0,Y0-yc));
+  lTau.setAttribute('x1',xt);lTau.setAttribute('x2',xt);lTau.setAttribute('y1',yc);lTau.setAttribute('y2',Y0);
+  lCmax.setAttribute('y1',yc);lCmax.setAttribute('y2',yc);
+  labB.setAttribute('x',(X0+X1)/2);labB.setAttribute('y',(Y1+yc)/2+5);labB.style.opacity=(yc-Y1>26)?1:0;
+  labK.setAttribute('x',(X0+xt)/2);labK.setAttribute('y',(yc+Y0)/2+5);labK.style.opacity=(xt-X0>36&&Y0-yc>26)?1:0;
+  labA.setAttribute('x',(xt+X1)/2);labA.setAttribute('y',(yc+Y0)/2+5);labA.style.opacity=(X1-xt>36&&Y0-yc>26)?1:0;
+  var v=verdict(pt.x,pt.c,th,cm);
+  dot.setAttribute('cx',sx(pt.x));dot.setAttribute('cy',sy(pt.c));dot.setAttribute('fill',COL[v]);
+  vp.textContent=pt.x.toFixed(2);vc.textContent=pt.c.toFixed(2);
+  vv.textContent=NAME[v];vv.style.color=COL[v];
+  if(v==='block')note.textContent='潜在危害超过上限 c_max，落在阻止区。无论把握多高，这一步都不放行。';
+  else if(v==='ask')note.textContent='危害在上限之下，但置信度没达到 τ_hi，落在询问区。先停下来，问你一句再动。';
+  else note.textContent='把握足够高、危害足够低，落在允许区。可以自动执行，不打扰你。';
+ }
+ function place(ev){
+  var r=hit.getBoundingClientRect();
+  var px=(ev.clientX-r.left)/r.width,cy=1-(ev.clientY-r.top)/r.height;
+  pt.x=Math.max(0,Math.min(1,px));pt.c=Math.max(0,Math.min(1,cy));upd();
+ }
+ var dragging=false;
+ hit.addEventListener('pointerdown',function(ev){dragging=true;hit.setPointerCapture(ev.pointerId);place(ev);ev.preventDefault();});
+ hit.addEventListener('pointermove',function(ev){if(dragging)place(ev);});
+ hit.addEventListener('pointerup',function(){dragging=false;});
+ hit.addEventListener('pointercancel',function(){dragging=false;});
+ tau.addEventListener('input',upd);cmax.addEventListener('input',upd);
+ upd();
+})();
+</script>
+
 允许、询问、阻止，这个今天在各类智能体工具里随处可见的三档模式，本质就是把不可验证的「它对不对」换成了可操作的「它有多大把握、这一步多危险」。
 
 **第三招，留痕与可审计：让错误事后现形。** 防不住的，就让它可被发现。维茨纳等人 2008 年的「信息问责」<sup class="cite"><a href="#ref-24">24</a></sup>把重心从「事前阻止」移到「事后追责」；证书透明度<sup class="cite"><a href="#ref-25">25</a></sup>是一个真实运转的例子，它不阻止证书被错发，而是让每一张证书都进入一个公开、可验、不可篡改的日志，使错发无所遁形。布伦戴奇等人 2020 年那份关于可信 AI 的报告<sup class="cite"><a href="#ref-26">26</a></sup>，整篇讲的都是如何让一个系统的行为产生可被第三方核验的证据。

@@ -12,6 +12,95 @@ This asymmetry is the pivot of the whole chapter. To verify a universal proposit
 
 ![The asymmetry between verification and falsification](../figures/f03-falsification.svg)
 
+<figure class="uvw-viz" data-static="f03-falsification" role="group" aria-label="Interactive figure: the asymmetry between verification and falsification">
+<div class="uvw-live" hidden>
+<div class="uvw-claim">
+<span class="uvw-claim-text">&ldquo;All swans are white&rdquo;</span>
+<span class="uvw-state uvw-state-open">Not falsified</span>
+</div>
+<div class="uvw-bar" role="img" aria-label="Confidence progress bar">
+<div class="uvw-bar-fill"></div>
+<span class="uvw-bar-pct">0%</span>
+</div>
+<div class="uvw-swans" aria-hidden="true"></div>
+<div class="uvw-controls">
+<button type="button" class="uvw-btn uvw-btn-white">Add a white swan</button>
+<button type="button" class="uvw-btn uvw-btn-black">Add a black swan</button>
+<button type="button" class="uvw-btn uvw-btn-reset">Reset</button>
+<span class="uvw-count">Confirmations <b class="uvw-v-count">0</b></span>
+</div>
+<p class="uvw-note"></p>
+</div>
+</figure>
+<style>
+.uvw-viz{margin:1.6em 0;padding:0}
+.uvw-viz .uvw-live{border:1px solid var(--line,#e5e7eb);border-radius:10px;padding:16px 16px 18px;background:var(--paper,#fff);color:var(--ink,#1a1a1a)}
+.uvw-viz .uvw-claim{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px}
+.uvw-viz .uvw-claim-text{font-size:16px;font-weight:600}
+.uvw-viz .uvw-state{font-size:13px;font-weight:700;letter-spacing:.04em;padding:3px 10px;border-radius:999px;border:1px solid currentColor}
+.uvw-viz .uvw-state-open{color:#10b981}
+.uvw-viz .uvw-state-broken{color:#dc2626}
+.uvw-viz .uvw-bar{position:relative;margin-top:14px;height:30px;border-radius:8px;background:var(--line,#e5e7eb);overflow:hidden}
+.uvw-viz .uvw-bar-fill{height:100%;width:0;background:#10b981;border-radius:8px 0 0 8px}
+.uvw-viz .uvw-bar-pct{position:absolute;top:0;right:10px;line-height:30px;font-size:13px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--ink,#1a1a1a)}
+.uvw-viz .uvw-swans{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;min-height:26px}
+.uvw-viz .uvw-swan{width:22px;height:22px;border-radius:50%;box-sizing:border-box}
+.uvw-viz .uvw-swan.white{background:#ffffff;border:2px solid #9ca3af}
+.uvw-viz .uvw-swan.black{background:#111827;border:2px solid #dc2626}
+.uvw-viz .uvw-controls{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:16px}
+.uvw-viz .uvw-btn{font:inherit;font-size:14px;cursor:pointer;padding:7px 13px;border-radius:8px;border:1px solid var(--line,#e5e7eb);background:var(--paper,#fff);color:var(--ink,#1a1a1a)}
+.uvw-viz .uvw-btn:hover{border-color:var(--muted,#6b7280)}
+.uvw-viz .uvw-btn:disabled{opacity:.45;cursor:not-allowed}
+.uvw-viz .uvw-btn-white{border-color:#9ca3af}
+.uvw-viz .uvw-btn-black{border-color:#dc2626;color:#dc2626}
+.uvw-viz .uvw-count{font-size:14px;color:var(--muted,#6b7280);margin-left:auto}
+.uvw-viz .uvw-count b{color:var(--ink,#1a1a1a);font-variant-numeric:tabular-nums}
+.uvw-viz .uvw-note{margin:14px 0 0;font-size:13.5px;color:var(--muted,#6b7280);min-height:2.6em;line-height:1.6}
+@media (prefers-reduced-motion: no-preference){.uvw-viz .uvw-bar-fill{transition:width .35s ease}}
+</style>
+<script>
+(function(){
+var root=document.currentScript.previousElementSibling;
+while(root&&!(root.classList&&root.classList.contains('uvw-viz')))root=root.previousElementSibling;
+if(!root)return;
+var live=root.querySelector('.uvw-live');if(!live)return;
+var key=root.getAttribute('data-static');
+if(key){var imgs=document.querySelectorAll('img[src*="'+key+'"]');for(var i=0;i<imgs.length;i++){var p=imgs[i].closest('p')||imgs[i];p.style.display='none';}}
+live.hidden=false;
+var bWhite=root.querySelector('.uvw-btn-white'),bBlack=root.querySelector('.uvw-btn-black'),bReset=root.querySelector('.uvw-btn-reset');
+var stream=root.querySelector('.uvw-swans');
+var fill=root.querySelector('.uvw-bar-fill'),pct=root.querySelector('.uvw-bar-pct');
+var state=root.querySelector('.uvw-state'),vCount=root.querySelector('.uvw-v-count'),note=root.querySelector('.uvw-note');
+var n=0,falsified=false,CAP=99;
+function conf(){return 100*(1-1/(n+1));}
+function render(){
+if(falsified){
+fill.style.width='0%';
+pct.textContent='0%';
+state.textContent='Falsified';
+state.className='uvw-state uvw-state-broken';
+vCount.textContent=n;
+note.textContent='One black swan is enough. A universal claim closes the moment a single counterexample appears, and no number of white swans can reopen it.';
+return;
+}
+var c=Math.min(conf(),CAP);
+fill.style.width=c.toFixed(1)+'%';
+pct.textContent=Math.round(c)+'%';
+state.textContent=n===0?'Not falsified':'Still not verified';
+state.className='uvw-state uvw-state-open';
+vCount.textContent=n;
+if(n===0){note.textContent='Click "Add a white swan" and watch confidence creep upward yet never reach 100%.';}
+else{note.textContent='White swan '+n+': confidence rises to '+Math.round(c)+'%, always a step short. No amount of confirmation can verify a universal claim.';}
+}
+function addSwan(cls){var s=document.createElement('span');s.className='uvw-swan '+cls;stream.appendChild(s);}
+function setDisabled(d){bWhite.disabled=d;bBlack.disabled=d;}
+bWhite.addEventListener('click',function(){if(falsified)return;n++;addSwan('white');render();});
+bBlack.addEventListener('click',function(){if(falsified)return;falsified=true;addSwan('black');setDisabled(true);render();});
+bReset.addEventListener('click',function(){n=0;falsified=false;stream.innerHTML='';setDisabled(false);render();});
+render();
+})();
+</script>
+
 ## Hume's Impassable Threshold
 
 The root of this was already dug out by Hume in 1739<sup class="cite"><a href="#ref-4">4</a></sup>. On what grounds do we believe that a regularity that has held in the past will go on holding in the future? There is no logical warrant for it. From "the sun has risen every day in the past" you cannot infer "the sun must rise tomorrow," because the inference itself presupposes that "past patterns will continue into the future," which is exactly the thing to be proved. Induction carries no logical guarantee. Hume's conclusion is calm and complete: what we rely on is not proof, but habit.

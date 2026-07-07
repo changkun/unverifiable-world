@@ -36,6 +36,92 @@ $$\arg\max_{a} P(a)\ \quad\text{vs.}\quad\ \arg\max_{a} G(a),$$
 
 ![Goodhart 崩塌：优化代理，真目标却脱钩](../figures/f08-goodhart-curve.svg)
 
+<figure class="uvw-viz" data-static="f08-goodhart-curve" role="group" aria-label="Goodhart 崩塌交互图">
+<div class="uvw-live" hidden>
+  <div class="uvw-plot">
+    <svg viewBox="0 0 640 380" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+      <g class="uvw-axes" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.35">
+        <line x1="70" y1="330" x2="610" y2="330"></line>
+        <line x1="70" y1="40" x2="70" y2="330"></line>
+      </g>
+      <path class="uvw-proxy" fill="none" stroke-width="2.6"></path>
+      <path class="uvw-true" fill="none" stroke-width="2.6"></path>
+      <line class="uvw-cursor" y1="40" y2="330" stroke="currentColor" stroke-width="1.2" stroke-dasharray="4 4" opacity="0.55"></line>
+      <circle class="uvw-dot-proxy" r="5"></circle>
+      <circle class="uvw-dot-true" r="5"></circle>
+      <text class="uvw-xlab" x="340" y="366" text-anchor="middle">优化压力（越往右，越使劲优化代理）→</text>
+    </svg>
+  </div>
+  <div class="uvw-controls">
+    <label>优化压力
+      <input class="uvw-slider" type="range" min="0" max="100" value="30" step="1">
+    </label>
+    <div class="uvw-readout">
+      <span class="uvw-chip uvw-chip-proxy">代理指标 <b class="uvw-v-proxy">–</b></span>
+      <span class="uvw-chip uvw-chip-true">真实目标 <b class="uvw-v-true">–</b></span>
+      <span class="uvw-gap">缺口 <b class="uvw-v-gap">–</b></span>
+    </div>
+    <p class="uvw-note"></p>
+  </div>
+</div>
+</figure>
+<style>
+.uvw-viz{margin:1.6em 0;padding:0}
+.uvw-viz .uvw-live{border:1px solid var(--line,#e5e7eb);border-radius:10px;padding:14px 16px 18px;background:var(--paper,#fff)}
+.uvw-viz svg{width:100%;height:auto;color:var(--ink,#1a1a1a);display:block}
+.uvw-viz .uvw-proxy{stroke:#d97706}
+.uvw-viz .uvw-true{stroke:#10b981}
+.uvw-viz .uvw-dot-proxy{fill:#d97706}
+.uvw-viz .uvw-dot-true{fill:#10b981}
+.uvw-viz .uvw-xlab{fill:var(--muted,#6b7280);font-size:13px}
+.uvw-viz .uvw-controls{margin-top:10px}
+.uvw-viz .uvw-controls label{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--muted,#6b7280)}
+.uvw-viz .uvw-slider{flex:1;accent-color:#d97706}
+.uvw-viz .uvw-readout{display:flex;flex-wrap:wrap;gap:8px 14px;margin-top:12px;font-size:14px}
+.uvw-viz .uvw-chip b,.uvw-viz .uvw-gap b{font-variant-numeric:tabular-nums}
+.uvw-viz .uvw-chip-proxy b{color:#d97706}
+.uvw-viz .uvw-chip-true b{color:#10b981}
+.uvw-viz .uvw-note{margin:12px 0 0;font-size:13.5px;color:var(--muted,#6b7280);min-height:2.4em;line-height:1.6}
+</style>
+<script>
+(function(){
+  var root=document.currentScript.previousElementSibling;
+  while(root&&!(root.classList&&root.classList.contains('uvw-viz')))root=root.previousElementSibling;
+  if(!root)return;
+  var live=root.querySelector('.uvw-live');if(!live)return;
+  // hide the static markdown image this block replaces
+  var key=root.getAttribute('data-static');
+  if(key){var imgs=document.querySelectorAll('img[src*="'+key+'"]');for(var i=0;i<imgs.length;i++){var p=imgs[i].closest('p')||imgs[i];p.style.display='none';}}
+  live.hidden=false;
+  var slider=root.querySelector('.uvw-slider');
+  var proxyPath=root.querySelector('.uvw-proxy'),truePath=root.querySelector('.uvw-true');
+  var dP=root.querySelector('.uvw-dot-proxy'),dT=root.querySelector('.uvw-dot-true'),cur=root.querySelector('.uvw-cursor');
+  var vP=root.querySelector('.uvw-v-proxy'),vT=root.querySelector('.uvw-v-true'),vG=root.querySelector('.uvw-v-gap'),note=root.querySelector('.uvw-note');
+  var X0=70,X1=610,Y0=330,Y1=45;
+  function sx(t){return X0+(X1-X0)*t;}
+  function sy(v){return Y0+(Y1-Y0)*v;} // v in 0..1
+  // proxy keeps climbing (saturating); true goal tracks it early, peaks, then collapses as pressure grows
+  function proxy(t){return 1-Math.exp(-2.6*t);}
+  function truth(t){var rise=1-Math.exp(-3.0*t);var decay=1/(1+Math.exp(18*(t-0.62)));return rise*decay;}
+  function build(fn){var d='';for(var i=0;i<=100;i++){var t=i/100;d+=(i?'L':'M')+sx(t).toFixed(1)+' '+sy(fn(t)).toFixed(1)+' ';}return d;}
+  proxyPath.setAttribute('d',build(proxy));
+  truePath.setAttribute('d',build(truth));
+  function upd(){
+    var t=(+slider.value)/100;
+    var pv=proxy(t),tv=truth(t);
+    dP.setAttribute('cx',sx(t));dP.setAttribute('cy',sy(pv));
+    dT.setAttribute('cx',sx(t));dT.setAttribute('cy',sy(tv));
+    cur.setAttribute('x1',sx(t));cur.setAttribute('x2',sx(t));
+    vP.textContent=(pv*100).toFixed(0);vT.textContent=(tv*100).toFixed(0);
+    var gap=(pv-tv)*100;vG.textContent=(gap>=0?'+':'')+gap.toFixed(0);
+    if(t<0.35)note.textContent='压力尚小时，代理和真实目标一起上升，代理是个忠实的向导。';
+    else if(t<0.6)note.textContent='继续加压，代理还在涨，真实目标已到顶：此后每一分优化都在偏离你真正想要的东西。';
+    else note.textContent='代理漂亮得发光，真实目标却在坍塌。你测得出的越好，你真正要的越糟，这就是 Goodhart 崩塌。';
+  }
+  slider.addEventListener('input',upd);upd();
+})();
+</script>
+
 ## 用审计与冗余补足
 
 代理单靠自己会塌，于是组织补上另外两招，这也是本书反复出现的招数。

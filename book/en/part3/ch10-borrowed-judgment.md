@@ -36,6 +36,102 @@ $$\mathrm{Var}(\bar X)=\rho\,\sigma^2+\frac{(1-\rho)\,\sigma^2}{N}\ \xrightarrow
 
 ![The correlation floor of redundancy: once correlation is present, piling on more judges cannot get past it](../figures/f10-redundancy-floor.svg)
 
+<figure class="uvw-viz" data-static="f10-redundancy-floor" role="group" aria-label="The correlation floor of redundancy, interactive">
+<div class="uvw-live" hidden>
+  <div class="uvw-plot">
+    <svg viewBox="0 0 640 380" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+      <g class="uvw-axes" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.35">
+        <line x1="70" y1="330" x2="610" y2="330"></line>
+        <line x1="70" y1="45" x2="70" y2="330"></line>
+      </g>
+      <line class="uvw-floor" x1="70" x2="610" stroke-width="1.6" stroke-dasharray="6 5"></line>
+      <text class="uvw-floorlab" x="600" text-anchor="end">floor ρ</text>
+      <path class="uvw-curve" fill="none" stroke-width="2.6"></path>
+      <line class="uvw-cursor" y1="45" y2="330" stroke="currentColor" stroke-width="1.2" stroke-dasharray="4 4" opacity="0.55"></line>
+      <circle class="uvw-dot" r="5"></circle>
+      <text class="uvw-ylab-top" x="64" y="49" text-anchor="end">1</text>
+      <text class="uvw-ylab-bot" x="64" y="334" text-anchor="end">0</text>
+      <text class="uvw-ylab" x="24" y="190" text-anchor="middle" transform="rotate(-90 24 190)">normalized variance V</text>
+      <text class="uvw-xlab" x="340" y="366" text-anchor="middle">number of judges N →</text>
+    </svg>
+  </div>
+  <div class="uvw-controls">
+    <label>correlation ρ
+      <input class="uvw-rho" type="range" min="0" max="1" value="0.1" step="0.01">
+      <b class="uvw-v-rho">0.10</b>
+    </label>
+    <label>number of judges N
+      <input class="uvw-n" type="range" min="1" max="200" value="20" step="1">
+      <b class="uvw-v-n">20</b>
+    </label>
+    <div class="uvw-readout">
+      <span class="uvw-chip uvw-chip-var">normalized variance V <b class="uvw-v-var">–</b></span>
+      <span class="uvw-chip uvw-chip-eff">effective independent judges <b class="uvw-v-eff">–</b></span>
+    </div>
+    <p class="uvw-note"></p>
+  </div>
+</div>
+</figure>
+<style>
+.uvw-viz{margin:1.6em 0;padding:0}
+.uvw-viz .uvw-live{border:1px solid var(--line,#e5e7eb);border-radius:10px;padding:14px 16px 18px;background:var(--paper,#fff)}
+.uvw-viz svg{width:100%;height:auto;color:var(--ink,#1a1a1a);display:block}
+.uvw-viz .uvw-curve{stroke:#6366f1}
+.uvw-viz .uvw-floor{stroke:#d97706}
+.uvw-viz .uvw-floorlab{fill:#d97706;font-size:12px}
+.uvw-viz .uvw-dot{fill:#a855f7}
+.uvw-viz .uvw-ylab,.uvw-viz .uvw-xlab,.uvw-viz .uvw-ylab-top,.uvw-viz .uvw-ylab-bot{fill:var(--muted,#6b7280);font-size:13px}
+.uvw-viz .uvw-ylab-top,.uvw-viz .uvw-ylab-bot{font-size:12px}
+.uvw-viz .uvw-controls{margin-top:10px}
+.uvw-viz .uvw-controls label{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--muted,#6b7280);margin-top:6px}
+.uvw-viz .uvw-controls label b{font-variant-numeric:tabular-nums;color:var(--ink,#1a1a1a);min-width:2.6em;text-align:right}
+.uvw-viz .uvw-rho{flex:1;accent-color:#d97706}
+.uvw-viz .uvw-n{flex:1;accent-color:#6366f1}
+.uvw-viz .uvw-readout{display:flex;flex-wrap:wrap;gap:8px 14px;margin-top:12px;font-size:14px}
+.uvw-viz .uvw-chip b{font-variant-numeric:tabular-nums}
+.uvw-viz .uvw-chip-var b{color:#6366f1}
+.uvw-viz .uvw-chip-eff b{color:#10b981}
+.uvw-viz .uvw-note{margin:12px 0 0;font-size:13.5px;color:var(--muted,#6b7280);min-height:2.4em;line-height:1.6}
+</style>
+<script>
+(function(){
+  var root=document.currentScript.previousElementSibling;
+  while(root&&!(root.classList&&root.classList.contains('uvw-viz')))root=root.previousElementSibling;
+  if(!root)return;
+  var live=root.querySelector('.uvw-live');if(!live)return;
+  var key=root.getAttribute('data-static');
+  if(key){var imgs=document.querySelectorAll('img[src*="'+key+'"]');for(var i=0;i<imgs.length;i++){var p=imgs[i].closest('p')||imgs[i];p.style.display='none';}}
+  live.hidden=false;
+  var rhoS=root.querySelector('.uvw-rho'),nS=root.querySelector('.uvw-n');
+  var curve=root.querySelector('.uvw-curve'),floor=root.querySelector('.uvw-floor'),floorLab=root.querySelector('.uvw-floorlab');
+  var dot=root.querySelector('.uvw-dot'),cur=root.querySelector('.uvw-cursor');
+  var vRho=root.querySelector('.uvw-v-rho'),vN=root.querySelector('.uvw-v-n');
+  var vVar=root.querySelector('.uvw-v-var'),vEff=root.querySelector('.uvw-v-eff'),note=root.querySelector('.uvw-note');
+  var X0=70,X1=610,Y0=330,Y1=45,Nmin=1,Nmax=200;
+  function sx(n){return X0+(X1-X0)*(n-Nmin)/(Nmax-Nmin);}
+  function sy(v){return Y0+(Y1-Y0)*v;}
+  function V(n,r){return r+(1-r)/n;}
+  function build(r){var d='';for(var i=0;i<=400;i++){var n=Nmin+(Nmax-Nmin)*i/400;d+=(i?'L':'M')+sx(n).toFixed(1)+' '+sy(V(n,r)).toFixed(1)+' ';}return d;}
+  function upd(){
+    var r=+rhoS.value,n=Math.round(+nS.value);
+    vRho.textContent=r.toFixed(2);vN.textContent=n;
+    curve.setAttribute('d',build(r));
+    var fy=sy(r);
+    floor.setAttribute('y1',fy);floor.setAttribute('y2',fy);
+    floorLab.setAttribute('y',(fy-6).toFixed(1));floorLab.textContent='floor ρ = '+r.toFixed(2);
+    var v=V(n,r);
+    dot.setAttribute('cx',sx(n));dot.setAttribute('cy',sy(v));
+    cur.setAttribute('x1',sx(n));cur.setAttribute('x2',sx(n));
+    var eff=n/(1+(n-1)*r);
+    vVar.textContent=v.toFixed(3);
+    vEff.textContent=eff.toFixed(1);
+    if(r<0.02)note.textContent='Correlation is near zero, so adding judges keeps driving the variance down. Redundancy is still doing real work.';
+    else note.textContent='A hidden correlation caps reliability at the floor ρ: no matter how many judges you add, the effective independent judges approach 1/ρ ≈ '+(1/r).toFixed(1)+', and cannot get past it.';
+  }
+  rhoS.addEventListener('input',upd);nS.addEventListener('input',upd);upd();
+})();
+</script>
+
 Correlation cancels the entire value of redundancy at a stroke. Stack as many judges as you like, and you still cannot get past this floor set by correlation. This is no abstraction: Knight and Leveson's famous experiment of 1986<sup class="cite"><a href="#ref-13">13</a></sup>, which had many programmers independently write programs to the same specification, expected their errors to be mutually uncorrelated, but found that they stumbled in the same places, because human beings, facing the same hard point, make the same mistakes (Eckhardt and Lee had predicted this theoretically as early as 1985<sup class="cite"><a href="#ref-12">12</a></sup>). Groupthink, flawed training data drawn from a common source, common-mode failure: all are this floor making itself visible. This is the standard failure mode of redundancy: believing in independence where in truth there is correlation.
 
 ## The Confluence of the Two Moves, and an Echo Across Chapters
