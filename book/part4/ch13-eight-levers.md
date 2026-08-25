@@ -35,11 +35,11 @@ $$\text{Risk}\ \approx\ \Pr(\text{fail})\ \times\ \text{Cost}(\text{fail}),$$
 
 读这张表，那个「凑出来的清单」的感觉应当松动一些。八招不是八件随手收集的工具，它们分占了「$\Pr$、对 $\Pr$ 的认知、代价、预算分配、检查时点、目标定义」这几处，几乎一一占满了那个分解式能下手的地方。命题于是可以这样讲：若这些确实就是全部的杠杆，那这套招就是完整的，收敛也就被解释了，任何有能力的主体迟早都会重新发现它们，因为除此之外没有别的可拉。
 
-## 为什么这能跨越基质
+## 为什么这能跨越载体
 
 如果上面成立，它顺带解释了本书最初那个谜：为什么数学家、工程师、组织会不约而同地采取这八招。
 
-马尔<sup class="cite"><a href="#ref-17">17</a></sup>在研究视觉时区分过三个层次：计算层（computational level，要解决什么问题、受什么约束）、算法层（algorithmic level，用什么表示和过程）、实现层（implementational level，落在什么硬件上）。八招活在计算层，是「给定不可验证这个约束，逻辑上还能动哪几处」的答案，而这个答案不依赖你是碳基的数学家、硅基的程序，还是由人组成的官僚机构。基质（substrate）千差万别，计算层的约束却是同一个，于是应对收敛。西蒙<sup class="cite"><a href="#ref-12">12</a></sup>的有限理性（bounded rationality）、他的「人工科学」<sup class="cite"><a href="#ref-13">13</a></sup>（the sciences of the artificial），讲的正是这种由环境约束而非由主体内部塑造的行为。
+马尔<sup class="cite"><a href="#ref-17">17</a></sup>在研究视觉时区分过三个层次：计算层（computational level，要解决什么问题、受什么约束）、算法层（algorithmic level，用什么表示和过程）、实现层（implementational level，落在什么硬件上）。八招活在计算层，是「给定不可验证这个约束，逻辑上还能动哪几处」的答案，而这个答案不依赖你是碳基的数学家、硅基的程序，还是由人组成的官僚机构。载体千差万别，计算层的约束却是同一个，于是应对收敛。西蒙<sup class="cite"><a href="#ref-12">12</a></sup>的有限理性（bounded rationality）、他的「人工科学」<sup class="cite"><a href="#ref-13">13</a></sup>（the sciences of the artificial），讲的正是这种由环境约束而非由主体内部塑造的行为。
 
 这里还得请出无免费午餐定理（no free lunch theorem，沃尔珀特与麦克里迪<sup class="cite"><a href="#ref-25">25</a></sup>）。它说：在所有可能问题上平均，没有哪个方法优于另一个。这把刀两面都割。一面，它支持本书的克制，没有万能解，你必须借问题的具体结构来选杠杆，这正是为什么这五种处境要分开对待。另一面，它也警告：任何宣称「找到了统一钥匙」的人，包括我，都该收敛一点傲气。当你连失败概率都钉不住时，杠杆还会长出稳健版本，吉尔博亚与施迈德勒<sup class="cite"><a href="#ref-20">20</a></sup>的极大极小期望效用（maxmin expected utility）、汉森与萨金特<sup class="cite"><a href="#ref-30">30</a></sup>的稳健控制（robust control）、奈特式不确定性（Knightian uncertainty）下的决策，都是在 $\Pr$ 本身都模糊（ambiguity）时仍要按最坏情形布防的招法。
 
@@ -82,7 +82,7 @@ $$\text{Risk}\ \approx\ \Pr(\text{fail})\ \times\ \text{Cost}(\text{fail}),$$
 11. R. D. Luce & H. Raiffa (1957).《Games and Decisions: Introduction and Critical Survey》. John Wiley & Sons. [②④]
    这本书是博弈论与决策论的经典导论兼批判性综述，既清晰梳理期望效用、博弈解概念，也坦诚讨论各公理的适用边界。它适合读者作为整章决策论背景的总入口，兼具体系性与批判态度。
 12. H. A. Simon (1955). 「A Behavioral Model of Rational Choice」.《The Quarterly Journal of Economics》, 69(1), 99-118. [②]
-   西蒙在此提出有限理性与「满意即止」：受认知与信息限制的主体不去求全局最优，而是搜索到一个够好的方案就停。这是本章「计算层的约束塑造行为」论证的核心支撑，解释了为何不同基质会收敛到同一套应对。
+   西蒙在此提出有限理性与「满意即止」：受认知与信息限制的主体不去求全局最优，而是搜索到一个够好的方案就停。这是本章「计算层的约束塑造行为」论证的核心支撑，解释了为何不同载体会收敛到同一套应对。
 13. H. A. Simon (1969).《The Sciences of the Artificial》. MIT Press. [②③]
    西蒙提出，人造物的行为更多由其所处环境的约束、而非内部构造决定，并主张为「设计」这门关于人工系统的学问立基。本章借它论证八招活在马尔意义上的计算层，正是由环境约束而非主体内部塑造的产物。
 14. K. R. Popper (1959).《The Logic of Scientific Discovery》. Hutchinson. [②③]
@@ -92,7 +92,7 @@ $$\text{Risk}\ \approx\ \Pr(\text{fail})\ \times\ \text{Cost}(\text{fail}),$$
 16. D. Kahneman & A. Tversky (1979). 「Prospect Theory: An Analysis of Decision under Risk」.《Econometrica》, 47(2), 263-291. [②]
    前景理论提出，人按相对于参照点的得失、而非最终财富来评价结果，对损失更敏感，并以非线性方式扭曲概率权重。它是对期望效用的描述性修正，提醒读者代价与概率在真实决策中并非中性地相乘。
 17. D. Marr (1982).《Vision: A Computational Investigation into the Human Representation and Processing of Visual Information》. W. H. Freeman. [②③]
-   马尔提出分析信息处理系统的三个层次：计算层（要解决什么问题）、算法层（用什么表示与过程）、实现层（落在什么硬件上）。本章正是借这套层次论，主张八招活在计算层，因而能跨越碳基、硅基与组织等不同基质。
+   马尔提出分析信息处理系统的三个层次：计算层（要解决什么问题）、算法层（用什么表示与过程）、实现层（落在什么硬件上）。本章正是借这套层次论，主张八招活在计算层，因而能跨越碳基、硅基与组织等不同载体。
 18. J. O. Berger (1985).《Statistical Decision Theory and Bayesian Analysis》. Springer-Verlag. [②④]
    伯杰系统整理了贝叶斯与频率派交汇处的统计决策论，涵盖损失函数、风险、可采纳性与稳健贝叶斯分析。它是把本章那个非形式风险分解落到严谨统计语言的标准参考书。
 19. D. E. Bell, H. Raiffa & A. Tversky (编) (1988).《Decision Making: Descriptive, Normative, and Prescriptive Interactions》. Cambridge University Press. [②④]
