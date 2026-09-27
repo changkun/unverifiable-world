@@ -23,6 +23,9 @@ import re
 import shutil
 import sys
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import cover  # noqa: E402  封面海图（website/cover.py）
+
 try:
     import markdown
 except ImportError:
@@ -79,6 +82,9 @@ ZH = Lang(
         "lang_short": "EN",
         "refs_heading": "参考文献",
         "download": "下载全书",
+        "kicker": "全书{parts}部 · {chapters}章",
+        "chapters": "第 {a}–{b} 章",
+        "chapter": "第 {a} 章",
     },
 )
 
@@ -114,6 +120,9 @@ EN = Lang(
         "missing_body": "This English chapter has not been translated yet. The Chinese original remains available.",
         "read_original": "Read the Chinese original",
         "download": "Download the book",
+        "kicker": "{parts} parts · {chapters} chapters",
+        "chapters": "Chapters {a}–{b}",
+        "chapter": "Chapter {a}",
     },
 )
 
@@ -212,14 +221,14 @@ KATEX = """
 CSS = """
 :root{--ink:#1a1a1a;--muted:#6b7280;--line:#e5e7eb;--accent:#3b4252;--bg:#fbfbf9;--paper:#ffffff;--hh:52px;color-scheme:light dark}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+@media(prefers-reduced-motion:no-preference){html,.scroller{scroll-behavior:smooth}}
 body{margin:0;background:var(--bg);color:var(--ink);
  font-family:"Noto Serif SC","Songti SC",Georgia,"Times New Roman",serif;line-height:1.85;font-size:18px}
 body.lang-en{font-family:Georgia,"Times New Roman",serif;line-height:1.78}
 a{color:#2b4a8b;text-decoration:none}a:hover{text-decoration:underline}
 
 /* 顶栏 */
-.topbar{position:sticky;top:0;z-index:50;height:var(--hh);display:flex;align-items:center;gap:12px;
+.topbar{position:relative;z-index:50;height:var(--hh);display:flex;align-items:center;gap:12px;
  padding:0 16px;background:rgba(255,255,255,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
 .topbar .burger{display:none;font-size:22px;line-height:1;background:none;border:none;cursor:pointer;color:var(--ink);padding:4px 6px}
 .topbar .bk{font-weight:700;color:var(--ink);white-space:nowrap}
@@ -229,18 +238,20 @@ body.lang-en .topbar .cur::before{content:"· "}
 .topbar .toc-link,.topbar .lang-link{white-space:nowrap;font-size:14.5px}
 .topbar .lang-link{border-left:1px solid var(--line);padding-left:12px;color:#374151}
 
-.wrap{display:flex;max-width:1180px;margin:0 auto}
-.sidebar{width:280px;flex:none;border-right:1px solid var(--line);padding:24px 20px;
- position:sticky;top:var(--hh);height:calc(100vh - var(--hh));overflow-y:auto;background:var(--paper)}
+.wrap{display:flex}
+.sidebar{width:clamp(260px,20vw,300px);flex:none;border-right:1px solid var(--line);padding:24px 20px;
+ overflow-y:auto;overscroll-behavior:contain;background:var(--paper)}
 .sidebar .home{font-weight:700;font-size:16px;display:block;margin-bottom:2px;color:var(--ink)}
 .sidebar .sub{color:var(--muted);font-size:12.5px;margin-bottom:16px}
 .sidebar .part{font-weight:700;margin:15px 0 6px;font-size:13.5px;color:var(--accent)}
 .sidebar ul{list-style:none;padding:0;margin:0}
 .sidebar li{margin:3px 0}
 .sidebar a{font-size:14.5px;color:#374151;display:block;padding:2px 0}
+.sidebar .sub a{display:inline;font-size:inherit;padding:0}
 .sidebar a.active{color:#2b4a8b;font-weight:700}
 
-.content{flex:1;min-width:0;padding:44px 56px 90px;max-width:820px;margin:0 auto;animation:turnIn .26s ease both}
+.scroller{flex:1;min-width:0}
+.content{min-width:0;padding:44px 56px 90px;max-width:820px;margin:0 auto;animation:turnIn .26s ease both}
 .content h1{font-size:30px;line-height:1.3;margin:.2em 0 .6em}
 .content h2{font-size:23px;margin:1.8em 0 .6em;padding-bottom:.2em;border-bottom:1px solid var(--line)}
 .content h3{font-size:19px;margin:1.4em 0 .5em}
@@ -265,7 +276,7 @@ body.lang-en .topbar .cur::before{content:"· "}
 .content .refs li{margin:.5em 0}
 .content .refs blockquote{font-size:13px;background:#f8fafc}
 .content .refs .katex{font-size:1em}
-.content .refs li{scroll-margin-top:64px}
+.content .refs li{scroll-margin-top:16px}
 .content .refs li:target{background:#fff7e0;border-radius:5px;box-shadow:0 0 0 6px #fff7e0}
 /* 正文参考文献角标 */
 sup.cite{font-size:.68em;line-height:0;white-space:nowrap}
@@ -287,30 +298,17 @@ body.turning .content{animation:turnOut .19s ease both}
 @media(prefers-reduced-motion:reduce){.content{animation:none}body.turning .content{animation:none}}
 
 /* 抽屉遮罩与手机底栏 */
-.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:55}
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:55;touch-action:none}
 .overlay.show{display:block}
 .mobilebar{display:none}
 
-/* 封面 */
-.cover{display:flex;flex-direction:column;align-items:center;justify-content:center;
- min-height:100svh;width:100%;text-align:center;padding:clamp(14px,3vh,40px) 20px}
-.book{height:clamp(290px,50vh,470px);width:auto;aspect-ratio:5/7;max-width:84vw;border-radius:6px;
- background:linear-gradient(135deg,#2b3a55 0%,#1b2233 100%);color:#f4f4f2;
- box-shadow:0 24px 60px rgba(20,30,50,.35),inset 4px 0 0 rgba(255,255,255,.12),inset 8px 0 14px rgba(0,0,0,.25);
- display:flex;flex-direction:column;justify-content:space-between;padding:clamp(20px,3.6vh,42px) clamp(18px,5vw,34px)}
-.book .t{font-size:clamp(20px,5.6vw,27px);font-weight:700;line-height:1.4;letter-spacing:1px;text-wrap:balance}
-.book .s{font-size:13px;color:#aab4c8;letter-spacing:2px;text-transform:uppercase;margin-top:14px}
-.book .bk-top{text-align:center}
-.book .bk-art{width:62%;align-self:center;margin:6px auto;opacity:.96;filter:drop-shadow(0 4px 14px rgba(0,0,0,.35))}
-.book .a{font-size:15px;color:#dfe5ef;text-align:center}
-.cover .blurb{color:var(--muted);max-width:520px;margin:30px auto 8px;font-size:16px}
-.cover .actions{margin-top:22px;display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+/* 封面按钮（封面其余样式在 cover.py） */
 .btn{display:inline-block;padding:10px 22px;border-radius:8px;font-size:15.5px;border:1px solid #2b4a8b}
 .btn.primary{background:#2b4a8b;color:#fff}.btn.primary:hover{text-decoration:none;background:#23407c}
 .btn.ghost{color:#2b4a8b;background:#fff}.btn.ghost:hover{text-decoration:none;background:#f0f4fb}
 
-.cover .downloads{margin-top:20px;font-size:13.5px;color:var(--muted)}
-.cover .downloads a{font-weight:700;padding:0 2px}
+.downloads{font-size:13.5px;color:var(--muted)}
+.downloads a{font-weight:700;padding:0 2px}
 .toc-page .part{font-weight:700;color:var(--accent);margin:24px 0 8px;font-size:17px}
 .toc-page ul{list-style:none;padding:0}.toc-page li{margin:7px 0;font-size:16.5px}
 .muted{color:var(--muted)}
@@ -329,13 +327,31 @@ body.turning .content{animation:turnOut .19s ease both}
 .qr-card #qrbox{display:flex;justify-content:center;min-height:200px;align-items:center}
 .qr-card .close{margin-top:14px;border:none;background:#f1f5f9;border-radius:8px;padding:7px 16px;cursor:pointer;font:inherit;font-size:13.5px}
 
-@media(max-width:820px){
+/* 桌面与平板横屏：应用外壳。顶栏和侧栏是固定的框架，正文栏和侧栏各自滚动。
+   正文与侧栏用 overscroll-behavior:contain：保留各自的橡皮筋回弹，但不把滚动传给页面，
+   所以正文回弹时顶栏和侧栏不动。根元素（html）必须保持默认的 auto：
+   Chromium 在视口上设 none 时会连内部滚动容器的回弹一起关掉。页面本身不滚动（overflow:hidden），
+   body 上的 none 只是挡住从顶栏发起的滚动传到视口。 */
+@media(min-width:821px) and (min-height:500px){
+ html.shell{height:100%;overflow:hidden}
+ html.shell body{height:100%;height:100dvh;overflow:hidden;overscroll-behavior:none;display:flex;flex-direction:column}
+ html.shell .topbar{flex:none}
+ html.shell .wrap{flex:1;min-height:0}
+ html.shell .scroller{overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;outline:none}
+}
+
+/* 手机、平板竖屏与横屏手机：保留整页滚动（地址栏照常收起），顶栏固定在视口上 */
+@media(max-width:820px),(max-height:499px){
  body{font-size:17px}
+ .topbar{position:fixed;top:0;left:0;right:0}
+ .wrap{padding-top:var(--hh)}
+ .content .refs li{scroll-margin-top:calc(var(--hh) + 12px)}
+ html.drawer-open,html.drawer-open body{overflow:hidden}
  .topbar .burger{display:block}
  .topbar .toc-link{display:none}
  .topbar .bk{max-width:45vw;overflow:hidden;text-overflow:ellipsis}
  .topbar .lang-link{padding-left:10px}
- .sidebar{position:fixed;left:0;top:0;height:100vh;z-index:60;width:82vw;max-width:320px;
+ .sidebar{position:fixed;left:0;top:0;bottom:0;height:auto;z-index:60;width:82vw;max-width:320px;
   transform:translateX(-100%);transition:transform .25s ease;box-shadow:6px 0 30px rgba(0,0,0,.18)}
  .sidebar.open{transform:none}
  .content{padding:26px 20px 96px}
@@ -456,10 +472,50 @@ def js_block(lang):
 <script>
 (function(){
  var sb=document.querySelector('.sidebar'),ov=document.querySelector('.overlay'),bg=document.querySelector('.burger');
- function closeDrawer(){if(sb)sb.classList.remove('open');if(ov)ov.classList.remove('show');}
- if(bg)bg.addEventListener('click',function(){sb.classList.toggle('open');ov.classList.toggle('show');});
+ var root=document.documentElement;
+ // 让当前章节在侧栏里可见（侧栏比视口高时）
+ function revealActive(){if(!sb)return;var a=sb.querySelector('a.active');if(!a)return;
+   var s=sb.getBoundingClientRect(),r=a.getBoundingClientRect();
+   if(r.top<s.top+48||r.bottom>s.bottom-48)sb.scrollTop+=r.top-s.top-(s.height-r.height)/2;}
+ function setDrawer(open){if(!sb)return;sb.classList.toggle('open',open);if(ov)ov.classList.toggle('show',open);
+   root.classList.toggle('drawer-open',open);if(bg)bg.setAttribute('aria-expanded',open?'true':'false');if(open)revealActive();}
+ function closeDrawer(){setDrawer(false);}
+ if(bg)bg.addEventListener('click',function(){setDrawer(!sb.classList.contains('open'));});
  if(ov)ov.addEventListener('click',closeDrawer);
+ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&sb&&sb.classList.contains('open'))closeDrawer();});
+ revealActive();
+ // 桌面外壳：正文栏是独立的滚动容器。浏览器只替根滚动记位置，所以这里自己把
+ // 正文栏的位置记进 history.state，供前进/后退（含参考文献角标跳转后返回）与刷新时恢复。
+ var sc=document.querySelector('.scroller');
+ function inShell(){return !!sc&&/(auto|scroll)/.test(getComputedStyle(sc).overflowY);}
+ if(sc){
+   var jumpTo=function(y){var b=sc.style.scrollBehavior;sc.style.scrollBehavior='auto';sc.scrollTop=y;sc.style.scrollBehavior=b;};
+   var saveY=function(){if(!inShell())return;try{var st=history.state,o={};
+     if(st&&typeof st==='object')for(var k in st)o[k]=st[k];
+     if(o.uwY===sc.scrollTop)return;o.uwY=sc.scrollTop;history.replaceState(o,'');}catch(e){}};
+   var tm=0;sc.addEventListener('scroll',function(){clearTimeout(tm);tm=setTimeout(saveY,160);},{passive:true});
+   // 点任何链接前先记一次：翻页、角标跳转都不会丢掉当前位置
+   document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href]');if(a)saveY();},true);
+   var nav=(performance.getEntriesByType&&performance.getEntriesByType('navigation')[0])||{};
+   var st0=history.state;
+   if(inShell()&&st0&&typeof st0.uwY==='number'&&(nav.type==='back_forward'||nav.type==='reload')){
+     var y0=st0.uwY,touched=false;jumpTo(y0);
+     ['wheel','touchstart','keydown','pointerdown'].forEach(function(ev){window.addEventListener(ev,function(){touched=true;},{once:true,passive:true});});
+     // 公式与配图渲染完后高度会变，读者还没动过就再定位一次
+     window.addEventListener('load',function(){if(!touched)jumpTo(y0);});
+   }
+   window.addEventListener('popstate',function(e){if(!inShell())return;var s=e.state;
+     requestAnimationFrame(function(){
+       if(s&&typeof s.uwY==='number')jumpTo(s.uwY);
+       else if(location.hash){var el=document.getElementById(decodeURIComponent(location.hash.slice(1)));if(el)el.scrollIntoView();}
+       else jumpTo(0);});});
+   // 键盘滚动（空格、PageDown、方向键）作用于获得焦点的滚动容器
+   if(inShell()){sc.setAttribute('tabindex','-1');
+     if(!document.activeElement||document.activeElement===document.body)sc.focus({preventScroll:true});}
+ }
  var rm=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ // 从往返缓存（bfcache）回到本页时，撤掉离开时加上的翻页淡出，否则正文会停在透明状态
+ window.addEventListener('pageshow',function(e){if(e.persisted)document.body.classList.remove('turning');});
  if(!rm){Array.prototype.forEach.call(document.querySelectorAll('a[data-turn]'),function(a){
    a.addEventListener('click',function(e){var h=a.getAttribute('href');
      if(!h||h.charAt(0)==='#'||a.classList.contains('disabled'))return;
@@ -494,7 +550,7 @@ def topbar(lang, cur_title, filename):
     alt = other_lang(lang)
     return (
         '<header class="topbar">'
-        f'<button class="burger" aria-label="{html.escape(lang.labels["menu"])}">☰</button>'
+        f'<button class="burger" aria-label="{html.escape(lang.labels["menu"])}" aria-expanded="false">☰</button>'
         f'<a class="bk" href="index.html">{html.escape(lang.title)}</a>'
         f'<span class="cur">{html.escape(cur_title)}</span>'
         f'<a class="toc-link" href="toc.html">{html.escape(lang.labels["toc"])}</a>'
@@ -513,7 +569,7 @@ def page(lang, title, body, sidebar, filename, active=None, cur_title="", prevp=
     display_title = cur_title or title
     full_title = f"{title} · {lang.title}" if title != lang.title else lang.title
     return f"""<!DOCTYPE html>
-<html lang="{html.escape(lang.html_lang)}">
+<html lang="{html.escape(lang.html_lang)}" class="shell">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -527,7 +583,9 @@ def page(lang, title, body, sidebar, filename, active=None, cur_title="", prevp=
 <div class="overlay"></div>
 <div class="wrap">
 <nav class="sidebar">{sidebar}</nav>
+<div class="scroller">
 <main class="content {extra_class}">{body}</main>
+</div>
 </div>
 {mobilebar(prevp, nextp, pos)}
 {qr_modal(lang)}
@@ -552,29 +610,95 @@ def download_html(lang):
             + " · ".join(links) + "</p>")
 
 
-def cover_body(lang, entries):
+ARROW = ('<svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" '
+         'stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+         '<path d="M3 8h10M9 4l4 4-4 4"/></svg>')
+
+def part_rows(lang, entries, parts):
+    """封面扉页用的各部：(罗马数字, 去掉「第 N 部」前缀的标题, 章号范围, 首章文件)。"""
+    rows = []
+    for ptitle, idxs in parts:
+        if not ptitle:
+            continue
+        m = re.match(r"^Part\s+[IVXLC]+\s*[:：]\s*(.+)$", ptitle) or re.match(r"^第.+?部[\s　]+(.+)$", ptitle)
+        name = m.group(1).strip() if m else ptitle
+        nums = []
+        first = None
+        for i in idxs:
+            mm = re.match(r"^(\d+)\.", entries[i][0])
+            if mm:
+                nums.append(int(mm.group(1)))
+                if first is None:
+                    first = entries[i][1]
+        if not nums:
+            continue
+        rows.append((cover.ROMAN[len(rows)], name, (nums[0], nums[-1]), first))
+    return rows
+
+
+def count_word(lang, n):
+    """封面上的计数：中文用汉字数字，英文用小数目的英文单词。"""
+    if lang.code == "zh":
+        if n <= 10:
+            return "零一二三四五六七八九十"[n]
+        if n < 20:
+            return "十" + "零一二三四五六七八九"[n - 10].replace("零", "")
+        return "零一二三四五六七八九"[n // 10] + "十" + ("零一二三四五六七八九"[n % 10] if n % 10 else "")
+    words = ("zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen "
+             "fifteen sixteen seventeen eighteen nineteen twenty").split()
+    return words[n] if n < len(words) else str(n)
+
+
+def cover_body(lang, entries, parts):
     first = entries[0][1] if entries else "toc.html"
     author_line = lang.labels["author_line"].format(author=lang.author)
+    rows = part_rows(lang, entries, parts)
+    n_ch = sum(b - a + 1 for _, _, (a, b), _ in rows)
+    kicker = lang.labels["kicker"].format(parts=count_word(lang, len(rows)), chapters=count_word(lang, n_ch))
+    e = html.escape
+    alt = other_lang(lang)
+    art = cover.cover_art(lang.code, lang.title, lang.subtitle, author_line, [r[1] for r in rows])
+    if lang.code == "en" and " " in lang.title:
+        i = lang.title.rfind(" ")
+        h1 = f"<span>{e(lang.title[:i])}</span> <span>{e(lang.title[i + 1:])}</span>"
+    else:
+        h1 = e(lang.title)
+    items = []
+    for num, name, (a, b), f in rows:
+        rng = lang.labels["chapters"].format(a=a, b=b) if a != b else lang.labels["chapter"].format(a=a)
+        items.append(f'<li><a data-turn href="{f}"><span class="rt-num">{num}</span>'
+                     f'<span class="rt-pt">{e(name)}</span><span class="rt-range">{e(rng)}</span></a></li>')
+    back = [(t, f) for t, f, _ in entries if not re.match(r"^\d+\.", t)]
+    back_html = ""
+    if back:
+        def short(t):
+            return re.split(r"[：:　]", t, maxsplit=1)[0].strip()
+        links = '<span aria-hidden="true"> · </span>'.join(
+            f'<a data-turn href="{f}">{e(short(t))}</a>' for t, f in back)
+        back_html = f'<p class="rt-back">{links}</p>'
     return f"""
-<div class="cover">
-  <div class="book">
-    <div class="bk-top">
-      <div class="t">{html.escape(lang.title)}</div>
-      <div class="s">{html.escape(lang.subtitle)}</div>
+<main class="spread">
+  <div class="verso">{art}</div>
+  <div class="recto">
+    <p class="rt-kicker">{e(kicker)}</p>
+    <h1 class="rt-title">{h1}</h1>
+    <p class="rt-sub">{e(lang.subtitle)}</p>
+    <p class="rt-author">{e(author_line)}</p>
+    <p class="rt-blurb">{e(lang.blurb)}</p>
+    <div class="actions">
+      <a class="btn primary" href="{first}">{e(lang.labels["start"])}{ARROW}</a>
+      <a class="btn ghost" href="toc.html">{e(lang.labels["toc"])}</a>
+      <a class="btn ghost" lang="{e(alt.html_lang)}" data-setlang="{e(alt.code)}" hreflang="{e(alt.html_lang)}" href="{e(rel_lang_link(lang, alt, "index.html"))}">{e(lang.labels["language"])}</a>
     </div>
-    <img class="bk-art" src="{asset_prefix(lang)}figures/cover-art.svg" alt="">
-    <div class="a">{html.escape(author_line)}</div>
+    <ol class="rt-parts" aria-label="{e(lang.labels["toc"])}">{"".join(items)}</ol>
+    {back_html}
+    <div class="rt-foot">
+      {download_html(lang)}
+      {share_html(lang)}
+      <p class="lic">{e(lang.labels["license"])}</p>
+    </div>
   </div>
-  <p class="blurb">{html.escape(lang.blurb)}</p>
-  <div class="actions">
-    <a class="btn primary" href="{first}">{html.escape(lang.labels["start"])}</a>
-    <a class="btn ghost" href="toc.html">{html.escape(lang.labels["toc"])}</a>
-    <a class="btn ghost" data-setlang="{html.escape(other_lang(lang).code)}" hreflang="{html.escape(other_lang(lang).html_lang)}" href="{html.escape(rel_lang_link(lang, other_lang(lang), "index.html"))}">{html.escape(lang.labels["language"])}</a>
-  </div>
-  {download_html(lang)}
-  {share_html(lang)}
-  <p class="muted" style="margin-top:18px;font-size:13.5px">{html.escape(lang.labels["license"])}</p>
-</div>
+</main>
 """
 
 
@@ -596,16 +720,17 @@ def lang_redirect_script(lang):
     )
 
 
-def cover_page(lang, entries):
+def cover_page(lang, entries, parts):
     return f"""<!DOCTYPE html>
 <html lang="{html.escape(lang.html_lang)}"><head><meta charset="utf-8">{lang_redirect_script(lang)}
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{html.escape(lang.title)} · {html.escape(lang.subtitle)}</title>
 {head_meta(lang, lang.title, "index.html", lang.blurb)}
-<style>{CSS}</style></head>
-<body class="lang-{html.escape(lang.code)}"><div class="wrap" style="display:block">{cover_body(lang, entries)}</div>
+<style>{CSS}{cover.CSS}</style></head>
+<body class="lang-{html.escape(lang.code)} cover-page">{cover_body(lang, entries, parts)}
 {qr_modal(lang)}
 {js_block(lang)}
+{cover.cover_js()}
 </body></html>
 """
 
@@ -716,7 +841,7 @@ def build_lang(lang):
     out_dir = lang_out_dir(lang)
     os.makedirs(out_dir, exist_ok=True)
 
-    open(os.path.join(out_dir, "index.html"), "w", encoding="utf-8").write(cover_page(lang, entries))
+    open(os.path.join(out_dir, "index.html"), "w", encoding="utf-8").write(cover_page(lang, entries, parts))
     sidebar = sidebar_html(lang, entries, parts)
     open(os.path.join(out_dir, "toc.html"), "w", encoding="utf-8").write(toc_page(lang, entries, parts, sidebar))
 

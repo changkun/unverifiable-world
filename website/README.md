@@ -6,6 +6,7 @@
 - **图片**：`book/figures/` 下的 SVG 原生显示。
 - **动画**：Markdown 里的原始 HTML/JS 原样透传，可直接嵌入动画 SVG、GIF、`<video>`、Lottie 或任意脚本动画。
 - **多语言**：中文输出在 `public/` 根目录，英文输出在 `public/en/`。每页会生成 `hreflang` alternate 元信息，并在顶栏提供语言切换。
+- **封面**：[`cover.py`](cover.py) 在构建时按 SUMMARY 各部生成一张「雾中推算航迹」海图（内联 SVG，随系统深浅色），配 CSS 雾层与指针提灯；旁边是带各部目录的扉页。
 - **路径**：输出全用相对路径，因此可直接部署到任何子路径下（如 `changkun.de/xxx/`），无需改 baseURL。
 
 ## 构建
