@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""F-Goodhart（第 8 / 11 章）：代理指标的过优化崩塌。
+"""F-Goodhart（第 8 / 11 章）：代理指标的过度优化崩塌。
 
 随着对代理指标的优化力度加大，代理持续上升，真目标却先升后降，
 在某一点之后二者脱钩。生成 book/figures/f08-goodhart-curve.svg

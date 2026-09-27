@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-"""F8（第 11 章）：标定的可靠性图。
+"""F8（第 11 章）：校准的可靠性图。
 
-对角线为完美标定（说 p，就真有 p 的比例发生）；过度自信的预测者偏离对角线。
+对角线为完美校准（说 p，就真有 p 的比例发生）；过度自信的预测者偏离对角线。
 生成 book/figures/f11-calibration.svg
 """
 import os
@@ -22,7 +22,7 @@ def build(lang="zh"):
     if en:
         W = 680
     s = SVG(W, H)
-    s.text(W / 2, 32, t("标定：可靠性图", "Calibration: the reliability diagram"),
+    s.text(W / 2, 32, t("校准：可靠性图", "Calibration: the reliability diagram"),
            size=t(21, 20), weight="bold")
     s.text(W / 2, 56, t("说有几成把握，就该真有几成成真",
                         "How sure you say you are should match how often it comes true"),
@@ -42,12 +42,12 @@ def build(lang="zh"):
         s.text(X(v), py + side + 18, f"{v:.2f}", size=11, fill=MUTED)
         s.text(px - 14, Y(v), f"{v:.2f}", size=11, fill=MUTED, anchor="end")
 
-    # 完美标定对角线
+    # 完美校准对角线
     s.line(X(0), Y(0), X(1), Y(1), stroke=STROKES[1], sw=2.4, dash="6,5")
     cal_x, cal_y = (0.7, 0.78)
     if en:
         cal_x, cal_y = (0.46, 0.86)  # 英文标签较长，上移并左移，避开红线
-    s.text(X(cal_x), Y(cal_y), t("完美标定", "Perfectly calibrated"),
+    s.text(X(cal_x), Y(cal_y), t("完美校准", "Perfectly calibrated"),
            size=t(13, 12.5), fill=STROKES[1], weight="bold")
 
     # 过度自信曲线：observed = 0.5 + (pred-0.5)*0.55（向 0.5 收缩）

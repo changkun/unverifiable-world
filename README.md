@@ -22,8 +22,8 @@
 | 证书 / 界 (certificate / bound) | 在一个切片上压不确定性 | PAC 界、数值误差界、类型系统、验到高度 T 的零点 | 界外失效 |
 | 神谕入回路 (oracle in the loop) | 补上你没有的验证能力 | 主动学习、人在回路、交互式定理证明 | 神谕本身不可靠 |
 | 最优筛查 (optimal screening) | 最优地花信息预算 | 实验设计、审计抽样、fuzzing、主动学习采集 | 误设的信息度量 |
-| 衰减 / 围栏 (decay / fencing) | 失败的爆炸半径 | 沙箱、最小权限、职责分离、熔断 | 围栏被绕过 |
-| 标定 / 概率接受 (calibration) | 显式给残余风险定价 | Miller-Rabin、conformal prediction | 标定漂移 |
+| 限损 / 围栏 (containment / fencing) | 失败的爆炸半径 | 沙箱、最小权限、职责分离、熔断 | 围栏被绕过 |
+| 校准 / 概率接受 (calibration) | 显式给残余风险定价 | Miller-Rabin、conformal prediction | 校准漂移 |
 | 留痕 / 可审计 (audit trail) | 把检查从事前挪到事后 | Merkle 树、审计日志、预注册 | 没人真去查 |
 | 冗余 / 共识 (redundancy / consensus) | 让失败去相关 | 拜占庭容错、同行评审、副本、第二诊疗意见 | 失败其实相关 |
 
@@ -33,10 +33,10 @@
 
 书必须先把差异讲透，才配谈综合。「我没法检验它」其实掩着五种结构不同的处境：
 
-1. **不可判定 (undecidable)**：原则上没有判定程序（停机问题、Rice 定理）
+1. **不可判定 (undecidable)**：原则上没有判定程序（停机问题、莱斯定理）
 2. **难解 (intractable)**：能验但代价爆炸（NP 完全、RH 可验到高度 T）
 3. **部分可观测 (partially observable)**：状态对你隐藏（用户的真实偏好、组织里分布的知识）
-4. **预算受限 (budget-limited)**：能验，但没那个时间 / 算力 / 样本
+4. **预算受限 (budget-constrained)**：能验，但没那个时间 / 算力 / 样本
 5. **对抗 (adversarial)**：系统主动挫败验证（会欺骗的对手、有隐藏信息的市场）
 
 ---
@@ -128,8 +128,8 @@ python3 scripts/check_citations.py --chapter ch07  # 只处理某章
 ## 谱系（定位用）
 
 - 最近的祖宗：Herbert Simon,《The Sciences of the Artificial》（有限理性、主体与环境的界面）。
-- 组织那章：James C. Scott,《Seeing Like a State》（可读性 legibility）。
-- 要警惕的反面：《哥德尔、埃舍尔、巴赫》，跨域类比漂亮却常被批「只是类比」；本书与它的区别，必须就是那根能被压力测试的脊柱。
+- 组织那章：James C. Scott,《Seeing Like a State》（清晰性 legibility）。
+- 要警惕的反面：《哥德尔、艾舍尔、巴赫》，跨域类比漂亮却常被批「只是类比」；本书与它的区别，必须就是那根能被压力测试的脊柱。
 
 ## 许可
 

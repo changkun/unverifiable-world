@@ -41,10 +41,10 @@ def build(lang="zh"):
             "证书与界：在能查的切片上压低",
             "神谕入回路：借来你没有的验证能力",
             "冗余共识：让多个判断的失败去相关",
-            "标定：把 P(失败) 变成已知、可定价",
+            "校准：把 P(失败) 变成已知、可定价",
         ], 0, 0)
         card(530, y1, 150, h1, "作用于 代价(失败)", [
-            "衰减围栏", "缩小失败的", "爆炸半径",
+            "限损围栏", "缩小失败的", "爆炸半径",
         ], 3, 3)
         card(700, y1, 160, h1, "作用于 信息预算 B", [
             "最优筛查", "把查验最优地", "分配出去",
@@ -68,7 +68,7 @@ def build(lang="zh"):
         ], 0, 0, hsize=16, lsize=14, lh=1.55)
         # Card 2: acts on Cost(fail)
         card(620, y1, 270, h1, "acts on Cost(fail)", [
-            "decay / fencing /", "containment", "",
+            "containment /", "fencing", "",
             "shrink the blast", "radius of failure",
         ], 3, 3, hsize=16, lsize=14, lh=1.7)
         # Card 3: acts on the information budget B
