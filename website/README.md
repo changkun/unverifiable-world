@@ -30,7 +30,7 @@ make book       # 编译到仓库根 dist/：unverifiable-world-{zh,en}.{pdf,epu
 make release    # 先 make book 再 make build：把 dist/ 收进 public/downloads/ 并在封面显示下载入口
 ```
 
-`make book` 调用 [`scripts/build_book.py`](../scripts/build_book.py)，依赖 **pandoc**、**xelatex**（含 CJK 字体，默认 Songti SC）、**rsvg-convert**。它按 SUMMARY 顺序拼接各章，把正文角标转成上标、把每章末编号参考文献保留为编号列表，并把 `book/figures/`（英文版用 `book/figures/en/`）下的 SVG 栅格化为高清 PNG 供 PDF 嵌入。`dist/` 不纳入版本管理；`build.py` 仅在对应文件存在时才在封面渲染下载链接，因此未编译时站点照常工作。
+`make book` 调用 [`scripts/build_book.py`](../scripts/build_book.py)，依赖 **pandoc**、**xelatex**（含 CJK 字体，默认 Songti SC）、**rsvg-convert**；没有 xelatex 时自动改用同为 XeTeX 的 **tectonic**（`brew install pandoc librsvg tectonic`，免 sudo），也可用 `PDF_ENGINE=xelatex|tectonic` 指定。它按 SUMMARY 顺序拼接各章，把正文角标转成上标、把每章末编号参考文献保留为编号列表，并把 `book/figures/`（英文版用 `book/figures/en/`）下的 SVG 栅格化为高清 PNG 供 PDF 嵌入。`dist/` 不纳入版本管理；`build.py` 仅在对应文件存在时才在封面渲染下载链接，因此未编译时站点照常工作。
 
 只产其中一种：`python3 scripts/build_book.py zh pdf`（语种 `zh`/`en` 与格式 `pdf`/`epub` 可任意组合）。
 

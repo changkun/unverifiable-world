@@ -14,7 +14,9 @@
   3. 配图 ../figures/fXX.svg 改写为高分辨率 PNG（xelatex 不能直接嵌 SVG）；
      英文版优先用 book/figures/en/ 下的英文图，缺失则回退中文图。
 
-依赖：pandoc、xelatex（含 CJK 字体 Songti SC）、rsvg-convert。
+依赖：pandoc、xelatex（含 CJK 字体 Songti SC）、rsvg-convert。没有 xelatex 时自动改用
+同属 XeTeX 的 tectonic（brew install tectonic，免 sudo）；也可用环境变量
+PDF_ENGINE=xelatex|tectonic 指定。
 用法：python3 scripts/build_book.py            # 两个语种、两种格式
       python3 scripts/build_book.py zh pdf     # 只产中文 PDF（语种/格式可选）
 """
@@ -51,6 +53,14 @@ LANGS = {"zh": ZH, "en": EN}
 
 CJK_FONT = "Songti SC"          # macOS 系统自带；如换平台改这里
 FIG_PNG_WIDTH = 2000            # 配图 PNG 宽度，约合 6in 版面 330dpi
+
+
+def pdf_engine():
+    """xelatex 优先；没有时退到 tectonic（同为 XeTeX，fontspec/xeCJK 行为一致）。"""
+    want = os.environ.get("PDF_ENGINE")
+    if want:
+        return want
+    return "xelatex" if shutil.which("xelatex") or not shutil.which("tectonic") else "tectonic"
 
 
 def need(tool):
@@ -193,7 +203,7 @@ def build_pdf(lang, md_path, out_path):
     cmd = [
         "pandoc", md_path,
         "--from=markdown",
-        "--pdf-engine=xelatex",
+        f"--pdf-engine={pdf_engine()}",
         "--top-level-division=part",
         "--toc", "--toc-depth=2",
         "-V", "documentclass=book",
@@ -234,7 +244,7 @@ def main(argv):
     langs = [LANGS[c] for c in (want_langs or ["zh", "en"])]
     fmts = want_fmts or ["pdf", "epub"]
     if "pdf" in fmts:
-        need("xelatex")
+        need(pdf_engine())
 
     os.makedirs(DIST, exist_ok=True)
     for lang in langs:
