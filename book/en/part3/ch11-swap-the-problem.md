@@ -167,101 +167,101 @@ Even so, these two moves are still trying to get things right. They have only lo
 1. C. A. E. Goodhart (1975). "Problems of Monetary Management: The U.K. Experience." *Papers in Monetary Economics*, Vol. I. Reserve Bank of Australia. [2]
    This is the original source of Goodhart's law, from a 1975 monetary-economics conference in Sydney. Discussing the U.K.'s experience of monetary management, Goodhart noted that once a statistical regularity is used as a target for control, the stable relationship previously observed tends to fail. The chapter uses it as the benchmark for proxy distortion: the correlation between a metric and the true target holds only on the distribution that is the status quo, and snaps once it is treated as a target and optimized.
 
-2. R. K. Merton (1936). "The Unanticipated Consequences of Purposive Social Action." *American Sociological Review*, 1(6), 894-904. [2]
+2. R. K. Merton (1936). "The Unanticipated Consequences of Purposive Social Action." *American Sociological Review*, 1(6), 894-904. doi:[10.2307/2084615](https://doi.org/10.2307/2084615) [2]
    Merton gives a systematic discussion of why purposive social action produces consequences the actor never foresaw, and sorts out several sources such as ignorance, the urgency of interest, and the constraint of values. It is an early sociological source for the side effects of proxy substitution, reminding the reader that when one optimizes a proxy, what really bites is often the consequences that never entered the field of measurement.
 
-3. D. T. Campbell (1979). "Assessing the Impact of Planned Social Change." *Evaluation and Program Planning*, 2(1), 67-90. [2][4]
+3. D. T. Campbell (1979). "Assessing the Impact of Planned Social Change." *Evaluation and Program Planning*, 2(1), 67-90. doi:[10.1016/0149-7189(79)90048-x](https://doi.org/10.1016/0149-7189%2879%2990048-x) [2][4]
    The source of Campbell's law: the more a quantitative social indicator is used for social decision-making, the more it is subject to distortion, and the more apt it is to distort and corrupt the social process it was meant to monitor. Alongside Goodhart's law it is another classic cornerstone of proxy distortion, by which the reader can see clearly the path of corruption a metric takes once high stakes are placed on it.
 
-4. S. Kerr (1975). "On the Folly of Rewarding A, While Hoping for B." *Academy of Management Journal*, 18(4), 769-783. [2][4]
+4. S. Kerr (1975). "On the Folly of Rewarding A, While Hoping for B." *Academy of Management Journal*, 18(4), 769-783. doi:[10.2307/255378](https://doi.org/10.2307/255378) [2][4]
    Kerr examines the widespread incentive mismatch in organizations: the behavior A that managers reward is often not the behavior B they truly hope for, so the incentive system stably produces results contrary to its original intent. It is a management classic on the mismatch of incentive and proxy, corresponding exactly to the real face of this chapter's "optimize the proxy, and the true target rots" cell.
 
-5. M. Strathern (1997). "'Improving ratings': audit in the British University system." *European Review*, 5(3), 305-321. [2][4]
+5. M. Strathern (1997). "'Improving ratings': audit in the British University system." *European Review*, 5(3), 305-321. doi:[10.1002/(sici)1234-981x(199707)5:3&lt;305::aid-euro184&gt;3.0.co;2-4](https://doi.org/10.1002/%28sici%291234-981x%28199707%295:3%3C305::aid-euro184%3E3.0.co;2-4) [2][4]
    Strathern, drawing on observations of the British university audit system, gives the widely quoted formulation: when a measure becomes a target, it ceases to be a good measure. This chapter's argument that a proxy distorts once treated as a target often takes this as its concise statement, and the reader can find here the original context of that phrasing.
 
-6. R. E. Lucas (1976). "Econometric Policy Evaluation: A Critique." *Carnegie-Rochester Conference Series on Public Policy*, 1, 19-46. [2][3]
+6. R. E. Lucas (1976). "Econometric Policy Evaluation: A Critique." *Carnegie-Rochester Conference Series on Public Policy*, 1, 19-46. doi:[10.1016/s0167-2231(76)80003-6](https://doi.org/10.1016/s0167-2231%2876%2980003-6) [2][3]
    Lucas's critique points out that the parameter relations estimated in an econometric model depend on the existing policy environment, and once policy is changed on that basis, actors' expectations and behavior adjust accordingly, so the original structural relations no longer hold. It is the economic twin of Goodhart's law, used in this chapter to explain why the pressure of optimization pushes a system off the distribution where proxy and true target agree.
 
-7. W. N. Espeland & M. Sauder (2007). "Rankings and Reactivity: How Public Measures Recreate Social Worlds." *American Journal of Sociology*, 113(1), 1-40. [2][4]
+7. W. N. Espeland & M. Sauder (2007). "Rankings and Reactivity: How Public Measures Recreate Social Worlds." *American Journal of Sociology*, 113(1), 1-40. doi:[10.1086/517897](https://doi.org/10.1086/517897) [2][4]
    Espeland and Sauder propose the "reactivity" framework: public rankings and quantitative indicators are not merely measurement, they also change the behavior and even the self-conception of the measured, and so reshape the very social reality they were meant to describe. The chapter uses it to push proxy distortion one layer further: a metric not only distorts, it remakes the object it measures.
 
-8. D. Manheim & S. Garrabrant (2018). "Categorizing Variants of Goodhart's Law." arXiv:1803.04585. [2]
+8. D. Manheim & S. Garrabrant (2018). "Categorizing Variants of Goodhart's Law." [arXiv:1803.04585](https://arxiv.org/abs/1803.04585). [2]
    The two authors attempt to split the loose "Goodhart's law" into several distinct mechanisms (regressional, extremal, causal, and adversarial), whose ways of failing and remedies differ. It gives this chapter's "proxy substitution fails in more than one way" a finer taxonomy, helping the reader tell which kind of distortion they face.
 
-9. J. Z. Muller (2018). *The Tyranny of Metrics*. Princeton University Press. [4]
+9. J. Z. Muller (2018). *The Tyranny of Metrics*. Princeton University Press. doi:[10.23943/9781400889433](https://doi.org/10.23943/9781400889433) [4]
    Muller, through a wealth of cases from medicine, education, policing, and business, criticizes the fashion of reducing everything to quantifiable indicators and holding people accountable by them, pointing out that this metric worship often brings the consequence of surface compliance and substantive harm. It is a popular survey aimed at the general reader, well suited for recognizing the cost of proxy substitution in life and work.
 
 ### Proxy distortion recurring in machine learning: reward hacking and overoptimization
 
-10. D. Amodei, C. Olah, J. Steinhardt, P. Christiano, J. Schulman & D. Mané (2016). "Concrete Problems in AI Safety." arXiv:1606.06565. [2]
+10. D. Amodei, C. Olah, J. Steinhardt, P. Christiano, J. Schulman & D. Mané (2016). "Concrete Problems in AI Safety." [arXiv:1606.06565](https://arxiv.org/abs/1606.06565). [2]
     This widely influential survey breaks AI safety into several concrete, researchable problems, among them reward hacking and scalable supervision. It clearly translates the proxy-target distortion long familiar in the social sciences into the machine-learning context, and is the starting point of this chapter's passage on "the same mechanism replaying in machine learning."
 
-11. P. F. Christiano, J. Leike, T. B. Brown, M. Martic, S. Legg & D. Amodei (2017). "Deep Reinforcement Learning from Human Preferences." *Advances in Neural Information Processing Systems*, 30 (NeurIPS 2017). [2][4]
+11. P. F. Christiano, J. Leike, T. B. Brown, M. Martic, S. Legg & D. Amodei (2017). "Deep Reinforcement Learning from Human Preferences." *Advances in Neural Information Processing Systems*, 30 (NeurIPS 2017). [arXiv:1706.03741](https://arxiv.org/abs/1706.03741) [2][4]
     The authors use human preference comparisons over pairs of trajectories to train a reward model, then drive reinforcement learning with it, thereby sidestepping an objective function hard to write by hand. This is the founding work of RLHF, and exactly the proxy-substitution model this chapter calls "standing in a reward model for human beings' true preferences," from which the reader can understand why such a proxy is both useful and dangerous.
 
-12. A. Pan, K. Bhatia & J. Steinhardt (2022). "The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models." ICLR 2022. [2]
+12. A. Pan, K. Bhatia & J. Steinhardt (2022). "The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models." ICLR 2022. [arXiv:2201.03544](https://arxiv.org/abs/2201.03544) [2]
     The authors systematically examine the consequences of misspecified rewards, and give a cautionary empirical phenomenon: more capable agents are often better at exploiting the proxy reward, and the true return can even undergo a sharp, sudden phase transition as capability rises. The chapter uses it to show that proxy distortion is not a linear worsening but may flip abruptly at some point.
 
-13. J. Skalse, N. H. R. Howe, D. Krasheninnikov & D. Krueger (2022). "Defining and Characterizing Reward Hacking." *Advances in Neural Information Processing Systems*, 35 (NeurIPS 2022). [2]
+13. J. Skalse, N. H. R. Howe, D. Krasheninnikov & D. Krueger (2022). "Defining and Characterizing Reward Hacking." *Advances in Neural Information Processing Systems*, 35 (NeurIPS 2022). doi:[10.52202/068431-0687](https://doi.org/10.52202/068431-0687) [2]
     This paper gives a formal definition of reward hacking and proves that in nontrivial cases an "unhackable" proxy reward almost never exists. It provides the theoretical support for this chapter's "good proxies are rare": faithful and robust proxies are scarce for structural reasons, not by some accidental failure of engineering.
 
-14. L. Gao, J. Schulman & J. Hilton (2023). "Scaling Laws for Reward Model Overoptimization." *Proceedings of the 40th International Conference on Machine Learning* (PMLR 202), 10835-10866. [2]
+14. L. Gao, J. Schulman & J. Hilton (2023). "Scaling Laws for Reward Model Overoptimization." *Proceedings of the 40th International Conference on Machine Learning* (PMLR 202), 10835-10866. [arXiv:2210.10760](https://arxiv.org/abs/2210.10760) [2]
     The authors give a quantitative characterization of reward-model overoptimization, yielding a scaling-law regularity for how true performance varies with the degree of optimization against the proxy reward: past a certain point, the proxy score still rises while true performance turns down. It pushes Goodhart-style distortion from a qualitative observation to a measurable curve, and is the most empirical piece of this chapter's overoptimization argument.
 
 ### Calibration: swap the binary verdict for a probability, and constrain it by strictly proper scoring
 
-15. G. W. Brier (1950). "Verification of Forecasts Expressed in Terms of Probability." *Monthly Weather Review*, 78(1), 1-3. [2]
+15. G. W. Brier (1950). "Verification of Forecasts Expressed in Terms of Probability." *Monthly Weather Review*, 78(1), 1-3. doi:[10.1175/1520-0493(1950)078&lt;0001:vofeit&gt;2.0.co;2](https://doi.org/10.1175/1520-0493%281950%29078%3C0001:vofeit%3E2.0.co;2) [2]
     Brier proposed a score for evaluating probabilistic forecasts (later the Brier score), bringing "how much sureness was reported, and whether it happened in the end" into a computable assessment. It is the starting point of the calibration and strictly-proper-scoring system, and this chapter's argument that "probability is checkable" begins here.
 
-16. L. J. Savage (1971). "Elicitation of Personal Probabilities and Expectations." *Journal of the American Statistical Association*, 66(336), 783-801. [2]
+16. L. J. Savage (1971). "Elicitation of Personal Probabilities and Expectations." *Journal of the American Statistical Association*, 66(336), 783-801. doi:[10.1080/01621459.1971.10482346](https://doi.org/10.1080/01621459.1971.10482346) [2]
     Savage studies how to design scoring and incentives so that a person is willing to report their subjective probabilities and expectations truthfully. It lays the theoretical foundation for "a proper scoring rule elicits the true probability," corresponding to this chapter's key design: honesty no longer rests on conscience but is enforced by the mathematical structure of the scoring rule.
 
-17. A. H. Murphy (1973). "A New Vector Partition of the Probability Score." *Journal of Applied Meteorology*, 12(4), 595-600. [2]
+17. A. H. Murphy (1973). "A New Vector Partition of the Probability Score." *Journal of Applied Meteorology*, 12(4), 595-600. doi:[10.1175/1520-0450(1973)012&lt;0595:anvpot&gt;2.0.co;2](https://doi.org/10.1175/1520-0450%281973%29012%3C0595:anvpot%3E2.0.co;2) [2]
     Murphy decomposes the Brier score into three components, reliability, resolution, and uncertainty, letting one see separately where a forecast is miscalibrated and where it has discriminating power. This decomposition is the quantitative skeleton of the calibration concept, and this chapter's distinction between "calibration" and "sharpness" rests precisely on such a breakdown.
 
-18. M. H. DeGroot & S. E. Fienberg (1983). "The Comparison and Evaluation of Forecasters." *Journal of the Royal Statistical Society: Series D (The Statistician)*, 32(1-2), 12-22. [2]
+18. M. H. DeGroot & S. E. Fienberg (1983). "The Comparison and Evaluation of Forecasters." *Journal of the Royal Statistical Society: Series D (The Statistician)*, 32(1-2), 12-22. doi:[10.2307/2987588](https://doi.org/10.2307/2987588) [2]
     DeGroot and Fienberg give a systematic treatment of the comparison and evaluation of forecasters, clearly distinguishing calibration from refinement (sharpness) and providing a framework for ranking forecasters accordingly. It is the core theoretical source of this chapter's calibration argument, where the reader can see calibration stated rigorously as a checkable object of knowledge.
 
-19. A. P. Dawid (1982). "The Well-Calibrated Bayesian." *Journal of the American Statistical Association*, 77(379), 605-610. [2]
+19. A. P. Dawid (1982). "The Well-Calibrated Bayesian." *Journal of the American Statistical Association*, 77(379), 605-610. doi:[10.1080/01621459.1982.10477856](https://doi.org/10.1080/01621459.1982.10477856) [2]
     Dawid proves that a coherent Bayesian actor, under its own subjective beliefs, will asymptotically self-calibrate, that is, in the long run its probability assertions match the actual frequencies. The chapter uses it to show that calibration is not an externally imposed demand but can be an intrinsic product of rational updating.
 
-20. D. Oakes (1985). "Self-Calibrating Priors Do Not Exist." *Journal of the American Statistical Association*, 80(390), 339-342. [2]
+20. D. Oakes (1985). "Self-Calibrating Priors Do Not Exist." *Journal of the American Statistical Association*, 80(390), 339-342. doi:[10.1080/01621459.1985.10478117](https://doi.org/10.1080/01621459.1985.10478117) [2]
     Oakes points out that no prior can guarantee self-calibration for all data sequences, thereby drawing a boundary around Dawid-style optimistic results. It stands as a counterweight to Dawid (1982) and the Foster-Vohra attainability result, and is the basis for this chapter's note that "calibration has its limit."
 
-21. M. J. Schervish (1989). "A General Method for Comparing Probability Assessors." *The Annals of Statistics*, 17(4), 1856-1879. [2]
+21. M. J. Schervish (1989). "A General Method for Comparing Probability Assessors." *The Annals of Statistics*, 17(4), 1856-1879. doi:[10.1214/aos/1176347398](https://doi.org/10.1214/aos/1176347398) [2]
     Schervish gives a general method for comparing probability assessors, bringing the various proper scoring rules into a unified comparison framework as special cases. It serves to integrate and tidy calibration theory, helping the reader place scattered scoring rules into the same picture.
 
-22. D. P. Foster & R. V. Vohra (1998). "Asymptotic Calibration." *Biometrika*, 85(2), 379-390. [2]
+22. D. P. Foster & R. V. Vohra (1998). "Asymptotic Calibration." *Biometrika*, 85(2), 379-390. doi:[10.1093/biomet/85.2.379](https://doi.org/10.1093/biomet/85.2.379) [2]
     Foster and Vohra prove that even facing an arbitrary (even adversarial) sequence of outcomes, there exists a forecasting strategy that asymptotically achieves calibration. This is the key theorem on the attainability of calibration, by which this chapter argues that calibration is an object of knowledge weaker than a true-or-false verdict yet genuinely attainable.
 
-23. T. Gneiting & A. E. Raftery (2007). "Strictly Proper Scoring Rules, Prediction, and Estimation." *Journal of the American Statistical Association*, 102(477), 359-378. [2]
+23. T. Gneiting & A. E. Raftery (2007). "Strictly Proper Scoring Rules, Prediction, and Estimation." *Journal of the American Statistical Association*, 102(477), 359-378. doi:[10.1198/016214506000001437](https://doi.org/10.1198/016214506000001437) [2]
     This is the authoritative survey of strictly proper scoring rules: it systematically organizes which scoring functions make truthful reporting exactly the expected-score-optimal strategy, and connects them with prediction and estimation. It is the theoretical pillar of this chapter's calibration argument, and the reader who wants to understand "honesty enforced by mathematical structure" may read this piece.
 
-24. T. Gneiting, F. Balabdaoui & A. E. Raftery (2007). "Probabilistic Forecasts, Calibration and Sharpness." *Journal of the Royal Statistical Society: Series B (Statistical Methodology)*, 69(2), 243-268. [2]
+24. T. Gneiting, F. Balabdaoui & A. E. Raftery (2007). "Probabilistic Forecasts, Calibration and Sharpness." *Journal of the Royal Statistical Society: Series B (Statistical Methodology)*, 69(2), 243-268. doi:[10.1111/j.1467-9868.2007.00587.x](https://doi.org/10.1111/j.1467-9868.2007.00587.x) [2]
     The authors propose a modern framework for probabilistic prediction, summing up the goal as "maximize sharpness subject to calibration": first require the forecast to be calibrated, then make it as sharp as possible under that constraint. This chapter's standard for judging whether a probabilistic forecast is good or bad adopts this framework directly.
 
-25. C. Guo, G. Pleiss, Y. Sun & K. Q. Weinberger (2017). "On Calibration of Modern Neural Networks." *Proceedings of the 34th International Conference on Machine Learning* (PMLR 70), 1321-1330. [2]
+25. C. Guo, G. Pleiss, Y. Sun & K. Q. Weinberger (2017). "On Calibration of Modern Neural Networks." *Proceedings of the 34th International Conference on Machine Learning* (PMLR 70), 1321-1330. [arXiv:1706.04599](https://arxiv.org/abs/1706.04599) [2]
     The authors find that modern deep neural networks, though often more accurate, are frequently miscalibrated, with confidence systematically deviating from the true correctness rate, and propose simple recalibration methods such as temperature scaling. It is the representative work on the calibration problem on the machine-learning side, corresponding exactly to this chapter's "modern neural networks are in fact often miscalibrated, and so need recalibration."
 
-26. V. Vovk, A. Gammerman & G. Shafer (2005). *Algorithmic Learning in a Random World*. Springer. [2]
+26. V. Vovk, A. Gammerman & G. Shafer (2005). *Algorithmic Learning in a Random World*. Springer. doi:[10.1007/b106715](https://doi.org/10.1007/b106715) [2]
     This is the founding monograph of conformal prediction: it gives not a single-point judgment but constructs a prediction set with a coverage guarantee, so that the probability of the true value falling in the set has a controllable lower bound. The chapter uses it as one realization of the calibration idea in machine learning, giving the reader an example of a "prediction that carries its own reliability guarantee."
 
 ### The methodological roots of judgment, prediction, and the substitution move
 
-27. P. E. Tetlock (2005). *Expert Political Judgment: How Good Is It? How Can We Know?* Princeton University Press. [1][2]
+27. P. E. Tetlock (2005). *Expert Political Judgment: How Good Is It? How Can We Know?* Princeton University Press. [Google Books](https://books.google.com/books?id=NAeCzQEACAAJ) [1][2]
     Tetlock conducts a large-scale, multi-year tracking of expert political forecasting, finding that the long-run accuracy of many experts is unremarkable and often falls short of simple extrapolation baselines. It is the representative work that puts expert judgment under a checkable framework, and gives empirical support to this chapter's "act on a calibrated probability, rather than trust authoritative assertions."
 
-28. P. E. Tetlock & D. Gardner (2015). *Superforecasting: The Art and Science of Prediction*. Crown. [1][4]
+28. P. E. Tetlock & D. Gardner (2015). *Superforecasting: The Art and Science of Prediction*. Crown. [Google Books](https://books.google.com/books?id=hC_qBQAAQBAJ) [1][4]
     This book popularizes the research findings of the IARPA forecasting tournament, portraying how the standout "superforecasters" decompose problems, give probabilities, and continually fine-tune with evidence. It leans toward practice, telling exactly how to make judgments that can be checked by calibration in an unverifiable world, well suited for the reader to train their own forecasting habits.
 
-29. G. E. P. Box (1976). "Science and Statistics." *Journal of the American Statistical Association*, 71(356), 791-799. [2][3]
+29. G. E. P. Box (1976). "Science and Statistics." *Journal of the American Statistical Association*, 71(356), 791-799. doi:[10.1080/01621459.1976.10480949](https://doi.org/10.1080/01621459.1976.10480949) [2][3]
     This is the source of the line "all models are wrong, but some are useful." Box argues that statistical modeling is an iterative process of scientific inquiry, which should pursue not absolute correctness but usefulness and improvability. It serves precisely this chapter's contrast of ways of failing: faithful but intractable, or tractable but only approximate.
 
-30. G. Pólya (1945). *How to Solve It: A New Aspect of Mathematical Method*. Princeton University Press. [2][4]
+30. G. Pólya (1945). *How to Solve It: A New Aspect of Mathematical Method*. Princeton University Press. doi:[10.1515/9781400828678](https://doi.org/10.1515/9781400828678) [2][4]
     Pólya sums up a set of problem-solving heuristics, one of which is to turn first to a related, easier problem, then approach the original through it. This is the methodological prototype of the substitution move in this chapter's title, and the reader may see proxy substitution as a generalization of this ancient problem-solving art to settings that cannot be directly verified.
 
-31. H. A. Simon (1956). "Rational Choice and the Structure of the Environment." *Psychological Review*, 63(2), 129-138. [2][4]
+31. H. A. Simon (1956). "Rational Choice and the Structure of the Environment." *Psychological Review*, 63(2), 129-138. doi:[10.1037/h0042769](https://doi.org/10.1037/h0042769) [2][4]
     Simon proposes bounded rationality and satisficing: when capacity and information are limited, an actor does not seek the optimum but stops upon finding a "good enough" option. It provides the theoretical grounding for "replacing the unattainable optimum with a good-enough proxy," and is the root of this chapter's substitution move in decision science.
 
-32. D. Kahneman & S. Frederick (2002). "Representativeness Revisited: Attribute Substitution in Intuitive Judgment." In T. Gilovich, D. Griffin & D. Kahneman (eds.), *Heuristics and Biases: The Psychology of Intuitive Judgment*, 49-81. Cambridge University Press. [2]
+32. D. Kahneman & S. Frederick (2002). "Representativeness Revisited: Attribute Substitution in Intuitive Judgment." In T. Gilovich, D. Griffin & D. Kahneman (eds.), *Heuristics and Biases: The Psychology of Intuitive Judgment*, 49-81. Cambridge University Press. doi:[10.1017/cbo9780511808098.004](https://doi.org/10.1017/cbo9780511808098.004) [2]
     Kahneman and Frederick propose "attribute substitution": when the target attribute is hard to assess, a person unconsciously substitutes a more easily assessed attribute to answer in its place. This is the psychological twin of this chapter's proxy-substitution mechanism, showing that swapping the problem is not only an engineering strategy but also the default mode in which human intuition operates.
