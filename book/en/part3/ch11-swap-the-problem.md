@@ -152,7 +152,7 @@ Calibration can fail in two ways. The shallower failure is miscalibration. Your 
 
 ## Why These Two Moves Go Together
 
-Put the two moves side by side. Proxy substitution changes what you verify (a different target, one you can check). Calibration changes the form of the verdict (a probability instead of true or false). Neither answers the original question. Both swap it for a problem you can handle. The lever they share is changing what you demand of "the answer" itself. One changes what you measure. The other changes what the verdict looks like and puts a price on the risk that remains.
+Put the two moves side by side. Proxy substitution changes what you verify (a different target, one you can check). Calibration changes the form of the verdict (a probability instead of true or false). Neither answers the original question. Both swap it for a problem you can handle. What they share is changing what you demand of "the answer" itself. One changes what you measure. The other changes what the verdict looks like and puts a price on the risk that remains.
 
 Even so, these two moves are still trying to get things right. They have only lowered the bar for what counts as "right." The last pair of moves goes further. It stops hoping to get things right at all and turns to managing what happens when they go wrong. If error cannot be prevented, shrink what it costs, and make sure that when it happens, you find out. That is Chapter 12.
 
