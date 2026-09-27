@@ -1,64 +1,66 @@
 # 第 5 章　控制台前的人
 
-> **论点**：当你要满足的是一个人真实的偏好或意图时，你面对的是永久的部分可观测：潜在的目标无法直接读出。行之有效的应对，是把一个判断者放进回路，并且省着、聪明地去问它。
+> **论点**：当需要满足的是一个人真实的偏好或意图时，我们面对的是一种永久性的部分可观测：潜在的目标无法被直接读出。行之有效的应对，是把一个判断者放进回路，并且有节制、有针对性地向它提问。
 
-## 你要的不是你说的
+## 所言非所欲
 
-一个被讲了无数遍、却从来没有过时的场景：用户描述了他想要的东西，工程师严丝合缝地做了出来。到了交付那天，用户却说：「不，这不是我要的。」
+这是一个被讲述过无数次、却始终没有过时的场景：用户描述了自己想要的东西，工程师分毫不差地将它实现出来；到了交付之日，用户却说：「不，这不是我要的。」
 
-没有人撒谎。用户说的是真话，工程师也照做了。问题出在更深的地方：用户真正想要的那个东西，从一开始就没有、也不可能被完整地说出来。这一章要看的是，当你必须满足的目标藏在另一个人的脑子里时，有本事的人怎么办。这里的不可验证，属于第 2 章五种处境中的「部分可观测」（partial observability）：相关的状态对你是隐藏的，而且不是暂时隐藏，是永远隐藏。你没法把目标从一个人的脑子里读出来，也就没法验证自己有没有满足它。
+这里没有人说谎。用户所言属实，工程师也照此实现。问题出在更深的层次：用户真正想要的东西，从一开始就没有、也不可能被完整地表述出来。本章考察的是，当必须满足的目标存在于另一个人的头脑之中时，善于应对者如何行事。这里的不可验证性，属于第 2 章所区分的五种处境中的「部分可观测」（partial observability）：相关的状态对我们隐而不见，而且这种隐蔽不是暂时的，而是永久的。目标无法从一个人的头脑中读取出来，因此我们也就无法验证自己是否满足了它。
 
-## 潜在偏好测不准
+## 偏好作为潜变量
 
-先把这件事说准确。用户的真实偏好是一个潜变量（latent variable）：它驱动着他的反应，却从不直接显现，你只能从他的行为里旁敲侧击地推断。
+首先需要把问题表述得更精确。用户的真实偏好是一个潜变量（latent variable）：它驱动着用户的种种反应，自身却从不直接显现，我们只能从其行为中间接地加以推断。
 
-更麻烦的是，这个潜在的目标常常连用户自己都读不出来。心理学家斯洛维奇<sup class="cite"><a href="#ref-11">11</a></sup>有一个不讨喜、却很扎实的论断：偏好在很多时候不是被表达出来的，而是在被问到的那一刻才构造出来的。你问一个人想要什么，他给你的答案，往往是由你的问法、当时摆在面前的选项、他碰巧想到的参照点一起塑造的，并不是从某个早已存在、定义清楚的偏好库里取出来的。所以，「先把需求问清楚，再去实现」这个看似稳妥的次序，建立在一个常常不成立的假设上：需求作为一个确定的对象，在询问之前就已经存在。
+更棘手的是，这一潜在的目标往往连用户自己也无法读出。心理学家斯洛维奇<sup class="cite"><a href="#ref-11">11</a></sup>提出过一个不讨人喜欢、却有扎实依据的论断：偏好在许多情况下并不是被表达出来的，而是在被询问的那一刻才被构造出来的。问一个人想要什么，他给出的回答往往由提问的方式、当时摆在面前的选项以及他偶然想到的参照点共同塑造，并不是从某个预先存在、界定清楚的偏好储备中提取出来的。因此，「先把需求问清楚，再去实现」这一看似稳妥的次序，建立在一个常常不能成立的假设之上：需求作为一个确定的对象，在询问之前就已经存在。
 
-可见，这不是「信息暂时缺了、补齐就行」的那种处境。哪怕用户全程配合、知无不言，目标依然测不准。这是部分可观测在人身上最纯粹的样子。
+由此可见，这并不是那种「信息暂时缺失、补齐即可」的处境。即便用户始终配合、知无不言，目标依然无法被准确地测得。就此而言，这是部分可观测在人身上最为纯粹的形态。
 
-## 为什么问一次不够
+## 单次询问为何不足
 
-如果偏好是一个固定的靶子，问一次、问清楚，原则上就够了。可它不是。
+倘若偏好是一个固定的靶子，那么原则上，问一次、问清楚便已足够。然而偏好并不是固定的靶子。
 
-经济学早就区分了两样东西：陈述偏好（stated preference，一个人说自己要什么）和显示偏好（revealed preference，一个人的实际选择透露出他要什么），两者经常对不上。需求文档是一种有损压缩：它把一个活的、随情境变化的意图，压成一份静态的条目清单，丢掉的，是那些当时没想到、一见到成品就能立刻指出来的东西。而且意图还会漂移。人看到一个具体的实现之后，偏好会被这个实现重新校准，他现在想要的，已经不是项目启动时想要的了。
+经济学很早就区分了两种偏好：陈述偏好（stated preference），即一个人自称想要什么；显示偏好（revealed preference），即一个人的实际选择所透露出的偏好。二者常常并不一致。需求文档是一种有损压缩：它把一个鲜活的、随情境而变化的意图，压缩为一份静态的条目清单；被舍弃的，是那些当时未曾想到、一见到成品便能立即指出的东西。不仅如此，意图还会漂移。人在见到一个具体的实现之后，其偏好会被这一实现重新塑造；他此刻想要的，已不再是项目启动时想要的东西。
 
-所以「问一次」会失败，不是因为你问得不够好，而是这个对象的性质决定了，单次询问锁定不了它。能对付它的只有一种结构：不断地行动、观察、再修正。
+因此，单次询问之所以失败，并不在于问得不够好，而在于这一对象的性质决定了它无法被一次询问所锁定。能够应对它的只有一种结构：持续地行动、观察、再修正。
 
-## 第一招：把判断者放进回路
+## 第一种对策：把判断者放进回路
 
-第一种应对，是承认你读不出目标，于是在每个决策点，把唯一知道目标的那个人请进来，让他来纠偏。行动，观察反应，更新，再行动。这就是把人放进回路（human in the loop）。
+第一种应对，是承认目标无法被读出，进而在每一个决策点上，把唯一知晓目标的那个人请进来，由他来纠正偏差：行动，观察反应，更新，再行动。这就是把人放进回路，即通常所说的人在回路（human in the loop）；本书将这一对策称为神谕入回路。
 
 ![把判断者放进回路：行动、观察、更新](../figures/f05-elicitation-loop.svg)
 
-这条回路在很多领域里被各自重新发明过。人因工程里，谢里登<sup class="cite"><a href="#ref-12">12</a></sup>的「人类监督控制」（human supervisory control）把人定位成站在自动化之上、负责监督和干预的判断者，而不是一个被一份规格一次性取代的角色。可用性工程里，古尔德与刘易斯 1985 年<sup class="cite"><a href="#ref-20">20</a></sup>那篇经验之谈，把它归结为三条朴素到近乎废话、却被无数项目违反的原则：尽早并持续地关注用户，做实证的测量，迭代地设计。尼尔森<sup class="cite"><a href="#ref-19">19</a></sup>后来把它发展成一整套可用性工程方法，还给出了一个出人意料的经验数字：只要五位用户参加测试，就能发现约八成五的可用性问题。所以与其一次请二十人，不如分四轮、每轮五人，边测边改。推荐系统从用户的点击、停留和跳过里学习他没说出口的口味，本质上也是同一条回路。霍维茨 1999 年<sup class="cite"><a href="#ref-22">22</a></sup>的混合主动式界面（mixed-initiative user interface），费尔斯与奥尔森 2003 年<sup class="cite"><a href="#ref-23">23</a></sup>提出的交互式机器学习（interactive machine learning），讲的也都是同一件事：人与系统轮流出招，彼此校准。
+这一回路曾在许多领域中被各自独立地重新发明。在人因工程中，谢里登<sup class="cite"><a href="#ref-12">12</a></sup>提出的「人类监督控制」（human supervisory control），把人定位为居于自动化之上、负责监督与干预的判断者，而不是一个可以被一份规格一次性取代的角色。在可用性工程中，古尔德与刘易斯 1985 年<sup class="cite"><a href="#ref-20">20</a></sup>的那篇经验总结，把它归结为三条原则：尽早并持续地关注用户，进行实证测量，迭代地设计。这三条原则朴素得近乎老生常谈，却为无数项目所违背。尼尔森<sup class="cite"><a href="#ref-19">19</a></sup>后来将其发展为一整套可用性工程方法，并给出了一个出人意料的经验数字：只需五位用户参加测试，便能发现约八成五的可用性问题。因此，与其一次邀请二十人，不如分四轮进行、每轮五人，边测试边修改。
 
-这里要提防以偏概全。交互式获取不是某一种具体的技术，而是一个方法族：实验设计、主动学习、序贯决策，乃至强化学习里的探索，都是这条「行动-观察-更新」回路在不同假设下的实例。把它说成「就是 A/B 测试」或「就是某个算法」，会把一种普遍的做法矮化成一件工具。
+在其他领域，同一结构以不同的名目出现。推荐系统从用户的点击、停留与跳过中习得其未曾言明的偏好，本质上也是这条回路。霍维茨 1999 年<sup class="cite"><a href="#ref-22">22</a></sup>提出的混合主动式界面（mixed-initiative user interface），以及费尔斯与奥尔森 2003 年<sup class="cite"><a href="#ref-23">23</a></sup>提出的交互式机器学习（interactive machine learning），所描述的也是同一件事：人与系统轮流采取行动，彼此校准。
 
-## 第二招：把提问花在刀刃上
+这里需要防止以偏概全。交互式的偏好获取并不是某一种具体的技术，而是一个方法族：实验设计、主动学习、序贯决策，乃至强化学习中的探索，都是这条「行动-观察-更新」回路在不同假设下的实例。若把它说成「不过是 A/B 测试」或「不过是某个算法」，就会把一种普遍的做法窄化为一件工具。
 
-回路要转，就得不断向人提问，而提问是有代价的。用户的耐心、注意力和时间都很稀缺；问得太多、太笨，人会烦，会敷衍，会走开。于是第二招登场：既然查验有成本，就把有限的提问花在信息量最大的地方。
+## 第二种对策：把提问用在信息量最大之处
 
-这一招有一套干净的理论。林德利 1956 年<sup class="cite"><a href="#ref-1">1</a></sup>给出了一个实验所提供信息的度量；霍华德 1966 年<sup class="cite"><a href="#ref-3">3</a></sup>提出了信息价值理论（information value theory），把「该不该花代价去获取这条信息」变成了一个可以计算的决策。贝叶斯实验设计（Bayesian experimental design，查洛纳与韦尔迪内利<sup class="cite"><a href="#ref-5">5</a></sup>的综述是一份好地图）把这些系统化了：在所有可以问的问题里，挑出期望上最能压缩你的不确定性的那一个。形式上，若 $\theta$ 是你想推断的潜在偏好，$y_q$ 是问题 $q$ 的回答，你要挑的就是期望信息增益最大的 $q$：
+回路的运转有赖于不断向人提问，而提问是有代价的。用户的耐心、注意力和时间都很稀缺；问得过多或不得要领，人便会厌烦、敷衍，甚至离开。第二种对策由此而来：既然查验有成本，就应当把有限的提问用在信息量最大的地方。本书将这一对策称为最优筛查。
+
+这一对策有一套清晰的理论。林德利在 1956 年<sup class="cite"><a href="#ref-1">1</a></sup>给出了一个实验所提供信息的度量；霍华德在 1966 年<sup class="cite"><a href="#ref-3">3</a></sup>提出信息价值理论（information value theory），把「是否值得付出代价获取某条信息」转化为一个可以计算的决策问题。贝叶斯实验设计（Bayesian experimental design）则将这些思想系统化了（查洛纳与韦尔迪内利<sup class="cite"><a href="#ref-5">5</a></sup>的综述是这一领域很好的导览）：在所有可以提出的问题中，选出期望上最能削减不确定性的那一个。形式上，若 $\theta$ 是待推断的潜在偏好，$y_q$ 是对问题 $q$ 的回答，那么应当选择的，是期望信息增益最大的 $q$：
 
 $$q^\star=\arg\max_q\; \mathbb{E}_{y_q}\big[\,\mathrm{H}(\theta)-\mathrm{H}(\theta\mid y_q)\,\big]=\arg\max_q\; I(\theta;y_q),$$
 
-也就是让回答与目标之间的互信息（mutual information）最大。机器学习里，这套思想叫主动学习（active learning）。科恩等人 1996 年<sup class="cite"><a href="#ref-6">6</a></sup>的统计式主动学习，刘易斯与盖尔 1994 年<sup class="cite"><a href="#ref-8">8</a></sup>的不确定性采样（uncertainty sampling），Seung 等人 1992 年<sup class="cite"><a href="#ref-7">7</a></sup>的委员会查询（query by committee），问的都是同一个问题：下一个标注花在哪个样本上最划算？当用户很难打分，却很容易在两个选项里挑出更好的一个时，成对比较（布拉德利-特里模型<sup class="cite"><a href="#ref-2">2</a></sup> Bradley-Terry model，$P(a\succ b)=\sigma(s_a-s_b)$）就成了信息效率最高的问法之一。
+也就是使回答与目标之间的互信息（mutual information）最大化。机器学习把这一思想称为主动学习（active learning），其核心问题是：下一个标注花在哪个样本上最划算？Seung 等人 1992 年<sup class="cite"><a href="#ref-7">7</a></sup>提出的委员会查询（query by committee），刘易斯与盖尔 1994 年<sup class="cite"><a href="#ref-8">8</a></sup>提出的不确定性采样（uncertainty sampling），以及科恩等人 1996 年<sup class="cite"><a href="#ref-6">6</a></sup>的统计式主动学习，处理的都是这一问题。当用户难以直接打分、却很容易在两个选项中挑出较好的一个时，成对比较便成为信息效率最高的提问方式之一。刻画成对比较的是布拉德利-特里模型<sup class="cite"><a href="#ref-2">2</a></sup>（Bradley-Terry model）：它为每个选项赋予一个潜在分数，由分数之差决定一方胜出的概率，即 $P(a\succ b)=\sigma(s_a-s_b)$。
 
-同样要提防以偏概全。沙赫里亚里等人 2016 年<sup class="cite"><a href="#ref-31">31</a></sup>那篇综述的标题颇耐人寻味：「把人移出回路」。它讲的是用高斯过程做贝叶斯优化（Bayesian optimization），自动选出下一个该试的点。这非常有用，但它只是这个方法族里的一种实现，并不是「最优筛查」的全部。把这一招等同于高斯过程，就像把交通等同于汽车。
+在这里同样需要防止以偏概全。沙赫里亚里等人 2016 年<sup class="cite"><a href="#ref-31">31</a></sup>的综述有一个耐人寻味的标题：「把人移出回路」。该文讨论的是以高斯过程进行贝叶斯优化（Bayesian optimization），由算法自动选出下一个应当尝试的点。这一方法极为有用，但它只是这个方法族中的一种实现，并不是「最优筛查」的全部。把这一对策等同于高斯过程，犹如把交通等同于汽车。
 
-## 今天的版本，和它的反噬
+## 当代形态及其反噬
 
-把这两招合起来，就是今天大模型对齐的主力方法：基于人类反馈的强化学习（reinforcement learning from human feedback，RLHF）。它由克里斯蒂亚诺等人 2017 年<sup class="cite"><a href="#ref-27">27</a></sup>奠基，斯蒂农等人 2020 年<sup class="cite"><a href="#ref-28">28</a></sup>用于摘要，欧阳等人 2022 年<sup class="cite"><a href="#ref-29">29</a></sup>用在 InstructGPT 上。做法是：用人的成对比较学出一个奖励模型（reward model），再把这个模型当作人类偏好的代理指标，去优化系统。这样，「行动-观察-更新」和「把提问花在刀刃上」就缝在了一起。效果有多显著，常用一个对比来说明：一个只有 13 亿参数、经人类反馈微调的 InstructGPT，输出受人偏好的程度，竟然超过了比它大一百多倍、足有 1750 亿参数的原版 GPT-3。对齐人的偏好，有时比单纯把模型做大更要紧。
+将这两种对策结合起来，便得到当今大模型对齐的主流方法：基于人类反馈的强化学习（reinforcement learning from human feedback，RLHF）。这一方法的基础由克里斯蒂亚诺等人于 2017 年<sup class="cite"><a href="#ref-27">27</a></sup>奠定；斯蒂农等人于 2020 年<sup class="cite"><a href="#ref-28">28</a></sup>将其用于摘要任务，欧阳等人于 2022 年<sup class="cite"><a href="#ref-29">29</a></sup>又将其用于 InstructGPT。其做法是：先利用人的成对比较学习一个奖励模型（reward model），再以这一模型作为人类偏好的代理指标来优化系统。由此，「行动-观察-更新」的回路与最优筛查结合在了一起。它的效果之显著，常以一个对比来说明：一个仅有 13 亿参数、经人类反馈微调的 InstructGPT，其输出受人偏好的程度，竟超过了规模大一百多倍、拥有 1750 亿参数的原版 GPT-3。可见，与人的偏好对齐，有时比单纯扩大模型规模更为重要。
 
-它失效的方式，则预演了本书后面几章的主题。学出来的那个奖励模型，是真实偏好的一个代理指标，所以它会被钻空子：系统学会取悦奖励模型，而不是取悦人，输出看起来更好，实际上更糟。这就是第 11 章要专门处理的 Goodhart 失效（Goodhart's law）。回路里的那个「神谕」（人）本身也不可靠：会疲劳，会前后不一，会有系统性的偏差。把人放进回路，并不等于放进了真理。贝恩布里奇 1983 年<sup class="cite"><a href="#ref-13">13</a></sup>那篇「自动化的反讽」（Ironies of Automation）早就点破了这一点：你越是把人推到监督者的位置上，他就越缺少保持判断力所需的实操和情境感；等到真要他接管时，他反而最没有准备。于是，信任的校准（trust calibration，李与西 2004 年<sup class="cite"><a href="#ref-15">15</a></sup>的研究）成了一个单独的难题：人既可能过度依赖一个不该信的系统，也可能弃用一个本来可靠的系统。
+然而它的失效方式，预示了本书后续各章的主题。首先，学得的奖励模型只是真实偏好的一个代理指标，因而会被系统所利用：系统学会的是取悦奖励模型，而不是取悦人；其输出看上去更好，实际上却更糟。这就是第 11 章将专门处理的 Goodhart 失效（Goodhart's law）。其次，回路中的那个「神谕」（即人）同样并不可靠：人会疲劳，会前后不一，会带有系统性的偏差。把人放进回路，并不等于把真理放进回路。贝恩布里奇 1983 年<sup class="cite"><a href="#ref-13">13</a></sup>的「自动化的反讽」（Ironies of Automation）一文早已指出这一点：越是把人推上监督者的位置，他就越缺乏维持判断力所需的实际操作与情境感知；而一旦真正需要他接管，他反而最缺乏准备。因此，信任的校准（trust calibration）成为一个独立的难题（参见李与西 2004 年的研究<sup class="cite"><a href="#ref-15">15</a></sup>）：人既可能过度依赖一个不应信任的系统，也可能弃用一个实际上可靠的系统。
 
-把人放进回路，并没有消解不可验证，只是让它搬了家：从「我能不能验证目标」，搬到了「我能不能信任回路里这个不完美的判断者」。
+由此可见，把人放进回路并没有消解不可验证性，只是让问题「搬了家」：从「我能否验证目标」，迁移到「我能否信任回路中这个不完美的判断者」。
 
-## 接下来
+## 小结
 
-控制台前的人教给我们两招。一是在自己缺乏验证能力时，把一个判断者请进回路（神谕入回路）；二是把昂贵的查验花在信息量最大的地方（最优筛查）。这两招在本书里会反复出现。第三部会把它们从这个现场里拎出来，单独命名：第 10 章谈借来的判断，第 9 章谈把查验花在刀刃上。
+控制台前的人这一场景，揭示了两种对策。其一，当自身缺乏验证能力时，把一个判断者请进回路（神谕入回路）；其二，把代价高昂的查验用在信息量最大的地方（最优筛查）。这两种对策在本书中还将反复出现。第三部会把它们从这一场景中抽离出来，分别加以整理和命名：第 10 章讨论借来的判断，第 9 章讨论如何把查验用于信息量最大之处。
 
-但这一章自始至终有一个前提：你还在场，回路还在转，你随时可以观察、可以纠偏。下一章要把这个前提抽走。当你必须交出行动权，让一个系统在你看不见的地方、面对你没有预演过的情形自己做决定时，验证的难题会换上一副更硬的面孔。
+然而，本章的讨论始终依赖一个前提：我们仍然在场，回路仍在运转，我们随时可以观察、可以纠偏。下一章将撤去这一前提。当我们必须交出行动权，让一个系统在我们看不见的地方、面对未曾预演的情形自行决策时，验证的难题将呈现出更为严峻的面貌。
 
 ---
 
@@ -66,65 +68,65 @@ $$q^\star=\arg\max_q\; \mathbb{E}_{y_q}\big[\,\mathrm{H}(\theta)-\mathrm{H}(\the
 
 > 落足点：① 历史上科学家的判断　② 理论上被研究过的东西　③ 科学如何进展　④ 如何在无法验证的世界里生活。本节经网络逐条核实。
 
-1. D. V. Lindley (1956).「On a Measure of the Information Provided by an Experiment」. The Annals of Mathematical Statistics, 27(4), 986-1005. [②]
-   林德利用信息论的语言给「一个实验提供了多少信息」下了定义：以做实验前后对参数的不确定性之差（先验与后验之间的期望信息量）来度量一次观测的价值。这把「该问哪个问题」从直觉变成可计算的量，是本章「把提问花在刀刃上」一招的理论源头，也是后来贝叶斯实验设计的奠基之作。
-2. R. A. Bradley, M. E. Terry (1952).「Rank Analysis of Incomplete Block Designs: I. The Method of Paired Comparisons」. Biometrika, 39(3/4), 324-345. [②]
+1. D. V. Lindley (1956).「On a Measure of the Information Provided by an Experiment」. The Annals of Mathematical Statistics, 27(4), 986-1005. doi:[10.1214/aoms/1177728069](https://doi.org/10.1214/aoms/1177728069) [②]
+   林德利用信息论的语言给「一个实验提供了多少信息」下了定义：以做实验前后对参数的不确定性之差（先验与后验之间的期望信息量）来度量一次观测的价值。这把「该问哪个问题」从直觉变成可计算的量，是本章「把提问用在信息量最大之处」这一对策的理论源头，也是后来贝叶斯实验设计的奠基之作。
+2. R. A. Bradley, M. E. Terry (1952).「Rank Analysis of Incomplete Block Designs: I. The Method of Paired Comparisons」. Biometrika, 39(3/4), 324-345. doi:[10.2307/2334029](https://doi.org/10.2307/2334029) [②]
    布拉德利与特里提出了一个成对比较的概率模型：给每个对象赋一个潜在分数，两者相比时胜负概率由分数之差经逻辑斯谛函数决定。当人难以直接打分、却很容易在两个选项里挑出更好的那个时，这个模型把一连串「A 还是 B」的回答转化为一组可估计的偏好分数，正是今天用人类成对比较训练奖励模型的统计基础。
-3. R. A. Howard (1966).「Information Value Theory」. IEEE Transactions on Systems Science and Cybernetics, 2(1), 22-26. [②④]
+3. R. A. Howard (1966).「Information Value Theory」. IEEE Transactions on Systems Science and Cybernetics, 2(1), 22-26. doi:[10.1109/tssc.1966.300074](https://doi.org/10.1109/tssc.1966.300074) [②④]
    霍华德提出「信息的价值」概念：一条信息值多少钱，等于获得它之后能改进的决策收益。由此引出「完美信息的期望价值」这样的上界，把「该不该花代价去查清楚」变成一道可以算的决策题。本章用它来支撑一个朴素却关键的判断：查验有成本，只在它能改变行动时才值得去问。
-4. J. Mockus, V. Tiesis, A. Zilinskas (1978).「The Application of Bayesian Methods for Seeking the Extremum」. Towards Global Optimization, 2, 117-129. North-Holland. [②]
-   莫库斯等人把贝叶斯方法用于求一个昂贵的黑箱函数的极值：用概率模型刻画对未知函数的信念，再据此挑选下一个最该试的点，使每次试验都尽量有信息量。这是贝叶斯优化的早期工作，所提出的期望改进等采集准则至今仍是主流，可视为「把提问花在刀刃上」在连续搜索空间里的实例。
-5. K. Chaloner, I. Verdinelli (1995).「Bayesian Experimental Design: A Review」. Statistical Science, 10(3), 273-304. [②]
+4. J. Mockus, V. Tiesis, A. Zilinskas (1978).「The Application of Bayesian Methods for Seeking the Extremum」. Towards Global Optimization, 2, 117-129. North-Holland. [Google Books](https://books.google.com/books?id=SUSrAAAAIAAJ) [②]
+   莫库斯等人把贝叶斯方法用于求一个昂贵的黑箱函数的极值：用概率模型刻画对未知函数的信念，再据此挑选下一个最该试的点，使每次试验都尽量有信息量。这是贝叶斯优化的早期工作，所提出的期望改进等采集准则至今仍是主流，可视为「把提问用在信息量最大之处」在连续搜索空间里的实例。
+5. K. Chaloner, I. Verdinelli (1995).「Bayesian Experimental Design: A Review」. Statistical Science, 10(3), 273-304. doi:[10.1214/ss/1177009939](https://doi.org/10.1214/ss/1177009939) [②]
    查洛纳与韦尔迪内利系统综述了贝叶斯实验设计：把实验设计写成一个最大化期望效用的优化问题，并梳理了在不同推断目标下（参数估计、预测、模型甄别）效用函数与最优准则的对应关系。它是这一领域公认的入门地图，本章引它来说明「选信息量最大的问题」并非单一技巧，而是一整套有理论骨架的方法。
-6. D. Cohn, Z. Ghahramani, M. Jordan (1996).「Active Learning with Statistical Models」. Journal of Artificial Intelligence Research, 4, 129-145. [②]
+6. D. Cohn, Z. Ghahramani, M. Jordan (1996).「Active Learning with Statistical Models」. Journal of Artificial Intelligence Research, 4, 129-145. doi:[10.1613/jair.295](https://doi.org/10.1613/jair.295) [②]
    科恩等人给主动学习提供了统计学的视角：在回归与分类的统计模型下，选择能最大程度降低模型方差（即未来误差）的查询点，并给出可解析计算的形式。这把「下一个标注花在哪里最划算」落到了可优化的目标上，是主动学习从启发式走向有理论依据的代表性工作。
-7. H. S. Seung, M. Opper, H. Sompolinsky (1992).「Query by Committee」. COLT '92, 287-294. [②]
+7. H. S. Seung, M. Opper, H. Sompolinsky (1992).「Query by Committee」. COLT '92, 287-294. doi:[10.1145/130385.130417](https://doi.org/10.1145/130385.130417) [②]
    Seung 等人提出「委员会查询」：维持一组都与已有数据相容的假设作为委员会，专挑那些让委员会内部分歧最大的样本去标注，因为分歧最大处最能压缩版本空间。它给出了一个直觉清晰又有理论支撑的主动查询准则，是本章把提问集中到信息量最大处的经典实例。
-8. D. D. Lewis, W. A. Gale (1994).「A Sequential Algorithm for Training Text Classifiers」. SIGIR '94, 3-12. [②]
+8. D. D. Lewis, W. A. Gale (1994).「A Sequential Algorithm for Training Text Classifiers」. SIGIR '94, 3-12. doi:[10.1007/978-1-4471-2099-5\_1](https://doi.org/10.1007/978-1-4471-2099-5_1) [②]
    刘易斯与盖尔提出不确定性采样：训练文本分类器时，不是随机取样去标，而是优先挑模型最拿不准（预测概率最接近决策边界）的文档请人标注。这种简单而高效的策略大幅减少了所需标注量，是主动学习在实际系统里最常用的做法之一，呼应本章「省着、聪明地去问」的主张。
-9. B. Settles (2009).《Active Learning Literature Survey》. Computer Sciences Technical Report 1648, University of Wisconsin-Madison. [②④]
+9. B. Settles (2009).《Active Learning Literature Survey》. Computer Sciences Technical Report 1648, University of Wisconsin-Madison. [链接](https://minds.wisconsin.edu/handle/1793/60660) [②④]
    塞特尔斯这份综述把主动学习的查询场景（基于池、基于流、合成查询）与查询策略（不确定性采样、委员会查询、期望误差缩减等）梳理成一张完整图谱，是该领域被引用最广的入门文献。读者若想系统了解「行动-观察-更新」回路里如何选下一个问题，这份综述是最方便的总览。
-10. B. Settles (2011).「From Theories to Queries: Active Learning in Practice」. JMLR Workshop and Conference Proceedings, 16, 1-18. [②④]
+10. B. Settles (2011).「From Theories to Queries: Active Learning in Practice」. JMLR Workshop and Conference Proceedings, 16, 1-18. [链接](https://proceedings.mlr.press/v16/settles11a.html) [②④]
    塞特尔斯在这篇文章里把视线从理论拉回实践，讨论主动学习真正部署时会遇到的麻烦：标注成本并不均匀、标注者会出错、不同策略的收益常被高估。它提醒读者，「问得聪明」在现实里要面对一个不完美、会疲劳、会出错的人，正好衔接本章后段对「回路里的神谕本身不可靠」的讨论。
-11. P. Slovic (1995).「The Construction of Preference」. American Psychologist, 50(5), 364-371. [②④]
-   斯洛维奇综合大量行为研究提出一个有力论断：人的偏好在很多场合不是先于询问就存在、等着被读出的，而是在被问、被给出选项、被设定参照点的那一刻才被构造出来。它直接动摇了「先把需求问清楚再实现」所依赖的前提，是本章「潜在偏好测不准」一节的心理学支柱。
-12. T. B. Sheridan (1992).《Telerobotics, Automation, and Human Supervisory Control》. MIT Press. [②④]
+11. P. Slovic (1995).「The Construction of Preference」. American Psychologist, 50(5), 364-371. doi:[10.1037/0003-066x.50.5.364](https://doi.org/10.1037/0003-066x.50.5.364) [②④]
+   斯洛维奇综合大量行为研究提出一个有力论断：人的偏好在很多场合不是先于询问就存在、等着被读出的，而是在被问、被给出选项、被设定参照点的那一刻才被构造出来。它直接动摇了「先把需求问清楚再实现」所依赖的前提，是本章「偏好作为潜变量」一节的心理学支柱。
+12. T. B. Sheridan (1992).《Telerobotics, Automation, and Human Supervisory Control》. MIT Press. [Google Books](https://books.google.com/books?id=eu41_M2Do9oC) [②④]
    谢里登系统阐述了「人类监督控制」：在高度自动化的系统里，人不是被一份规格一次性替代掉，而是退到监督者的位置，负责设定目标、监视运行、必要时干预。这本书为「把判断者放进回路」提供了人因工程的经典框架，也点出监督者角色自身带来的新难题，为本章后文埋下伏笔。
-13. L. Bainbridge (1983).「Ironies of Automation」. Automatica, 19(6), 775-779. [②④]
+13. L. Bainbridge (1983).「Ironies of Automation」. Automatica, 19(6), 775-779. doi:[10.1016/0005-1098(83)90046-8](https://doi.org/10.1016/0005-1098%2883%2990046-8) [②④]
    贝恩布里奇点出自动化的几重反讽：自动化越是接管了日常操作，留给人的越是那些最难、最少练习的异常处置；而越是把人推到监督者的位置，他越缺少保持判断力所需的实操与情境感，等真要他接管时反而最没准备。这篇短文是本章「把人放进回路并不等于放进真理」的关键证据。
-14. R. Parasuraman, T. B. Sheridan, C. D. Wickens (2000).「A Model for Types and Levels of Human Interaction with Automation」. IEEE Transactions on Systems, Man, and Cybernetics, Part A, 30(3), 286-297. [②④]
+14. R. Parasuraman, T. B. Sheridan, C. D. Wickens (2000).「A Model for Types and Levels of Human Interaction with Automation」. IEEE Transactions on Systems, Man, and Cybernetics, Part A, 30(3), 286-297. doi:[10.1109/3468.844354](https://doi.org/10.1109/3468.844354) [②④]
    帕拉苏拉曼等人提出一个分析框架：自动化可作用于信息获取、信息分析、决策选择、行动执行四类功能，每类又有从全人工到全自动的连续等级，并讨论了选择自动化程度时要权衡的人因后果。它把「让系统替人做多少」从口号变成可设计的维度，为「判断者放进回路到什么深度」提供了刻度。
-15. J. D. Lee, K. A. See (2004).「Trust in Automation: Designing for Appropriate Reliance」. Human Factors, 46(1), 50-80. [②④]
+15. J. D. Lee, K. A. See (2004).「Trust in Automation: Designing for Appropriate Reliance」. Human Factors, 46(1), 50-80. doi:[10.1518/hfes.46.1.50.30392](https://doi.org/10.1518/hfes.46.1.50.30392) [②④]
    李与西系统梳理了人对自动化的信任：信任随系统表现而动态校准，真正的目标不是更多信任，而是「适度依赖」，即信任水平要与系统的真实可靠度相匹配。他们指出过度信任和信任不足都会致祸，前者让人依赖一个不该信的系统，后者让人弃用一个其实可靠的系统。这正是本章把不可验证「搬家」为「能否信任回路里这个判断者」的核心参照。
-16. M. R. Endsley (1995).「Toward a Theory of Situation Awareness in Dynamic Systems」. Human Factors, 37(1), 32-64. [②④]
+16. M. R. Endsley (1995).「Toward a Theory of Situation Awareness in Dynamic Systems」. Human Factors, 37(1), 32-64. doi:[10.1518/001872095779049543](https://doi.org/10.1518/001872095779049543) [②④]
    恩兹利为「态势感知」提出了一个被广泛采用的三层模型：感知环境要素、理解其当前含义、预测其未来走向。它解释了监督者要能及时纠偏，前提是先对眼前局面有足够的感知与理解，而自动化恰恰可能侵蚀这种感知。这为本章「回路要转，人得真的在场」补上了认知层面的条件。
-17. S. K. Card, T. P. Moran, A. Newell (1983).《The Psychology of Human-Computer Interaction》. Lawrence Erlbaum Associates. [②④]
+17. S. K. Card, T. P. Moran, A. Newell (1983).《The Psychology of Human-Computer Interaction》. Lawrence Erlbaum Associates. [Google Books](https://books.google.com/books?id=JeFQAAAAMAAJ) [②④]
    卡德、莫兰与纽厄尔奠定了人机交互的认知工程基础，提出 GOMS 模型与「人类信息处理器」框架，试图把人的操作时间与认知负荷做成可预测、可计算的量。它代表了「把人当作可建模的子系统来设计交互」这一传统，是本章把用户行为视作可观测、可推断信号的学术先声。
-18. D. A. Norman (1988).《The Psychology of Everyday Things》. Basic Books. [④]
-   诺曼这本设计经典提出了示能（affordance）、映射、约束、可见性、反馈与概念模型等观念，主张当人用错东西时，多半是设计的错而非人的错：好的设计应让正确用法不言自明。它把「读懂使用者真正想做什么」立为设计的中心问题，与本章「你要的不是你说的」遥相呼应。
-19. J. Nielsen (1993).《Usability Engineering》. Academic Press. [④]
+18. D. A. Norman (1988).《The Psychology of Everyday Things》. Basic Books. [Google Books](https://books.google.com/books?id=exRRMQAACAAJ) [④]
+   诺曼这本设计经典提出了示能（affordance）、映射、约束、可见性、反馈与概念模型等观念，主张当人用错东西时，多半是设计的错而非人的错：好的设计应让正确用法不言自明。它把「读懂使用者真正想做什么」立为设计的中心问题，与本章「所言非所欲」遥相呼应。
+19. J. Nielsen (1993).《Usability Engineering》. Academic Press. [Google Books](https://books.google.com/books?id=fnvJ9PnbzJEC) [④]
    尼尔森把可用性从理念落成一整套可操作的工程方法：可测量的可用性指标、启发式评估、低成本的「廉价可用性」测试、以及贯穿开发的迭代评估。它把本章那条「行动-观察-修正」回路工程化为软件团队能日常执行的流程，是可用性实践的标准参考。
-20. J. D. Gould, C. Lewis (1985).「Designing for Usability: Key Principles and What Designers Think」. Communications of the ACM, 28(3), 300-311. [④]
+20. J. D. Gould, C. Lewis (1985).「Designing for Usability: Key Principles and What Designers Think」. Communications of the ACM, 28(3), 300-311. doi:[10.1145/3166.3170](https://doi.org/10.1145/3166.3170) [④]
    古尔德与刘易斯把可用性设计压成三条朴素到几乎像废话、却被无数项目违反的原则：尽早且持续地关注用户、做经验性的测量、迭代式地设计。文中还记录了设计者口头认同、实际却不照做的反差。这三条正是本章「把判断者放进回路」最早、最干净的工程表述。
-21. H. Beyer, K. Holtzblatt (1998).《Contextual Design: Defining Customer-Centered Systems》. Morgan Kaufmann. [④]
+21. H. Beyer, K. Holtzblatt (1998).《Contextual Design: Defining Customer-Centered Systems》. Morgan Kaufmann. [Google Books](https://books.google.com/books?id=T8pcH4QjATkC) [④]
    拜尔与霍尔茨布拉特提出「情境设计」：到用户的真实工作现场去观察与访谈，把零散观察整理成工作流、文化、物理布局等模型，再据此驱动系统设计。它的方法论前提正是本章的核心，用户说不清自己要什么，所以要在情境里把潜在需求挖出来，而非只听他口头描述。
-22. E. Horvitz (1999).「Principles of Mixed-Initiative User Interfaces」. CHI '99, 159-166. [②④]
-   霍维茨为「混合主动式界面」提出一组原则：系统应在不确定时权衡自动行动的期望收益与打扰用户的代价，懂得何时该出手、何时该让位给人，并对自己行动的把握度有自知之明。它把人与系统轮流出招、彼此校准刻画成一个可设计的协作过程，是本章交互式获取这一方法族的代表作。
-23. J. A. Fails, D. R. Olsen Jr. (2003).「Interactive Machine Learning」. IUI '03, 39-45. [②④]
+22. E. Horvitz (1999).「Principles of Mixed-Initiative User Interfaces」. CHI '99, 159-166. doi:[10.1145/302979.303030](https://doi.org/10.1145/302979.303030) [②④]
+   霍维茨为「混合主动式界面」提出一组原则：系统应在不确定时权衡自动行动的期望收益与打扰用户的代价，懂得何时该出手、何时该让位给人，并对自己行动的把握度有自知之明。它把人与系统轮流出手、彼此校准刻画成一个可设计的协作过程，是本章交互式获取这一方法族的代表作。
+23. J. A. Fails, D. R. Olsen Jr. (2003).「Interactive Machine Learning」. IUI '03, 39-45. doi:[10.1145/604045.604056](https://doi.org/10.1145/604045.604056) [②④]
    费尔斯与奥尔森提出并命名了「交互式机器学习」：与传统的一次性离线训练不同，让人在快速的训练-反馈循环里反复修正模型，使非专家也能即时塑造模型行为。它把机器学习从「先攒数据再训练」改造成「行动-观察-更新」的现场回路，是本章这一回路在机器学习侧的早期范例。
-24. S. Amershi, D. Weld, M. Vorvoreanu, A. Fourney, B. Nushi, P. Collisson, J. Suh, S. Iqbal, P. Bennett, K. Inkpen, J. Teevan, R. Kikin-Gil, E. Horvitz (2019).「Guidelines for Human-AI Interaction」. CHI '19. [②④]
+24. S. Amershi, D. Weld, M. Vorvoreanu, A. Fourney, B. Nushi, P. Collisson, J. Suh, S. Iqbal, P. Bennett, K. Inkpen, J. Teevan, R. Kikin-Gil, E. Horvitz (2019).「Guidelines for Human-AI Interaction」. CHI '19. doi:[10.1145/3290605.3300233](https://doi.org/10.1145/3290605.3300233) [②④]
    阿默希等人汇总并验证了一组面向人机协作的设计准则，涵盖系统该如何表明自己能做什么、如何处理不确定与出错、如何随交互学习并尊重用户纠正等阶段。它把前述零散经验整理成可落地的清单，为「人与不完美系统如何共处于一个回路」给出当代的工程指引。
-25. W. B. Knox, P. Stone (2009).「Interactively Shaping Agents via Human Reinforcement: The TAMER Framework」. K-CAP '09. [②④]
+25. W. B. Knox, P. Stone (2009).「Interactively Shaping Agents via Human Reinforcement: The TAMER Framework」. K-CAP '09. doi:[10.1145/1597735.1597738](https://doi.org/10.1145/1597735.1597738) [②④]
    诺克斯与斯通提出 TAMER 框架：让人在智能体行动时实时给出好坏反馈，智能体把这些人类评价当作要学习的奖励信号来塑造自身行为，而非依赖环境内置的奖励。它示范了如何用人的即时判断直接训练智能体，是后来「从人类反馈中学习」一脉的先声。
-26. D. Hadfield-Menell, S. J. Russell, P. Abbeel, A. Dragan (2016).「Cooperative Inverse Reinforcement Learning」. NeurIPS 2016. [②④]
+26. D. Hadfield-Menell, S. J. Russell, P. Abbeel, A. Dragan (2016).「Cooperative Inverse Reinforcement Learning」. NeurIPS 2016. [arXiv:1606.03137](https://arxiv.org/abs/1606.03137) [②④]
    哈德菲尔德-梅内尔等人把价值对齐表述成一个合作博弈：人知道奖励函数而机器不知道，机器的任务是通过观察人的行为去推断这个潜在目标，双方共同把它实现得更好。它把「目标藏在人脑中、只能旁敲侧推」这一本章主题形式化为一个有解的学习问题，并自然解释了为何机器应主动询问而非自作主张。
-27. P. F. Christiano, J. Leike, T. B. Brown, M. Martic, S. Legg, D. Amodei (2017).「Deep Reinforcement Learning from Human Preferences」. NeurIPS 2017. [②④]
-   克里斯蒂亚诺等人奠定了从人类偏好做强化学习的范式：当奖励难以写明时，让人对智能体的两段行为做成对比较，由此学一个奖励模型作为人类偏好的代理，再用它去优化策略。这把本章两招缝在一处，既是「行动-观察-更新」，又把昂贵的人类比较花在刀刃上，是当代大模型对齐主力方法的直接源头。
-28. N. Stiennon, L. Ouyang, J. Wu, D. M. Ziegler, R. Lowe, C. Voss, A. Radford, D. Amodei, P. Christiano (2020).「Learning to Summarize from Human Feedback」. NeurIPS 2020. [②④]
+27. P. F. Christiano, J. Leike, T. B. Brown, M. Martic, S. Legg, D. Amodei (2017).「Deep Reinforcement Learning from Human Preferences」. NeurIPS 2017. [arXiv:1706.03741](https://arxiv.org/abs/1706.03741) [②④]
+   克里斯蒂亚诺等人奠定了从人类偏好做强化学习的范式：当奖励难以写明时，让人对智能体的两段行为做成对比较，由此学一个奖励模型作为人类偏好的代理，再用它去优化策略。这把本章两种对策缝在一处，既是「行动-观察-更新」，又把昂贵的人类比较花在刀刃上，是当代大模型对齐主力方法的直接源头。
+28. N. Stiennon, L. Ouyang, J. Wu, D. M. Ziegler, R. Lowe, C. Voss, A. Radford, D. Amodei, P. Christiano (2020).「Learning to Summarize from Human Feedback」. NeurIPS 2020. [arXiv:2009.01325](https://arxiv.org/abs/2009.01325) [②④]
    斯蒂农等人把基于人类偏好的强化学习用到文本摘要上：收集人对摘要好坏的成对比较训练奖励模型，再用它微调语言模型，得到的摘要在人评上显著优于仅用监督学习的版本。它示范了「学一个偏好代理再优化」在真实语言任务上的有效，也为后续指令微调铺路。
-29. L. Ouyang et al. (2022).「Training Language Models to Follow Instructions with Human Feedback」. NeurIPS 2022. [②④]
-   欧阳等人的 InstructGPT 把基于人类反馈的强化学习用到通用语言模型上：先以人写的示范做监督微调，再用人类成对比较训练奖励模型并据此优化策略，使模型更听从指令、更少有害输出。它表明一个经此对齐的小模型在人评上可胜过大得多的原始模型，是把本章两招落到大模型实践的标志性工作。
-30. C. Wirth, R. Akrour, G. Neumann, J. Fürnkranz (2017).「A Survey of Preference-Based Reinforcement Learning Methods」. Journal of Machine Learning Research, 18(136), 1-46. [②④]
+29. L. Ouyang et al. (2022).「Training Language Models to Follow Instructions with Human Feedback」. NeurIPS 2022. doi:[10.52202/068431-2011](https://doi.org/10.52202/068431-2011) [②④]
+   欧阳等人的 InstructGPT 把基于人类反馈的强化学习用到通用语言模型上：先以人写的示范做监督微调，再用人类成对比较训练奖励模型并据此优化策略，使模型更听从指令、更少有害输出。它表明一个经此对齐的小模型在人评上可胜过大得多的原始模型，是把本章两种对策落到大模型实践的标志性工作。
+30. C. Wirth, R. Akrour, G. Neumann, J. Fürnkranz (2017).「A Survey of Preference-Based Reinforcement Learning Methods」. Journal of Machine Learning Research, 18(136), 1-46. [链接](https://jmlr.org/papers/v18/16-634.html) [②④]
    维尔特等人综述了「基于偏好的强化学习」：当难以给出数值奖励时，改由人对轨迹、动作或状态给出偏好序，再据此学习策略或奖励。文章梳理了不同的偏好类型、学习目标与算法，并讨论了它们的取舍。它为本章这一整条技术线提供了系统总览，便于读者把零散方法放进同一框架。
-31. B. Shahriari, K. Swersky, Z. Wang, R. P. Adams, N. de Freitas (2016).「Taking the Human Out of the Loop: A Review of Bayesian Optimization」. Proceedings of the IEEE, 104(1), 148-175. [②④]
-   沙赫里亚里等人综述了贝叶斯优化：用概率代理模型（多为高斯过程）刻画对昂贵黑箱目标的信念，再用采集函数自动挑选下一个最该试的点，从而把本需人工调参的搜索过程交给算法。标题虽是「把人移出回路」，但本章引它正为提醒，这只是「最优筛查」方法族里的一种实现，把整招等同于高斯过程，就像把交通等同于汽车。
+31. B. Shahriari, K. Swersky, Z. Wang, R. P. Adams, N. de Freitas (2016).「Taking the Human Out of the Loop: A Review of Bayesian Optimization」. Proceedings of the IEEE, 104(1), 148-175. doi:[10.1109/jproc.2015.2494218](https://doi.org/10.1109/jproc.2015.2494218) [②④]
+   沙赫里亚里等人综述了贝叶斯优化：用概率代理模型（多为高斯过程）刻画对昂贵黑箱目标的信念，再用采集函数自动挑选下一个最该试的点，从而把本需人工调参的搜索过程交给算法。标题虽是「把人移出回路」，但本章引它正为提醒，这只是「最优筛查」方法族里的一种实现，把这一整类对策等同于高斯过程，就像把交通等同于汽车。

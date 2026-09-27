@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""F2（第 2 章）：不可验证的五种处境，判据 × 解药。
+"""F2（第 2 章）：不可验证的五种处境，判据 × 补救。
 
 生成 book/figures/f02-five-faces.svg
 """
@@ -41,7 +41,7 @@ def build(lang="zh"):
     H = pad * 2 + header + len(rows) * rh + 40
     s = SVG(W, H)
     s.text(W / 2, 30,
-           t("不可验证的五种处境：判据与解药各不相同",
+           t("不可验证的五种处境：判据与补救各不相同",
              "The five faces of unverifiability: their criteria and their remedies differ"),
            size=20 if en else 21, weight="bold")
 
@@ -49,11 +49,11 @@ def build(lang="zh"):
     if en:
         cols = [(t("处境", "Face"), 200),
                 (t("判据", "Criterion"), 416),
-                (t("解药（可得的补救）", "Remedy (the cure available)"), 416)]
+                (t("补救手段", "Remedy (the cure available)"), 416)]
     else:
         cols = [(t("处境", "Face"), 150),
                 (t("判据", "Criterion"), 360),
-                (t("解药（可得的补救）", "Remedy (the cure available)"), 336)]
+                (t("补救手段", "Remedy (the cure available)"), 336)]
     y = 56
     # 表头
     cx = x0

@@ -23,7 +23,7 @@ def build(lang="zh"):
         W, H = 820, 470
     s = SVG(W, H)
     s.text(W / 2, 32,
-           t("冗余的相关性地板：相关一旦存在，堆人也没用",
+           t("冗余的相关性地板：一旦存在相关，增加判断者也无法越过",
              "The correlation floor of redundancy: once correlation is present, piling on more judges cannot get past it"),
            size=t(19, 14.5), weight="bold")
 

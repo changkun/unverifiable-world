@@ -1,58 +1,56 @@
 # 第 9 章　压缩未知
 
-> **论点**：有两招直接对付不确定性。在查得了的切片上给出有保证的界（证书）；把有限的检查花在最能消除不确定性的地方（最优筛查）。
+> **论点**：有两种对策直接针对不确定性。其一是在可检验的局部给出有保证的界（证书）；其二是把有限的检查分配到最能削减不确定性之处（最优筛查）。
 
-第二部让这些招数在四个现场里交织着登场。从这一部起换一个角度：把每一招单独拎出来，剥掉各个领域的行话，只看它的纯粹形式，再把它一次铺到所有现场上。这就是全书最主要的贡献：那张「同一招在不同行话下的对照表」。
+第二部考察了四个具体场景：控制台前的人、放出去的智能体、撞墙的数学家、看不见自己的组织。在这些场景中，各种对策彼此交织，总是嵌在具体问题之中出现，并以各领域自身的术语表述。自本部起，论述的角度有所转换：把每一种对策从其所属的语境中抽离出来，剥除领域术语，考察它的一般形式，然后再返回各个领域，辨认它在不同术语下的对应形态。全书最主要的贡献，就在于由此得到的一张对照表：同一种对策，在不同领域的术语中各有其名。
 
-八招两两配对，分成四章。这样配对不是图省事，配对这件事就是一个论点：每一对里的两招，对付的是问题的同一个部分；每一招究竟作用在哪里，第 13 章会讲清楚。本章这一对是证书与最优筛查，它们对付的是同一样东西：不确定性。两招从相反的两端压缩未知。一端是在你查得了的切片上证出一个有保证的界；另一端是把有限的检查花在最能消除不确定性的地方。
+八种对策两两成对，分四章论述。这种分组并非出于叙述上的便利，而是一个论断：同一章中的两种对策，处理的是问题的同一个方面；至于每一种对策确切作用于何处，则留待第 13 章说明。本章讨论证书与最优筛查。二者针对的都是不确定性，但着手的方向相反：前者在可检验的局部证明一个界，即确定误差不会超出某一限度；后者则把有限的检查资源分配到最能削减不确定性的地方。
 
-另外，按照第 4 章立下的铁律，每提出一招，每把两个领域并排放在一起，都要追问一遍：这种迁移是实质性的（机制相同、失效方式相同、权衡相同），还是只是一个漂亮的比方？
+此外，按照第 4 章确立的那条不容通融的原则，每提出一种对策，每将两个领域并置，都须重新追问：这种迁移是实质性的（机制相同、失效方式相同、权衡相同），还是只是一个看似贴切的比喻？
 
-## 证书：在切片上证明一个界
+## 证书：为局部提供可复核的保证
 
-第一招的纯粹形式：不去验证整体，只产出一个局部的保证。这个保证有明确的界，而且谁都可以独立复核。你交付的不是「它全对」，而是「在这个范围内，它最多错这么多」，外加一份任何人都能很快核实的凭证。
+第一种对策的一般形式是：不试图验证整体，而是给出一个局部的保证。这个保证具有明确的界，并且可以由任何人独立复核。换言之，交付的不是「它完全正确」这一断言，而是「在此范围之内，其误差至多如此」，以及一份他人能够迅速核实的凭据。本书所说的证书，指的就是这样一份凭据及其所担保的界。
 
-放到各个领域里看，它的形态惊人地一致。
-
-在机器学习里，它叫泛化界（generalization bound）。瓦利安特 1984 年的 PAC 框架<sup class="cite"><a href="#ref-1">1</a></sup>，加上瓦普尼克和切尔沃年基斯的 VC 维（1989 年由布卢默等人接入这个框架<sup class="cite"><a href="#ref-4">4</a></sup>），给出的保证是这样的：以至少 $1-\delta$ 的概率，真实误差不超过经验误差加上一个复杂度惩罚，
+考察这一对策在各领域中的形态，会发现它们惊人地一致。在机器学习中，它称为泛化界（generalization bound）。瓦利安特在 1984 年提出 PAC 框架<sup class="cite"><a href="#ref-1">1</a></sup>；瓦普尼克与切尔沃年基斯的 VC 维，则于 1989 年由布卢默等人纳入这一框架<sup class="cite"><a href="#ref-4">4</a></sup>。二者结合所给出的保证是：以至少 $1-\delta$ 的概率，模型的真实误差不超过其经验误差与一项复杂度惩罚之和，
 
 $$R(h)\ \le\ \hat R(h)+\sqrt{\frac{d\big(\ln(2n/d)+1\big)+\ln(4/\delta)}{n}}.$$
 
-模型在未来所有数据上表现如何，你验证不了（那是开放世界）。但在「已经见过的样本」这个切片上，你能证出一个带置信度的界，而且这个界对没见过的数据也成立。霍夫丁不等式（Hoeffding's inequality）<sup class="cite"><a href="#ref-17">17</a></sup>是它背后的概率引擎，PAC-Bayes（麦卡莱斯特<sup class="cite"><a href="#ref-6">6</a></sup>）则是它的精化。
+模型在未来全部数据上的表现无从验证，那属于开放世界的问题。然而，已观测的样本构成一个可检验的局部；以此为依据，可以证明一个附带置信度的界，并且这个界对未观测的数据同样成立。为这一保证提供概率基础的，是霍夫丁不等式（Hoeffding's inequality）<sup class="cite"><a href="#ref-17">17</a></sup>；麦卡莱斯特的 PAC-Bayes 界<sup class="cite"><a href="#ref-6">6</a></sup>则对它作了进一步的精化。
 
-在软件里，它叫类型与证明。类型系统不证明程序「全对」，只证明某一条性质（比如不会把整数当成指针），换来的是一种可判定、能机械复核的检查（皮尔斯<sup class="cite"><a href="#ref-7">7</a></sup>）。柯里-霍华德对应（Curry-Howard correspondence，霍华德 1980<sup class="cite"><a href="#ref-8">8</a></sup>）在「证明」和「程序」之间画上了等号。内库拉 1997 年提出的「携带证明的代码」（proof-carrying code）<sup class="cite"><a href="#ref-9">9</a></sup>，把这一招用到了极致：不受信任的代码自带一份安全性证明，宿主只需快速核对这张证书（certificate），不必自己从头推导。勒罗伊 2009 年经过形式验证的 CompCert 编译器<sup class="cite"><a href="#ref-10">10</a></sup>，还有 de Moura 与比约纳 2008 年的 Z3 求解器<sup class="cite"><a href="#ref-11">11</a></sup>，都是把同一个思路做成了工业产品。
+在软件领域，这一对策表现为类型与证明。类型系统并不证明程序「完全正确」，只证明某一条性质成立（例如程序不会把整数当作指针）；由此换得的，是一种可判定、并且能够机械复核的检查（皮尔斯<sup class="cite"><a href="#ref-7">7</a></sup>）。柯里-霍华德对应（Curry-Howard correspondence，霍华德 1980<sup class="cite"><a href="#ref-8">8</a></sup>）进一步在「证明」与「程序」之间画上了等号。内库拉 1997 年提出的「携带证明的代码」（proof-carrying code）<sup class="cite"><a href="#ref-9">9</a></sup>，把这一对策推向了极致：不受信任的代码自带一份关于自身安全性的证明，宿主只需迅速核对这份证书（certificate），无须自行从头推导。勒罗伊 2009 年的 CompCert 编译器<sup class="cite"><a href="#ref-10">10</a></sup>经过了形式验证；它与 de Moura 和比约纳 2008 年的 Z3 求解器<sup class="cite"><a href="#ref-11">11</a></sup>一样，把同一思路做成了工业级的工具。
 
-在数值计算里，它叫误差界。希格姆 2002 年的后向误差分析<sup class="cite"><a href="#ref-12">12</a></sup>和摩尔 1966 年的区间算术（interval arithmetic）<sup class="cite"><a href="#ref-13">13</a></sup>，让你带着「保证包含真值的区间」去计算。最后交出的是一个有保证的范围，而不是一个可能骗你的浮点数。在数学里，它就是第 7 章那些验证到高度 $T$ 的零点：那是一个界，不是一条定理。
+数值计算中与之对应的是误差界。希格姆 2002 年的后向误差分析<sup class="cite"><a href="#ref-12">12</a></sup>与摩尔 1966 年的区间算术（interval arithmetic）<sup class="cite"><a href="#ref-13">13</a></sup>，使计算能够带着一个保证包含真值的区间进行，最终交付的是一个有保证的范围，而不是一个可能造成误导的浮点数。在数学中，第 7 章那些已验证至高度 $T$ 的零点也属于此类：它们给出的是一个界，而不是一条定理。
 
-把这些串起来的观念是：证书是一个局部的、有界的、可以独立复核的保证。它最妙的地方，是利用了第 7 章称为数学基石的那种验证不对称：生成证书可能极贵，核对证书却极便宜。携带证明的代码、NP 问题的解、数学证明，吃的都是这份红利。
+贯穿上述各例的共同观念是：证书是一种局部的、有界的、可独立复核的保证。它最精妙之处，在于利用了第 7 章称为数学基石的那种验证不对称：生成一份证书可能代价极高，核对它却极为廉价。携带证明的代码、NP 问题的解、数学证明，都得益于这一不对称。
 
-它的典型失效方式只有一种，却很常见：空洞的界。一个保证可以为真，却毫无用处。「误差不超过百分之百」，「这个模型的泛化误差是有限的」，这样的话在逻辑上无懈可击，在操作上一文不值。界的价值不在于它成立，而在于它紧到足以让你据此行动。
+这一对策的典型失效方式只有一种，却相当常见，那就是空洞的界。一个保证可以为真，却毫无用处。「误差不超过百分之百」「该模型的泛化误差是有限的」，这类陈述在逻辑上无懈可击，在实践中却一文不值。由此可见，界的价值不在于它成立，而在于它足够紧，紧到可以据此行动。
 
-## 最优筛查：把检查花在刀刃上
+## 最优筛查：把检查分配到信息量最大之处
 
-第二招的纯粹形式：信息是有代价的，所以要把有限的检查，分配到边际上最能压缩不确定性的地方。
+第二种对策的一般形式是：信息的获取需要付出代价，因此应当把有限的检查分配到边际效益最大的地方，即每增加一次检查所能削减的不确定性最多之处。
 
-它在各个领域里的形态同样整齐。在统计与科学里，它叫实验设计（design of experiments）。费雪 1935 年的《实验设计》<sup class="cite"><a href="#ref-19">19</a></sup>和博克斯等人的《实验者统计学》<sup class="cite"><a href="#ref-20">20</a></sup>，教的都是怎样用最少的试验榨出最多的信息。林德利 1956 年给出了「一个实验提供的信息」的度量<sup class="cite"><a href="#ref-21">21</a></sup>，沙洛纳与韦尔迪内利把贝叶斯实验设计整理成了体系<sup class="cite"><a href="#ref-22">22</a></sup>。瓦尔德 1945 年的序贯检验<sup class="cite"><a href="#ref-23">23</a></sup>，让你一边收数据，一边决定要不要继续。香农 1948 年的信息论<sup class="cite"><a href="#ref-14">14</a></sup>，是这一切底下通用的货币。
+这一对策在各领域中的形态同样整齐。在统计学与科学研究中，它称为实验设计（design of experiments）。费雪 1935 年的《实验设计》<sup class="cite"><a href="#ref-19">19</a></sup>与博克斯等人的《实验者统计学》<sup class="cite"><a href="#ref-20">20</a></sup>，所讲授的都是如何以尽可能少的试验获取尽可能多的信息。而要比较不同实验的优劣，还需要一个衡量信息多寡的尺度：林德利 1956 年给出了「一个实验所提供的信息」的度量<sup class="cite"><a href="#ref-21">21</a></sup>，沙洛纳与韦尔迪内利则把贝叶斯实验设计整理为一个完整的体系<sup class="cite"><a href="#ref-22">22</a></sup>。另一个问题是检查应当何时停止。瓦尔德 1945 年的序贯检验<sup class="cite"><a href="#ref-23">23</a></sup>，使研究者可以在收集数据的同时，决定是否继续收集。为上述所有工作提供共同计量单位的，则是香农 1948 年的信息论<sup class="cite"><a href="#ref-14">14</a></sup>。
 
-在机器学习里，它叫主动学习（active learning）：下一个该标注哪个样本最划算（科恩等人<sup class="cite"><a href="#ref-33">33</a></sup>、塞特尔斯<sup class="cite"><a href="#ref-34">34</a></sup>）。在软件测试里，它叫 fuzzing：把算力砸向哪些输入，最能撞出崩溃（米勒等人 1990 年的开创性实验<sup class="cite"><a href="#ref-35">35</a></sup>）。这一招在今天的规模相当惊人。谷歌的 OSS-Fuzz 从 2016 年起，持续向上千个开源项目自动灌入海量畸形输入，至今已经查出数以万计的缺陷和漏洞。没有哪支人工测试团队能穷举到这个量级。它靠的，就是把算力源源不断地投向最可能崩溃的地方。在审计里，它叫抽样：查哪几笔交易最可能发现问题。在界面设计里，它是「该问用户哪个问题」（第 5 章）。
+在机器学习中，这一对策称为主动学习（active learning），它要回答的问题是：接下来标注哪一个样本，所得的收益最大（科恩等人<sup class="cite"><a href="#ref-33">33</a></sup>；塞特尔斯<sup class="cite"><a href="#ref-34">34</a></sup>）。软件测试中的模糊测试（fuzzing）遵循同样的逻辑，它所关心的是：把算力投向哪些输入，最有可能引发崩溃（米勒等人 1990 年的开创性实验<sup class="cite"><a href="#ref-35">35</a></sup>）。这一对策在今天的应用规模之大，颇为惊人。谷歌的 OSS-Fuzz 自 2016 年起，持续向上千个开源项目自动输入海量的畸形数据，迄今已发现数以万计的缺陷与漏洞。任何人工测试团队都无法达到这样的穷举程度；OSS-Fuzz 所依靠的，就是把算力持续不断地投向最可能引发崩溃之处。审计中的抽样也是如此：选择核查哪几笔交易，最有可能发现问题。在界面设计中，它则体现为「应当向用户提出哪一个问题」（第 5 章）。
 
-这些做法背后是同一个最优化问题：让回答与未知之间的期望信息增益（expected information gain）最大，
+上述做法背后是同一个最优化问题：选择所要提出的查询，使回答与未知量之间的期望信息增益（expected information gain）最大，
 
 $$q^\star=\arg\max_q\ I(\theta;y_q).$$
 
-如果检查要反复进行，而且要一边查一边用结果，问题就变成了探索与利用（exploration and exploitation）之间的张力，也就是多臂老虎机（multi-armed bandit）问题。汤普森 1933 年的采样法<sup class="cite"><a href="#ref-24">24</a></sup>，罗宾斯 1952 年的开创性工作<sup class="cite"><a href="#ref-25">25</a></sup>，赖与罗宾斯 1985 年的最优分配<sup class="cite"><a href="#ref-26">26</a></sup>，奥尔等人 2002 年的有限时间分析<sup class="cite"><a href="#ref-27">27</a></sup>，给出的是「花多少次试验、去减少对哪个选项的不确定」的最优解。这类策略的遗憾（regret）随时间只按对数增长，
+倘若检查需要反复进行，并且要边检查边利用所得的结果，问题便转化为探索与利用（exploration and exploitation）之间的张力，即多臂老虎机（multi-armed bandit）问题：面对若干收益未知的选择，既要试探尚不了解的，又要利用已知较优的。对这一问题的研究，早期有汤普森 1933 年提出的采样法<sup class="cite"><a href="#ref-24">24</a></sup>与罗宾斯 1952 年的开创性工作<sup class="cite"><a href="#ref-25">25</a></sup>；其后，赖与罗宾斯 1985 年给出了最优分配的规则<sup class="cite"><a href="#ref-26">26</a></sup>，奥尔等人 2002 年又作了有限时间分析<sup class="cite"><a href="#ref-27">27</a></sup>。这些工作共同给出了下述问题的最优解：应当投入多少次试验，去削减对哪一个选项的不确定性。其结论是，这类策略的遗憾（regret），即因未能始终选择最优选项而累积的损失，随时间仅按对数增长，
 
 $$\mathrm{Regret}(T)=O(\ln T).$$
 
-这里要提防叙述上的一种路径依赖。最优筛查是一个方法族：实验设计、主动学习、审计抽样、fuzzing、老虎机，都属于它。从库什纳、莫库斯到琼斯 1998 年的高效全局优化<sup class="cite"><a href="#ref-30">30</a></sup>，再到斯里尼瓦斯等人 2010 年的 GP-UCB<sup class="cite"><a href="#ref-32">32</a></sup>，乃至沙赫里亚里 2016 年那篇综述里基于高斯过程的贝叶斯优化<sup class="cite"><a href="#ref-36">36</a></sup>，这一脉极其有用，但只是这个方法族里的一种实现，不是「筛查」的全部。把这一招等同于高斯过程，就把一种普遍的做法缩成了一件工具。
+此处需要警惕叙述上的一种路径依赖。最优筛查是一个方法族，实验设计、主动学习、审计抽样、模糊测试与多臂老虎机都属于其中。从库什纳、莫库斯的工作，到琼斯 1998 年的高效全局优化<sup class="cite"><a href="#ref-30">30</a></sup>、斯里尼瓦斯等人 2010 年的 GP-UCB<sup class="cite"><a href="#ref-32">32</a></sup>，再到沙赫里亚里 2016 年那篇综述所梳理的、基于高斯过程的贝叶斯优化<sup class="cite"><a href="#ref-36">36</a></sup>，这一脉络极为有用；但它只是该方法族中的一种实现，并不是「筛查」的全部。若把这一对策等同于高斯过程，便是把一种普遍的做法缩减为一件具体的工具。
 
-这一招的典型失效方式也只有一种：优化了一个设错的信息度量。你极其高效地收集了信息，收集的却是错误问题的信息；或者，你拼命最大化的那个「信息量」，并不反映你真正在意的东西。筛查越聪明，设错的度量就越快把你带进歧途。
+这一对策的典型失效方式同样只有一种：所优化的信息度量设定有误。信息的收集可以极其高效，收集到的却是关于一个错误问题的信息；或者，被全力最大化的那个「信息量」，并不反映人们真正关心的东西。筛查的方法越精巧，错误的度量就越快地把人引入歧途。
 
-## 为什么这两招是一对
+## 两种对策的关联
 
-把这两招放在一起看。证书在一个切片上，把不确定性压进一个有保证的界；筛查则花掉信息预算，去观测最能压缩不确定性的那个切片。一个是「在查得了的地方把界证紧」，一个是「把检查花在最该查的地方」。它们从两头夹击同一个敌人：未知。这也就是它们共同的任务：在有限的信息预算下，安排好在哪里削减不确定性、下多大力气去削减。第 13 章会给它们各自找到准确的位置。
+将两种对策并置，二者的关系便清楚了。证书在一个可检验的局部上，把不确定性约束在一个有保证的界之内；筛查则动用有限的信息预算，去观测最能削减不确定性的那个局部。前者是在能够检验之处把界证紧，后者是把检查用在最需要检查之处。二者从两端夹击同一个对手，即未知；这也就是它们的共同任务：在信息预算有限的条件下，决定在何处削减不确定性，以及投入多大的力度。它们各自的确切位置，将在第 13 章中予以确定。
 
-可有时候，不管你怎么压、怎么筛，都不够，因为你根本没有做出这个判断的能力。这时就没法再靠自己缩小未知了，得去别处把判断借来。下一对招讲的就是这个。
+然而在某些情形下，无论怎样约束、怎样筛查都不够，因为行动者缺乏作出这一判断的能力。此时已无法仅凭自身缩小未知，而必须从外部借来判断。下一章的两种对策，处理的就是这种情形。
 
 ---
 
@@ -60,75 +58,75 @@ $$\mathrm{Regret}(T)=O(\ln T).$$
 
 > 落足点：① 历史上科学家的判断　② 理论上被研究过的东西　③ 科学如何进展　④ 如何在无法验证的世界里生活。本节经网络逐条核实。
 
-1. L. Valiant (1984).「A Theory of the Learnable」. Communications of the ACM, 27(11), 1134-1142. [②]
-   瓦利安特在此提出「概率近似正确」（PAC）的学习框架，把「学会一个概念」严格定义为：以高概率、在多项式时间与样本内，得到一个误差足够小的假设。这篇论文为「能不能学、要多少样本才学得动」给出了第一套可证明的语言，是本章「泛化界」一招的源头。
-2. V. Vapnik & A. Chervonenkis (1971).「On the Uniform Convergence of Relative Frequencies of Events to Their Probabilities」. Theory of Probability & Its Applications, 16(2), 264-280. [②]
+1. L. Valiant (1984).「A Theory of the Learnable」. Communications of the ACM, 27(11), 1134-1142. doi:[10.1145/1968.1972](https://doi.org/10.1145/1968.1972) [②]
+   瓦利安特在此提出「概率近似正确」（PAC）的学习框架，把「学会一个概念」严格定义为：以高概率、在多项式时间与样本内，得到一个误差足够小的假设。这篇论文为「能不能学、要多少样本才学得动」给出了第一套可证明的语言，是本章「泛化界」这一做法的源头。
+2. V. Vapnik & A. Chervonenkis (1971).「On the Uniform Convergence of Relative Frequencies of Events to Their Probabilities」. Theory of Probability & Its Applications, 16(2), 264-280. doi:[10.1137/1116025](https://doi.org/10.1137/1116025) [②]
    这篇奠基之作证明了经验频率向真实概率一致收敛的条件，并由此引出后来以两位作者命名的 VC 维，用以刻画一个函数族的「容量」。它解释了为何在有限样本上证出的误差界能对未见数据成立，是泛化界背后的概率与组合根基。
-3. V. Vapnik (1995).《The Nature of Statistical Learning Theory》. Springer. [②]
-   瓦普尼克在这本书里把统计学习理论整理成一个完整体系：以结构风险最小化为核心，权衡经验误差与模型复杂度，并由此导向支持向量机。它是理解「复杂度惩罚」为何出现在泛化界里的标准读物，把第一招的直觉讲得清楚而连贯。
-4. A. Blumer, A. Ehrenfeucht, D. Haussler & M. Warmuth (1989).「Learnability and the Vapnik-Chervonenkis Dimension」. Journal of the ACM, 36(4), 929-965. [②]
+3. V. Vapnik (1995).《The Nature of Statistical Learning Theory》. Springer. doi:[10.1007/978-1-4757-2440-0](https://doi.org/10.1007/978-1-4757-2440-0) [②]
+   瓦普尼克在这本书里把统计学习理论整理成一个完整体系：以结构风险最小化为核心，权衡经验误差与模型复杂度，并由此导向支持向量机。它是理解「复杂度惩罚」为何出现在泛化界里的标准读物，把第一种对策的直觉讲得清楚而连贯。
+4. A. Blumer, A. Ehrenfeucht, D. Haussler & M. Warmuth (1989).「Learnability and the Vapnik-Chervonenkis Dimension」. Journal of the ACM, 36(4), 929-965. doi:[10.1145/76359.76371](https://doi.org/10.1145/76359.76371) [②]
    这篇论文把 VC 维正式接入 PAC 框架，证明一个概念类可被 PAC 学习当且仅当其 VC 维有限，并给出依赖 VC 维的样本复杂度界。它是正文那条泛化界公式的直接来源，把「容量有限便可学」这一判据钉死。
-5. A. Blumer, A. Ehrenfeucht, D. Haussler & M. Warmuth (1987).「Occam's Razor」. Information Processing Letters, 24(6), 377-380. [②]
+5. A. Blumer, A. Ehrenfeucht, D. Haussler & M. Warmuth (1987).「Occam's Razor」. Information Processing Letters, 24(6), 377-380. doi:[10.1016/0020-0190(87)90114-1](https://doi.org/10.1016/0020-0190%2887%2990114-1) [②]
    这篇短文给出「奥卡姆剃刀」的学习理论版本：一个能把训练数据压缩得足够短的假设，便能以高概率泛化。它把「简洁即可学」从哲学格言变成可证的命题，为本章「压缩未知」的母题提供了一个干净的注脚。
-6. D. McAllester (1999).「PAC-Bayesian Model Averaging」. Proceedings of the 12th Annual Conference on Computational Learning Theory (COLT), 164-170. [②]
-   麦卡莱斯特在此提出 PAC-Bayes 界：对一族假设上的后验分布给出泛化保证，惩罚项由后验与先验之间的 KL 散度衡量。它是 PAC 界的一次精化，正文称其为第一招的「精化」即指此，常给出比经典 VC 界更紧的结果。
-7. B. Pierce (2002).《Types and Programming Languages》. MIT Press. [②]
-   皮尔斯这本教材系统讲解类型系统的理论与构造，核心是类型安全的「进展」与「保型」两条性质，以及它们如何被机械地检查。它正是正文那句「类型系统不证明程序全对，只证某一条性质、换来可判定可复核」的标准依据，是理解证书一招在软件中形态的入门书。
-8. W. Howard (1980).「The Formulae-as-Types Notion of Construction」. 收于 J. Seldin & J. Hindley 编《To H. B. Curry: Essays on Combinatory Logic, Lambda Calculus and Formalism》, 479-490. Academic Press. [②]
-   霍华德这篇广为流传的文稿（写于 1969 年，1980 年正式发表）确立了「公式即类型、证明即程序」的对应：直觉主义逻辑的命题与类型一一对应，证明与项一一对应。它是柯里-霍华德对应的经典文本，把「检查一段程序的类型」与「检验一个证明」划上等号，正是证书一招的逻辑核心。
-9. G. Necula (1997).「Proof-Carrying Code」. Conference Record of the 24th ACM SIGPLAN-SIGACT Symposium on Principles of Programming Languages (POPL), 106-119. [②④]
+6. D. McAllester (1999).「PAC-Bayesian Model Averaging」. Proceedings of the 12th Annual Conference on Computational Learning Theory (COLT), 164-170. doi:[10.1145/307400.307435](https://doi.org/10.1145/307400.307435) [②]
+   麦卡莱斯特在此提出 PAC-Bayes 界：对一族假设上的后验分布给出泛化保证，惩罚项由后验与先验之间的 KL 散度衡量。它是 PAC 界的一次精化，正文称其为第一种对策的「精化」即指此，常给出比经典 VC 界更紧的结果。
+7. B. Pierce (2002).《Types and Programming Languages》. MIT Press. [Google Books](https://books.google.com/books?id=hPL6DwAAQBAJ) [②]
+   皮尔斯这本教材系统讲解类型系统的理论与构造，核心是类型安全的「进展」与「保型」两条性质，以及它们如何被机械地检查。它正是正文那句「类型系统不证明程序全对，只证某一条性质、换来可判定可复核」的标准依据，是理解证书这一对策在软件中形态的入门书。
+8. W. Howard (1980).「The Formulae-as-Types Notion of Construction」. 收于 J. Seldin & J. Hindley 编《To H. B. Curry: Essays on Combinatory Logic, Lambda Calculus and Formalism》, 479-490. Academic Press. [Google Books](https://books.google.com/books?id=r0SRQAAACAAJ) [②]
+   霍华德这篇广为流传的文稿（写于 1969 年，1980 年正式发表）确立了「公式即类型、证明即程序」的对应：直觉主义逻辑的命题与类型一一对应，证明与项一一对应。它是柯里-霍华德对应的经典文本，把「检查一段程序的类型」与「检验一个证明」划上等号，正是证书这一对策的逻辑核心。
+9. G. Necula (1997).「Proof-Carrying Code」. Conference Record of the 24th ACM SIGPLAN-SIGACT Symposium on Principles of Programming Languages (POPL), 106-119. doi:[10.1145/263699.263712](https://doi.org/10.1145/263699.263712) [②④]
    内库拉提出「携带证明的代码」：不受信的程序自带一张关于自身安全性的形式证明，宿主只需快速核验这张证书，而不必信任代码来源或重新推导。它把第 7 章那道验证不对称用到极致，是本章证书概念最纯粹的工程化身。
-10. X. Leroy (2009).「Formal Verification of a Realistic Compiler」. Communications of the ACM, 52(7), 107-115. [②③]
-   勒罗伊报告了 CompCert 的成果：一个用 Coq 形式验证过的 C 编译器，其生成代码在语义上与源程序一致这件事，是被机器证明出来的。它表明「带可复核保证的真实软件」并非空想，是证书一招工业化的标志性案例。
-11. L. de Moura & N. Bjørner (2008).「Z3: An Efficient SMT Solver」. Tools and Algorithms for the Construction and Analysis of Systems (TACAS), LNCS 4963, 337-340. Springer. [②④]
-   这篇论文介绍了 Z3 这一高效的 SMT 求解器，它能判定带有算术、数组等理论的逻辑公式的可满足性，并广泛用于程序验证与符号执行。它把「自动产出可复核证书」做成了一件随手可用的工业工具，是证书一招在实践中得以铺开的引擎之一。
-12. N. Higham (2002).《Accuracy and Stability of Numerical Algorithms》(2nd ed.). SIAM. [②]
-   希格姆这部权威著作系统讲述数值算法的误差分析，尤其是后向误差分析：与其问「答案偏离真值多少」，不如问「这个答案恰好是哪个被微扰问题的精确解」。它是正文「误差界」一招的标准参考，教人如何为浮点计算配上可信赖的保证。
-13. R. Moore (1966).《Interval Analysis》. Prentice-Hall. [②]
-   摩尔这本开创性著作确立了区间算术：让每个量带着一个保证包含真值的区间一起参与运算，输出的便不是一个可能骗人的数，而是一个有保证的范围。它把「交付一个界而非一个点」的思路给了数值计算，正是证书一招在该领域的化身。
-14. C. Shannon (1948).「A Mathematical Theory of Communication」. Bell System Technical Journal, 27(3), 379-423; 27(4), 623-656. [①②]
+10. X. Leroy (2009).「Formal Verification of a Realistic Compiler」. Communications of the ACM, 52(7), 107-115. doi:[10.1145/1538788.1538814](https://doi.org/10.1145/1538788.1538814) [②③]
+   勒罗伊报告了 CompCert 的成果：一个用 Coq 形式验证过的 C 编译器，其生成代码在语义上与源程序一致这件事，是被机器证明出来的。它表明「带可复核保证的真实软件」并非空想，是证书这一对策工业化的标志性案例。
+11. L. de Moura & N. Bjørner (2008).「Z3: An Efficient SMT Solver」. Tools and Algorithms for the Construction and Analysis of Systems (TACAS), LNCS 4963, 337-340. Springer. doi:[10.1007/978-3-540-78800-3\_24](https://doi.org/10.1007/978-3-540-78800-3_24) [②④]
+   这篇论文介绍了 Z3 这一高效的 SMT 求解器，它能判定带有算术、数组等理论的逻辑公式的可满足性，并广泛用于程序验证与符号执行。它把「自动产出可复核证书」做成了一件随手可用的工业工具，是证书这一对策在实践中得以铺开的引擎之一。
+12. N. Higham (2002).《Accuracy and Stability of Numerical Algorithms》(2nd ed.). SIAM. doi:[10.1137/1.9780898718027](https://doi.org/10.1137/1.9780898718027) [②]
+   希格姆这部权威著作系统讲述数值算法的误差分析，尤其是后向误差分析：与其问「答案偏离真值多少」，不如问「这个答案恰好是哪个被微扰问题的精确解」。它是正文「误差界」这一做法的标准参考，教人如何为浮点计算配上可信赖的保证。
+13. R. Moore (1966).《Interval Analysis》. Prentice-Hall. [Google Books](https://books.google.com/books?id=csQ-AAAAIAAJ) [②]
+   摩尔这本开创性著作确立了区间算术：让每个量带着一个保证包含真值的区间一起参与运算，输出的便不是一个可能骗人的数，而是一个有保证的范围。它把「交付一个界而非一个点」的思路给了数值计算，正是证书这一对策在该领域的化身。
+14. C. Shannon (1948).「A Mathematical Theory of Communication」. Bell System Technical Journal, 27(3), 379-423; 27(4), 623-656. doi:[10.1002/j.1538-7305.1948.tb01338.x](https://doi.org/10.1002/j.1538-7305.1948.tb01338.x) [①②]
    香农这篇创立信息论的论文，用熵度量不确定性，并给出信源编码与信道容量的根本极限。它是「信息有代价、可被度量」这一观念的总源头，正文称之为最优筛查的「底层货币」，本章对信息增益、压缩的全部讨论都以它为单位。
-15. J. Rissanen (1978).「Modeling by Shortest Data Description」. Automatica, 14(5), 465-471. [②]
+15. J. Rissanen (1978).「Modeling by Shortest Data Description」. Automatica, 14(5), 465-471. doi:[10.1016/0005-1098(78)90005-5](https://doi.org/10.1016/0005-1098%2878%2990005-5) [②]
    里萨宁提出最小描述长度（MDL）原则：最好的模型，是能把数据连同模型自身一起编码得最短的那个。它把「压缩即理解」做成可操作的模型选择准则，与本章「压缩未知」的母题正相呼应，也是奥卡姆剃刀的一个信息论实现。
-16. M. Li & P. Vitányi (2008).《An Introduction to Kolmogorov Complexity and Its Applications》(3rd ed.). Springer. [②]
+16. M. Li & P. Vitányi (2008).《An Introduction to Kolmogorov Complexity and Its Applications》(3rd ed.). Springer. doi:[10.1007/978-0-387-49820-1](https://doi.org/10.1007/978-0-387-49820-1) [②]
    这部标准教材系统讲述柯尔莫哥洛夫复杂度：一个对象的复杂度，等于能生成它的最短程序的长度。这是「压缩」的不可计算理想，与 MDL 那种可操作的近似相对照；它为本章压缩母题提供了理论上的天花板，说明最优压缩本身正是一种无法验证的极限。
-17. W. Hoeffding (1963).「Probability Inequalities for Sums of Bounded Random Variables」. Journal of the American Statistical Association, 58(301), 13-30. [②]
-   霍夫丁在此给出有界随机变量之和偏离其均值的指数型概率上界。这个不等式是把「经验平均」与「真实期望」之间的差距压进一个置信界的基本工具，正文称其为泛化界的「概率引擎」，证书一招的多数集中度论证都从它起步。
-18. E. Candès, J. Romberg & T. Tao (2006).「Robust Uncertainty Principles: Exact Signal Reconstruction from Highly Incomplete Frequency Information」. IEEE Transactions on Information Theory, 52(2), 489-509. [②]
+17. W. Hoeffding (1963).「Probability Inequalities for Sums of Bounded Random Variables」. Journal of the American Statistical Association, 58(301), 13-30. doi:[10.1080/01621459.1963.10500830](https://doi.org/10.1080/01621459.1963.10500830) [②]
+   霍夫丁在此给出有界随机变量之和偏离其均值的指数型概率上界。这个不等式是把「经验平均」与「真实期望」之间的差距压进一个置信界的基本工具，正文称其为泛化界的「概率引擎」，证书这一对策的多数集中度论证都从它起步。
+18. E. Candès, J. Romberg & T. Tao (2006).「Robust Uncertainty Principles: Exact Signal Reconstruction from Highly Incomplete Frequency Information」. IEEE Transactions on Information Theory, 52(2), 489-509. doi:[10.1109/tit.2005.862083](https://doi.org/10.1109/tit.2005.862083) [②]
    这篇压缩感知的奠基论文证明：只要信号足够稀疏，便能用远少于传统采样定理所要求的测量数，通过凸优化把它精确重建出来。它是「把查验花在刀刃上、用极少观测榨出全部信息」的一个数学典范，呼应本章压缩与最优筛查两条线索。
-19. R. Fisher (1935).《The Design of Experiments》. Oliver and Boyd. [①③]
-   费雪这本经典确立了现代实验设计的基本原则：随机化、重复、区组化，以及著名的「女士品茶」思想实验。它教人如何用最少的试验榨出最多可信的信息，是最优筛查一招在统计与科学中的源头读物。
-20. G. Box, W. Hunter & J. Hunter (1978).《Statistics for Experimenters: An Introduction to Design, Data Analysis, and Model Building》. John Wiley & Sons. [③④]
+19. R. Fisher (1935).《The Design of Experiments》. Oliver and Boyd. [Google Books](https://books.google.com/books?id=7DIltAEACAAJ) [①③]
+   费雪这本经典确立了现代实验设计的基本原则：随机化、重复、区组化，以及著名的「女士品茶」思想实验。它教人如何用最少的试验榨出最多可信的信息，是最优筛查这一对策在统计与科学中的源头读物。
+20. G. Box, W. Hunter & J. Hunter (1978).《Statistics for Experimenters: An Introduction to Design, Data Analysis, and Model Building》. John Wiley & Sons. [Google Books](https://books.google.com/books?id=QaFqAAAAMAAJ) [③④]
    博克斯等人这本广受欢迎的实务著作，把实验设计、数据分析与模型构建讲给真正动手做实验的人，强调析因设计与序贯学习的迭代节奏。它把费雪的原则落到工程现场，是理解「如何把查验安排得最划算」的实践指南。
-21. D. Lindley (1956).「On a Measure of the Information Provided by an Experiment」. The Annals of Mathematical Statistics, 27(4), 986-1005. [②]
+21. D. Lindley (1956).「On a Measure of the Information Provided by an Experiment」. The Annals of Mathematical Statistics, 27(4), 986-1005. doi:[10.1214/aoms/1177728069](https://doi.org/10.1214/aoms/1177728069) [②]
    林德利用信息论给出「一个实验提供多少信息」的度量，即先验与后验之间的期望信息增益。这正是正文那个最优筛查目标 $\arg\max_q I(\theta;y_q)$ 的理论原型，把「该做哪个实验」变成一个可最大化的量。
-22. K. Chaloner & I. Verdinelli (1995).「Bayesian Experimental Design: A Review」. Statistical Science, 10(3), 273-304. [②]
+22. K. Chaloner & I. Verdinelli (1995).「Bayesian Experimental Design: A Review」. Statistical Science, 10(3), 273-304. doi:[10.1214/ss/1177009939](https://doi.org/10.1214/ss/1177009939) [②]
    这篇综述系统梳理了贝叶斯实验设计：以效用函数（常取期望信息增益）为目标，统一地导出各种最优设计准则。它把林德利的度量整合进一个完整框架，是读者快速掌握「期望信息增益最大化」这一筛查内核的入口。
-23. A. Wald (1945).「Sequential Tests of Statistical Hypotheses」. The Annals of Mathematical Statistics, 16(2), 117-186. [①②]
+23. A. Wald (1945).「Sequential Tests of Statistical Hypotheses」. The Annals of Mathematical Statistics, 16(2), 117-186. doi:[10.1214/aoms/1177731118](https://doi.org/10.1214/aoms/1177731118) [①②]
    瓦尔德提出序贯概率比检验：边收数据边判断，一旦证据足够强就停下来下结论，从而平均上比固定样本量的检验省得多。它把「要不要继续查」本身变成最优决策，是最优筛查里「边查边用」这一支的先声。
-24. W. Thompson (1933).「On the Likelihood that One Unknown Probability Exceeds Another in View of the Evidence of Two Samples」. Biometrika, 25(3-4), 285-294. [①②]
+24. W. Thompson (1933).「On the Likelihood that One Unknown Probability Exceeds Another in View of the Evidence of Two Samples」. Biometrika, 25(3-4), 285-294. doi:[10.2307/2332286](https://doi.org/10.2307/2332286) [①②]
    汤普森在此提出后来以他命名的采样法：按「某个选项确实最优」的后验概率去随机选取它，自然地在探索与利用之间取得平衡。这是多臂老虎机问题最早的解法之一，至今仍是该问题里既简洁又强劲的策略。
-25. H. Robbins (1952).「Some Aspects of the Sequential Design of Experiments」. Bulletin of the American Mathematical Society, 58(5), 527-535. [①②]
+25. H. Robbins (1952).「Some Aspects of the Sequential Design of Experiments」. Bulletin of the American Mathematical Society, 58(5), 527-535. doi:[10.1090/s0002-9904-1952-09620-8](https://doi.org/10.1090/s0002-9904-1952-09620-8) [①②]
    罗宾斯这篇论文把多臂老虎机问题正式确立为一个数学对象，并提出最早的序贯分配策略，奠定了「探索与利用如何权衡」这一研究方向。它是后来一整条老虎机文献的起点，本章关于「花多少次去减少哪个不确定」的讨论由此开端。
-26. T. Lai & H. Robbins (1985).「Asymptotically Efficient Adaptive Allocation Rules」. Advances in Applied Mathematics, 6(1), 4-22. [②]
+26. T. Lai & H. Robbins (1985).「Asymptotically Efficient Adaptive Allocation Rules」. Advances in Applied Mathematics, 6(1), 4-22. doi:[10.1016/0196-8858(85)90002-8](https://doi.org/10.1016/0196-8858%2885%2990002-8) [②]
    赖与罗宾斯证明了多臂老虎机的遗憾下界：任何合理策略的累积遗憾都至少随时间对数增长，并构造出达到这一下界的渐近最优分配规则。它确立了正文那个 $O(\ln T)$ 是无法逾越的极限，给整类问题划定了天花板。
-27. P. Auer, N. Cesa-Bianchi & P. Fischer (2002).「Finite-time Analysis of the Multiarmed Bandit Problem」. Machine Learning, 47(2-3), 235-256. [①②]
+27. P. Auer, N. Cesa-Bianchi & P. Fischer (2002).「Finite-time Analysis of the Multiarmed Bandit Problem」. Machine Learning, 47(2-3), 235-256. doi:[10.1023/a:1013689704352](https://doi.org/10.1023/a:1013689704352) [①②]
    这篇论文给出 UCB1 等基于「乐观面对不确定」的简单算法，并证明其在有限时间内（而非仅渐近）就有对数级的遗憾界。它把赖与罗宾斯的渐近结果落实为可直接使用、可分析的具体策略，是「置信上界」一类方法的标准引用。
-28. H. Kushner (1964).「A New Method of Locating the Maximum Point of an Arbitrary Multipeak Curve in the Presence of Noise」. Journal of Basic Engineering, 86(1), 97-106. [①②]
+28. H. Kushner (1964).「A New Method of Locating the Maximum Point of an Arbitrary Multipeak Curve in the Presence of Noise」. Journal of Basic Engineering, 86(1), 97-106. doi:[10.1115/1.3653121](https://doi.org/10.1115/1.3653121) [①②]
    库什纳这篇早期论文用概率模型刻画一条未知的带噪曲线，并据此选取下一个采样点去寻找极大值，是贝叶斯优化思想的雏形。它说明「该往哪里再测一次」可以被当作一个最优决策来处理，是最优筛查在全局优化里的先驱之作。
-29. J. Mockus, V. Tiesis & A. Žilinskas (1978).「The Application of Bayesian Methods for Seeking the Extremum」. 收于 L. Dixon & G. Szegő 编《Towards Global Optimization 2》, 117-129. North-Holland. [②]
+29. J. Mockus, V. Tiesis & A. Žilinskas (1978).「The Application of Bayesian Methods for Seeking the Extremum」. 收于 L. Dixon & G. Szegő 编《Towards Global Optimization 2》, 117-129. North-Holland. [Google Books](https://books.google.com/books?id=SUSrAAAAIAAJ) [②]
    莫库斯等人系统发展了贝叶斯全局优化，并提出「期望改进」这一采集函数：在概率模型下选取最可能带来改进的点去评估。它把库什纳的直觉做成了一套通用方法，是今天贝叶斯优化的直接前身。
-30. D. Jones, M. Schonlau & W. Welch (1998).「Efficient Global Optimization of Expensive Black-Box Functions」. Journal of Global Optimization, 13(4), 455-492. [②④]
+30. D. Jones, M. Schonlau & W. Welch (1998).「Efficient Global Optimization of Expensive Black-Box Functions」. Journal of Global Optimization, 13(4), 455-492. doi:[10.1023/a:1008306431147](https://doi.org/10.1023/a:1008306431147) [②④]
    这篇论文提出 EGO 算法，用高斯过程为昂贵的黑箱函数建代理模型，再以期望改进准则挑选下一个评估点，使评估次数大幅减少。它是把贝叶斯优化推广开来的标志性工作，但正文也提醒：它只是最优筛查这个方法族里的一支实现，而非全部。
-31. C. Rasmussen & C. Williams (2006).《Gaussian Processes for Machine Learning》. MIT Press. [②④]
+31. C. Rasmussen & C. Williams (2006).《Gaussian Processes for Machine Learning》. MIT Press. doi:[10.7551/mitpress/3206.001.0001](https://doi.org/10.7551/mitpress/3206.001.0001) [②④]
    这本标准教材系统讲述高斯过程：一种对函数本身赋予先验、并能给出预测不确定性的非参数贝叶斯方法。它是贝叶斯优化所依赖的代理模型的理论底座，读者要理解「不确定性如何被建模并用于决定下一步查哪里」，此书是核心参考。
-32. N. Srinivas, A. Krause, S. Kakade & M. Seeger (2010).「Gaussian Process Optimization in the Bandit Setting: No Regret and Experimental Design」. Proceedings of the 27th International Conference on Machine Learning (ICML), 1015-1022. [②]
+32. N. Srinivas, A. Krause, S. Kakade & M. Seeger (2010).「Gaussian Process Optimization in the Bandit Setting: No Regret and Experimental Design」. Proceedings of the 27th International Conference on Machine Learning (ICML), 1015-1022. [arXiv:0912.3995](https://arxiv.org/abs/0912.3995) [②]
    斯里尼瓦斯等人提出 GP-UCB 算法，把老虎机里的「置信上界」思路搬到高斯过程优化上，并为其遗憾给出可证的界。它把贝叶斯优化与老虎机理论缝在一起，正好示范了本章两端，证一个界与花掉查验，原本就是同一项任务的两面。
-33. D. Cohn, Z. Ghahramani & M. Jordan (1996).「Active Learning with Statistical Models」. Journal of Artificial Intelligence Research, 4, 129-145. [②④]
+33. D. Cohn, Z. Ghahramani & M. Jordan (1996).「Active Learning with Statistical Models」. Journal of Artificial Intelligence Research, 4, 129-145. doi:[10.1613/jair.295](https://doi.org/10.1613/jair.295) [②④]
    科恩等人给出主动学习的统计框架：在统计模型下，挑选那个能最大程度降低模型方差（或预测不确定性）的样本去标注。它把「下一个该标注哪个最划算」变成可计算的准则，是主动学习作为最优筛查一支的代表性工作。
-34. B. Settles (2009).《Active Learning Literature Survey》. Computer Sciences Technical Report 1648, University of Wisconsin-Madison. [②④]
-   塞特尔斯这份广为引用的综述系统整理了主动学习的各种查询策略，如不确定性采样、委员会查询、期望误差缩减等，并比较其适用场景。它是快速纵览「标注预算该怎么花」全貌的标准入口，把这一招的各种实现摆在一起对照。
-35. B. Miller, L. Fredriksen & B. So (1990).「An Empirical Study of the Reliability of UNIX Utilities」. Communications of the ACM, 33(12), 32-44. [③④]
+34. B. Settles (2009).《Active Learning Literature Survey》. Computer Sciences Technical Report 1648, University of Wisconsin-Madison. [链接](https://minds.wisconsin.edu/handle/1793/60660) [②④]
+   塞特尔斯这份广为引用的综述系统整理了主动学习的各种查询策略，如不确定性采样、委员会查询、期望误差缩减等，并比较其适用场景。它是快速纵览「标注预算该怎么花」全貌的标准入口，把这一对策的各种实现摆在一起对照。
+35. B. Miller, L. Fredriksen & B. So (1990).「An Empirical Study of the Reliability of UNIX Utilities」. Communications of the ACM, 33(12), 32-44. doi:[10.1145/96267.96279](https://doi.org/10.1145/96267.96279) [③④]
    米勒等人用随机生成的输入去喂各种 UNIX 工具，结果让相当一部分程序崩溃或挂死，这就是 fuzzing 的开创性实验。它说明「把算力砸向随机或可疑的输入去撞出故障」是一种廉价而有效的查验方式，是最优筛查在软件测试里的起点。
-36. B. Shahriari, K. Swersky, Z. Wang, R. Adams & N. de Freitas (2016).「Taking the Human Out of the Loop: A Review of Bayesian Optimization」. Proceedings of the IEEE, 104(1), 148-175. [②④]
+36. B. Shahriari, K. Swersky, Z. Wang, R. Adams & N. de Freitas (2016).「Taking the Human Out of the Loop: A Review of Bayesian Optimization」. Proceedings of the IEEE, 104(1), 148-175. doi:[10.1109/jproc.2015.2494218](https://doi.org/10.1109/jproc.2015.2494218) [②④]
    这篇综述全面梳理了基于高斯过程的贝叶斯优化：代理模型、采集函数及其在超参数调优等场景的应用。它是了解该方向现状的标准读物，但正文借它提醒读者，不要把「最优筛查」这一普遍姿势缩成「高斯过程」这一件工具。

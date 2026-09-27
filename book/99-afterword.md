@@ -1,14 +1,14 @@
 # 跋　学会在没有把握时行动
 
-这本书从一项关于结构的研究开始：五种处境、两两成对的八招，一张跨领域的对照表，还有一个它自己也承认尚未证实的猜想。但它应该以一个人来结束，因为这件事归根到底关乎你自己。
+本书始于一项关于结构的研究：五种处境，两两成对的八种对策，一张跨领域的对照表，以及一个连它自己也承认尚未证实的猜想。然而，它应当以一个人作结，因为这件事最终关乎的是你自己。
 
-你这一辈子，都会把行动押在自己无法验证的东西上。你写的代码，会带着你永远查不完的 bug 上线。你相信的理论，会在你穷尽证据之前就要求你投入。你爱的人、共事的人、托付的制度，没有一样能在你下注之前得到验证。而你最重要的那些选择，偏偏最无法验证。问题从来不是你能不能确定，你不能。问题是，你能不能照样行动得当。
+你的一生，都将把行动押在自己无法验证的事物上。你写下的代码，终将带着永远无法排查殆尽的缺陷发布。你所相信的理论，会在你穷尽证据之前就要求你投入。你所爱的人、共事的人、托付的制度，没有一样能在你下注之前得到验证。而你一生中最重要的那些选择，恰恰最无法验证。问题从来不在于你能否确定；你不能。问题在于，你能否依然行动得当。
 
-这本书的全部内容，归结起来，就是藏在那个「照样」里的办法。在你查得了的那一小块上证个准，剩下的老老实实存疑。用几个独立的视角，去三角定位（triangulation）你看不清的事。借一个够用的替身，去把握那个把握不住的东西，同时盯紧它从什么时候开始骗你。把有限的心力投在最能改变你判断的地方。自己判断不了的，就向更可靠的人求助。下注的时候，把注下得让自己输得起，错了也查得出、改得回。这些都不是花招。一个有限的人，要在没有神谕的世界里清醒地活着而不至于瘫痪，全部的手艺就在这里。
+本书的全部内容，归结起来，就是蕴含在那个「依然」之中的方法。在能够检验的那一小块上作出确切的证明，对其余部分则如实存疑。以若干相互独立的视角，对看不清的事物进行三角定位（triangulation）。借助一个堪用的替身，去把握那个难以把握的东西，同时警惕它从何时开始欺骗你。把有限的心力投向最能改变你判断的地方。自己无从判断之处，便求助于更可靠的人。下注之时，要让自己输得起，让错误能够被发现，也能够被纠正。这些并非取巧之术。一个有限的人，若要在没有神谕的世界里清醒地生活而不至于陷入瘫痪，所需的全部技艺尽在于此。
 
-那艘船还在雾里。船长终究没有等来一双看得穿雾的眼睛。海图会过时，罗盘会偏，对洋流的估算永远只是估算。可她还是改了航向。她这样做，不是因为确信前方没有暗礁，而是因为保持航向同样是一场豪赌，也因为能做的她都已经做了：核过海图，校过表，留了余量，还备好了万一触礁时弃船的预案。然后，她转动舵轮。
+那艘船仍在雾中。船长终究没有等到一双能够看穿雾气的眼睛。海图会过时，罗盘会有偏差，对洋流的估算也始终只是估算。然而她还是改变了航向。她这样做，并非因为确信前方没有暗礁，而是因为保持航向同样是一场豪赌，也因为凡是能做的，她都已经做了：核对了海图，校过了表，留出了余量，还预备了万一触礁时弃船的方案。然后，她转动了舵轮。
 
-学会在没有把握时行动，说到底，就是学会这样转动舵轮。雾不会散，这就是你必须学会的理由。
+学会在没有把握时行动，归根结底，就是学会这样转动舵轮。雾不会散去；正因如此，你必须学会。
 
 ---
 
@@ -16,61 +16,61 @@
 
 > 落足点：① 历史上科学家的判断　② 理论上被研究过的东西　③ 科学如何进展　④ 如何在无法验证的世界里生活。本节经网络逐条核实。
 
-1. Aristotle (约公元前 4 世纪).《Nicomachean Ethics》. [④]
+1. Aristotle (约公元前 4 世纪).《Nicomachean Ethics》. [链接](https://www.gutenberg.org/ebooks/8438) [④]
    亚里士多德在此提出实践智慧（phronesis）的概念：伦理判断不能化约为普遍规则，而要靠在具体情境中权衡得当的能力，德性正是在反复实践中养成的稳定品格。常用英译本为 R. C. Bartlett 与 S. D. Collins 译本（University of Chicago Press, 2011）。它对本章重要，因为「在没有把握时行动得当」正是一种实践智慧，规则给不出答案时，靠的是经过训练的判断。
-2. Epictetus (约公元 125 年).《Enchiridion》. [④]
+2. Epictetus (约公元 125 年).《Enchiridion》. [链接](https://www.gutenberg.org/ebooks/45109) [④]
    爱比克泰德这部斯多葛派手册由弟子 Arrian 据其《对话录》辑录而成，核心是「分清什么在我们控制之内、什么不在」，并把心力收回到可控的判断与选择上。它与本章呼应之处在于：面对无法验证、无法掌控的世界，先认清能动的边界，是清醒行动而不瘫痪的起点。
-3. Marcus Aurelius (约公元 175 年).《Meditations》. [④]
+3. Marcus Aurelius (约公元 175 年).《Meditations》. [链接](https://www.gutenberg.org/ebooks/2680) [④]
    马可·奥勒留以希腊文写成的私人札记，原题约相当于《致自己》，并非为出版而作，记录了一位斯多葛派统治者如何在权力与无常中自省、克制、尽责。它对本章的意义在于示范了一种姿态：在看不清结局时，仍把当下该做的事做好，与不确定共处而非求一个确定的庇护。
-4. C. S. Peirce (1877).「The Fixation of Belief」.《Popular Science Monthly》, 12, 1-15. [③④]
+4. C. S. Peirce (1877).「The Fixation of Belief」.《Popular Science Monthly》, 12, 1-15. [链接](https://en.wikisource.org/wiki/Popular_Science_Monthly/Volume_12/November_1877/Illustrations_of_the_Logic_of_Science_I) [③④]
    皮尔士在这篇文章里比较了人们「固定信念」的四种方法：固执、权威、先验合理性，以及科学方法，并论证只有诉诸外部实在、可被公开检验与修正的科学方法，才能让信念经得起怀疑的冲击。它对本章重要，因为它把「在小块上证个准、剩下的老实存疑」的态度追溯到了源头：信念的价值在于它如何应对怀疑，而非它有多笃定。
-5. W. James (1897).《The Will to Believe and Other Essays in Popular Philosophy》. Longmans, Green. [④]
+5. W. James (1897).《The Will to Believe and Other Essays in Popular Philosophy》. Longmans, Green. [Google Books](https://books.google.com/books?id=WK4KnwEACAAJ) [④]
    詹姆斯主张，面对那些证据不足以决断、却又必须选择、且事关重大的问题，人有「相信的权利」，因为悬置判断本身也是一种带后果的选择。这正是本章的核心处境：当停在原地与转动舵轮同样是豪赌时，不下注并不等于中立。
-6. W. James (1907).《Pragmatism: A New Name for Some Old Ways of Thinking》. Longmans, Green. [③④]
+6. W. James (1907).《Pragmatism: A New Name for Some Old Ways of Thinking》. Longmans, Green. doi:[10.1037/10851-000](https://doi.org/10.1037/10851-000) [③④]
    詹姆斯在此系统阐述实用主义：一个观念的意义和真值，要看它在经验中能兑现什么后果、能引导出哪些可行的行动，而非看它是否符合某个抽象标准。它支撑本章的判断观：在无法终极验证的地方，把「够用、能指导行动、可被后果检验」当作务实的真理标尺。
-7. S. Kierkegaard (1846).《Concluding Unscientific Postscript to Philosophical Fragments》. [④]
+7. S. Kierkegaard (1846).《Concluding Unscientific Postscript to Philosophical Fragments》. [Google Books](https://books.google.com/books?id=kE1KCSZjUaAC) [④]
    克尔凯郭尔以 Johannes Climacus 为笔名、用丹麦文写成此书，论证关乎生存的真理无法靠客观体系确证，最终须以「信仰的跳跃」在不确定中投入，主观的、激情的承诺不可被客观知识取代。它对本章的意义在于：最重要的选择恰恰最不可验证，到某一步只能在证据穷尽之前先行投入。
-8. F. H. Knight (1921).《Risk, Uncertainty and Profit》. Houghton Mifflin. [②④]
+8. F. H. Knight (1921).《Risk, Uncertainty and Profit》. Houghton Mifflin. [Google Books](https://books.google.com/books?id=XrcJAAAAIAAJ) [②④]
    奈特在此划出影响深远的区分：「风险」指概率可知、可计算的不确定，「不确定」（后人常称「奈特式不确定」）则指概率本身都无从估计的局面，而利润正源于承担后者。它直接对应本章主题：真正棘手的处境不是赔率已知的下注，而是连赔率都看不清时仍须行动。
-9. J. Dewey (1929).《The Quest for Certainty: A Study of the Relation of Knowledge and Action》. Minton, Balch. [③④]
+9. J. Dewey (1929).《The Quest for Certainty: A Study of the Relation of Knowledge and Action》. Minton, Balch. [Google Books](https://books.google.com/books?id=0ciIswEACAAJ) [③④]
    杜威批评西方哲学长期追逐一种「确定性」的幻觉，把不变的知识抬高于易变的行动；他主张知识本就是探究与实验的过程，意义在于改善我们与世界打交道的方式。它为本章提供了思想背景：放弃对确定的执念，转而把判断当作可检验、可修正的实践。
 10. R. Niebuhr (约 1943).《The Serenity Prayer》. [④]
    这篇广为流传的祷文祈求平静接受不可改变之事、勇气改变可改变之事、智慧分辨二者，作者归属与确切年份均有争议，较可靠的考证可见 E. Sifton (2003).《The Serenity Prayer: Faith and Politics in Times of Peace and War》（W. W. Norton）。它以最凝练的方式说出了本章反复强调的分际：先认清能动与不能动的边界，再把力气用在能改变的地方。
-11. F. A. Hayek (1945).「The Use of Knowledge in Society」.《The American Economic Review》, 35(4), 519-530. [③④]
+11. F. A. Hayek (1945).「The Use of Knowledge in Society」.《The American Economic Review》, 35(4), 519-530. [链接](https://www.jstor.org/stable/1809376) [③④]
    哈耶克论证社会所需的知识本质上是分散的、局部的、难以集中汇报的，没有哪个中央计划者能掌握全貌，而价格机制恰好是协调这些分散知识、让人各自就地决策的手段。它对本章重要，因为它说明了为何「全局可验证」往往是奢望，以及为何要靠多个局部视角去三角定位看不清的整体。
-12. I. Berlin (1953).《The Hedgehog and the Fox: An Essay on Tolstoy's View of History》. Weidenfeld & Nicolson. [④]
+12. I. Berlin (1953).《The Hedgehog and the Fox: An Essay on Tolstoy's View of History》. Weidenfeld & Nicolson. [Google Books](https://books.google.com/books?id=-JGVtwEACAAJ) [④]
    伯林借古希腊残句「狐狸知道很多事，刺猬只知道一件大事」，把思想者分为以单一宏大原则统摄一切的「刺猬」与追逐多元、不强求统一的「狐狸」两类。它对本章有用，因为它提醒：在复杂而难验证的世界里，多元视角的「狐狸」式判断常比一元体系更稳健。
-13. H. A. Simon (1955).「A Behavioral Model of Rational Choice」.《The Quarterly Journal of Economics》, 69(1), 99-118. [②④]
+13. H. A. Simon (1955).「A Behavioral Model of Rational Choice」.《The Quarterly Journal of Economics》, 69(1), 99-118. doi:[10.2307/1884852](https://doi.org/10.2307/1884852) [②④]
    西蒙在此提出「有限理性」与「满意化」（satisficing）：真实的决策者受限于信息与算力，不去搜寻最优解，而是寻找一个「够好」、达到可接受门槛即停的方案。它正是本章方法论的理论根基：心力有限，就把它投在最关键处，求够用而非求完美。
-14. V. E. Frankl (1959).《Man's Search for Meaning》. Beacon Press. [④]
+14. V. E. Frankl (1959).《Man's Search for Meaning》. Beacon Press. [Google Books](https://books.google.com/books?id=WQJEtgEACAAJ) [④]
    弗兰克尔以集中营幸存者的亲历为底，提出「意义疗法」：人最深的驱动力是寻找意义，而即使在最无法掌控、最无法验证前景的处境里，人仍保有选择如何面对苦难的自由。德文原著出版于 1946 年。它对本章重要，因为它把「在无从把握时仍能立身」落到了最极端的人类经验上。
-15. H.-G. Gadamer (1960).《Wahrheit und Methode: Grundzüge einer philosophischen Hermeneutik》. J. C. B. Mohr (Paul Siebeck). [④]
+15. H.-G. Gadamer (1960).《Wahrheit und Methode: Grundzüge einer philosophischen Hermeneutik》. J. C. B. Mohr (Paul Siebeck). [Google Books](https://books.google.com/books?id=sBkD0gEACAAJ) [④]
    伽达默尔这部哲学诠释学奠基之作（英译《Truth and Method》出版于 1975 年）主张理解总是从「前见」出发、在历史处境中进行的，真理不能被化约为一套方法论程序。它呼应本章对「客观验证」局限的看法：判断离不开立场，承认这一点，才能更老实地与自身视角的有限性打交道。
-16. K. R. Popper (1963).《Conjectures and Refutations: The Growth of Scientific Knowledge》. Routledge & Kegan Paul. [③④]
+16. K. R. Popper (1963).《Conjectures and Refutations: The Growth of Scientific Knowledge》. Routledge & Kegan Paul. [Google Books](https://books.google.com/books?id=IENmxiVBaSoC) [③④]
    波普尔在这部论文集中阐发其科学观：知识通过大胆猜想与严格反驳而增长，理论的价值在于它可被证伪、敢于冒险接受检验。它对本章重要，因为它把「证伪」立为进步的引擎：好的判断不求自证，而求暴露自己何处可能出错、何时开始骗你。
-17. H. A. Simon (1969).《The Sciences of the Artificial》. MIT Press. [②④]
+17. H. A. Simon (1969).《The Sciences of the Artificial》. MIT Press. [Google Books](https://books.google.com/books?id=hAjtwAEACAAJ) [②④]
    西蒙在此奠定「人工科学」与设计科学的纲领：凡是人造物（包括组织、软件、决策过程）都是为适应目标与环境而设计的，设计就是在受限条件下搜索可行方案的活动。它支撑本章把「下注下得让自己输得起、错得了也查得出还改得回」视为一种可设计的实践：好系统是为应对不确定而造的。
-18. C. Argyris & D. A. Schön (1974).《Theory in Practice: Increasing Professional Effectiveness》. Jossey-Bass. [④]
+18. C. Argyris & D. A. Schön (1974).《Theory in Practice: Increasing Professional Effectiveness》. Jossey-Bass. [Google Books](https://books.google.com/books?id=S7OfAAAAMAAJ) [④]
    阿吉里斯与舍恩区分了人们「声称信奉的理论」与「实际行动中的理论」，并提出「双环学习」：不只在既定目标下纠错，更回头质疑目标与假设本身。它对本章有用，因为它指向一种自我校准的习惯：行动者要能察觉自己嘴上说的与实际做的之间的落差，并据此修正。
-19. A. Tversky & D. Kahneman (1974).「Judgment under Uncertainty: Heuristics and Biases」.《Science》, 185(4157), 1124-1131. [②④]
+19. A. Tversky & D. Kahneman (1974).「Judgment under Uncertainty: Heuristics and Biases」.《Science》, 185(4157), 1124-1131. doi:[10.1126/science.185.4157.1124](https://doi.org/10.1126/science.185.4157.1124) [②④]
    特沃斯基与卡尼曼这篇奠基性论文揭示，人在不确定下的判断依赖代表性、可得性、锚定等少数启发式，这些捷径虽常奏效，却会系统性地导致可预测的偏误。它对本章重要，因为它说明我们对不可验证之事的直觉判断本身就不可全信，故需借外部视角与机制来纠偏。
-20. D. A. Schön (1983).《The Reflective Practitioner: How Professionals Think in Action》. Basic Books. [④]
+20. D. A. Schön (1983).《The Reflective Practitioner: How Professionals Think in Action》. Basic Books. [Google Books](https://books.google.com/books?id=E85qAAAAMAAJ) [④]
    舍恩提出「行动中的反思」：熟练的专业者并非先想清规则再套用，而是在与情境的即时互动中边做边思、随机应变，许多专业知识是难以言传的「默会」知识。它呼应本章对实践判断的看重：在看不全、来不及完全验证时，靠的是一种能在行动中自我修正的现场智慧。
-21. M. C. Nussbaum (1986).《The Fragility of Goodness: Luck and Ethics in Greek Tragedy and Philosophy》. Cambridge University Press. [④]
+21. M. C. Nussbaum (1986).《The Fragility of Goodness: Luck and Ethics in Greek Tragedy and Philosophy》. Cambridge University Press. [Google Books](https://books.google.com/books?id=o380XwAACAAJ) [④]
    努斯鲍姆借希腊悲剧与哲学论证：好的人生与德性本质上是脆弱的，向运气与外部世界敞开，而非自足无虞，企图把善完全置于掌控之内反而会扭曲它。它对本章重要，因为它正面承认了不可控对善好生活的构成性意义：与脆弱共处，本身就是伦理成熟的一部分。
-22. J. C. Scott (1998).《Seeing Like a State: How Certain Schemes to Improve the Human Condition Have Failed》. Yale University Press. [③④]
+22. J. C. Scott (1998).《Seeing Like a State: How Certain Schemes to Improve the Human Condition Have Failed》. Yale University Press. [Google Books](https://books.google.com/books?id=Qe_RDwAAQBAJ) [③④]
    斯科特考察了诸多宏大社会工程为何失败，提出「清晰化」（legibility）与「高度现代主义」之弊：自上而下的标准化抹去了在地的、难以编码的「米提斯」式实践知识，导致计划脱离现实。它对本章重要，因为它警示了对全局可验证、可量化的迷信，以及由此带来的系统性误判。
-23. N. N. Taleb (2007).《The Black Swan: The Impact of the Highly Improbable》. Random House. [②④]
+23. N. N. Taleb (2007).《The Black Swan: The Impact of the Highly Improbable》. Random House. [Google Books](https://books.google.com/books?id=gWW4SkJjM08C) [②④]
    塔勒布论述「黑天鹅」：那些罕见、冲击巨大、事后才被勉强解释的事件，恰恰主导了历史走向，而我们的模型与直觉系统性地低估了它们。它对本章重要，因为它把不可预测、不可验证的极端风险摆到了中心，逼人重新思考该如何在这种世界里下注。
-24. G. Gigerenzer (2007).《Gut Feelings: The Intelligence of the Unconscious》. Viking. [②④]
+24. G. Gigerenzer (2007).《Gut Feelings: The Intelligence of the Unconscious》. Viking. [Google Books](https://books.google.com/books?id=0ZKISEBHvYYC) [②④]
    吉仁泽主张，简单的经验法则（启发式）在信息不全的真实世界里常比复杂模型更准、更省，所谓「直觉」其实是适应环境的高效捷径，这与把启发式一概视为偏误的观点形成对照。它对本章有用，因为它说明在无法穷尽验证时，省俭而稳健的法则往往是更明智的选择。
-25. A. Gawande (2009).《The Checklist Manifesto: How to Get Things Right》. Metropolitan Books. [④]
+25. A. Gawande (2009).《The Checklist Manifesto: How to Get Things Right》. Metropolitan Books. [Google Books](https://books.google.com/books?id=7GJi0fsSmUoC) [④]
    葛文德以医疗、航空等领域为例，论证在高度复杂、易出疏漏的工作中，一份简单的清单能可靠地兜住人会遗忘或想当然的关键步骤，显著降低失误。它直接呼应本章对预案与机制的看重：与其指望临场不出错，不如事先把「万一」固化成可执行的程序。
-26. D. Kahneman (2011).《Thinking, Fast and Slow》. Farrar, Straus and Giroux. [②④]
+26. D. Kahneman (2011).《Thinking, Fast and Slow》. Farrar, Straus and Giroux. [Google Books](https://books.google.com/books?id=ZuKTvERuPG8C) [②④]
    卡尼曼总结其数十年研究，提出快而直觉的「系统一」与慢而费力的「系统二」之分，揭示前者如何在不确定下产生种种可预测的偏误。它对本章重要，因为它系统地说明了我们判断不可靠的机理，从而支持用刻意的、可核查的方法去补直觉之短。
-27. N. N. Taleb (2012).《Antifragile: Things That Gain from Disorder》. Random House. [④]
+27. N. N. Taleb (2012).《Antifragile: Things That Gain from Disorder》. Random House. [Google Books](https://books.google.com/books?id=5fqbz_qGi0AC) [④]
    塔勒布在此提出「反脆弱」：有些系统不只是能抵御冲击，还能从波动、压力与无序中获益、变强，与脆弱相对的不是坚固而是反脆弱。它对本章重要，因为它给出了在不可预测世界里下注的正向原则：不求预测准确，而求让自己处于错了也亏得有限、对了则收益放大的位置。
-28. P. E. Tetlock & D. Gardner (2015).《Superforecasting: The Art and Science of Prediction》. Crown. [②④]
+28. P. E. Tetlock & D. Gardner (2015).《Superforecasting: The Art and Science of Prediction》. Crown. [Google Books](https://books.google.com/books?id=hC_qBQAAQBAJ) [②④]
    泰特洛克基于大规模预测竞赛的研究，刻画了表现最好的「超级预测者」的习惯：把问题拆解、用概率而非笃定来表达、勤于根据新证据小步更新、并事后复盘校准。它直接示范了本章倡导的判断方式：在无法验证的领域，可校准、可追责的概率思维胜过故作确定。
-29. A. Duke (2018).《Thinking in Bets: Making Smarter Decisions When You Don't Have All the Facts》. Portfolio. [④]
+29. A. Duke (2018).《Thinking in Bets: Making Smarter Decisions When You Don't Have All the Facts》. Portfolio. [Google Books](https://books.google.com/books?id=VcouDwAAQBAJ) [④]
    职业扑克手出身的杜克主张把决策看作下注：在信息不全、运气掺杂的世界里，要把决策的质量与结果的好坏分开评判，警惕用结果倒推（resulting）来褒贬当初的选择。它对本章重要，因为它给出了一套与不确定共处的实操语言：以概率下注、以过程论英雄，而非以一次成败定对错。

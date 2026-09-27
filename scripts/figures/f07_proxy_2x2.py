@@ -21,7 +21,7 @@ def build(lang="zh"):
     if en:
         W, H = 760, 540
     s = SVG(W, H)
-    s.text(W / 2, 34, t("代理替换的两种相反败法",
+    s.text(W / 2, 34, t("代理替换的两种相反失效方式",
                         "The Two Opposite Ways Proxy Substitution Fails"),
            size=22 if not en else 20, weight="bold")
     s.text(W / 2, 60, t("一个好代理必须同时落在右上：既忠实，又更易",

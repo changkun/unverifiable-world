@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""F1（第 1 章）：验证廉价的那一小块，与外头的四处裂口。
+"""F1（第 1 章）：验证廉价的那一小块，与其外的四处裂口。
 
 生成 book/figures/f01-narrow-door.svg
 """
@@ -21,7 +21,7 @@ def build(lang="zh"):
     if en:
         W, H = 920, 600
     s = SVG(W, H)
-    s.text(W / 2, 34, t("验证：廉价的那一小块，与外头的四处裂口",
+    s.text(W / 2, 34, t("验证：廉价的那一小块，与其外的四处裂口",
                         "Verification: the cheap narrow door, and the four breaches outside"),
            size=22 if not en else 20, weight="bold")
 

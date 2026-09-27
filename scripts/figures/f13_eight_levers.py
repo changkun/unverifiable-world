@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-"""F10（第 13 章）：八招映射到风险分解的不同部位。
+"""F10（第 13 章）：八种对策映射到风险分解的不同部位。
 
-风险 ≈ P(失败) × 代价(失败)，在信息预算 B 之下。每一招拉动其中一处杠杆。
+风险 ≈ P(失败) × 代价(失败)，在信息预算 B 之下。每一种对策拉动其中一处杠杆。
 生成 book/figures/f13-eight-levers.svg
 """
 import os
@@ -22,7 +22,7 @@ def build(lang="zh"):
     if en:
         W, H = 1180, 540
     s = SVG(W, H)
-    s.text(W / 2, 34, t("八招，八处杠杆：作用于风险分解的不同部位",
+    s.text(W / 2, 34, t("八种对策，八处杠杆：作用于风险分解的不同部位",
                         "Eight moves, eight levers: acting on different parts of the risk decomposition"),
            size=21, weight="bold")
     s.text(W / 2, 66, t("风险 ≈ P(失败) × 代价(失败)　〔在信息预算 B 之下〕",
@@ -88,7 +88,7 @@ def build(lang="zh"):
     s.text(W / 2, H - 28, t("命题：若这些就是全部杠杆，收敛便被解释。",
                             "Proposition: if these are all the levers, the convergence is explained."),
            size=13.5, fill=INK, italic=True)
-    s.text(W / 2, H - 8, t("（这是候选的组织结构，不是定理，见第 14 章）",
+    s.text(W / 2, H - 8, t("（这是候选的组织框架，不是定理，见第 14 章）",
                            "(a candidate organizing scheme, not a theorem; see Chapter 14)"),
            size=12.5, fill=MUTED, italic=True)
 

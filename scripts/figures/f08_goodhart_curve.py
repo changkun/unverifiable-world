@@ -23,7 +23,7 @@ def build(lang="zh"):
     if en:
         W = 820
     s = SVG(W, H)
-    s.text(W / 2, 32, t("Goodhart 崩塌：优化代理，真目标却脱钩",
+    s.text(W / 2, 32, t("Goodhart 崩塌：优化代理指标，真实目标随之脱钩",
                         "The Goodhart collapse: optimize the proxy, the true target uncouples"),
            size=t(20, 18), weight="bold")
 
@@ -65,7 +65,7 @@ def build(lang="zh"):
         f'font-weight="bold" fill="{INK}" text-anchor="middle" '
         f'transform="rotate(-90 {px-24} {py+ph/2})">{t("表现（归一化）  →", "Performance (normalized)  →")}</text>')
 
-    s.text(W / 2, H - 14, t("指标与真目标的相关只在脱钩点之前成立",
+    s.text(W / 2, H - 14, t("指标与真实目标的相关只在脱钩点之前成立",
                             "The metric correlates with the true target only before the decoupling point"),
            size=13, fill=MUTED, italic=True)
 
