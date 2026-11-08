@@ -295,14 +295,11 @@ button{font:inherit;color:inherit}
 .wrap{display:flex}
 .sidebar{width:clamp(260px,20vw,300px);flex:none;border-right:1px solid var(--border);padding:28px 20px;
  overflow-y:auto;overscroll-behavior:contain;background:var(--bg)}
-.sidebar .home{font-weight:600;font-size:15px;display:block;margin-bottom:2px;color:var(--text)}
-.sidebar .sub{color:var(--text-muted);font-size:13px;margin-bottom:16px}
 .sidebar .part{font-weight:500;margin:18px 0 6px;font-size:13px;color:var(--text-muted)}
 .sidebar ul{list-style:none;padding:0;margin:0}
 .sidebar li{margin:1px 0}
 .sidebar a{font-size:14px;line-height:1.5;color:var(--text-secondary);display:block;padding:4px 0}
 .sidebar a:hover{color:var(--text);text-decoration:none}
-.sidebar .sub a{display:inline;font-size:inherit;padding:0;color:var(--text-muted)}
 .sidebar a.active{color:var(--text);font-weight:600}
 
 .scroller{flex:1;min-width:0}
@@ -471,10 +468,8 @@ def parse_summary(summary):
 
 
 def sidebar_html(lang, entries, parts, active=None):
-    out = [
-        f'<a class="home" href="index.html">{html.escape(lang.title)}</a>',
-        f'<div class="sub">{html.escape(lang.author)} · <a href="toc.html">{html.escape(lang.labels["toc"])}</a></div>',
-    ]
+    # 书名与目录已在顶栏，这里只列章节，与《贝叶斯优化》的侧栏相同。
+    out = []
     for ptitle, idxs in parts:
         if ptitle:
             out.append(f'<div class="part">{html.escape(ptitle)}</div>')
