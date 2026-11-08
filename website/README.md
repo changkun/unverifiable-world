@@ -16,6 +16,7 @@
 ```bash
 make build      # 用 uv 自动带上依赖；输出到 website/public/
 make serve      # 构建并本地预览 http://localhost:8000
+make deploy     # 构建并 rsync 到 changkunde:/www/changkun.de/unverifiable-world/
 make clean
 ```
 
