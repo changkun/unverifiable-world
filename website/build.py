@@ -304,7 +304,7 @@ button{font:inherit;color:inherit}
 
 .scroller{flex:1;min-width:0}
 /* 正文：博客文章的排法 */
-.content{min-width:0;padding:48px 56px 90px;max-width:812px;margin:0 auto;font-size:16.5px;line-height:1.85;
+.content{min-width:0;padding:48px 56px 40px;max-width:812px;margin:0 auto;font-size:16.5px;line-height:1.85;
  color:var(--text-prose);overflow-wrap:break-word;animation:turnIn .26s ease both}
 body.lang-en .content{line-height:1.75}
 .content h1{font-size:30px;font-weight:600;line-height:1.3;letter-spacing:-.015em;color:var(--text);margin:0 0 .8em}
@@ -334,6 +334,11 @@ body.lang-en .content{line-height:1.75}
 /* 参考文献比正文小一号 */
 .content .refs{font-size:14.5px;line-height:1.7;color:var(--text-secondary)}
 .content .refs h2{font-size:20px}
+/* 页脚：本页的浏览量和访客数由 urlstat 在发布的站点上填入，本地预览时不显示 */
+.site-foot{max-width:812px;margin:0 auto;padding:0 56px 40px;font-size:12.5px;line-height:1.6;color:var(--muted)}
+.site-foot a{color:inherit;white-space:nowrap}
+.page-stat{font-variant-numeric:tabular-nums}
+.page-stat:has(#urlstat-page-pv:empty){display:none}
 .content .refs ol{padding-left:1.5em}
 .content .refs li{margin:.5em 0}
 .content .refs blockquote{font-size:13px}
@@ -426,7 +431,8 @@ body.turning .content{animation:turnOut .19s ease both}
  .sidebar{position:fixed;left:0;top:0;bottom:0;height:auto;z-index:60;width:82vw;max-width:320px;
   transform:translateX(-100%);transition:transform .25s ease}
  .sidebar.open{transform:none;box-shadow:6px 0 30px rgba(0,0,0,.18)}
- .content{padding:28px 16px 96px;font-size:16px}
+ .content{padding:28px 16px 32px;font-size:16px}
+ .site-foot{padding:0 16px 76px}
  .content h1{font-size:26px}
  .content h2{font-size:21px}
  .mobilebar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:45;height:52px;align-items:center;
@@ -506,12 +512,27 @@ def qr_modal(lang):
 """
 
 
+PAGE_STAT = ('<span class="page-stat"> · PV/UV <span id="urlstat-page-pv"></span>'
+             '/<span id="urlstat-page-uv"></span></span>')
+
+
+def site_foot(lang):
+    e = html.escape
+    return (f'<footer class="site-foot">{e(lang.title)} · © 2026 {e(lang.author)} · '
+            '<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" rel="license">CC BY-NC-ND 4.0</a>'
+            f'{PAGE_STAT}</footer>')
+
+
 def js_block(lang):
     tweet = lang.labels["tweet"].format(title=lang.title, blurb=lang.blurb)
     tt = _json.dumps(tweet, ensure_ascii=False)
     return """
 <script>
 (function(){
+ // 浏览量和访客数由 urlstat（github.com/changkun/urlstat）统计，只在发布的站点上；
+ // 封面按语言跳走时不计，算在跳到的那一页
+ if(!window.uwLeaving&&/(^|\\.)changkun\\.de$/.test(location.hostname)){var st=document.createElement('script');
+   st.async=true;st.src='https://changkun.de/urlstat/client.js';document.head.appendChild(st);}
  var sb=document.querySelector('.sidebar'),ov=document.querySelector('.overlay'),bg=document.querySelector('.burger');
  var root=document.documentElement;
  // 深浅色：点一下即是选择并记住；未选择时跟随系统
@@ -636,6 +657,7 @@ def page(lang, title, body, sidebar, filename, active=None, cur_title="", prevp=
 <nav class="sidebar">{sidebar}</nav>
 <div class="scroller">
 <main class="content {extra_class}">{body}</main>
+{site_foot(lang)}
 </div>
 </div>
 {mobilebar(prevp, nextp, pos)}
@@ -746,7 +768,7 @@ def cover_body(lang, entries, parts):
     <div class="rt-foot">
       {download_html(lang)}
       {share_html(lang)}
-      <p class="lic">{e(lang.labels["license"])}</p>
+      <p class="lic">{e(lang.labels["license"])}{PAGE_STAT}</p>
     </div>
   </div>
 </main>
@@ -764,9 +786,9 @@ def lang_redirect_script(lang):
     return (
         "<script>(function(){try{"
         "var s=localStorage.getItem('uw_lang');"
-        f"if(s){{if(s!=={code})location.replace({alt_href});return;}}"
+        f"if(s){{if(s!=={code})window.uwLeaving=1,location.replace({alt_href});return;}}"
         "var n=(navigator.language||navigator.userLanguage||'').slice(0,2).toLowerCase();"
-        f"if(n&&n!=={code})location.replace({alt_href});"
+        f"if(n&&n!=={code})window.uwLeaving=1,location.replace({alt_href});"
         "}catch(e){}})();</script>"
     )
 
